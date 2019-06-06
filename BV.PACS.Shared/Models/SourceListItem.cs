@@ -64,5 +64,10 @@ namespace BV.PACS.Shared.Models
 
         [Column("TestStatusId")]
         public string TestStatuses { get; set; }
+
+        public override string ToString()
+        {
+            return $"Id:'{SourceBarcode}', Registered:'{SourceRegistrationDate}', Template:'{SourceTemplateName}'";
+        }
     }
 }
