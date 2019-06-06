@@ -1,12 +1,14 @@
 ﻿@page "/fetchdata"
 @using BV.PACS.Shared
+@using BV.PACS.Shared.Models
+@using Microsoft.AspNetCore.Components
 @inject HttpClient Http
 
 <h1>Weather forecast</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (forecasts == null)
+@if (sources == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -16,19 +18,17 @@ else
         <thead>
             <tr>
                 <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
+                <th>Barcode</th>
+                <th>Template</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in forecasts)
+            @foreach (var s in sources)
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
+                    <td>@s.SourceRegistrationDate.ToShortDateString()</td>
+                    <td>@s.SourceBarcode</td>
+                    <td>@s.SourceTemplateName</td>
                 </tr>
             }
         </tbody>
@@ -36,10 +36,11 @@ else
 }
 
 @functions {
-    WeatherForecast[] forecasts;
+    SourceListItem[] sources;
 
     protected override async Task OnInitAsync()
     {
-        forecasts = await Http.GetJsonAsync<WeatherForecast[]>("api/SampleData/WeatherForecasts");
+        sources = await Http.GetJsonAsync<SourceListItem[]>("api/SampleData/GetSources");
     }
+
 }

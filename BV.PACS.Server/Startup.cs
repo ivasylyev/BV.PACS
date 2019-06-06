@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using System.Linq;
+using BV.PACS.Server.Services;
 
 namespace BV.PACS.Server
 {
@@ -14,6 +15,7 @@ namespace BV.PACS.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<DbService>();
             services.AddMvc().AddNewtonsoftJson();
             services.AddResponseCompression(opts =>
             {
