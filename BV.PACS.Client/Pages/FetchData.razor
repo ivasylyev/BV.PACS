@@ -14,6 +14,20 @@
 }
 else
 {
+
+    <DxDataGrid Data=@sources
+                PageSize=15
+               
+    >
+        <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
+        <DxDataGridColumn Field=@nameof(SourceListItem.SourceBarcode) ></DxDataGridColumn>
+        <DxDataGridColumn Field=@nameof(SourceListItem.SourceTemplateName) Caption="Template Name"></DxDataGridColumn>
+        <DxDataGridDateEditColumn Field=@nameof(SourceListItem.SourceCreationDate)></DxDataGridDateEditColumn>
+        <DxDataGridColumn Field=@nameof(SourceListItem.SourceType)></DxDataGridColumn>
+    </DxDataGrid>
+
+    <CodeSnippet_GridColumnTypes></CodeSnippet_GridColumnTypes>
+
     <table class="table">
         <thead>
             <tr>
