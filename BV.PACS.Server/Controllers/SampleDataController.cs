@@ -18,27 +18,17 @@ namespace BV.PACS.Server.Controllers
             _dbService = dbService;
         }
 
-        private static string[] Summaries = new[]
+       
+        [HttpPost("[action]")]
+        public IEnumerable<SourceListItem> GetSources([FromBody] int pageNumber)
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
-        [HttpGet("[action]")]
-        public IEnumerable<WeatherForecast> WeatherForecasts()
-        {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            });
+            return _dbService.GetSources(pageNumber);
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<SourceListItem> GetSources()
+        public int GetSourcesRecordCount()
         {
-            return _dbService.GetSources();
+            return _dbService.GetSourcesRecordCount();
         }
     }
 }

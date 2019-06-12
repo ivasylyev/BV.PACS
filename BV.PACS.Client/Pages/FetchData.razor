@@ -1,4 +1,5 @@
 ﻿@page "/fetchdata"
+@using System.Runtime.CompilerServices
 @using BV.PACS.Shared.Models
 @using Microsoft.AspNetCore.Components
 @inject HttpClient Http
@@ -17,21 +18,55 @@
 else
 {
     <DxDataGrid Data=@sources
-                PageSize=15>
+                ShowPager=@false
+                PageSize=@pageSize>
         <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
         <DxDataGridColumn Field=@nameof(SourceListItem.SourceBarcode)></DxDataGridColumn>
         <DxDataGridColumn Field=@nameof(SourceListItem.SourceTemplateName) Caption="Template Name"></DxDataGridColumn>
         <DxDataGridDateEditColumn Field=@nameof(SourceListItem.SourceCreationDate)></DxDataGridDateEditColumn>
         <DxDataGridColumn Field=@nameof(SourceListItem.SourceType)></DxDataGridColumn>
     </DxDataGrid>
+
+    <DxPager PageCount=@pageCount
+             bind-ActivePageIndex=@ActivePageIndex
+             CollapseButtonCount=@collapseButtonCount>
+    </DxPager>
+    <div>
+    counter: @ActivePageIndex</div>
 }
 
 @functions {
     SourceListItem[] sources;
+    int pageCount;
+    int pageSize = 10;
+    int activePageIndex = 0;
+    int collapseButtonCount = 10;
+
 
     protected override async Task OnInitAsync()
     {
-        sources = await Http.GetJsonAsync<SourceListItem[]>("api/SampleData/GetSources");
+        //sources = await Http.GetJsonAsync<SourceListItem[]>("api/SampleData/GetSources");
+        sources = await Http.PostJsonAsync<SourceListItem[]>("api/SampleData/GetSources", 10);
+        pageCount = await Http.GetJsonAsync<int>("api/SampleData/GetSourcesRecordCount")/pageSize;
     }
+
+
+    protected async Task ChangeSourceAsync(int index)
+    {
+        sources = await Http.PostJsonAsync<SourceListItem[]>("api/SampleData/GetSources", index);
+    }
+
+    int ActivePageIndex
+    {
+        get => activePageIndex;
+        set
+        {
+            activePageIndex = value;
+            ChangeSourceAsync(activePageIndex).ContinueWith(x => { StateHasChanged();});
+            StateHasChanged();
+        }
+    }
+
+   
 
 }

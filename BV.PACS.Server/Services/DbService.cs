@@ -45,7 +45,43 @@ namespace BV.PACS.Server.Services
                     </ConditionRoot>";
 
                 var result = connection.Query<SourceListItem>("dbo.spSource_QS",
-                    new {SearchConditionXml = sourceSql, LanguageID = "en", intStart = 0, intCount = 50},
+                    new {SearchConditionXml = sourceSql, LanguageID = "en", intStart = 0, intCount = 10},
+                    commandType: CommandType.StoredProcedure);
+
+                return result;
+            }
+        }
+
+        public IEnumerable<SourceListItem> GetSources(int pageNumber)
+        {
+            using (var connection = new SqlConnection(_builder.ConnectionString))
+            {
+                var sourceSql = @"<?xml version=""1.0""?>
+                    <ConditionRoot>
+                        <ConditionList />
+                        <SortList />
+                    </ConditionRoot>";
+
+                var result = connection.Query<SourceListItem>("dbo.spSource_QS",
+                    new { SearchConditionXml = sourceSql, LanguageID = "en", intStart = pageNumber*10, intCount = 10 },
+                    commandType: CommandType.StoredProcedure);
+
+                return result;
+            }
+        }
+
+        public int GetSourcesRecordCount()
+        {
+            using (var connection = new SqlConnection(_builder.ConnectionString))
+            {
+                var sourceSql = @"<?xml version=""1.0""?>
+                    <ConditionRoot>
+                        <ConditionList />
+                        <SortList />
+                    </ConditionRoot>";
+
+                var result = connection.ExecuteScalar<int>("dbo.spSource_QS_RecordCount",
+                    new { SearchConditionXml = sourceSql, LanguageID = "en" },
                     commandType: CommandType.StoredProcedure);
 
                 return result;

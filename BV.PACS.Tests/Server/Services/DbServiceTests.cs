@@ -17,10 +17,20 @@ namespace Tests
         [Test]
         public void GetSourcesTest()
         {
-            var items = _service.GetSources().ToList();
+            var items = _service.GetSources(10).ToList();
             Assert.IsNotEmpty(items);
 
             Console.WriteLine(items[0]);
+            Assert.Pass();
+        }
+
+        [Test]
+        public void GetSourcesRecordCountTest()
+        {
+            var count = _service.GetSourcesRecordCount();
+            Assert.IsTrue(count>0);
+
+            Console.WriteLine($"Total sources: {count}");
             Assert.Pass();
         }
     }
