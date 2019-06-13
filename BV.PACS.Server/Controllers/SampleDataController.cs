@@ -1,11 +1,7 @@
-﻿using BV.PACS.Shared;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BV.PACS.Server.Services;
 using BV.PACS.Shared.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BV.PACS.Server.Controllers
 {
@@ -13,22 +9,22 @@ namespace BV.PACS.Server.Controllers
     public class SampleDataController : Controller
     {
         private readonly DbService _dbService;
+
         public SampleDataController(DbService dbService)
         {
             _dbService = dbService;
         }
 
-       
         [HttpPost("[action]")]
-        public IEnumerable<SourceListItem> GetSources([FromBody] int pageNumber)
+        public IEnumerable<SourceListItem> GetSources([FromBody] AggregatedConditionDto condition)
         {
-            return _dbService.GetSources(pageNumber);
+            return _dbService.GetSources(condition);
         }
 
-        [HttpGet("[action]")]
-        public int GetSourcesRecordCount()
+        [HttpPost("[action]")]
+        public int GetSourcesRecordCount([FromBody] AggregatedConditionDto condition)
         {
-            return _dbService.GetSourcesRecordCount();
+            return _dbService.GetSourcesRecordCount(condition);
         }
     }
 }

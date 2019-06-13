@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using BV.PACS.Server.Services;
+using BV.PACS.Shared.Models;
 using NUnit.Framework;
 
 namespace Tests
@@ -17,7 +18,8 @@ namespace Tests
         [Test]
         public void GetSourcesTest()
         {
-            var items = _service.GetSources(10).ToList();
+            AggregatedConditionDto condition = new AggregatedConditionDto();
+            var items = _service.GetSources(condition).ToList();
             Assert.IsNotEmpty(items);
 
             Console.WriteLine(items[0]);
@@ -27,7 +29,8 @@ namespace Tests
         [Test]
         public void GetSourcesRecordCountTest()
         {
-            var count = _service.GetSourcesRecordCount();
+            AggregatedConditionDto condition = new AggregatedConditionDto();
+            var count = _service.GetSourcesRecordCount(condition);
             Assert.IsTrue(count>0);
 
             Console.WriteLine($"Total sources: {count}");

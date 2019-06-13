@@ -1,5 +1,4 @@
 ﻿@page "/fetchdata"
-@using System.Runtime.CompilerServices
 @using BV.PACS.Shared.Models
 @using Microsoft.AspNetCore.Components
 @inject HttpClient Http
@@ -9,7 +8,7 @@
 <p>This component demonstrates fetching source data from the server.</p>
 
 
-@if (sources == null)
+@if (_sources == null)
 {
     <p>
         <em>Loading...</em>
@@ -17,9 +16,9 @@
 }
 else
 {
-    <DxDataGrid Data=@sources
+    <DxDataGrid Data=@_sources
                 ShowPager=@false
-                PageSize=@pageSize>
+                PageSize=@_condition.PageSize>
         <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
         <DxDataGridColumn Field=@nameof(SourceListItem.SourceBarcode)></DxDataGridColumn>
         <DxDataGridColumn Field=@nameof(SourceListItem.SourceTemplateName) Caption="Template Name"></DxDataGridColumn>
@@ -27,46 +26,44 @@ else
         <DxDataGridColumn Field=@nameof(SourceListItem.SourceType)></DxDataGridColumn>
     </DxDataGrid>
 
-    <DxPager PageCount=@pageCount
-             bind-ActivePageIndex=@ActivePageIndex
-             CollapseButtonCount=@collapseButtonCount>
+    <DxPager PageCount=@_pageCount
+             bind-ActivePageIndex=@ActivePageNumber
+             CollapseButtonCount=@CollapseButtonCount>
     </DxPager>
-    <div>
-    counter: @ActivePageIndex</div>
 }
 
 @functions {
-    SourceListItem[] sources;
-    int pageCount;
-    int pageSize = 10;
-    int activePageIndex = 0;
-    int collapseButtonCount = 10;
+        const int CollapseButtonCount = 10;
+    int _pageCount;
+
+    readonly AggregatedConditionDto _condition = new AggregatedConditionDto();
+    SourceListItem[] _sources;
 
 
-    protected override async Task OnInitAsync()
+    int ActivePageNumber
     {
-        //sources = await Http.GetJsonAsync<SourceListItem[]>("api/SampleData/GetSources");
-        sources = await Http.PostJsonAsync<SourceListItem[]>("api/SampleData/GetSources", 10);
-        pageCount = await Http.GetJsonAsync<int>("api/SampleData/GetSourcesRecordCount")/pageSize;
-    }
-
-
-    protected async Task ChangeSourceAsync(int index)
-    {
-        sources = await Http.PostJsonAsync<SourceListItem[]>("api/SampleData/GetSources", index);
-    }
-
-    int ActivePageIndex
-    {
-        get => activePageIndex;
+        get => _condition.PageNumber;
         set
         {
-            activePageIndex = value;
-            ChangeSourceAsync(activePageIndex).ContinueWith(x => { StateHasChanged();});
+            _condition.PageNumber = value;
+            BeginGetSourcesAsync(_condition).ContinueWith(x => { StateHasChanged(); });
             StateHasChanged();
         }
     }
 
-   
+    protected override async Task OnInitAsync()
+    {
+        await BeginGetSourcesAsync(_condition);
+        await BeginGetPageCountAsync(_condition);
+    }
 
+    private async Task BeginGetPageCountAsync(AggregatedConditionDto cond)
+    {
+        _pageCount = await Http.PostJsonAsync<int>("api/SampleData/GetSourcesRecordCount", cond) / cond.PageSize;
+    }
+
+    private async Task BeginGetSourcesAsync(AggregatedConditionDto cond)
+    {
+        _sources = await Http.PostJsonAsync<SourceListItem[]>("api/SampleData/GetSources", cond);
+    }
 }
