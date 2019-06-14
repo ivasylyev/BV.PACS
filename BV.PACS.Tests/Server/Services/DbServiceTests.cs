@@ -36,5 +36,26 @@ namespace Tests
             Console.WriteLine($"Total sources: {count}");
             Assert.Pass();
         }
+        [Test]
+        public void GetMaterialsTest()
+        {
+            AggregatedConditionDto condition = new AggregatedConditionDto();
+            var items = _service.GetMaterials(condition).ToList();
+            Assert.IsNotEmpty(items);
+
+            Console.WriteLine(items[0]);
+            Assert.Pass();
+        }
+
+        [Test]
+        public void GetMaterialsRecordCountTest()
+        {
+            AggregatedConditionDto condition = new AggregatedConditionDto();
+            var count = _service.GetMaterialsRecordCount(condition);
+            Assert.IsTrue(count > 0);
+
+            Console.WriteLine($"Total Materials: {count}");
+            Assert.Pass();
+        }
     }
 }

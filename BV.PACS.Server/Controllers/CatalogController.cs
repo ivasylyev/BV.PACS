@@ -6,11 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 namespace BV.PACS.Server.Controllers
 {
     [Route("api/[controller]")]
-    public class SampleDataController : Controller
+    public class CatalogController : Controller
     {
         private readonly DbService _dbService;
 
-        public SampleDataController(DbService dbService)
+        public CatalogController(DbService dbService)
         {
             _dbService = dbService;
         }
@@ -25,6 +25,17 @@ namespace BV.PACS.Server.Controllers
         public int GetSourcesRecordCount([FromBody] AggregatedConditionDto condition)
         {
             return _dbService.GetSourcesRecordCount(condition);
+        }
+        [HttpPost("[action]")]
+        public IEnumerable<MaterialListItem> GetMaterials([FromBody] AggregatedConditionDto condition)
+        {
+            return _dbService.GetMaterials(condition);
+        }
+
+        [HttpPost("[action]")]
+        public int GetMaterialsRecordCount([FromBody] AggregatedConditionDto condition)
+        {
+            return _dbService.GetMaterialsRecordCount(condition);
         }
     }
 }

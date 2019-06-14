@@ -22,10 +22,17 @@ namespace BV.PACS.Server.Services
                 InitialCatalog = "PACS_PrachiBMORU_200K"
             };
 
+
+            InitMapper<SourceListItem>();
+            InitMapper<MaterialListItem>();
+        }
+
+        private static void InitMapper<T>()
+        {
             SqlMapper.SetTypeMap(
-                typeof(SourceListItem),
+                typeof(T),
                 new CustomPropertyTypeMap(
-                    typeof(SourceListItem),
+                    typeof(T),
                     (type, columnName) =>
                         type.GetProperties().FirstOrDefault(prop =>
                             prop.Name == columnName ||
@@ -37,13 +44,25 @@ namespace BV.PACS.Server.Services
 
         public IEnumerable<SourceListItem> GetSources(AggregatedConditionDto condition)
         {
+            return GetCatalogItems<SourceListItem>(condition, "dbo.spSource_QS");
+        }
+
+        public IEnumerable<MaterialListItem> GetMaterials(AggregatedConditionDto condition)
+        {
+            return GetCatalogItems<MaterialListItem>(condition, "dbo.spStrain_QS");
+        }
+
+        private IEnumerable<T> GetCatalogItems<T>(AggregatedConditionDto condition, string spName)
+        {
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
                 var xml = condition.Serialize();
-                var result = connection.Query<SourceListItem>("dbo.spSource_QS",
+                var result = connection.Query<T>(spName,
                     new
                     {
-                        SearchConditionXml = xml, LanguageID = "en", intStart = condition.PageNumber * condition.PageSize,
+                        SearchConditionXml = xml,
+                        LanguageID = condition.Language,
+                        intStart = condition.PageNumber * condition.PageSize,
                         intCount = condition.PageSize
                     },
                     commandType: CommandType.StoredProcedure);
@@ -54,12 +73,27 @@ namespace BV.PACS.Server.Services
 
         public int GetSourcesRecordCount(AggregatedConditionDto condition)
         {
+            return GetCatalogRecordCount(condition, "dbo.spSource_QS_RecordCount");
+        }
+
+        public int GetMaterialsRecordCount(AggregatedConditionDto condition)
+        {
+            return GetCatalogRecordCount(condition, "dbo.spStrain_QS_RecordCount");
+        }
+
+
+        private int GetCatalogRecordCount(AggregatedConditionDto condition, string spName)
+        {
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
                 var xml = condition.Serialize();
 
-                var result = connection.ExecuteScalar<int>("dbo.spSource_QS_RecordCount",
-                    new {SearchConditionXml = xml, LanguageID = "en"},
+                var result = connection.ExecuteScalar<int>(spName,
+                    new
+                    {
+                        SearchConditionXml = xml,
+                        LanguageID = condition.Language
+                    },
                     commandType: CommandType.StoredProcedure);
 
                 return result;
