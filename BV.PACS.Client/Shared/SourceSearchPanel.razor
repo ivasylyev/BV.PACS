@@ -1,0 +1,32 @@
+﻿@using BV.PACS.Shared.Models
+@using Microsoft.AspNetCore.Components
+<DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+    <DxFormLayoutItem Caption="@nameof(SourceListItem.SourceBarcode)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxTextBox bind-Text="@SourceBarcode"></DxTextBox>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <button onclick="@DoSearch" class="btn btn-info">Search</button>
+        </Template>
+    </DxFormLayoutItem>
+</DxFormLayout>
+
+@functions {
+
+    [Parameter]
+    public Action<AggregatedConditionDto> OnSearch { get; set; }
+
+
+    private string SourceBarcode { get; set; }
+
+    private void DoSearch()
+    {
+        var cond = new AggregatedConditionDto();
+        cond.AddStandardConditionIfNotEmpty("strSourceBarcode", "SourceBarcode", SourceBarcode, Operators.LikeOperator);
+
+        OnSearch?.Invoke(cond);
+    }
+
+}

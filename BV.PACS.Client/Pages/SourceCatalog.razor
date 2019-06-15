@@ -18,92 +18,102 @@ else
 {
     <div class="row">
         <div class="@SearchPanelCssClass">
-            <DxFormLayout CaptionPosition=@CaptionPosition.Vertical>
-                <DxFormLayoutItem Caption=@nameof(SourceListItem.SourceBarcode) ColSpanLg="12" ColSpanMd="12">
-                    <Template>
-                        <DxTextBox bind-Text=@SourceBarcode></DxTextBox>
-                    </Template>
-                </DxFormLayoutItem>
-                <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
-                    <Template>
-                        <button onclick="@DoSearch" class="btn btn-info">Search</button>
-                    </Template>
-                </DxFormLayoutItem>
-            </DxFormLayout>
+            <SourceSearchPanel
+                OnSearch=@OnSearchPanelSearch>
+
+            </SourceSearchPanel>
         </div>
 
         <div class="@GridPanelCssClass">
-            <button onclick="@ToggleSearchPanel" class="btn btn-info">Show Search Panel</button>
-            <DxFormLayout CaptionPosition=@CaptionPosition.Vertical>
-                <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
-                    <Template>
-                        <DxDataGrid Data=@_sources
-                                    ShowFilterRow=@false
-                                    ShowPager=@false
-                                    PageSize=@_condition.PageSize>
-                            <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
-                            <DxDataGridColumn Field=@nameof(SourceListItem.SourceBarcode)></DxDataGridColumn>
-                            <DxDataGridColumn Field=@nameof(SourceListItem.SourceTemplateName) Caption="Template Name"></DxDataGridColumn>
-                            <DxDataGridDateEditColumn Field=@nameof(SourceListItem.SourceCreationDate)></DxDataGridDateEditColumn>
-                            <DxDataGridColumn Field=@nameof(SourceListItem.SourceType)></DxDataGridColumn>
-                        </DxDataGrid>
+            <div class="row">
 
-                        <DxPager PageCount=@_pageCount
-                                 bind-ActivePageIndex=@ActivePageNumber
-                                 CollapseButtonCount=@CollapseButtonCount>
-                        </DxPager>
-                    </Template>
-                </DxFormLayoutItem>
-            </DxFormLayout>
+            <div class="col-sm-12">
+                <button onclick="@ToggleSearchPanel" class="btn btn-info float-right">Show Search Panel</button>
+            </div>
+            <div class="col-sm-12">
+                <DxFormLayout CaptionPosition=@CaptionPosition.Vertical>
+                    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                        <Template>
+                            <DxDataGrid Data=@_sources
+                                        ShowFilterRow=@false
+                                        ShowPager=@false
+                                        AllowRowSelection=@false
+                                        PageSize=@Condition.PageSize>
+                                <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
+                                <DxDataGridColumn Field=@nameof(SourceListItem.SourceBarcode)></DxDataGridColumn>
+                                <DxDataGridColumn Field=@nameof(SourceListItem.SourceTemplateName) Caption="Template Name"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field=@nameof(SourceListItem.SourceCreationDate)></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field=@nameof(SourceListItem.SourceType)></DxDataGridColumn>
+                            </DxDataGrid>
+                            @if (_pageCount > 1)
+                            {
+                                <DxPager PageCount=@_pageCount
+                                         bind-ActivePageIndex=@ActivePageNumber
+                                         CollapseButtonCount=@CollapseButtonCount>
+                                </DxPager>
+                            }
+                        </Template>
+                    </DxFormLayoutItem>
+                </DxFormLayout>
+            </div>
+        </div>
         </div>
     </div>
-
-
 @functions {
-    bool collapseSearchPanel = true;
-
-    string SearchPanelCssClass => collapseSearchPanel ? "collapse" : "col-sm-3";
-    string GridPanelCssClass => collapseSearchPanel ? "col-sm-12" : "col-sm-9";
-
-    void ToggleSearchPanel()
-    {
-        collapseSearchPanel = !collapseSearchPanel;
-    }
-
-
-    string SourceBarcode { get; set; }
-    private void DoSearch()
-    {
-        _condition = new AggregatedConditionDto();
-        _condition.AddStandardConditionIfNotEmpty("strSourceBarcode", "SourceBarcode", SourceBarcode, Operators.LikeOperator);
-        BeginGetSourcesAsync(_condition).ContinueWith(x => { StateHasChanged(); });
-        BeginGetPageCountAsync
-            (_condition).ContinueWith(x => { StateHasChanged(); });
-       
-    }
-
 
         const int CollapseButtonCount = 10;
-    int _pageCount;
-    AggregatedConditionDto _condition = new AggregatedConditionDto();
-    SourceListItem[] _sources;
+    private int _pageCount;
 
 
-    int ActivePageNumber
+    private readonly AggregatedConditionDto _condition = new AggregatedConditionDto();
+    private AggregatedConditionDto _lastSearchPanelCondition = new AggregatedConditionDto();
+
+
+    private AggregatedConditionDto Condition => collapseSearchPanel ? _condition : _lastSearchPanelCondition;
+    private SourceListItem[] _sources;
+
+    private bool collapseSearchPanel = true;
+
+    private string SearchPanelCssClass => collapseSearchPanel ? "collapse" : "col-sm-3";
+    private string GridPanelCssClass => collapseSearchPanel ? "col-sm-12" : "col-sm-9";
+
+    private void ToggleSearchPanel()
     {
-        get => _condition.PageNumber;
+        collapseSearchPanel = !collapseSearchPanel;
+
+        DoSearch();
+    }
+
+
+    private void OnSearchPanelSearch(AggregatedConditionDto cond)
+    {
+        _lastSearchPanelCondition = cond;
+
+        DoSearch();
+    }
+
+    private void DoSearch()
+    {
+        BeginGetSourcesAsync(Condition).ContinueWith(x => { StateHasChanged(); });
+        BeginGetPageCountAsync(Condition).ContinueWith(x => { StateHasChanged(); });
+    }
+
+
+    private int ActivePageNumber
+    {
+        get => Condition.PageNumber;
         set
         {
-            _condition.PageNumber = value;
-            BeginGetSourcesAsync(_condition).ContinueWith(x => { StateHasChanged(); });
+            Condition.PageNumber = value;
+            BeginGetSourcesAsync(Condition).ContinueWith(x => { StateHasChanged(); });
             StateHasChanged();
         }
     }
 
     protected override async Task OnInitAsync()
     {
-        await BeginGetSourcesAsync(_condition);
-        await BeginGetPageCountAsync(_condition);
+        await BeginGetSourcesAsync(Condition);
+        await BeginGetPageCountAsync(Condition);
     }
 
     private async Task BeginGetPageCountAsync(AggregatedConditionDto cond)
