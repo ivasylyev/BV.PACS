@@ -25,6 +25,7 @@ namespace BV.PACS.Server.Services
 
             InitMapper<SourceListItem>();
             InitMapper<MaterialListItem>();
+            InitMapper<TemplateListItem>();
         }
 
         private static void InitMapper<T>()
@@ -96,6 +97,25 @@ namespace BV.PACS.Server.Services
                     },
                     commandType: CommandType.StoredProcedure);
 
+                return result;
+            }
+        }
+
+        public IEnumerable<TemplateListItem> GetTemplates(string formType, string language)
+        {
+          
+            using (var connection = new SqlConnection(_builder.ConnectionString))
+            {
+              
+                var result = connection.Query<TemplateListItem>("spCustomizableFormTemplatesByFormType_SelectLookup",
+                    new
+                    {
+                        idfsCFormTypeID = formType,
+                        LanguageID = language
+                       
+                    },
+                    commandType: CommandType.StoredProcedure);
+                //return null;
                 return result;
             }
         }

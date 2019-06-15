@@ -1,11 +1,37 @@
 ﻿@using BV.PACS.Shared.Models
+@using BV.PACS.Shared.Utils
 @using Microsoft.AspNetCore.Components
+@inject HttpClient Http
+
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
     <DxFormLayoutItem Caption="@nameof(SourceListItem.SourceBarcode)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox bind-Text="@SourceBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
+    <DxFormLayoutItem Caption="@nameof(SourceListItem.SourceCreationDate)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxDateEdit bind-Date="@StartSourceCreationDate"></DxDateEdit>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Caption="@nameof(SourceListItem.SourceCreationDate)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxDateEdit bind-Date="@EndSourceCreationDate"></DxDateEdit>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Caption="@nameof(SourceListItem.SourceTemplateName)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+
+            <DxComboBox Data="@_sourceTemplates"
+                        TextFieldName="Name"
+                        NullText="Select Template ..."
+                        bind-SelectedItem="@SourceTemplate">
+            </DxComboBox>
+
+        </Template>
+    </DxFormLayoutItem>
+
+
     <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
         <Template>
             <button onclick="@DoSearch" class="btn btn-info">Search</button>
@@ -18,13 +44,37 @@
     [Parameter]
     public Action<AggregatedConditionDto> OnSearch { get; set; }
 
+    private TemplateListItem[] _sourceTemplates;
+
+    private DateTime StartSourceCreationDate { get; set; }
+    private DateTime EndSourceCreationDate { get; set; } 
 
     private string SourceBarcode { get; set; }
+
+    private TemplateListItem SourceTemplate { get; set; }
+
+
+    protected override async Task OnInitAsync()
+    {
+        StartSourceCreationDate = DateTime.Now.Date.AddYears(-1);
+        EndSourceCreationDate = DateTime.Now.Date;
+        _sourceTemplates = await Http.PostJsonAsync<TemplateListItem[]>("api/Lookup/GetSourceTemplates", GlobalSettings.CurrentLanguage);
+    }
+
 
     private void DoSearch()
     {
         var cond = new AggregatedConditionDto();
+
         cond.AddStandardConditionIfNotEmpty("strSourceBarcode", "SourceBarcode", SourceBarcode, Operators.LikeOperator);
+
+        var creationDateStartText = StartSourceCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
+        cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateStartText, Operators.MoreOperator);
+
+        var creationDateEndText = EndSourceCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
+        cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateEndText, Operators.LessOperator);
+
+        cond.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", "Template", SourceTemplate?.Id, Operators.EqualsOperator);
 
         OnSearch?.Invoke(cond);
     }

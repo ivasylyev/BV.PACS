@@ -57,5 +57,51 @@ namespace Tests
             Console.WriteLine($"Total Materials: {count}");
             Assert.Pass();
         }
+
+        [Test]
+        public void GetSourceTemplatesTest()
+        {
+           
+            var templates = _service.GetTemplates(FormTypes.Source, "en").ToList();
+            Assert.IsNotEmpty(templates);
+            Assert.IsNotNull(templates.FirstOrDefault(t=>t.Name=="Default for source"));
+            Assert.IsNotNull(templates.FirstOrDefault(t => t.Id == "fftSource"));
+
+            Assert.Pass();
+        }
+        [Test]
+        public void GetMaterialTemplatesTest()
+        {
+
+            var templates = _service.GetTemplates(FormTypes.Material, "en").ToList();
+            Assert.IsNotEmpty(templates);
+            Assert.IsNotNull(templates.FirstOrDefault(t => t.Name == "Default for material"));
+            Assert.IsNotNull(templates.FirstOrDefault(t => t.Id == "fftStrain"));
+
+            Assert.Pass();
+        }
+
+        [Test]
+        public void GetAliquotTemplatesTest()
+        {
+
+            var templates = _service.GetTemplates(FormTypes.Aliquot, "en").ToList();
+            Assert.IsNotEmpty(templates);
+            Assert.IsNotNull(templates.FirstOrDefault(t => t.Name == "Default for aliquot"));
+            Assert.IsNotNull(templates.FirstOrDefault(t => t.Id == "fftAliquot"));
+
+            Assert.Pass();
+        }
+        [Test]
+        public void GetTestTemplatesTest()
+        {
+
+            var templates = _service.GetTemplates(FormTypes.Test, "en").ToList();
+            Assert.IsNotEmpty(templates);
+            Assert.IsNotNull(templates.FirstOrDefault(t => t.Name == "Default for test"));
+            Assert.IsNotNull(templates.FirstOrDefault(t => t.Id == "fftTest"));
+
+            Assert.Pass();
+        }
     }
 }
