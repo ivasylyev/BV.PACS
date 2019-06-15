@@ -16,28 +16,76 @@
 }
 else
 {
-    <DxDataGrid Data=@_sources
-                ShowFilterRow=@false
-                ShowPager=@false
-                PageSize=@_condition.PageSize>
-        <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
-        <DxDataGridColumn Field=@nameof(SourceListItem.SourceBarcode)></DxDataGridColumn>
-        <DxDataGridColumn Field=@nameof(SourceListItem.SourceTemplateName) Caption="Template Name"></DxDataGridColumn>
-        <DxDataGridDateEditColumn Field=@nameof(SourceListItem.SourceCreationDate)></DxDataGridDateEditColumn>
-        <DxDataGridColumn Field=@nameof(SourceListItem.SourceType)></DxDataGridColumn>
-    </DxDataGrid>
+    <div class="row">
+        <div class="@SearchPanelCssClass">
+            <DxFormLayout CaptionPosition=@CaptionPosition.Vertical>
+                <DxFormLayoutItem Caption=@nameof(SourceListItem.SourceBarcode) ColSpanLg="12" ColSpanMd="12">
+                    <Template>
+                        <DxTextBox bind-Text=@SourceBarcode></DxTextBox>
+                    </Template>
+                </DxFormLayoutItem>
+                <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                    <Template>
+                        <button onclick="@DoSearch" class="btn btn-info">Search</button>
+                    </Template>
+                </DxFormLayoutItem>
+            </DxFormLayout>
+        </div>
 
-    <DxPager PageCount=@_pageCount
-             bind-ActivePageIndex=@ActivePageNumber
-             CollapseButtonCount=@CollapseButtonCount>
-    </DxPager>
-}
+        <div class="@GridPanelCssClass">
+            <button onclick="@ToggleSearchPanel" class="btn btn-info">Show Search Panel</button>
+            <DxFormLayout CaptionPosition=@CaptionPosition.Vertical>
+                <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                    <Template>
+                        <DxDataGrid Data=@_sources
+                                    ShowFilterRow=@false
+                                    ShowPager=@false
+                                    PageSize=@_condition.PageSize>
+                            <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
+                            <DxDataGridColumn Field=@nameof(SourceListItem.SourceBarcode)></DxDataGridColumn>
+                            <DxDataGridColumn Field=@nameof(SourceListItem.SourceTemplateName) Caption="Template Name"></DxDataGridColumn>
+                            <DxDataGridDateEditColumn Field=@nameof(SourceListItem.SourceCreationDate)></DxDataGridDateEditColumn>
+                            <DxDataGridColumn Field=@nameof(SourceListItem.SourceType)></DxDataGridColumn>
+                        </DxDataGrid>
+
+                        <DxPager PageCount=@_pageCount
+                                 bind-ActivePageIndex=@ActivePageNumber
+                                 CollapseButtonCount=@CollapseButtonCount>
+                        </DxPager>
+                    </Template>
+                </DxFormLayoutItem>
+            </DxFormLayout>
+        </div>
+    </div>
+
 
 @functions {
+    bool collapseSearchPanel = true;
+
+    string SearchPanelCssClass => collapseSearchPanel ? "collapse" : "col-sm-3";
+    string GridPanelCssClass => collapseSearchPanel ? "col-sm-12" : "col-sm-9";
+
+    void ToggleSearchPanel()
+    {
+        collapseSearchPanel = !collapseSearchPanel;
+    }
+
+
+    string SourceBarcode { get; set; }
+    private void DoSearch()
+    {
+        _condition = new AggregatedConditionDto();
+        _condition.AddStandardConditionIfNotEmpty("strSourceBarcode", "SourceBarcode", SourceBarcode, Operators.LikeOperator);
+        BeginGetSourcesAsync(_condition).ContinueWith(x => { StateHasChanged(); });
+        BeginGetPageCountAsync
+            (_condition).ContinueWith(x => { StateHasChanged(); });
+       
+    }
+
+
         const int CollapseButtonCount = 10;
     int _pageCount;
-
-    readonly AggregatedConditionDto _condition = new AggregatedConditionDto();
+    AggregatedConditionDto _condition = new AggregatedConditionDto();
     SourceListItem[] _sources;
 
 
@@ -67,4 +115,5 @@ else
     {
         _sources = await Http.PostJsonAsync<SourceListItem[]>("api/Catalog/GetSources", cond);
     }
-}
+
+}}
