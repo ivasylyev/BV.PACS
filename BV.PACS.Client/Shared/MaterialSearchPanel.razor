@@ -1,0 +1,94 @@
+﻿@using BV.PACS.Shared.Models
+@using BV.PACS.Shared.Utils
+@using Microsoft.AspNetCore.Components
+@inject HttpClient _http
+
+<DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+    <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialBarcode)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxTextBox bind-Text="@MaterialBarcode"></DxTextBox>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxDateEdit bind-Date="@StartMaterialCreationDate"></DxDateEdit>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxDateEdit bind-Date="@EndMaterialCreationDate"></DxDateEdit>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialTemplateName)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+
+            <DxComboBox Data="@_MaterialTemplates"
+                        TextFieldName="Name"
+                        NullText="Select Template ..."
+                        bind-SelectedItem="@MaterialTemplate">
+            </DxComboBox>
+
+        </Template>
+    </DxFormLayoutItem>
+
+
+    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <button onclick="@DoSearch" class="btn btn-info">Search</button>
+        </Template>
+    </DxFormLayoutItem>
+</DxFormLayout>
+
+@functions {
+
+    [Parameter]
+    public Action<AggregatedConditionDto> OnSearch { get; set; }
+
+    private TemplateListItem[] _MaterialTemplates;
+
+    private DateTime StartMaterialCreationDate { get; set; }
+    private DateTime EndMaterialCreationDate { get; set; } 
+
+    private string MaterialBarcode { get; set; }
+
+    private TemplateListItem MaterialTemplate { get; set; }
+
+    private string MaterialNotes { get; set; }
+
+
+
+    private string AliquotBarcode { get; set; }
+
+    protected override async Task OnInitAsync()
+    {
+        StartMaterialCreationDate = DateTime.Now.Date.AddYears(-1);
+        EndMaterialCreationDate = DateTime.Now.Date;
+        _MaterialTemplates = await _http.PostJsonAsync<TemplateListItem[]>("api/Lookup/GetMaterialTemplates", GlobalSettings.CurrentLanguage);
+    }
+
+
+    private void DoSearch()
+    {
+        var cond = new AggregatedConditionDto();
+
+        cond.AddStandardConditionIfNotEmpty("strBarcode", "MaterialBarcode", MaterialBarcode, Operators.LikeOperator);
+
+        var creationDateStartText = StartMaterialCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
+        cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateStartText, Operators.MoreOperator);
+
+        var creationDateEndText = EndMaterialCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
+        cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateEndText, Operators.LessOperator);
+
+    /*
+        cond.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", "Template", MaterialTemplate?.Id, Operators.EqualsOperator);
+   
+        cond.AddStandardConditionIfNotEmpty("strNote", "Notes", MaterialNotes, Operators.LikeOperator);
+
+        cond.AddStandardConditionIfNotEmpty("strMaterialBarcode", "MaterialBarcode",MaterialBarcode, Operators.LikeOperator);
+
+        cond.AddStandardConditionIfNotEmpty("strContainerBarcode", "AliquotBarcode",AliquotBarcode, Operators.LikeOperator);
+        */
+        OnSearch?.Invoke(cond);
+    }
+
+}

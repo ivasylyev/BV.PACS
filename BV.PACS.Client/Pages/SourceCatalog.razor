@@ -26,7 +26,7 @@ else
             <div class="row">
 
                 <div class="col-sm-12">
-                    <button onclick="@OnSearchPanelToggle" class="btn btn-info float-right">Show Search Panel</button>
+                    <button onclick="@OnSearchPanelToggle" class="btn btn-info float-right">@CatalogState.ShowHideSearchPanelCaption</button>
                 </div>
                 <div class="col-sm-12">
                     <DxFormLayout CaptionPosition=@CaptionPosition.Vertical>
@@ -57,9 +57,9 @@ else
             </div>
         </div>
     </div>
+}
+
 @functions {
-
-
     private SourceListItem[] _sources;
     protected int _pageCount;
 
@@ -73,4 +73,4 @@ else
         _sources = await _http.PostJsonAsync<SourceListItem[]>("api/Catalog/GetSources", cond);
     }
 
-}}
+}

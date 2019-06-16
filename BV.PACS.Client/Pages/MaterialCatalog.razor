@@ -1,12 +1,11 @@
 ﻿@page "/MaterialCatalog"
+@using BV.PACS.Client.Shared.Catalog
 @using BV.PACS.Shared.Models
 @using Microsoft.AspNetCore.Components
-@inject HttpClient Http
+@inherits BV.PACS.Client.Shared.Catalog.CatalogComponent
+@inject HttpClient _http
 
 <h1>Material Catalog</h1>
-
-<p>This component demonstrates fetching Material data from the server.</p>
-
 
 @if (_materials == null)
 {
@@ -16,55 +15,63 @@
 }
 else
 {
-    <DxDataGrid Data=@_materials
-                ShowFilterRow=@false
-                ShowPager=@false
-                PageSize=@_condition.PageSize>
-        <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
-        <DxDataGridColumn Field=@nameof(MaterialListItem.MaterialBarcode)></DxDataGridColumn>
-        <DxDataGridColumn Field=@nameof(MaterialListItem.MaterialTemplateName) Caption="Template Name"></DxDataGridColumn>
-        <DxDataGridDateEditColumn Field=@nameof(MaterialListItem.MaterialRegistrationDate)></DxDataGridDateEditColumn>
-        <DxDataGridColumn Field=@nameof(MaterialListItem.MaterialType)></DxDataGridColumn>
-    </DxDataGrid>
+    <div class="row">
+        <div class="@CatalogState.SearchPanelCssClass">
+            <MaterialSearchPanel OnSearch=@OnSearchPanelSearch>
 
-    <DxPager PageCount=@_pageCount
-             bind-ActivePageIndex=@ActivePageNumber
-             CollapseButtonCount=@CollapseButtonCount>
-    </DxPager>
+            </MaterialSearchPanel>
+        </div>
+
+        <div class="@CatalogState.GridPanelCssClass">
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <button onclick="@OnSearchPanelToggle" class="btn btn-info float-right">@CatalogState.ShowHideSearchPanelCaption</button>
+                </div>
+                <div class="col-sm-12">
+                    <DxFormLayout CaptionPosition=@CaptionPosition.Vertical>
+                        <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                            <Template>
+                                <DxDataGrid Data=@_materials
+                                            ShowFilterRow=@false
+                                            ShowPager=@false
+                                            AllowRowSelection=@false
+                                            PageSize=@CatalogState.Condition.PageSize>
+                                    <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
+                                    <DxDataGridColumn Field=@nameof(MaterialListItem.MaterialBarcode)></DxDataGridColumn>
+                                    <DxDataGridColumn Field=@nameof(MaterialListItem.MaterialTemplateName) Caption="Template Name"></DxDataGridColumn>
+                                    <DxDataGridDateEditColumn Field=@nameof(MaterialListItem.MaterialRegistrationDate)></DxDataGridDateEditColumn>
+                                    <DxDataGridColumn Field=@nameof(MaterialListItem.MaterialType)></DxDataGridColumn>
+                                </DxDataGrid>
+                                @if (_pageCount > 1)
+                                {
+                                    <DxPager PageCount=@_pageCount
+                                             bind-ActivePageIndex=@ActivePageNumber
+                                             CollapseButtonCount=@CatalogState.CollapseButtonCount>
+                                    </DxPager>
+                                }
+                            </Template>
+                        </DxFormLayoutItem>
+                    </DxFormLayout>
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 @functions {
-        const int CollapseButtonCount = 10;
-    int _pageCount;
 
-    readonly AggregatedConditionDto _condition = new AggregatedConditionDto();
-    MaterialListItem[] _materials;
+    private int _pageCount;
+    private MaterialListItem[] _materials;
 
-
-    int ActivePageNumber
+    protected override async Task BeginGetPageCountAsync(AggregatedConditionDto cond)
     {
-        get => _condition.PageNumber;
-        set
-        {
-            _condition.PageNumber = value;
-            BeginGetMaterialsAsync(_condition).ContinueWith(x => { StateHasChanged(); });
-            StateHasChanged();
-        }
+        _pageCount = await _http.PostJsonAsync<int>("api/Catalog/GetMaterialsRecordCount", cond) / cond.PageSize;
     }
 
-    protected override async Task OnInitAsync()
+    protected override async Task BeginGetDataAsync(AggregatedConditionDto cond)
     {
-        await BeginGetMaterialsAsync(_condition);
-        await BeginGetPageCountAsync(_condition);
+        _materials = await _http.PostJsonAsync<MaterialListItem[]>("api/Catalog/GetMaterials", cond);
     }
 
-    private async Task BeginGetPageCountAsync(AggregatedConditionDto cond)
-    {
-        _pageCount = await Http.PostJsonAsync<int>("api/Catalog/GetMaterialsRecordCount", cond) / cond.PageSize;
-    }
-
-    private async Task BeginGetMaterialsAsync(AggregatedConditionDto cond)
-    {
-        _materials = await Http.PostJsonAsync<MaterialListItem[]>("api/Catalog/GetMaterials", cond);
-    }
 }

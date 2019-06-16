@@ -1,7 +1,7 @@
 ﻿@using BV.PACS.Shared.Models
 @using BV.PACS.Shared.Utils
 @using Microsoft.AspNetCore.Components
-@inject HttpClient Http
+@inject HttpClient _http
 
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
     <DxFormLayoutItem Caption="@nameof(SourceListItem.SourceBarcode)" ColSpanLg="12" ColSpanMd="12">
@@ -54,14 +54,16 @@
     private TemplateListItem SourceTemplate { get; set; }
 
     private string SourceNotes { get; set; }
+
     private string MaterialBarcode { get; set; }
+
     private string AliquotBarcode { get; set; }
 
     protected override async Task OnInitAsync()
     {
         StartSourceCreationDate = DateTime.Now.Date.AddYears(-1);
         EndSourceCreationDate = DateTime.Now.Date;
-        _sourceTemplates = await Http.PostJsonAsync<TemplateListItem[]>("api/Lookup/GetSourceTemplates", GlobalSettings.CurrentLanguage);
+        _sourceTemplates = await _http.PostJsonAsync<TemplateListItem[]>("api/Lookup/GetSourceTemplates", GlobalSettings.CurrentLanguage);
     }
 
 
