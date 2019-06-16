@@ -1,13 +1,11 @@
 ﻿@page "/SourceCatalog"
+@using BV.PACS.Client.Shared.Catalog
 @using BV.PACS.Shared.Models
 @using Microsoft.AspNetCore.Components
-@inherits CatalogComponent
-@inject HttpClient Http
+@inherits BV.PACS.Client.Shared.Catalog.CatalogComponent
+@inject HttpClient _http
 
 <h1>Source Catalog</h1>
-
-<p>This component demonstrates fetching source data from the server.</p>
-
 
 @if (_sources == null)
 {
@@ -18,17 +16,17 @@
 else
 {
     <div class="row">
-        <div class="@SearchPanelCssClass">
+        <div class="@CatalogState.SearchPanelCssClass">
             <SourceSearchPanel OnSearch=@OnSearchPanelSearch>
 
             </SourceSearchPanel>
         </div>
 
-        <div class="@GridPanelCssClass">
+        <div class="@CatalogState.GridPanelCssClass">
             <div class="row">
 
                 <div class="col-sm-12">
-                    <button onclick="@ToggleSearchPanel" class="btn btn-info float-right">Show Search Panel</button>
+                    <button onclick="@OnSearchPanelToggle" class="btn btn-info float-right">Show Search Panel</button>
                 </div>
                 <div class="col-sm-12">
                     <DxFormLayout CaptionPosition=@CaptionPosition.Vertical>
@@ -38,7 +36,7 @@ else
                                             ShowFilterRow=@false
                                             ShowPager=@false
                                             AllowRowSelection=@false
-                                            PageSize=@Condition.PageSize>
+                                            PageSize=@CatalogState.Condition.PageSize>
                                     <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
                                     <DxDataGridColumn Field=@nameof(SourceListItem.SourceBarcode)></DxDataGridColumn>
                                     <DxDataGridColumn Field=@nameof(SourceListItem.SourceTemplateName) Caption="Template Name"></DxDataGridColumn>
@@ -49,7 +47,7 @@ else
                                 {
                                     <DxPager PageCount=@_pageCount
                                              bind-ActivePageIndex=@ActivePageNumber
-                                             CollapseButtonCount=@CollapseButtonCount>
+                                             CollapseButtonCount=@CatalogState.CollapseButtonCount>
                                     </DxPager>
                                 }
                             </Template>
@@ -67,12 +65,12 @@ else
 
     protected override async Task BeginGetPageCountAsync(AggregatedConditionDto cond)
     {
-        _pageCount = await Http.PostJsonAsync<int>("api/Catalog/GetSourcesRecordCount", cond) / cond.PageSize;
+        _pageCount = await _http.PostJsonAsync<int>("api/Catalog/GetSourcesRecordCount", cond) / cond.PageSize;
     }
 
     protected override async Task BeginGetDataAsync(AggregatedConditionDto cond)
     {
-        _sources = await Http.PostJsonAsync<SourceListItem[]>("api/Catalog/GetSources", cond);
+        _sources = await _http.PostJsonAsync<SourceListItem[]>("api/Catalog/GetSources", cond);
     }
 
 }}
