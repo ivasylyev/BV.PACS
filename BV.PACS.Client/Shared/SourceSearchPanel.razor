@@ -53,6 +53,9 @@
 
     private TemplateListItem SourceTemplate { get; set; }
 
+    private string SourceNotes { get; set; }
+    private string MaterialBarcode { get; set; }
+    private string AliquotBarcode { get; set; }
 
     protected override async Task OnInitAsync()
     {
@@ -75,6 +78,12 @@
         cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateEndText, Operators.LessOperator);
 
         cond.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", "Template", SourceTemplate?.Id, Operators.EqualsOperator);
+
+        cond.AddStandardConditionIfNotEmpty("strNote", "Notes", SourceNotes, Operators.LikeOperator);
+
+        cond.AddStandardConditionIfNotEmpty("strMaterialBarcode", "MaterialBarcode",MaterialBarcode, Operators.LikeOperator);
+
+        cond.AddStandardConditionIfNotEmpty("strContainerBarcode", "AliquotBarcode",AliquotBarcode, Operators.LikeOperator);
 
         OnSearch?.Invoke(cond);
     }
