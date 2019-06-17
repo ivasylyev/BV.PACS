@@ -25,6 +25,9 @@ namespace BV.PACS.Server.Services
 
             InitMapper<SourceListItem>();
             InitMapper<MaterialListItem>();
+            InitMapper<AliquotListItem>();
+            InitMapper<TestListItem>();
+
             InitMapper<TemplateListItem>();
         }
 
