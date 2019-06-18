@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BV.PACS.Shared.Models
 {
+    [DataUrl("api/Catalog/GetMaterials")]
+    [CountUrl("api/Catalog/GetMaterialsRecordCount")]
     public class MaterialListItem
     {
         [Column("idfMaterial")]

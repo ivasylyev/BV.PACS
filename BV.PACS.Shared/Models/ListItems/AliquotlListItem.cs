@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BV.PACS.Shared.Models
 {
+    [DataUrl("api/Catalog/GetAliquots")]
+    [CountUrl("api/Catalog/GetAliquotsRecordCount")]
     public class AliquotListItem
     {
         [Column("idfContainer")]

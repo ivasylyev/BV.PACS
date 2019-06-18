@@ -1,12 +1,18 @@
-﻿using System;
+﻿using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using BV.PACS.Shared.Models;
 using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.Client.Shared.Catalogs
 {
-    public class CatalogComponent<T> : ComponentBase where T: new()
+    public class CatalogComponent<T> : ComponentBase where T : new()
     {
+        [Inject]
+        protected HttpClient Http { get; set; }
+
+        private T[] _dataSource;
+
         protected CatalogState CatalogState { get; } = new CatalogState();
 
         protected int PageCount { get; set; }
@@ -20,7 +26,6 @@ namespace BV.PACS.Client.Shared.Catalogs
                 BeginGetDataAsync(CatalogState.Condition).ContinueWith(x => { StateHasChanged(); });
             }
         }
-        private T[] _dataSource;
 
         protected T[] DataSource
         {
@@ -34,6 +39,7 @@ namespace BV.PACS.Client.Shared.Catalogs
                         _dataSource[i] = ListItemFactory.CreateEmptyItem<T>("Loading...");
                     }
                 }
+
                 return _dataSource;
             }
             set => _dataSource = value;
@@ -44,7 +50,6 @@ namespace BV.PACS.Client.Shared.Catalogs
             await BeginGetDataAsync(CatalogState.Condition);
             await BeginGetPageCountAsync(CatalogState.Condition);
         }
-
 
         protected void OnSearchPanelToggle()
         {
@@ -68,12 +73,20 @@ namespace BV.PACS.Client.Shared.Catalogs
 
         protected virtual async Task BeginGetPageCountAsync(AggregatedConditionDto cond)
         {
-            await Task.Run(() => throw new NotImplementedException("Must be overriden in the child class"));
+            var attr = typeof(T).GetCustomAttributes(typeof(CountUrlAttribute), false).FirstOrDefault();
+            if (attr is CountUrlAttribute urlAttribute)
+            {
+                PageCount = await Http.PostJsonAsync<int>(urlAttribute.Url, cond) / cond.PageSize;
+            }
         }
 
         protected virtual async Task BeginGetDataAsync(AggregatedConditionDto cond)
         {
-            await Task.Run(() => throw new NotImplementedException("Must be overriden in the child class"));
+            var attr = typeof(T).GetCustomAttributes(typeof(DataUrlAttribute), false).FirstOrDefault();
+            if (attr is DataUrlAttribute urlAttribute)
+            {
+                DataSource = await Http.PostJsonAsync<T[]>(urlAttribute.Url, cond);
+            }
         }
     }
 }
