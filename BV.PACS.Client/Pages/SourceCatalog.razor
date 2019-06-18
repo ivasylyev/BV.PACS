@@ -9,55 +9,55 @@
 
 @if (_sources == null)
 {
-    <p>
-        <em>Loading...</em>
-    </p>
+    _sources = new SourceListItem[CatalogState.Condition.PageSize];
+    for (var i = 0; i < _sources.Length; i++)
+    {
+        _sources[i] = SourceListItem.CreateEmptyItem("Loading...");
+    }
 }
-else
-{
-    <div class="row">
-        <div class="@CatalogState.SearchPanelCssClass">
-            <SourceSearchPanel OnSearch=@OnSearchPanelSearch>
+<div class="row">
+    <div class="@CatalogState.SearchPanelCssClass">
+        <SourceSearchPanel OnSearch="@OnSearchPanelSearch">
 
-            </SourceSearchPanel>
-        </div>
+        </SourceSearchPanel>
+    </div>
 
-        <div class="@CatalogState.GridPanelCssClass">
-            <div class="row">
+    <div class="@CatalogState.GridPanelCssClass">
+        <div class="row">
 
-                <div class="col-sm-12">
-                    <button onclick="@OnSearchPanelToggle" class="btn btn-info float-right">@CatalogState.ShowHideSearchPanelCaption</button>
-                </div>
-                <div class="col-sm-12">
-                    <DxFormLayout CaptionPosition=@CaptionPosition.Vertical>
-                        <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
-                            <Template>
-                                <DxDataGrid Data=@_sources
-                                            ShowFilterRow=@false
-                                            ShowPager=@false
-                                            AllowRowSelection=@false
-                                            PageSize=@CatalogState.Condition.PageSize>
-                                    <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
-                                    <DxDataGridColumn Field=@nameof(SourceListItem.SourceBarcode)></DxDataGridColumn>
-                                    <DxDataGridColumn Field=@nameof(SourceListItem.SourceTemplateName) Caption="Template Name"></DxDataGridColumn>
-                                    <DxDataGridDateEditColumn Field=@nameof(SourceListItem.SourceCreationDate)></DxDataGridDateEditColumn>
-                                    <DxDataGridColumn Field=@nameof(SourceListItem.SourceType)></DxDataGridColumn>
-                                </DxDataGrid>
-                                @if (_pageCount > 1)
-                                {
-                                    <DxPager PageCount=@_pageCount
-                                             bind-ActivePageIndex=@ActivePageNumber
-                                             CollapseButtonCount=@CatalogState.CollapseButtonCount>
-                                    </DxPager>
-                                }
-                            </Template>
-                        </DxFormLayoutItem>
-                    </DxFormLayout>
-                </div>
+            <div class="col-sm-12">
+                <button onclick="@OnSearchPanelToggle" class="btn btn-info float-right">@CatalogState.ShowHideSearchPanelCaption</button>
+            </div>
+            <div class="col-sm-12">
+                <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+                    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                        <Template>
+                            <DxDataGrid Data="@_sources"
+                                        ShowFilterRow="@false"
+                                        ShowPager="@false"
+                                        AllowRowSelection="@false"
+                                        PageSize="@CatalogState.Condition.PageSize">
+                                <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
+                                <DxDataGridColumn Field="@nameof(SourceListItem.SourceBarcode)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(SourceListItem.SourceTemplateName)" Caption="Template Name"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(SourceListItem.SourceCreationDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(SourceListItem.SourceType)"></DxDataGridColumn>
+                            </DxDataGrid>
+                            @if (_pageCount > 1)
+                            {
+                                <DxPager PageCount=@_pageCount
+                                         bind-ActivePageIndex=@ActivePageNumber
+                                         CollapseButtonCount=@CatalogState.CollapseButtonCount>
+                                </DxPager>
+                            }
+                        </Template>
+                    </DxFormLayoutItem>
+                </DxFormLayout>
             </div>
         </div>
     </div>
-}
+</div>
+
 
 @functions {
     private SourceListItem[] _sources;

@@ -65,6 +65,31 @@ namespace BV.PACS.Shared.Models
         [Column("TestStatusId")]
         public string TestStatuses { get; set; }
 
+        public static SourceListItem CreateEmptyItem(string defValue)
+        {
+            return new SourceListItem()
+            {
+                SourceCreationDate = DateTime.Now,
+                SourceTypeId = defValue,
+                SourceType = defValue,
+                SourcePointOfOrigin = defValue,
+                SourceTemplateName = defValue,
+                MaterialsAndAliquotsCount = defValue,
+                SourceNote = defValue,
+                SourceTemplateId = defValue,
+                SourceLockingStatusId = defValue,
+                SourceBarcode = defValue,
+                MaterialTypes = defValue,
+                MaterialBarcodes = defValue,
+                SourceGeoLocationId = defValue,
+                AliquotBarcodes = defValue,
+                TestDates = defValue,
+                TestTypes = defValue,
+                TestResults = defValue,
+                TestStatuses = defValue,
+            };
+        }
+
         public override string ToString()
         {
             return $"Id:'{SourceBarcode}', Registered:'{SourceRegistrationDate}', Template:'{SourceTemplateName}'";
