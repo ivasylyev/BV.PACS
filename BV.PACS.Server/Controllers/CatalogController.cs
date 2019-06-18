@@ -37,5 +37,29 @@ namespace BV.PACS.Server.Controllers
         {
             return _dbService.GetMaterialsRecordCount(condition);
         }
+
+        [HttpPost("[action]")]
+        public IEnumerable<AliquotListItem> GetAliquots([FromBody] AggregatedConditionDto condition)
+        {
+            return _dbService.GetAliquots(condition);
+        }
+
+        [HttpPost("[action]")]
+        public int GetAliquotsRecordCount([FromBody] AggregatedConditionDto condition)
+        {
+            return _dbService.GetAliquotsRecordCount(condition);
+        }
+
+        [HttpPost("[action]")]
+        public IEnumerable<TestListItem> GetTests([FromBody] AggregatedConditionDto condition)
+        {
+            return _dbService.GetTests(condition);
+        }
+
+        [HttpPost("[action]")]
+        public int GetTestsRecordCount([FromBody] AggregatedConditionDto condition)
+        {
+            return _dbService.GetTestsRecordCount(condition);
+        }
     }
 }

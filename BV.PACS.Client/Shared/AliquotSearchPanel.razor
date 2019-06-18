@@ -1,0 +1,86 @@
+﻿@using BV.PACS.Shared.Models
+@using BV.PACS.Shared.Utils
+@using Microsoft.AspNetCore.Components
+@inject HttpClient _http
+
+<DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+    <DxFormLayoutItem Caption="@nameof(AliquotListItem.AliquotBarcode)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxTextBox bind-Text="@AliquotBarcode"></DxTextBox>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Caption="@nameof(AliquotListItem.AliquotCreationDate)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxDateEdit bind-Date="@StartAliquotCreationDate"></DxDateEdit>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Caption="@nameof(AliquotListItem.AliquotCreationDate)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxDateEdit bind-Date="@EndAliquotCreationDate"></DxDateEdit>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Caption="@nameof(AliquotListItem.AliquotTemplateName)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+
+            <DxComboBox Data="@_AliquotTemplates"
+                        TextFieldName="Name"
+                        NullText="Select Template ..."
+                        bind-SelectedItem="@AliquotTemplate">
+            </DxComboBox>
+
+        </Template>
+    </DxFormLayoutItem>
+
+
+    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <button onclick="@DoSearch" class="btn btn-info">Search</button>
+        </Template>
+    </DxFormLayoutItem>
+</DxFormLayout>
+
+@functions {
+
+    [Parameter]
+    public Action<AggregatedConditionDto> OnSearch { get; set; }
+
+    private TemplateListItem[] _AliquotTemplates;
+
+    private DateTime StartAliquotCreationDate { get; set; }
+    private DateTime EndAliquotCreationDate { get; set; } 
+
+    private string AliquotBarcode { get; set; }
+
+    private TemplateListItem AliquotTemplate { get; set; }
+
+    private string AliquotNotes { get; set; }
+
+
+
+
+
+    protected override async Task OnInitAsync()
+    {
+        StartAliquotCreationDate = DateTime.Now.Date.AddYears(-1);
+        EndAliquotCreationDate = DateTime.Now.Date;
+        _AliquotTemplates = await _http.PostJsonAsync<TemplateListItem[]>("api/Lookup/GetAliquotTemplates", GlobalSettings.CurrentLanguage);
+    }
+
+
+    private void DoSearch()
+    {
+        var cond = new AggregatedConditionDto();
+
+        cond.AddStandardConditionIfNotEmpty("strBarcode", "AliquotBarcode", AliquotBarcode, Operators.LikeOperator);
+
+        var creationDateStartText = StartAliquotCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
+        cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateStartText, Operators.MoreOperator);
+
+        var creationDateEndText = EndAliquotCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
+        cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateEndText, Operators.LessOperator);
+
+ 
+        OnSearch?.Invoke(cond);
+    }
+
+}

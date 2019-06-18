@@ -1,14 +1,13 @@
-﻿@page "/SourceCatalog"
-@using BV.PACS.Client.Shared
+﻿@page "/TestCatalog"
 @using BV.PACS.Client.Shared.Catalog
 @using BV.PACS.Shared.Models
 @using Microsoft.AspNetCore.Components
 @inherits BV.PACS.Client.Shared.Catalog.CatalogComponent
 @inject HttpClient _http
 
-<h1>Source Catalog</h1>
+<h1>Test Catalog</h1>
 
-@if (_sources == null)
+@if (_Tests == null)
 {
     <p>
         <em>Loading...</em>
@@ -18,9 +17,9 @@ else
 {
     <div class="row">
         <div class="@CatalogState.SearchPanelCssClass">
-            <SourceSearchPanel OnSearch=@OnSearchPanelSearch>
+            <TestSearchPanel OnSearch=@OnSearchPanelSearch>
 
-            </SourceSearchPanel>
+            </TestSearchPanel>
         </div>
 
         <div class="@CatalogState.GridPanelCssClass">
@@ -33,16 +32,16 @@ else
                     <DxFormLayout CaptionPosition=@CaptionPosition.Vertical>
                         <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
                             <Template>
-                                <DxDataGrid Data=@_sources
+                                <DxDataGrid Data=@_Tests
                                             ShowFilterRow=@false
                                             ShowPager=@false
                                             AllowRowSelection=@false
                                             PageSize=@CatalogState.Condition.PageSize>
                                     <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
-                                    <DxDataGridColumn Field=@nameof(SourceListItem.SourceBarcode)></DxDataGridColumn>
-                                    <DxDataGridColumn Field=@nameof(SourceListItem.SourceTemplateName) Caption="Template Name"></DxDataGridColumn>
-                                    <DxDataGridDateEditColumn Field=@nameof(SourceListItem.SourceCreationDate)></DxDataGridDateEditColumn>
-                                    <DxDataGridColumn Field=@nameof(SourceListItem.SourceType)></DxDataGridColumn>
+                                    <DxDataGridColumn Field=@nameof(TestListItem.TestBarcode)></DxDataGridColumn>
+                                    <DxDataGridColumn Field=@nameof(TestListItem.TestTemplateName) Caption="Template Name"></DxDataGridColumn>
+                                    <DxDataGridDateEditColumn Field=@nameof(TestListItem.TestRegistrationDate)></DxDataGridDateEditColumn>
+                                    <DxDataGridColumn Field=@nameof(TestListItem.TestType)></DxDataGridColumn>
                                 </DxDataGrid>
                                 @if (_pageCount > 1)
                                 {
@@ -61,17 +60,18 @@ else
 }
 
 @functions {
-    private SourceListItem[] _sources;
-    protected int _pageCount;
+
+    private int _pageCount;
+    private TestListItem[] _Tests;
 
     protected override async Task BeginGetPageCountAsync(AggregatedConditionDto cond)
     {
-        _pageCount = await _http.PostJsonAsync<int>("api/Catalog/GetSourcesRecordCount", cond) / cond.PageSize;
+        _pageCount = await _http.PostJsonAsync<int>("api/Catalog/GetTestsRecordCount", cond) / cond.PageSize;
     }
 
     protected override async Task BeginGetDataAsync(AggregatedConditionDto cond)
     {
-        _sources = await _http.PostJsonAsync<SourceListItem[]>("api/Catalog/GetSources", cond);
+        _Tests = await _http.PostJsonAsync<TestListItem[]>("api/Catalog/GetTests", cond);
     }
 
 }
