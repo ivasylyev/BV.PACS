@@ -56,6 +56,16 @@ namespace BV.PACS.Server.Services
             return GetCatalogItems<MaterialListItem>(condition, "dbo.spStrain_QS");
         }
 
+        public IEnumerable<AliquotListItem> GetAliquots(AggregatedConditionDto condition)
+        {
+            return GetCatalogItems<AliquotListItem>(condition, "dbo.spVial_QS");
+        }
+
+        public IEnumerable<TestListItem> GetTests(AggregatedConditionDto condition)
+        {
+            return GetCatalogItems<TestListItem>(condition, "dbo.spTest_QS");
+        }
+
         private IEnumerable<T> GetCatalogItems<T>(AggregatedConditionDto condition, string spName)
         {
             using (var connection = new SqlConnection(_builder.ConnectionString))
@@ -84,7 +94,14 @@ namespace BV.PACS.Server.Services
         {
             return GetCatalogRecordCount(condition, "dbo.spStrain_QS_RecordCount");
         }
-
+        public int GetAliquotsRecordCount(AggregatedConditionDto condition)
+        {
+            return GetCatalogRecordCount(condition, "dbo.spVial_QS_RecordsCount");
+        }
+        public int GetTestsRecordCount(AggregatedConditionDto condition)
+        {
+            return GetCatalogRecordCount(condition, "dbo.spTest_QS_RecordsCount");
+        }
 
         private int GetCatalogRecordCount(AggregatedConditionDto condition, string spName)
         {

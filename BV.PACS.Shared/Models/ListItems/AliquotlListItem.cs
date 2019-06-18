@@ -83,7 +83,7 @@ namespace BV.PACS.Shared.Models
 
         public override string ToString()
         {
-            return $"Id:'{AliquotBarcode}', Registered:'{AliquotCreationDate}', Template:'{AliquotTemplateName}'";
+            return $"Id:'{AliquotBarcode}', Created:'{AliquotCreationDate}', Template:'{AliquotTemplateName}'";
         }
     }
 }

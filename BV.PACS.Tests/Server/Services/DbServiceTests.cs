@@ -9,6 +9,7 @@ namespace Tests
     public class DbServiceTests
     {
         private DbService _service;
+
         [SetUp]
         public void Setup()
         {
@@ -18,7 +19,7 @@ namespace Tests
         [Test]
         public void GetSourcesTest()
         {
-            AggregatedConditionDto condition = new AggregatedConditionDto();
+            var condition = new AggregatedConditionDto();
             var items = _service.GetSources(condition).ToList();
             Assert.IsNotEmpty(items);
 
@@ -29,17 +30,18 @@ namespace Tests
         [Test]
         public void GetSourcesRecordCountTest()
         {
-            AggregatedConditionDto condition = new AggregatedConditionDto();
+            var condition = new AggregatedConditionDto();
             var count = _service.GetSourcesRecordCount(condition);
-            Assert.IsTrue(count>0);
+            Assert.IsTrue(count > 0);
 
             Console.WriteLine($"Total sources: {count}");
             Assert.Pass();
         }
+
         [Test]
         public void GetMaterialsTest()
         {
-            AggregatedConditionDto condition = new AggregatedConditionDto();
+            var condition = new AggregatedConditionDto();
             var items = _service.GetMaterials(condition).ToList();
             Assert.IsNotEmpty(items);
 
@@ -50,7 +52,7 @@ namespace Tests
         [Test]
         public void GetMaterialsRecordCountTest()
         {
-            AggregatedConditionDto condition = new AggregatedConditionDto();
+            var condition = new AggregatedConditionDto();
             var count = _service.GetMaterialsRecordCount(condition);
             Assert.IsTrue(count > 0);
 
@@ -59,20 +61,64 @@ namespace Tests
         }
 
         [Test]
+        public void GetAliquotsTest()
+        {
+            var condition = new AggregatedConditionDto();
+            var items = _service.GetAliquots(condition).ToList();
+            Assert.IsNotEmpty(items);
+
+            Console.WriteLine(items[0]);
+            Assert.Pass();
+        }
+
+        [Test]
+        public void GetAliquotsRecordCountTest()
+        {
+            var condition = new AggregatedConditionDto();
+            var count = _service.GetAliquotsRecordCount(condition);
+            Assert.IsTrue(count > 0);
+
+            Console.WriteLine($"Total Aliquots: {count}");
+            Assert.Pass();
+        }
+
+        [Test]
+        public void GetTestsTest()
+        {
+            var condition = new AggregatedConditionDto();
+            var items = _service.GetTests(condition).ToList();
+            Assert.IsNotEmpty(items);
+
+            Console.WriteLine(items[0]);
+            Assert.Pass();
+        }
+
+        [Test]
+        public void GetTestsRecordCountTest()
+        {
+            var condition = new AggregatedConditionDto();
+            var count = _service.GetTestsRecordCount(condition);
+            Assert.IsTrue(count > 0);
+
+            Console.WriteLine($"Total Tests: {count}");
+            Assert.Pass();
+        }
+
+
+        [Test]
         public void GetSourceTemplatesTest()
         {
-           
             var templates = _service.GetTemplates(FormTypes.Source, "en").ToList();
             Assert.IsNotEmpty(templates);
-            Assert.IsNotNull(templates.FirstOrDefault(t=>t.Name=="Default for source"));
+            Assert.IsNotNull(templates.FirstOrDefault(t => t.Name == "Default for source"));
             Assert.IsNotNull(templates.FirstOrDefault(t => t.Id == "fftSource"));
 
             Assert.Pass();
         }
+
         [Test]
         public void GetMaterialTemplatesTest()
         {
-
             var templates = _service.GetTemplates(FormTypes.Material, "en").ToList();
             Assert.IsNotEmpty(templates);
             Assert.IsNotNull(templates.FirstOrDefault(t => t.Name == "Default for material"));
@@ -84,7 +130,6 @@ namespace Tests
         [Test]
         public void GetAliquotTemplatesTest()
         {
-
             var templates = _service.GetTemplates(FormTypes.Aliquot, "en").ToList();
             Assert.IsNotEmpty(templates);
             Assert.IsNotNull(templates.FirstOrDefault(t => t.Name == "Default for aliquot"));
@@ -92,10 +137,10 @@ namespace Tests
 
             Assert.Pass();
         }
+
         [Test]
         public void GetTestTemplatesTest()
         {
-
             var templates = _service.GetTemplates(FormTypes.Test, "en").ToList();
             Assert.IsNotEmpty(templates);
             Assert.IsNotNull(templates.FirstOrDefault(t => t.Name == "Default for test"));
