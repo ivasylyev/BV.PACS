@@ -9,7 +9,7 @@ namespace BV.PACS.Client.Shared.Catalogs
     public class CatalogComponent<T> : ComponentBase where T : new()
     {
         [Inject]
-        protected HttpClient Http { get; set; }
+        private HttpClient Http { get; set; }
 
         private T[] _dataSource;
 
@@ -65,13 +65,13 @@ namespace BV.PACS.Client.Shared.Catalogs
             DoSearch();
         }
 
-        protected void DoSearch()
+        private void DoSearch()
         {
             BeginGetDataAsync(CatalogState.Condition).ContinueWith(x => { StateHasChanged(); });
             BeginGetPageCountAsync(CatalogState.Condition).ContinueWith(x => { StateHasChanged(); });
         }
 
-        protected virtual async Task BeginGetPageCountAsync(AggregatedConditionDto cond)
+        private async Task BeginGetPageCountAsync(AggregatedConditionDto cond)
         {
             var attr = typeof(T).GetCustomAttributes(typeof(CountUrlAttribute), false).FirstOrDefault();
             if (attr is CountUrlAttribute urlAttribute)
@@ -80,7 +80,7 @@ namespace BV.PACS.Client.Shared.Catalogs
             }
         }
 
-        protected virtual async Task BeginGetDataAsync(AggregatedConditionDto cond)
+        private async Task BeginGetDataAsync(AggregatedConditionDto cond)
         {
             var attr = typeof(T).GetCustomAttributes(typeof(DataUrlAttribute), false).FirstOrDefault();
             if (attr is DataUrlAttribute urlAttribute)

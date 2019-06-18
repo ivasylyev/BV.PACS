@@ -54,14 +54,5 @@
 @functions {
 
 
-    protected override async Task BeginGetPageCountAsync(AggregatedConditionDto cond)
-    {
-        PageCount = await _http.PostJsonAsync<int>("api/Catalog/GetSourcesRecordCount", cond) / cond.PageSize;
-    }
-
-    protected override async Task BeginGetDataAsync(AggregatedConditionDto cond)
-    {
-        DataSource = await _http.PostJsonAsync<SourceListItem[]>("api/Catalog/GetSources", cond);
-    }
 
 }
