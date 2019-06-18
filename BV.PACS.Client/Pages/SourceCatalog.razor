@@ -2,19 +2,11 @@
 @using BV.PACS.Client.Shared.Catalogs
 @using BV.PACS.Shared.Models
 @using Microsoft.AspNetCore.Components
-@inherits BV.PACS.Client.Shared.Catalogs.CatalogComponent
+@inherits BV.PACS.Client.Shared.Catalogs.CatalogComponent<BV.PACS.Shared.Models.SourceListItem>
 @inject HttpClient _http
 
 <h1>Source Catalog</h1>
 
-@if (_sources == null)
-{
-    _sources = new SourceListItem[CatalogState.Condition.PageSize];
-    for (var i = 0; i < _sources.Length; i++)
-    {
-        _sources[i] = SourceListItem.CreateEmptyItem("Loading...");
-    }
-}
 <div class="row">
     <div class="@CatalogState.SearchPanelCssClass">
         <SourceSearchPanel OnSearch="@OnSearchPanelSearch">
@@ -32,7 +24,7 @@
                 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
                     <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
                         <Template>
-                            <DxDataGrid Data="@_sources"
+                            <DxDataGrid Data="@DataSource"
                                         ShowFilterRow="@false"
                                         ShowPager="@false"
                                         AllowRowSelection="@false"
@@ -43,9 +35,9 @@
                                 <DxDataGridDateEditColumn Field="@nameof(SourceListItem.SourceCreationDate)"></DxDataGridDateEditColumn>
                                 <DxDataGridColumn Field="@nameof(SourceListItem.SourceType)"></DxDataGridColumn>
                             </DxDataGrid>
-                            @if (_pageCount > 1)
+                            @if (PageCount > 1)
                             {
-                                <DxPager PageCount=@_pageCount
+                                <DxPager PageCount=@PageCount
                                          bind-ActivePageIndex=@ActivePageNumber
                                          CollapseButtonCount=@CatalogState.CollapseButtonCount>
                                 </DxPager>
@@ -60,17 +52,16 @@
 
 
 @functions {
-    private SourceListItem[] _sources;
-    protected int _pageCount;
+
 
     protected override async Task BeginGetPageCountAsync(AggregatedConditionDto cond)
     {
-        _pageCount = await _http.PostJsonAsync<int>("api/Catalog/GetSourcesRecordCount", cond) / cond.PageSize;
+        PageCount = await _http.PostJsonAsync<int>("api/Catalog/GetSourcesRecordCount", cond) / cond.PageSize;
     }
 
     protected override async Task BeginGetDataAsync(AggregatedConditionDto cond)
     {
-        _sources = await _http.PostJsonAsync<SourceListItem[]>("api/Catalog/GetSources", cond);
+        DataSource = await _http.PostJsonAsync<SourceListItem[]>("api/Catalog/GetSources", cond);
     }
 
 }

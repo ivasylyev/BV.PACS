@@ -2,76 +2,66 @@
 @using BV.PACS.Client.Shared.Catalogs
 @using BV.PACS.Shared.Models
 @using Microsoft.AspNetCore.Components
-@inherits BV.PACS.Client.Shared.Catalogs.CatalogComponent
+@inherits BV.PACS.Client.Shared.Catalogs.CatalogComponent<BV.PACS.Shared.Models.MaterialListItem>
 @inject HttpClient _http
 
 <h1>Material Catalog</h1>
 
-@if (_materials == null)
-{
-    <p>
-        <em>Loading...</em>
-    </p>
-}
-else
-{
-    <div class="row">
-        <div class="@CatalogState.SearchPanelCssClass">
-            <MaterialSearchPanel OnSearch=@OnSearchPanelSearch>
 
-            </MaterialSearchPanel>
-        </div>
+<div class="row">
+    <div class="@CatalogState.SearchPanelCssClass">
+        <MaterialSearchPanel OnSearch="@OnSearchPanelSearch">
 
-        <div class="@CatalogState.GridPanelCssClass">
-            <div class="row">
+        </MaterialSearchPanel>
+    </div>
 
-                <div class="col-sm-12">
-                    <button onclick="@OnSearchPanelToggle" class="btn btn-info float-right">@CatalogState.ShowHideSearchPanelCaption</button>
-                </div>
-                <div class="col-sm-12">
-                    <DxFormLayout CaptionPosition=@CaptionPosition.Vertical>
-                        <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
-                            <Template>
-                                <DxDataGrid Data=@_materials
-                                            ShowFilterRow=@false
-                                            ShowPager=@false
-                                            AllowRowSelection=@false
-                                            PageSize=@CatalogState.Condition.PageSize>
-                                    <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
-                                    <DxDataGridColumn Field=@nameof(MaterialListItem.MaterialBarcode)></DxDataGridColumn>
-                                    <DxDataGridColumn Field=@nameof(MaterialListItem.MaterialTemplateName) Caption="Template Name"></DxDataGridColumn>
-                                    <DxDataGridDateEditColumn Field=@nameof(MaterialListItem.MaterialRegistrationDate)></DxDataGridDateEditColumn>
-                                    <DxDataGridColumn Field=@nameof(MaterialListItem.MaterialType)></DxDataGridColumn>
-                                </DxDataGrid>
-                                @if (_pageCount > 1)
-                                {
-                                    <DxPager PageCount=@_pageCount
-                                             bind-ActivePageIndex=@ActivePageNumber
-                                             CollapseButtonCount=@CatalogState.CollapseButtonCount>
-                                    </DxPager>
-                                }
-                            </Template>
-                        </DxFormLayoutItem>
-                    </DxFormLayout>
-                </div>
+    <div class="@CatalogState.GridPanelCssClass">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <button onclick="@OnSearchPanelToggle" class="btn btn-info float-right">@CatalogState.ShowHideSearchPanelCaption</button>
+            </div>
+            <div class="col-sm-12">
+                <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+                    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                        <Template>
+                            <DxDataGrid Data="@DataSource"
+                                        ShowFilterRow="@false"
+                                        ShowPager="@false"
+                                        AllowRowSelection="@false"
+                                        PageSize="@CatalogState.Condition.PageSize">
+                                <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialListItem.MaterialBarcode)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialListItem.MaterialTemplateName)" Caption="Template Name"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(MaterialListItem.MaterialRegistrationDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialListItem.MaterialType)"></DxDataGridColumn>
+                            </DxDataGrid>
+                            @if (PageCount > 1)
+                            {
+                                <DxPager PageCount=@PageCount
+                                         bind-ActivePageIndex=@ActivePageNumber
+                                         CollapseButtonCount=@CatalogState.CollapseButtonCount>
+                                </DxPager>
+                            }
+                        </Template>
+                    </DxFormLayoutItem>
+                </DxFormLayout>
             </div>
         </div>
     </div>
-}
+</div>
+
 
 @functions {
 
-    private int _pageCount;
-    private MaterialListItem[] _materials;
-
     protected override async Task BeginGetPageCountAsync(AggregatedConditionDto cond)
     {
-        _pageCount = await _http.PostJsonAsync<int>("api/Catalog/GetMaterialsRecordCount", cond) / cond.PageSize;
+        PageCount = await _http.PostJsonAsync<int>("api/Catalog/GetMaterialsRecordCount", cond) / cond.PageSize;
     }
 
     protected override async Task BeginGetDataAsync(AggregatedConditionDto cond)
     {
-        _materials = await _http.PostJsonAsync<MaterialListItem[]>("api/Catalog/GetMaterials", cond);
+        DataSource = await _http.PostJsonAsync<MaterialListItem[]>("api/Catalog/GetMaterials", cond);
     }
 
 }

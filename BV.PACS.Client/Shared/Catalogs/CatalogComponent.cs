@@ -5,9 +5,11 @@ using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.Client.Shared.Catalogs
 {
-    public class CatalogComponent : ComponentBase
+    public class CatalogComponent<T> : ComponentBase where T: new()
     {
         protected CatalogState CatalogState { get; } = new CatalogState();
+
+        protected int PageCount { get; set; }
 
         public int ActivePageNumber
         {
@@ -17,6 +19,24 @@ namespace BV.PACS.Client.Shared.Catalogs
                 CatalogState.Condition.PageNumber = value;
                 BeginGetDataAsync(CatalogState.Condition).ContinueWith(x => { StateHasChanged(); });
             }
+        }
+        private T[] _dataSource;
+
+        protected T[] DataSource
+        {
+            get
+            {
+                if (_dataSource == null)
+                {
+                    _dataSource = new T[CatalogState.Condition.PageSize];
+                    for (var i = 0; i < _dataSource.Length; i++)
+                    {
+                        _dataSource[i] = ListItemFactory.CreateEmptyItem<T>("Loading...");
+                    }
+                }
+                return _dataSource;
+            }
+            set => _dataSource = value;
         }
 
         protected override async Task OnInitAsync()
