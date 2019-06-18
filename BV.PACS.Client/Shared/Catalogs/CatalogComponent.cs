@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using BV.PACS.Shared.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace BV.PACS.Client.Shared.Catalog
+namespace BV.PACS.Client.Shared.Catalogs
 {
     public class CatalogComponent : ComponentBase
     {
