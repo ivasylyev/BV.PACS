@@ -26,7 +26,7 @@ app {
     }
 
 .top-bar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-image: linear-gradient(180deg, #3366ff 0%, #1133aa 70%);
 }
 
 .sidebar {
@@ -48,9 +48,15 @@ app {
         top: -2px;
     }
 
+.no-padding {
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
 .nav-item {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
+
 }
 
     .nav-item:first-of-type {
