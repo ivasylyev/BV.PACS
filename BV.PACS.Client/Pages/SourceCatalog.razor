@@ -1,8 +1,8 @@
 ﻿@page "/SourceCatalog"
-@using BV.PACS.Client.Shared.Catalogs
+@using BV.PACS.Client.Catalogs
+@using BV.PACS.Client.SearchPanels
 @using BV.PACS.Shared.Models
-@using Microsoft.AspNetCore.Components
-@inherits BV.PACS.Client.Shared.Catalogs.CatalogComponent<BV.PACS.Shared.Models.SourceListItem>
+@inherits BV.PACS.Client.Catalogs.BaseCatalog<BV.PACS.Shared.Models.SourceListItem>
 @inject HttpClient _http
 
 <h1>Source Catalog</h1>
@@ -52,7 +52,4 @@
 
 
 @functions {
-
-
-
 }

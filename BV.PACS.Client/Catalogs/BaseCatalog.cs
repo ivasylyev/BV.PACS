@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using BV.PACS.Shared.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace BV.PACS.Client.Shared.Catalogs
+namespace BV.PACS.Client.Catalogs
 {
-    public class CatalogComponent<T> : ComponentBase where T : new()
+    public class BaseCatalog<T> : ComponentBase where T : new()
     {
         [Inject]
         private HttpClient Http { get; set; }

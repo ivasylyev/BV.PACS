@@ -1,6 +1,6 @@
 ﻿using BV.PACS.Shared.Models;
 
-namespace BV.PACS.Client.Shared.Catalogs
+namespace BV.PACS.Client.Catalogs
 {
     public class CatalogState
     {
