@@ -89,18 +89,18 @@
     [Parameter]
     public Action<AggregatedConditionDto> OnSearch { get; set; }
 
-    private TemplateListItem[] _sourceTemplates;
-    private LookupListItem[] _testStatuses;
+    private TemplateLookupItem[] _sourceTemplates;
+    private BaseLookupItem[] _testStatuses;
 
-    private LookupListItem[] _testTypes;
-    private LookupListItem[] _testResults;
+    private BaseLookupItem[] _testTypes;
+    private BaseLookupItem[] _testResults;
 
     private DateTime StartSourceCreationDate { get; set; }
     private DateTime EndSourceCreationDate { get; set; }
 
     private string SourceBarcode { get; set; }
 
-    private TemplateListItem SourceTemplate { get; set; }
+    private TemplateLookupItem SourceTemplate { get; set; }
 
     private string SourceNotes { get; set; }
 
@@ -108,18 +108,18 @@
 
     private string AliquotBarcode { get; set; }
 
-    LookupListItem TestStatus { get; set; }
-    LookupListItem TestType { get; set; }
-    LookupListItem TestResult { get; set; }
+    BaseLookupItem TestStatus { get; set; }
+    BaseLookupItem TestType { get; set; }
+    BaseLookupItem TestResult { get; set; }
 
     protected override async Task OnInitAsync()
     {
         StartSourceCreationDate = DateTime.Now.Date.AddYears(-1);
         EndSourceCreationDate = DateTime.Now.Date;
-        _sourceTemplates = await _http.PostJsonAsync<TemplateListItem[]>("api/Lookup/GetSourceTemplates", GlobalSettings.CurrentLanguage);
-        _testStatuses = await _http.PostJsonAsync<LookupListItem[]>("api/Lookup/GetLookup", new LookupParameter(BaseLookupTables.rftTestStatus, GlobalSettings.CurrentLanguage));
-        _testTypes = await _http.PostJsonAsync<LookupListItem[]>("api/Lookup/GetLookup", new LookupParameter(BaseLookupTables.rftTestType, GlobalSettings.CurrentLanguage));
-        _testResults = await _http.PostJsonAsync<LookupListItem[]>("api/Lookup/GetLookup", new LookupParameter(BaseLookupTables.rftTestResult, GlobalSettings.CurrentLanguage));
+        _sourceTemplates = await _http.PostJsonAsync<TemplateLookupItem[]>("api/Lookup/GetTemplatesLookup", new TemplateLookupParameter(FormTypes.Source, GlobalSettings.CurrentLanguage));
+        _testStatuses = await _http.PostJsonAsync<BaseLookupItem[]>("api/Lookup/GetLookup", new BaseLookupParameter(BaseLookupTables.rftTestStatus, GlobalSettings.CurrentLanguage));
+        _testTypes = await _http.PostJsonAsync<BaseLookupItem[]>("api/Lookup/GetLookup", new BaseLookupParameter(BaseLookupTables.rftTestType, GlobalSettings.CurrentLanguage));
+        _testResults = await _http.PostJsonAsync<BaseLookupItem[]>("api/Lookup/GetLookup", new BaseLookupParameter(BaseLookupTables.rftTestResult, GlobalSettings.CurrentLanguage));
     }
 
 

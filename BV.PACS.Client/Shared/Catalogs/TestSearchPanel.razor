@@ -1,4 +1,5 @@
 ﻿@using BV.PACS.Shared.Models
+@using BV.PACS.Shared.Models.Parameters
 @using BV.PACS.Shared.Utils
 @using Microsoft.AspNetCore.Components
 @inject HttpClient _http
@@ -22,7 +23,7 @@
     <DxFormLayoutItem Caption="@nameof(TestListItem.TestTemplateName)" ColSpanLg="12" ColSpanMd="12">
         <Template>
 
-            <DxComboBox Data="@_TestTemplates"
+            <DxComboBox Data="@_testTemplates"
                         TextFieldName="Name"
                         NullText="Select Template ..."
                         bind-SelectedItem="@TestTemplate">
@@ -44,14 +45,14 @@
     [Parameter]
     public Action<AggregatedConditionDto> OnSearch { get; set; }
 
-    private TemplateListItem[] _TestTemplates;
+    private TemplateLookupItem[] _testTemplates;
 
     private DateTime StartTestCreationDate { get; set; }
     private DateTime EndTestCreationDate { get; set; } 
 
     private string TestBarcode { get; set; }
 
-    private TemplateListItem TestTemplate { get; set; }
+    private TemplateLookupItem TestTemplate { get; set; }
 
     private string TestNotes { get; set; }
 
@@ -63,7 +64,9 @@
     {
         StartTestCreationDate = DateTime.Now.Date.AddYears(-1);
         EndTestCreationDate = DateTime.Now.Date;
-        _TestTemplates = await _http.PostJsonAsync<TemplateListItem[]>("api/Lookup/GetTestTemplates", GlobalSettings.CurrentLanguage);
+ 
+        _testTemplates = await _http.PostJsonAsync<TemplateLookupItem[]>("api/Lookup/GetTemplatesLookup", new TemplateLookupParameter(FormTypes.Test, GlobalSettings.CurrentLanguage));
+
     }
 
 
@@ -79,6 +82,7 @@
         var creationDateEndText = EndTestCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
         cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateEndText, Operators.LessOperator);
 
+        cond.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", "Template", TestTemplate?.Id, Operators.EqualsOperator);
   
         OnSearch?.Invoke(cond);
     }

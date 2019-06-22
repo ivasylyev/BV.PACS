@@ -29,8 +29,8 @@ namespace BV.PACS.Server.Services
             InitMapper<AliquotListItem>();
             InitMapper<TestListItem>();
 
-            InitMapper<TemplateListItem>();
-            InitMapper<LookupListItem>();
+            InitMapper<TemplateLookupItem>();
+            InitMapper<BaseLookupItem>();
             
         }
 
@@ -124,18 +124,18 @@ namespace BV.PACS.Server.Services
             }
         }
 
-        public IEnumerable<TemplateListItem> GetTemplates(string formType, string language)
+        public IEnumerable<TemplateLookupItem> GetTemplates(TemplateLookupParameter parameter)
         {
           
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
               
-                var result = connection.Query<TemplateListItem>("spCustomizableFormTemplatesByFormType_SelectLookup",
+                var result = connection.Query<TemplateLookupItem>("spCustomizableFormTemplatesByFormType_SelectLookup",
                     new
                     {
-                        idfsCFormTypeID = formType,
-                        LanguageID = language
-                       
+                        idfsCFormTypeID = parameter.LookupType,
+                        LanguageID = parameter.Language
+
                     },
                     commandType: CommandType.StoredProcedure);
                 //return null;
@@ -143,13 +143,13 @@ namespace BV.PACS.Server.Services
             }
         }
 
-        public IEnumerable<LookupListItem> GetLookup(LookupParameter parameter)
+        public IEnumerable<BaseLookupItem> GetLookup(BaseLookupParameter parameter)
         {
 
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
 
-                var result = connection.Query<LookupListItem>("Select idfsReference, [Name], strDefault, intOrder from fnReferenceLookup(@LanguageID, @LookupType) Order By IsNull(intOrder, 0), [Name]",
+                var result = connection.Query<BaseLookupItem>("Select idfsReference, [Name], strDefault, intOrder from fnReferenceLookup(@LanguageID, @LookupType) Order By IsNull(intOrder, 0), [Name]",
                     new
                     {
                         LookupType = parameter.LookupType.ToString(),

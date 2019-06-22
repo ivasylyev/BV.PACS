@@ -1,11 +1,11 @@
 ﻿namespace BV.PACS.Shared.Models.Parameters
 {
-    public class LookupParameter
+    public class TemplateLookupParameter
     {
-        public BaseLookupTables LookupType { get; set; }
+        public string LookupType { get; set; }
         public string Language { get; set; }
 
-        public LookupParameter(BaseLookupTables lookupType, string language)
+        public TemplateLookupParameter(string lookupType, string language)
         {
             LookupType = lookupType;
             Language = language;

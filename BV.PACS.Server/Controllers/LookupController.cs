@@ -17,28 +17,13 @@ namespace BV.PACS.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public IEnumerable<TemplateListItem> GetSourceTemplates([FromBody]string language)
+        public IEnumerable<TemplateLookupItem> GetTemplatesLookup([FromBody]TemplateLookupParameter parameter)
         {
-            return _dbService.GetTemplates(FormTypes.Source, language);
+            return _dbService.GetTemplates(parameter);
         }
+      
         [HttpPost("[action]")]
-        public IEnumerable<TemplateListItem> GetMaterialTemplates([FromBody]string language)
-        {
-            return _dbService.GetTemplates(FormTypes.Material, language);
-        }
-        [HttpPost("[action]")]
-        public IEnumerable<TemplateListItem> GetAliquotTemplates([FromBody]string language)
-        {
-            return _dbService.GetTemplates(FormTypes.Aliquot, language);
-        }
-        [HttpPost("[action]")]
-        public IEnumerable<TemplateListItem> GetTestTemplates([FromBody]string language)
-        {
-            return _dbService.GetTemplates(FormTypes.Test, language);
-        }
-
-        [HttpPost("[action]")]
-        public IEnumerable<LookupListItem> GetLookup([FromBody]LookupParameter parameter)
+        public IEnumerable<BaseLookupItem> GetLookup([FromBody]BaseLookupParameter parameter)
         {
             return _dbService.GetLookup(parameter);
         }

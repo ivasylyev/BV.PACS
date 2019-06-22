@@ -47,7 +47,7 @@ namespace BV.PACS.Shared.Models
         public string WeightString { get; set; }
 
         [Column("strNote")]
-        public string Note { get; set; }
+        public string AliquotNote { get; set; }
 
         [Column("strRFIDCode")]
         public string RFIDCode { get; set; }

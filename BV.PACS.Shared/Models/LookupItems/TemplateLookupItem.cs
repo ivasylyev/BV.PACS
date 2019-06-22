@@ -2,7 +2,7 @@
 
 namespace BV.PACS.Shared.Models
 {
-    public class TemplateListItem
+    public class TemplateLookupItem
     {
         [Column("idfsReference")]
         public string Id { get; set; }

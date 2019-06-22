@@ -1,4 +1,5 @@
 ﻿@using BV.PACS.Shared.Models
+@using BV.PACS.Shared.Models.Parameters
 @using BV.PACS.Shared.Utils
 @using Microsoft.AspNetCore.Components
 @inject HttpClient _http
@@ -63,14 +64,14 @@
     private string AliquotBarcode { get; set; }
     private string MaterialBarcode { get; set; }
 
-    private TemplateListItem[] _materialTemplates;
+    private TemplateLookupItem[] _materialTemplates;
 
     private DateTime StartMaterialCreationDate { get; set; }
     private DateTime EndMaterialCreationDate { get; set; }
 
 
 
-    private TemplateListItem MaterialTemplate { get; set; }
+    private TemplateLookupItem MaterialTemplate { get; set; }
 
     private string MaterialNotes { get; set; }
 
@@ -81,7 +82,9 @@
     {
         StartMaterialCreationDate = DateTime.Now.Date.AddYears(-1);
         EndMaterialCreationDate = DateTime.Now.Date;
-        _materialTemplates = await _http.PostJsonAsync<TemplateListItem[]>("api/Lookup/GetMaterialTemplates", GlobalSettings.CurrentLanguage);
+      
+        _materialTemplates = await _http.PostJsonAsync<TemplateLookupItem[]>("api/Lookup/GetTemplatesLookup", new TemplateLookupParameter(FormTypes.Material, GlobalSettings.CurrentLanguage));
+
     }
 
 
