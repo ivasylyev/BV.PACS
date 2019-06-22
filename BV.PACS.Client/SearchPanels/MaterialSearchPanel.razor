@@ -2,6 +2,13 @@
 @inherits MaterialSearchPanelCode
 
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <button onclick="@DoSearch" class="btn btn-primary">Search</button>
+        </Template>
+    </DxFormLayoutItem>
+
+
     <DxFormLayoutItem Caption="@nameof(MaterialListItem.SourceBarcode)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox bind-Text="@SourceBarcode"></DxTextBox>

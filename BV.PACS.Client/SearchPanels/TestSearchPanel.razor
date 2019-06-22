@@ -2,6 +2,13 @@
 @inherits TestSearchPanelCode
 
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <button onclick="@DoSearch" class="btn btn-primary">Search</button>
+        </Template>
+    </DxFormLayoutItem>
+
+
     <DxFormLayoutItem Caption="@nameof(TestListItem.TestBarcode)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox bind-Text="@TestBarcode"></DxTextBox>
