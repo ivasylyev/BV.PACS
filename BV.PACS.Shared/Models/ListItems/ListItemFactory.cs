@@ -64,6 +64,7 @@ namespace BV.PACS.Shared.Models
                 a.AliquotTemplateName = defValue;
                 a.LocationPath = defValue;
                 a.AliquotTemplateId = defValue;
+                a.AliquotStatus = defValue;
             }
 
             if (result is TestListItem t)

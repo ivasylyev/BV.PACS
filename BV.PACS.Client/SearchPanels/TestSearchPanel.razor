@@ -1,8 +1,5 @@
 ﻿@using BV.PACS.Shared.Models
-@using BV.PACS.Shared.Models.Parameters
-@using BV.PACS.Shared.Utils
-@using Microsoft.AspNetCore.Components
-@inject HttpClient _http
+@inherits TestSearchPanelCode
 
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
     <DxFormLayoutItem Caption="@nameof(TestListItem.TestBarcode)" ColSpanLg="12" ColSpanMd="12">
@@ -40,51 +37,3 @@
     </DxFormLayoutItem>
 </DxFormLayout>
 
-@functions {
-
-    [Parameter]
-    public Action<AggregatedConditionDto> OnSearch { get; set; }
-
-    private TemplateLookupItem[] _testTemplates;
-
-    private DateTime StartTestCreationDate { get; set; }
-    private DateTime EndTestCreationDate { get; set; } 
-
-    private string TestBarcode { get; set; }
-
-    private TemplateLookupItem TestTemplate { get; set; }
-
-    private string TestNotes { get; set; }
-
-
-
-    private string AliquotBarcode { get; set; }
-
-    protected override async Task OnInitAsync()
-    {
-        StartTestCreationDate = DateTime.Now.Date.AddYears(-1);
-        EndTestCreationDate = DateTime.Now.Date;
- 
-        _testTemplates = await _http.PostJsonAsync<TemplateLookupItem[]>("api/Lookup/GetTemplatesLookup", new TemplateLookupParameter(FormTypes.Test, GlobalSettings.CurrentLanguage));
-
-    }
-
-
-    private void DoSearch()
-    {
-        var cond = new AggregatedConditionDto();
-
-        cond.AddStandardConditionIfNotEmpty("strBarcode", "TestBarcode", TestBarcode, Operators.LikeOperator);
-
-        var creationDateStartText = StartTestCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
-        cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateStartText, Operators.MoreOperator);
-
-        var creationDateEndText = EndTestCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
-        cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateEndText, Operators.LessOperator);
-
-        cond.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", "Template", TestTemplate?.Id, Operators.EqualsOperator);
-  
-        OnSearch?.Invoke(cond);
-    }
-
-}

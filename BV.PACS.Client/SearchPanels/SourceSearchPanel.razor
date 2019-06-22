@@ -1,8 +1,5 @@
 ﻿@using BV.PACS.Shared.Models
-@using BV.PACS.Shared.Models.Parameters
-@using BV.PACS.Shared.Utils
-@using Microsoft.AspNetCore.Components
-@inject HttpClient _http
+@inherits SourceSearchPanelCode
 
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
     <DxFormLayoutItem Caption="@nameof(SourceListItem.SourceBarcode)" ColSpanLg="12" ColSpanMd="12">
@@ -83,72 +80,3 @@
         </Template>
     </DxFormLayoutItem>
 </DxFormLayout>
-
-@functions {
-
-    [Parameter]
-    public Action<AggregatedConditionDto> OnSearch { get; set; }
-
-    private TemplateLookupItem[] _sourceTemplates;
-    private BaseLookupItem[] _testStatuses;
-
-    private BaseLookupItem[] _testTypes;
-    private BaseLookupItem[] _testResults;
-
-    private DateTime StartSourceCreationDate { get; set; }
-    private DateTime EndSourceCreationDate { get; set; }
-
-    private string SourceBarcode { get; set; }
-
-    private TemplateLookupItem SourceTemplate { get; set; }
-
-    private string SourceNotes { get; set; }
-
-    private string MaterialBarcode { get; set; }
-
-    private string AliquotBarcode { get; set; }
-
-    BaseLookupItem TestStatus { get; set; }
-    BaseLookupItem TestType { get; set; }
-    BaseLookupItem TestResult { get; set; }
-
-    protected override async Task OnInitAsync()
-    {
-        StartSourceCreationDate = DateTime.Now.Date.AddYears(-1);
-        EndSourceCreationDate = DateTime.Now.Date;
-        _sourceTemplates = await _http.PostJsonAsync<TemplateLookupItem[]>("api/Lookup/GetTemplatesLookup", new TemplateLookupParameter(FormTypes.Source, GlobalSettings.CurrentLanguage));
-        _testStatuses = await _http.PostJsonAsync<BaseLookupItem[]>("api/Lookup/GetLookup", new BaseLookupParameter(BaseLookupTables.rftTestStatus, GlobalSettings.CurrentLanguage));
-        _testTypes = await _http.PostJsonAsync<BaseLookupItem[]>("api/Lookup/GetLookup", new BaseLookupParameter(BaseLookupTables.rftTestType, GlobalSettings.CurrentLanguage));
-        _testResults = await _http.PostJsonAsync<BaseLookupItem[]>("api/Lookup/GetLookup", new BaseLookupParameter(BaseLookupTables.rftTestResult, GlobalSettings.CurrentLanguage));
-    }
-
-
-    private void DoSearch()
-    {
-        var cond = new AggregatedConditionDto();
-
-        cond.AddStandardConditionIfNotEmpty("strSourceBarcode", "SourceBarcode", SourceBarcode, Operators.LikeOperator);
-
-        var creationDateStartText = StartSourceCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
-        cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateStartText, Operators.MoreOperator);
-
-        var creationDateEndText = EndSourceCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
-        cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateEndText, Operators.LessOperator);
-
-        cond.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", "Template", SourceTemplate?.Id, Operators.EqualsOperator);
-
-        cond.AddStandardConditionIfNotEmpty("strNote", "Notes", SourceNotes, Operators.LikeOperator);
-
-        cond.AddStandardConditionIfNotEmpty("strMaterialBarcode", "MaterialBarcode", MaterialBarcode, Operators.LikeOperator);
-
-        cond.AddStandardConditionIfNotEmpty("strContainerBarcode", "AliquotBarcode", AliquotBarcode, Operators.LikeOperator);
-
-        cond.AddStandardConditionIfNotEmpty("idfsTestStatus", "TestStatus", TestStatus?.Id, Operators.EqualsOperator);
-        cond.AddStandardConditionIfNotEmpty("idfsTestTypeId", "TestType", TestType?.Id, Operators.EqualsOperator);
-        cond.AddStandardConditionIfNotEmpty("idfsTestResultId", "TestResult", TestResult?.Id, Operators.EqualsOperator);
-
-
-        OnSearch?.Invoke(cond);
-    }
-
-}

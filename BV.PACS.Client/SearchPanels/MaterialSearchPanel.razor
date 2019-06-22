@@ -1,8 +1,5 @@
 ﻿@using BV.PACS.Shared.Models
-@using BV.PACS.Shared.Models.Parameters
-@using BV.PACS.Shared.Utils
-@using Microsoft.AspNetCore.Components
-@inject HttpClient _http
+@inherits MaterialSearchPanelCode
 
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
     <DxFormLayoutItem Caption="@nameof(MaterialListItem.SourceBarcode)" ColSpanLg="12" ColSpanMd="12">
@@ -55,66 +52,3 @@
     </DxFormLayoutItem>
 </DxFormLayout>
 
-@functions {
-
-    [Parameter]
-    public Action<AggregatedConditionDto> OnSearch { get; set; }
-
-    private string SourceBarcode { get; set; }
-    private string AliquotBarcode { get; set; }
-    private string MaterialBarcode { get; set; }
-
-    private TemplateLookupItem[] _materialTemplates;
-
-    private DateTime StartMaterialCreationDate { get; set; }
-    private DateTime EndMaterialCreationDate { get; set; }
-
-
-
-    private TemplateLookupItem MaterialTemplate { get; set; }
-
-    private string MaterialNotes { get; set; }
-
-
-  
-
-    protected override async Task OnInitAsync()
-    {
-        StartMaterialCreationDate = DateTime.Now.Date.AddYears(-1);
-        EndMaterialCreationDate = DateTime.Now.Date;
-      
-        _materialTemplates = await _http.PostJsonAsync<TemplateLookupItem[]>("api/Lookup/GetTemplatesLookup", new TemplateLookupParameter(FormTypes.Material, GlobalSettings.CurrentLanguage));
-
-    }
-
-
-    private void DoSearch()
-    {
-        var cond = new AggregatedConditionDto();
-
-        cond.AddStandardConditionIfNotEmpty("strSourceBarcode", "SourceBarcode", SourceBarcode, Operators.LikeOperator);
-        
-        cond.AddStandardConditionIfNotEmpty("strContainerNumber", "AliquotBarcode", AliquotBarcode, Operators.LikeOperator);
-        
-        cond.AddStandardConditionIfNotEmpty("strBarcode", "MaterialBarcode", MaterialBarcode, Operators.LikeOperator);
-
-        var creationDateStartText = StartMaterialCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
-        cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateStartText, Operators.MoreOperator);
-
-        var creationDateEndText = EndMaterialCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
-        cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateEndText, Operators.LessOperator);
-
-    
-        cond.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", "Template", MaterialTemplate?.Id, Operators.EqualsOperator);
-   
-        cond.AddStandardConditionIfNotEmpty("strNote", "Notes", MaterialNotes, Operators.LikeOperator);
-
-   
-
-    //    cond.AddStandardConditionIfNotEmpty("strContainerBarcode", "AliquotBarcode",AliquotBarcode, Operators.LikeOperator);
-      //  cond.AddStandardConditionIfNotEmpty("idfOwner", "Owner", cbOwner.EditValue,Operators.EqualsOperator);
-        
-        OnSearch?.Invoke(cond);
-    }
-
-}
