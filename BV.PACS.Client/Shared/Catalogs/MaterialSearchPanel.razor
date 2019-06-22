@@ -4,6 +4,16 @@
 @inject HttpClient _http
 
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+    <DxFormLayoutItem Caption="@nameof(MaterialListItem.SourceBarcode)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxTextBox bind-Text="@SourceBarcode"></DxTextBox>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Caption="@nameof(MaterialListItem.Aliquots)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxTextBox bind-Text="@AliquotBarcode"></DxTextBox>
+        </Template>
+    </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialBarcode)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox bind-Text="@MaterialBarcode"></DxTextBox>
@@ -22,7 +32,7 @@
     <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialTemplateName)" ColSpanLg="12" ColSpanMd="12">
         <Template>
 
-            <DxComboBox Data="@_MaterialTemplates"
+            <DxComboBox Data="@_materialTemplates"
                         TextFieldName="Name"
                         NullText="Select Template ..."
                         bind-SelectedItem="@MaterialTemplate">
@@ -31,6 +41,11 @@
         </Template>
     </DxFormLayoutItem>
 
+    <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialNote)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxTextBox bind-Text="@MaterialNotes"></DxTextBox>
+        </Template>
+    </DxFormLayoutItem>
 
     <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
         <Template>
@@ -44,26 +59,29 @@
     [Parameter]
     public Action<AggregatedConditionDto> OnSearch { get; set; }
 
-    private TemplateListItem[] _MaterialTemplates;
+    private string SourceBarcode { get; set; }
+    private string AliquotBarcode { get; set; }
+    private string MaterialBarcode { get; set; }
+
+    private TemplateListItem[] _materialTemplates;
 
     private DateTime StartMaterialCreationDate { get; set; }
-    private DateTime EndMaterialCreationDate { get; set; } 
+    private DateTime EndMaterialCreationDate { get; set; }
 
-    private string MaterialBarcode { get; set; }
+
 
     private TemplateListItem MaterialTemplate { get; set; }
 
     private string MaterialNotes { get; set; }
 
 
-
-    private string AliquotBarcode { get; set; }
+  
 
     protected override async Task OnInitAsync()
     {
         StartMaterialCreationDate = DateTime.Now.Date.AddYears(-1);
         EndMaterialCreationDate = DateTime.Now.Date;
-        _MaterialTemplates = await _http.PostJsonAsync<TemplateListItem[]>("api/Lookup/GetMaterialTemplates", GlobalSettings.CurrentLanguage);
+        _materialTemplates = await _http.PostJsonAsync<TemplateListItem[]>("api/Lookup/GetMaterialTemplates", GlobalSettings.CurrentLanguage);
     }
 
 
@@ -71,6 +89,10 @@
     {
         var cond = new AggregatedConditionDto();
 
+        cond.AddStandardConditionIfNotEmpty("strSourceBarcode", "SourceBarcode", SourceBarcode, Operators.LikeOperator);
+        
+        cond.AddStandardConditionIfNotEmpty("strContainerNumber", "AliquotBarcode", AliquotBarcode, Operators.LikeOperator);
+        
         cond.AddStandardConditionIfNotEmpty("strBarcode", "MaterialBarcode", MaterialBarcode, Operators.LikeOperator);
 
         var creationDateStartText = StartMaterialCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
@@ -79,15 +101,16 @@
         var creationDateEndText = EndMaterialCreationDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
         cond.AddStandardConditionIfNotEmpty("datCreationDate", "CreationDate", creationDateEndText, Operators.LessOperator);
 
-    /*
+    
         cond.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", "Template", MaterialTemplate?.Id, Operators.EqualsOperator);
    
         cond.AddStandardConditionIfNotEmpty("strNote", "Notes", MaterialNotes, Operators.LikeOperator);
 
-        cond.AddStandardConditionIfNotEmpty("strMaterialBarcode", "MaterialBarcode",MaterialBarcode, Operators.LikeOperator);
+   
 
-        cond.AddStandardConditionIfNotEmpty("strContainerBarcode", "AliquotBarcode",AliquotBarcode, Operators.LikeOperator);
-        */
+    //    cond.AddStandardConditionIfNotEmpty("strContainerBarcode", "AliquotBarcode",AliquotBarcode, Operators.LikeOperator);
+      //  cond.AddStandardConditionIfNotEmpty("idfOwner", "Owner", cbOwner.EditValue,Operators.EqualsOperator);
+        
         OnSearch?.Invoke(cond);
     }
 

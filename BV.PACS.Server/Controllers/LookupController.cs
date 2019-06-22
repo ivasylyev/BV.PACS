@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using BV.PACS.Server.Services;
 using BV.PACS.Shared.Models;
+using BV.PACS.Shared.Models.Parameters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BV.PACS.Server.Controllers
@@ -37,9 +38,9 @@ namespace BV.PACS.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public IEnumerable<LookupListItem> GetTestTemplates([FromBody]BaseLookupTables table, [FromBody]string language)
+        public IEnumerable<LookupListItem> GetLookup([FromBody]LookupParameter parameter)
         {
-            return _dbService.GetLookup(table, language);
+            return _dbService.GetLookup(parameter);
         }
     }
 }

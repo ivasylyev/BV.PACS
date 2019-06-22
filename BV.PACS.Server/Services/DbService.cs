@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using BV.PACS.Shared.Models;
+using BV.PACS.Shared.Models.Parameters;
 using Dapper;
 
 namespace BV.PACS.Server.Services
@@ -142,7 +143,7 @@ namespace BV.PACS.Server.Services
             }
         }
 
-        public IEnumerable<LookupListItem> GetLookup(BaseLookupTables lookupType, string language)
+        public IEnumerable<LookupListItem> GetLookup(LookupParameter parameter)
         {
 
             using (var connection = new SqlConnection(_builder.ConnectionString))
@@ -151,8 +152,8 @@ namespace BV.PACS.Server.Services
                 var result = connection.Query<LookupListItem>("Select idfsReference, [Name], strDefault, intOrder from fnReferenceLookup(@LanguageID, @LookupType) Order By IsNull(intOrder, 0), [Name]",
                     new
                     {
-                        LookupType = lookupType.ToString(),
-                        LanguageID = language
+                        LookupType = parameter.LookupType.ToString(),
+                        LanguageID = parameter.Language
 
                     },
                     commandType: CommandType.Text);

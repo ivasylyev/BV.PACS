@@ -1,4 +1,5 @@
 ﻿@using BV.PACS.Shared.Models
+@using BV.PACS.Shared.Models.Parameters
 @using BV.PACS.Shared.Utils
 @using Microsoft.AspNetCore.Components
 @inject HttpClient _http
@@ -9,6 +10,7 @@
             <DxTextBox bind-Text="@SourceBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
+
     <DxFormLayoutItem Caption="@nameof(SourceListItem.SourceCreationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxDateEdit bind-Date="@StartSourceCreationDate"></DxDateEdit>
@@ -19,6 +21,7 @@
             <DxDateEdit bind-Date="@EndSourceCreationDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
+
     <DxFormLayoutItem Caption="@nameof(SourceListItem.SourceTemplateName)" ColSpanLg="12" ColSpanMd="12">
         <Template>
 
@@ -30,21 +33,50 @@
 
         </Template>
     </DxFormLayoutItem>
+
     <DxFormLayoutItem Caption="@nameof(SourceListItem.SourceNote)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox bind-Text="@SourceNotes"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
+
     <DxFormLayoutItem Caption="@nameof(SourceListItem.MaterialBarcodes)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox bind-Text="@MaterialBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
+
     <DxFormLayoutItem Caption="@nameof(SourceListItem.AliquotBarcodes)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox bind-Text="@AliquotBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
+
+    <DxFormLayoutItem Caption="@nameof(SourceListItem.TestStatuses)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxComboBox Data="@_testStatuses"
+                        TextFieldName="Name"
+                        bind-SelectedItem="@TestStatus">
+            </DxComboBox>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Caption="@nameof(SourceListItem.TestTypes)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxComboBox Data="@_testTypes"
+                        TextFieldName="Name"
+                        bind-SelectedItem="@TestType">
+            </DxComboBox>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Caption="@nameof(SourceListItem.TestResults)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxComboBox Data="@_testResults"
+                        TextFieldName="Name"
+                        bind-SelectedItem="@TestResult">
+            </DxComboBox>
+        </Template>
+    </DxFormLayoutItem>
+
     <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
         <Template>
             <button onclick="@DoSearch" class="btn btn-primary">Search</button>
@@ -58,9 +90,13 @@
     public Action<AggregatedConditionDto> OnSearch { get; set; }
 
     private TemplateListItem[] _sourceTemplates;
+    private LookupListItem[] _testStatuses;
+
+    private LookupListItem[] _testTypes;
+    private LookupListItem[] _testResults;
 
     private DateTime StartSourceCreationDate { get; set; }
-    private DateTime EndSourceCreationDate { get; set; } 
+    private DateTime EndSourceCreationDate { get; set; }
 
     private string SourceBarcode { get; set; }
 
@@ -72,11 +108,18 @@
 
     private string AliquotBarcode { get; set; }
 
+    LookupListItem TestStatus { get; set; }
+    LookupListItem TestType { get; set; }
+    LookupListItem TestResult { get; set; }
+
     protected override async Task OnInitAsync()
     {
         StartSourceCreationDate = DateTime.Now.Date.AddYears(-1);
         EndSourceCreationDate = DateTime.Now.Date;
         _sourceTemplates = await _http.PostJsonAsync<TemplateListItem[]>("api/Lookup/GetSourceTemplates", GlobalSettings.CurrentLanguage);
+        _testStatuses = await _http.PostJsonAsync<LookupListItem[]>("api/Lookup/GetLookup", new LookupParameter(BaseLookupTables.rftTestStatus, GlobalSettings.CurrentLanguage));
+        _testTypes = await _http.PostJsonAsync<LookupListItem[]>("api/Lookup/GetLookup", new LookupParameter(BaseLookupTables.rftTestType, GlobalSettings.CurrentLanguage));
+        _testResults = await _http.PostJsonAsync<LookupListItem[]>("api/Lookup/GetLookup", new LookupParameter(BaseLookupTables.rftTestResult, GlobalSettings.CurrentLanguage));
     }
 
 
@@ -96,21 +139,15 @@
 
         cond.AddStandardConditionIfNotEmpty("strNote", "Notes", SourceNotes, Operators.LikeOperator);
 
-        cond.AddStandardConditionIfNotEmpty("strMaterialBarcode", "MaterialBarcode",MaterialBarcode, Operators.LikeOperator);
+        cond.AddStandardConditionIfNotEmpty("strMaterialBarcode", "MaterialBarcode", MaterialBarcode, Operators.LikeOperator);
 
-        cond.AddStandardConditionIfNotEmpty("strContainerBarcode", "AliquotBarcode",AliquotBarcode, Operators.LikeOperator);
-        /*
+        cond.AddStandardConditionIfNotEmpty("strContainerBarcode", "AliquotBarcode", AliquotBarcode, Operators.LikeOperator);
 
-        result.AddStandatdIfNotEmpty("idfsTestTypeId", lblTestType.Text, cbTestType.EditValue,
-            CustomField.EqualsOperator);
-        result.AddStandatdIfNotEmpty("idfsTestResultId", lblTestResult.Text, txtTestResult.EditValue,
-            CustomField.EqualsOperator);
+        cond.AddStandardConditionIfNotEmpty("idfsTestStatus", "TestStatus", TestStatus?.Id, Operators.EqualsOperator);
+        cond.AddStandardConditionIfNotEmpty("idfsTestTypeId", "TestType", TestType?.Id, Operators.EqualsOperator);
+        cond.AddStandardConditionIfNotEmpty("idfsTestResultId", "TestResult", TestResult?.Id, Operators.EqualsOperator);
 
-        result.AddStandatdIfNotEmpty("datTestDate", lblTestDate.Text, testDateText, CustomField.EqualsOperator);
 
-        result.AddStandatdIfNotEmpty("idfsTestStatus", lblTestStatus.Text, cbTestStatus.EditValue,
-            CustomField.EqualsOperator);
-            */
         OnSearch?.Invoke(cond);
     }
 

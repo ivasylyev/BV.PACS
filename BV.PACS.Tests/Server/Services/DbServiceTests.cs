@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using BV.PACS.Server.Services;
 using BV.PACS.Shared.Models;
+using BV.PACS.Shared.Models.Parameters;
 using NUnit.Framework;
 
 namespace Tests
@@ -152,7 +153,7 @@ namespace Tests
         [Test]
         public void GetTestTypesTest()
         {
-            var list = _service.GetLookup(BaseLookupTables.rftTestType, "en").ToList();
+            var list = _service.GetLookup(new LookupParameter(BaseLookupTables.rftTestType, "en")).ToList();
             Assert.IsNotEmpty(list);
   
             Assert.Pass();
@@ -161,7 +162,7 @@ namespace Tests
         [Test]
         public void GetTestResultTest()
         {
-            var list = _service.GetLookup(BaseLookupTables.rftTestResult, "en").ToList();
+            var list = _service.GetLookup(new LookupParameter(BaseLookupTables.rftTestResult, "en")).ToList();
             Assert.IsNotEmpty(list);
 
             Assert.Pass();
@@ -170,7 +171,7 @@ namespace Tests
         [Test]
         public void GetTestStatusTest()
         {
-            var list = _service.GetLookup(BaseLookupTables.rftTestStatus, "en").ToList();
+            var list = _service.GetLookup(new LookupParameter(BaseLookupTables.rftTestStatus, "en")).ToList();
             Assert.IsNotEmpty(list);
 
             Assert.Pass();
