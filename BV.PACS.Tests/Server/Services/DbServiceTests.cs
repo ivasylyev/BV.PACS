@@ -148,5 +148,32 @@ namespace Tests
 
             Assert.Pass();
         }
+
+        [Test]
+        public void GetTestTypesTest()
+        {
+            var list = _service.GetLookup(BaseLookupTables.rftTestType, "en").ToList();
+            Assert.IsNotEmpty(list);
+  
+            Assert.Pass();
+        }
+
+        [Test]
+        public void GetTestResultTest()
+        {
+            var list = _service.GetLookup(BaseLookupTables.rftTestResult, "en").ToList();
+            Assert.IsNotEmpty(list);
+
+            Assert.Pass();
+        }
+
+        [Test]
+        public void GetTestStatusTest()
+        {
+            var list = _service.GetLookup(BaseLookupTables.rftTestStatus, "en").ToList();
+            Assert.IsNotEmpty(list);
+
+            Assert.Pass();
+        }
     }
 }

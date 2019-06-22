@@ -30,8 +30,21 @@
 
         </Template>
     </DxFormLayoutItem>
-
-
+    <DxFormLayoutItem Caption="@nameof(SourceListItem.SourceNote)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxTextBox bind-Text="@SourceNotes"></DxTextBox>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Caption="@nameof(SourceListItem.MaterialBarcodes)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxTextBox bind-Text="@MaterialBarcode"></DxTextBox>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Caption="@nameof(SourceListItem.AliquotBarcodes)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
+            <DxTextBox bind-Text="@AliquotBarcode"></DxTextBox>
+        </Template>
+    </DxFormLayoutItem>
     <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
         <Template>
             <button onclick="@DoSearch" class="btn btn-primary">Search</button>
@@ -86,7 +99,18 @@
         cond.AddStandardConditionIfNotEmpty("strMaterialBarcode", "MaterialBarcode",MaterialBarcode, Operators.LikeOperator);
 
         cond.AddStandardConditionIfNotEmpty("strContainerBarcode", "AliquotBarcode",AliquotBarcode, Operators.LikeOperator);
+        /*
 
+        result.AddStandatdIfNotEmpty("idfsTestTypeId", lblTestType.Text, cbTestType.EditValue,
+            CustomField.EqualsOperator);
+        result.AddStandatdIfNotEmpty("idfsTestResultId", lblTestResult.Text, txtTestResult.EditValue,
+            CustomField.EqualsOperator);
+
+        result.AddStandatdIfNotEmpty("datTestDate", lblTestDate.Text, testDateText, CustomField.EqualsOperator);
+
+        result.AddStandatdIfNotEmpty("idfsTestStatus", lblTestStatus.Text, cbTestStatus.EditValue,
+            CustomField.EqualsOperator);
+            */
         OnSearch?.Invoke(cond);
     }
 

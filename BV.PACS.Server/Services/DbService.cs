@@ -29,6 +29,8 @@ namespace BV.PACS.Server.Services
             InitMapper<TestListItem>();
 
             InitMapper<TemplateListItem>();
+            InitMapper<LookupListItem>();
+            
         }
 
         private static void InitMapper<T>()
@@ -135,6 +137,25 @@ namespace BV.PACS.Server.Services
                        
                     },
                     commandType: CommandType.StoredProcedure);
+                //return null;
+                return result;
+            }
+        }
+
+        public IEnumerable<LookupListItem> GetLookup(BaseLookupTables lookupType, string language)
+        {
+
+            using (var connection = new SqlConnection(_builder.ConnectionString))
+            {
+
+                var result = connection.Query<LookupListItem>("Select idfsReference, [Name], strDefault, intOrder from fnReferenceLookup(@LanguageID, @LookupType) Order By IsNull(intOrder, 0), [Name]",
+                    new
+                    {
+                        LookupType = lookupType.ToString(),
+                        LanguageID = language
+
+                    },
+                    commandType: CommandType.Text);
                 //return null;
                 return result;
             }

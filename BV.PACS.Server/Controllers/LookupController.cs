@@ -35,5 +35,11 @@ namespace BV.PACS.Server.Controllers
         {
             return _dbService.GetTemplates(FormTypes.Test, language);
         }
+
+        [HttpPost("[action]")]
+        public IEnumerable<LookupListItem> GetTestTemplates([FromBody]BaseLookupTables table, [FromBody]string language)
+        {
+            return _dbService.GetLookup(table, language);
+        }
     }
 }
