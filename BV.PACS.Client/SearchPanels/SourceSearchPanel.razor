@@ -17,22 +17,22 @@
 
     <DxFormLayoutItem Caption="@nameof(SourceListItem.SourceCreationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxDateEdit bind-Date="@StartSourceCreationDate"></DxDateEdit>
+            <DxDateEdit bind-Date="@StartDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(SourceListItem.SourceCreationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxDateEdit bind-Date="@EndSourceCreationDate"></DxDateEdit>
+            <DxDateEdit bind-Date="@EndDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
 
     <DxFormLayoutItem Caption="@nameof(SourceListItem.SourceTemplateName)" ColSpanLg="12" ColSpanMd="12">
         <Template>
 
-            <DxComboBox Data="@_sourceTemplates"
+            <DxComboBox Data="@Templates"
                         TextFieldName="Name"
                         NullText="Select Template ..."
-                        bind-SelectedItem="@SourceTemplate">
+                        bind-SelectedItem="@Template">
             </DxComboBox>
 
         </Template>

@@ -18,21 +18,21 @@
 
     <DxFormLayoutItem Caption="@nameof(AliquotListItem.AliquotCreationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxDateEdit bind-Date="@StartAliquotCreationDate"></DxDateEdit>
+            <DxDateEdit bind-Date="@StartDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(AliquotListItem.AliquotCreationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxDateEdit bind-Date="@EndAliquotCreationDate"></DxDateEdit>
+            <DxDateEdit bind-Date="@EndDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
 
     <DxFormLayoutItem Caption="@nameof(AliquotListItem.AliquotTemplateName)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxComboBox Data="@_aliquotTemplates"
+            <DxComboBox Data="@Templates"
                         TextFieldName="Name"
                         NullText="Select Template ..."
-                        bind-SelectedItem="@AliquotTemplate">
+                        bind-SelectedItem="@Template">
             </DxComboBox>
         </Template>
     </DxFormLayoutItem>

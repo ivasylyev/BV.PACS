@@ -5,7 +5,7 @@ using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
 using NUnit.Framework;
 
-namespace Tests
+namespace BV.Pacs.Tests
 {
     public class DbServiceTests
     {

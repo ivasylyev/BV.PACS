@@ -26,21 +26,21 @@
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxDateEdit bind-Date="@StartMaterialCreationDate"></DxDateEdit>
+            <DxDateEdit bind-Date="@StartDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxDateEdit bind-Date="@EndMaterialCreationDate"></DxDateEdit>
+            <DxDateEdit bind-Date="@EndDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialTemplateName)" ColSpanLg="12" ColSpanMd="12">
         <Template>
 
-            <DxComboBox Data="@_materialTemplates"
+            <DxComboBox Data="@Templates"
                         TextFieldName="Name"
                         NullText="Select Template ..."
-                        bind-SelectedItem="@MaterialTemplate">
+                        bind-SelectedItem="@Template">
             </DxComboBox>
 
         </Template>

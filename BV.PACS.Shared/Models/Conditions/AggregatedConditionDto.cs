@@ -43,11 +43,11 @@ namespace BV.PACS.Shared.Models
             }
         }
 
-        public void AddStandardConditionIfNotEmpty(string fieldId, string fieldName, object value, string oper)
+        public void AddStandardConditionIfNotEmpty(string fieldId, object value, string oper)
         {
             if (!value.IsEmpty())
             {
-                ConditionItems.Add(new SearchConditionItemDto(fieldId, fieldName, value.Str(), oper, false));
+                ConditionItems.Add(new SearchConditionItemDto(fieldId, fieldId, value.Str(), oper, false));
             }
         }
 

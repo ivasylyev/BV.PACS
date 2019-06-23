@@ -16,21 +16,21 @@
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(TestListItem.TestRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxDateEdit bind-Date="@StartTestCreationDate"></DxDateEdit>
+            <DxDateEdit bind-Date="@StartDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(TestListItem.TestRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxDateEdit bind-Date="@EndTestCreationDate"></DxDateEdit>
+            <DxDateEdit bind-Date="@EndDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(TestListItem.TestTemplateName)" ColSpanLg="12" ColSpanMd="12">
         <Template>
 
-            <DxComboBox Data="@_testTemplates"
+            <DxComboBox Data="@Templates"
                         TextFieldName="Name"
                         NullText="Select Template ..."
-                        bind-SelectedItem="@TestTemplate">
+                        bind-SelectedItem="@Template">
             </DxComboBox>
 
         </Template>
@@ -43,4 +43,3 @@
         </Template>
     </DxFormLayoutItem>
 </DxFormLayout>
-
