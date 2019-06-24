@@ -5,7 +5,7 @@ namespace BV.PACS.Shared.Models
 {
     [DataUrl("api/Catalog/GetSources")]
     [CountUrl("api/Catalog/GetSourcesRecordCount")]
-    public class SourceListItem
+    public class SourceCatalogDto
     {
         [Column("idfSource")]
         public int SourceId { get; set; }
@@ -67,9 +67,9 @@ namespace BV.PACS.Shared.Models
         [Column("TestStatusId")]
         public string TestStatuses { get; set; }
 
-        public static SourceListItem CreateEmptyItem(string defValue)
+        public static SourceCatalogDto CreateEmptyItem(string defValue)
         {
-            return new SourceListItem()
+            return new SourceCatalogDto()
             {
                 SourceCreationDate = DateTime.Now,
                 SourceTypeId = defValue,

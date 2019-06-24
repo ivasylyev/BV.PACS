@@ -9,32 +9,32 @@
     </DxFormLayoutItem>
 
 
-    <DxFormLayoutItem Caption="@nameof(MaterialListItem.SourceBarcode)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.SourceBarcode)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox bind-Text="@SourceBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(MaterialListItem.Aliquots)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.Aliquots)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox bind-Text="@AliquotBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialBarcode)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.MaterialBarcode)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox bind-Text="@MaterialBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.MaterialRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxDateEdit bind-Date="@StartDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.MaterialRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxDateEdit bind-Date="@EndDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialTemplateName)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.MaterialTemplateName)" ColSpanLg="12" ColSpanMd="12">
         <Template>
 
             <DxComboBox Data="@Templates"
@@ -46,7 +46,7 @@
         </Template>
     </DxFormLayoutItem>
 
-    <DxFormLayoutItem Caption="@nameof(MaterialListItem.MaterialNote)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.MaterialNote)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox bind-Text="@MaterialNotes"></DxTextBox>
         </Template>

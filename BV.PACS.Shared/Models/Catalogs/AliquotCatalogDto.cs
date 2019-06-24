@@ -5,7 +5,7 @@ namespace BV.PACS.Shared.Models
 {
     [DataUrl("api/Catalog/GetAliquots")]
     [CountUrl("api/Catalog/GetAliquotsRecordCount")]
-    public class AliquotListItem
+    public class AliquotCatalogDto
     {
         [Column("idfContainer")]
         public int AliquotId { get; set; }

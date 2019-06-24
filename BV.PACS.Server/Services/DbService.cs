@@ -24,10 +24,10 @@ namespace BV.PACS.Server.Services
             };
 
 
-            InitMapper<SourceListItem>();
-            InitMapper<MaterialListItem>();
-            InitMapper<AliquotListItem>();
-            InitMapper<TestListItem>();
+            InitMapper<SourceCatalogDto>();
+            InitMapper<MaterialCatalogDto>();
+            InitMapper<AliquotCatalogDto>();
+            InitMapper<TestCatalogDto>();
 
             InitMapper<TemplateLookupItem>();
             InitMapper<BaseLookupItem>();
@@ -49,24 +49,24 @@ namespace BV.PACS.Server.Services
         }
 
 
-        public IEnumerable<SourceListItem> GetSources(AggregatedConditionDto condition)
+        public IEnumerable<SourceCatalogDto> GetSources(AggregatedConditionDto condition)
         {
-            return GetCatalogItems<SourceListItem>(condition, "dbo.spSource_QS");
+            return GetCatalogItems<SourceCatalogDto>(condition, "dbo.spSource_QS");
         }
 
-        public IEnumerable<MaterialListItem> GetMaterials(AggregatedConditionDto condition)
+        public IEnumerable<MaterialCatalogDto> GetMaterials(AggregatedConditionDto condition)
         {
-            return GetCatalogItems<MaterialListItem>(condition, "dbo.spStrain_QS");
+            return GetCatalogItems<MaterialCatalogDto>(condition, "dbo.spStrain_QS");
         }
 
-        public IEnumerable<AliquotListItem> GetAliquots(AggregatedConditionDto condition)
+        public IEnumerable<AliquotCatalogDto> GetAliquots(AggregatedConditionDto condition)
         {
-            return GetCatalogItems<AliquotListItem>(condition, "dbo.spVial_QS");
+            return GetCatalogItems<AliquotCatalogDto>(condition, "dbo.spVial_QS");
         }
 
-        public IEnumerable<TestListItem> GetTests(AggregatedConditionDto condition)
+        public IEnumerable<TestCatalogDto> GetTests(AggregatedConditionDto condition)
         {
-            return GetCatalogItems<TestListItem>(condition, "dbo.spTest_QS");
+            return GetCatalogItems<TestCatalogDto>(condition, "dbo.spTest_QS");
         }
 
         private IEnumerable<T> GetCatalogItems<T>(AggregatedConditionDto condition, string spName)

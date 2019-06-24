@@ -10,24 +10,24 @@
     </DxFormLayoutItem>
 
 
-    <DxFormLayoutItem Caption="@nameof(AliquotListItem.AliquotBarcode)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(AliquotCatalogDto.AliquotBarcode)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox bind-Text="@AliquotBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
 
-    <DxFormLayoutItem Caption="@nameof(AliquotListItem.AliquotCreationDate)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(AliquotCatalogDto.AliquotCreationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxDateEdit bind-Date="@StartDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(AliquotListItem.AliquotCreationDate)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(AliquotCatalogDto.AliquotCreationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxDateEdit bind-Date="@EndDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
 
-    <DxFormLayoutItem Caption="@nameof(AliquotListItem.AliquotTemplateName)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(AliquotCatalogDto.AliquotTemplateName)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxComboBox Data="@Templates"
                         TextFieldName="Name"

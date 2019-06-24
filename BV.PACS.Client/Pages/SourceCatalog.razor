@@ -2,7 +2,7 @@
 @using BV.PACS.Client.Catalogs
 @using BV.PACS.Client.SearchPanels
 @using BV.PACS.Shared.Models
-@inherits BV.PACS.Client.Catalogs.BaseCatalog<BV.PACS.Shared.Models.SourceListItem>
+@inherits BV.PACS.Client.Catalogs.BaseCatalog<BV.PACS.Shared.Models.SourceCatalogDto>
 
 <h1>Source Catalog</h1>
 
@@ -30,10 +30,10 @@
                                         AllowRowSelection="@false"
                                         PageSize="@CatalogState.Condition.PageSize">
                                 <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
-                                <DxDataGridColumn Field="@nameof(SourceListItem.SourceBarcode)"></DxDataGridColumn>
-                                <DxDataGridColumn Field="@nameof(SourceListItem.SourceTemplateName)" Caption="Template Name"></DxDataGridColumn>
-                                <DxDataGridDateEditColumn Field="@nameof(SourceListItem.SourceCreationDate)"></DxDataGridDateEditColumn>
-                                <DxDataGridColumn Field="@nameof(SourceListItem.SourceType)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceBarcode)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceTemplateName)" Caption="Template Name"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(SourceCatalogDto.SourceCreationDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceType)"></DxDataGridColumn>
                             </DxDataGrid>
                             @if (PageCount > 1)
                             {

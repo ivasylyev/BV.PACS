@@ -2,7 +2,7 @@
 @using BV.PACS.Client.Catalogs
 @using BV.PACS.Client.SearchPanels
 @using BV.PACS.Shared.Models
-@inherits BV.PACS.Client.Catalogs.BaseCatalog<BV.PACS.Shared.Models.TestListItem>
+@inherits BV.PACS.Client.Catalogs.BaseCatalog<BV.PACS.Shared.Models.TestCatalogDto>
 @inject HttpClient _http
 
 <h1>Test Catalog</h1>
@@ -31,10 +31,10 @@
                                         AllowRowSelection="@false"
                                         PageSize="@CatalogState.Condition.PageSize">
                                 <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
-                                <DxDataGridColumn Field="@nameof(TestListItem.TestBarcode)"></DxDataGridColumn>
-                                <DxDataGridColumn Field="@nameof(TestListItem.TestTemplateName)" Caption="Template Name"></DxDataGridColumn>
-                                <DxDataGridDateEditColumn Field="@nameof(TestListItem.TestRegistrationDate)"></DxDataGridDateEditColumn>
-                                <DxDataGridColumn Field="@nameof(TestListItem.TestType)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.TestBarcode)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.TestTemplateName)" Caption="Template Name"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(TestCatalogDto.TestRegistrationDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.TestType)"></DxDataGridColumn>
                             </DxDataGrid>
                             @if (PageCount > 1)
                             {

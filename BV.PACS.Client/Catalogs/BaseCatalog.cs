@@ -39,7 +39,7 @@ namespace BV.PACS.Client.Catalogs
                     _dataSource = new T[CatalogState.Condition.PageSize];
                     for (var i = 0; i < _dataSource.Length; i++)
                     {
-                        _dataSource[i] = ListItemFactory.CreateEmptyItem<T>("Loading...");
+                        _dataSource[i] = CatalogDtoFactory.CreateEmptyItem<T>("Loading...");
                     }
                 }
 

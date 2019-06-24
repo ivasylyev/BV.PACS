@@ -3,7 +3,7 @@
 @using BV.PACS.Client.SearchPanels
 @using BV.PACS.Shared.Models
 @using Microsoft.AspNetCore.Components
-@inherits BV.PACS.Client.Catalogs.BaseCatalog<BV.PACS.Shared.Models.MaterialListItem>
+@inherits BV.PACS.Client.Catalogs.BaseCatalog<BV.PACS.Shared.Models.MaterialCatalogDto>
 @inject HttpClient _http
 
 <h1>Material Catalog</h1>
@@ -32,10 +32,10 @@
                                         AllowRowSelection="@false"
                                         PageSize="@CatalogState.Condition.PageSize">
                                 <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
-                                <DxDataGridColumn Field="@nameof(MaterialListItem.MaterialBarcode)"></DxDataGridColumn>
-                                <DxDataGridColumn Field="@nameof(MaterialListItem.MaterialTemplateName)" Caption="Template Name"></DxDataGridColumn>
-                                <DxDataGridDateEditColumn Field="@nameof(MaterialListItem.MaterialRegistrationDate)"></DxDataGridDateEditColumn>
-                                <DxDataGridColumn Field="@nameof(MaterialListItem.MaterialType)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialCatalogDto.MaterialBarcode)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialCatalogDto.MaterialTemplateName)" Caption="Template Name"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(MaterialCatalogDto.MaterialRegistrationDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialCatalogDto.MaterialType)"></DxDataGridColumn>
                             </DxDataGrid>
                             @if (PageCount > 1)
                             {

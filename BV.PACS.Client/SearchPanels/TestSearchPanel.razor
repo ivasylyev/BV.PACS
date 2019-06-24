@@ -9,22 +9,22 @@
     </DxFormLayoutItem>
 
 
-    <DxFormLayoutItem Caption="@nameof(TestListItem.TestBarcode)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestBarcode)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox bind-Text="@TestBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(TestListItem.TestRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxDateEdit bind-Date="@StartDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(TestListItem.TestRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxDateEdit bind-Date="@EndDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(TestListItem.TestTemplateName)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestTemplateName)" ColSpanLg="12" ColSpanMd="12">
         <Template>
 
             <DxComboBox Data="@Templates"

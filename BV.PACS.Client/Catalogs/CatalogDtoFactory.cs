@@ -1,13 +1,13 @@
 ﻿using System;
-
-namespace BV.PACS.Shared.Models
+using BV.PACS.Shared.Models;
+namespace BV.PACS.Client.Catalogs
 {
-    public static class ListItemFactory
+    public static class CatalogDtoFactory
     {
         public static T CreateEmptyItem<T>(string defValue) where T : new()
         {
             var result = new T();
-            if (result is SourceListItem s)
+            if (result is SourceCatalogDto s)
             {
                 s.SourceCreationDate = DateTime.Now;
                 s.SourceTypeId = defValue;
@@ -28,7 +28,7 @@ namespace BV.PACS.Shared.Models
                 s.TestResults = defValue;
                 s.TestStatuses = defValue;
             }
-            else if (result is MaterialListItem m)
+            else if (result is MaterialCatalogDto m)
             {
                 m.MaterialRegistrationDate = DateTime.Now;
                 m.MaterialTypeId = defValue;
@@ -45,7 +45,7 @@ namespace BV.PACS.Shared.Models
                 m.Aliquots = defValue;
                 m.MaterialPointOfOrigin = defValue;
             }
-            else if (result is AliquotListItem a)
+            else if (result is AliquotCatalogDto a)
             {
                 a.AliquotCreationDate = DateTime.Now;
                 a.AliquotBarcode = defValue;
@@ -67,7 +67,7 @@ namespace BV.PACS.Shared.Models
                 a.AliquotStatus = defValue;
             }
 
-            if (result is TestListItem t)
+            if (result is TestCatalogDto t)
             {
                 t.TestDate = DateTime.Now;
                 t.TestTypeId = defValue;

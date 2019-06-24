@@ -16,7 +16,7 @@ namespace BV.PACS.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public IEnumerable<SourceListItem> GetSources([FromBody] AggregatedConditionDto condition)
+        public IEnumerable<SourceCatalogDto> GetSources([FromBody] AggregatedConditionDto condition)
         {
             return _dbService.GetSources(condition);
         }
@@ -27,7 +27,7 @@ namespace BV.PACS.Server.Controllers
             return _dbService.GetSourcesRecordCount(condition);
         }
         [HttpPost("[action]")]
-        public IEnumerable<MaterialListItem> GetMaterials([FromBody] AggregatedConditionDto condition)
+        public IEnumerable<MaterialCatalogDto> GetMaterials([FromBody] AggregatedConditionDto condition)
         {
             return _dbService.GetMaterials(condition);
         }
@@ -39,7 +39,7 @@ namespace BV.PACS.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public IEnumerable<AliquotListItem> GetAliquots([FromBody] AggregatedConditionDto condition)
+        public IEnumerable<AliquotCatalogDto> GetAliquots([FromBody] AggregatedConditionDto condition)
         {
             return _dbService.GetAliquots(condition);
         }
@@ -51,7 +51,7 @@ namespace BV.PACS.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public IEnumerable<TestListItem> GetTests([FromBody] AggregatedConditionDto condition)
+        public IEnumerable<TestCatalogDto> GetTests([FromBody] AggregatedConditionDto condition)
         {
             return _dbService.GetTests(condition);
         }
