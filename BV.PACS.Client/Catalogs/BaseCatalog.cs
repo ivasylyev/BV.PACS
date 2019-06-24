@@ -11,6 +11,9 @@ namespace BV.PACS.Client.Catalogs
         [Inject]
         private HttpClient Http { get; set; }
 
+        [Inject]
+        private IUriHelper UriHelper { get; set; }
+
         private T[] _dataSource;
 
         protected CatalogState CatalogState { get; } = new CatalogState();
@@ -49,6 +52,11 @@ namespace BV.PACS.Client.Catalogs
         {
             await BeginGetDataAsync(CatalogState.Condition);
             await BeginGetPageCountAsync(CatalogState.Condition);
+        }
+
+        protected void OnRowEditRedirecting(string objectRoute, int id)
+        {
+            UriHelper.NavigateTo($@"/{objectRoute}/{id}");
         }
 
         protected void OnSearchPanelToggle()

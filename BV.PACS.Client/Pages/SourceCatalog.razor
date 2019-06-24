@@ -3,7 +3,6 @@
 @using BV.PACS.Client.SearchPanels
 @using BV.PACS.Shared.Models
 @inherits BV.PACS.Client.Catalogs.BaseCatalog<BV.PACS.Shared.Models.SourceListItem>
-@inject HttpClient _http
 
 <h1>Source Catalog</h1>
 
@@ -27,6 +26,7 @@
                             <DxDataGrid Data="@DataSource"
                                         ShowFilterRow="@false"
                                         ShowPager="@false"
+                                        RowEditStart=@(dataItem => OnRowEditRedirecting(nameof(SourceTracking), dataItem.SourceId))
                                         AllowRowSelection="@false"
                                         PageSize="@CatalogState.Condition.PageSize">
                                 <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
@@ -50,6 +50,3 @@
     </div>
 </div>
 
-
-@functions {
-}
