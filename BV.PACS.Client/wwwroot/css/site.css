@@ -53,6 +53,10 @@ app {
     padding-top: 0px;
 }
 
+.card.demo-card {
+    width: 100%;
+}
+
 .nav-item {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
@@ -60,7 +64,7 @@ app {
 }
 
     .nav-item:first-of-type {
-        padding-top: 1rem;
+      /*-  padding-top: 1rem;*/
     }
 
     .nav-item:last-of-type {
