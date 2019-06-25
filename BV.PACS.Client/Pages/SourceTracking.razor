@@ -1,5 +1,4 @@
-﻿@page "/SourceTracking"
-@page "/SourceTracking/{Id:int}"
+﻿@page "/SourceTracking/{Id:int}"
 @using Microsoft.AspNetCore.Components
 @inject HttpClient _http
 
@@ -23,7 +22,7 @@
                     @switch (ActiveTabIndex)
                     {
                         case 0:
-                            <SourceTrackingPanel>
+                            <SourceTrackingPanel Id=@Id>
 
                             </SourceTrackingPanel>
                             break;

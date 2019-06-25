@@ -22,15 +22,31 @@
             <div class="col-sm-12">
                 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
                     <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
-                        <Template>
+                        <Template Context="OuterContext">
                             <DxDataGrid Data="@DataSource"
                                         ShowFilterRow="@false"
                                         ShowPager="@false"
                                         RowEditStart=@(dataItem => OnRowEditRedirecting(nameof(SourceTracking), dataItem.SourceId))
                                         AllowRowSelection="@false"
                                         PageSize="@CatalogState.Condition.PageSize">
-                                <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
-                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceBarcode)"></DxDataGridColumn>
+                                
+                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceBarcode)">
+                                    <DisplayTemplate Context="FieldContext">
+                                        @{
+                                            if (FieldContext is SourceCatalogDto dto)
+                                            {
+                                                if (dto.SourceId > 0)
+                                                {
+                                                    <a href="/@nameof(SourceTracking)/@dto.SourceId" target="_blank" class="ml-md-auto">@dto.SourceBarcode</a>
+                                                }
+                                                else
+                                                {
+                                                    @dto.SourceBarcode
+                                                }
+                                            }
+                                        }
+                                    </DisplayTemplate>
+                                </DxDataGridColumn>
                                 <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceTemplateName)" Caption="Template Name"></DxDataGridColumn>
                                 <DxDataGridDateEditColumn Field="@nameof(SourceCatalogDto.SourceCreationDate)"></DxDataGridDateEditColumn>
                                 <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceType)"></DxDataGridColumn>
