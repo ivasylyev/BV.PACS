@@ -1,8 +1,9 @@
 ﻿@page "/TestTracking/{Id:int}"
+@layout MainLayout
 @using Microsoft.AspNetCore.Components
 @inject HttpClient _http
 
-<h1>Source Tracking</h1>
+<h1>Test Tracking</h1>
 
 <div class="row">
 
@@ -17,9 +18,9 @@
                     @switch (ActiveTabIndex)
                     {
                         case 0:
-                            <SourceTrackingPanel Id=@Id>
+                            <TestTrackingPanel Id=@Id>
 
-                            </SourceTrackingPanel>
+                            </TestTrackingPanel>
                             break;
 
                         case 1:

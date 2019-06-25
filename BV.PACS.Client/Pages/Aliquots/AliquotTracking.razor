@@ -1,8 +1,9 @@
 ﻿@page "/AliquotTracking/{Id:int}"
+@layout MainLayout
 @using Microsoft.AspNetCore.Components
 @inject HttpClient _http
 
-<h1>Source Tracking</h1>
+<h1>Aliquot Tracking</h1>
 
 <div class="row">
 
@@ -19,9 +20,9 @@
                     @switch (ActiveTabIndex)
                     {
                         case 0:
-                            <SourceTrackingPanel Id=@Id>
+                            <AliquotTrackingPanel Id=@Id>
 
-                            </SourceTrackingPanel>
+                            </AliquotTrackingPanel>
                             break;
                         case 1:
                             <i>"Tests" tab is active.</i>
