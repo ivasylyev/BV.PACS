@@ -54,11 +54,6 @@ namespace BV.PACS.Client.Catalogs
             await BeginGetPageCountAsync(CatalogState.Condition);
         }
 
-        protected void OnRowEditRedirecting(string objectRoute, int id)
-        {
-            UriHelper.NavigateTo($@"/{objectRoute}/{id}");
-        }
-
         protected void OnSearchPanelToggle()
         {
             CatalogState.SearchPanelToggle();

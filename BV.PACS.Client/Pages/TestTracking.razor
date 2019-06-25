@@ -1,0 +1,54 @@
+﻿@page "/TestTracking/{Id:int}"
+@using Microsoft.AspNetCore.Components
+@inject HttpClient _http
+
+<h1>Source Tracking</h1>
+
+<div class="row">
+
+    <div class="card demo-card border-0 ">
+        <div class="card-body  border-top-0">
+            <DxTabs bind-ActiveTabIndex="@ActiveTabIndex">
+                <DxTab Text="General info"></DxTab>
+                <DxTab Text="Audit log"></DxTab>
+            </DxTabs>
+            <div class="card demo-card dxbs-border-top-0 dxbs-border-radius-top-0">
+                <div class="card-body">
+                    @switch (ActiveTabIndex)
+                    {
+                        case 0:
+                            <SourceTrackingPanel Id=@Id>
+
+                            </SourceTrackingPanel>
+                            break;
+
+                        case 1:
+                            <i>"Audit log" tab is active.</i>
+                            break;
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@functions {
+
+    [Parameter]
+    private int Id { get; set; }
+
+    int activeTabIndex;
+
+    int ActiveTabIndex
+    {
+        get => activeTabIndex;
+        set
+        {
+            activeTabIndex = value;
+            StateHasChanged();
+        }
+    }
+
+}

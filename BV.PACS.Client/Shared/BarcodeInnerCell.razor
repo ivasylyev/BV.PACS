@@ -1,0 +1,26 @@
+﻿@using BV.PACS.Client.Pages
+@using Microsoft.AspNetCore.Components
+@{
+
+    if (Id > 0)
+    {
+        <a href="/@Route/@Id" target="_blank" class="ml-md-auto">@Barcode</a>
+    }
+    else
+    {
+        @Barcode
+    }
+}
+
+@functions {
+
+    [Parameter]
+    int Id { get; set; }
+
+    [Parameter]
+    string Route { get; set; }
+
+    [Parameter]
+    string Barcode { get; set; }
+
+}

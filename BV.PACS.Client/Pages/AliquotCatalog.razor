@@ -25,14 +25,18 @@
             <div class="col-sm-12">
                 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
                     <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
-                        <Template>
+                        <Template Context="GridContext">
                             <DxDataGrid Data="@DataSource"
                                         ShowFilterRow="@false"
                                         ShowPager="@false"
                                         AllowRowSelection="@false"
                                         PageSize="@CatalogState.Condition.PageSize">
-                                <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
-                                <DxDataGridColumn Field="@nameof(AliquotCatalogDto.AliquotBarcode)"></DxDataGridColumn>
+                               
+                                <DxDataGridColumn Field="@nameof(AliquotCatalogDto.AliquotBarcode)">
+                                    <DisplayTemplate>
+                                        <BarcodeCell Context=@context />
+                                    </DisplayTemplate>
+                                </DxDataGridColumn>
                                 <DxDataGridColumn Field="@nameof(AliquotCatalogDto.AliquotTemplateName)" Caption="Template Name"></DxDataGridColumn>
                                 <DxDataGridDateEditColumn Field="@nameof(AliquotCatalogDto.AliquotCreationDate)"></DxDataGridDateEditColumn>
                                 <DxDataGridColumn Field="@nameof(AliquotCatalogDto.AliquotStatus)"></DxDataGridColumn>
