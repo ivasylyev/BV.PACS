@@ -1,7 +1,8 @@
 ﻿using System.Threading.Tasks;
+using BV.PACS.Client.SearchPanels;
 using BV.PACS.Shared.Models;
 
-namespace BV.PACS.Client.SearchPanels
+namespace BV.PACS.Client.Sources
 {
     [FormTemplate(FormTypes.Source)]
     public class SourceSearchPanelCode : BaseSearchPanel

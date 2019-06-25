@@ -1,16 +1,21 @@
-﻿@page "/SourceCatalog"
+﻿@layout MainLayout
+
+@page "/TestCatalog"
+
 @using BV.PACS.Client.Catalogs
 @using BV.PACS.Client.SearchPanels
 @using BV.PACS.Shared.Models
-@inherits BV.PACS.Client.Catalogs.BaseCatalog<BV.PACS.Shared.Models.SourceCatalogDto>
+@inherits BV.PACS.Client.Catalogs.BaseCatalog<BV.PACS.Shared.Models.TestCatalogDto>
+@inject HttpClient _http
 
-<h1>Source Catalog</h1>
+<h1>Test Catalog</h1>
+
 
 <div class="row">
     <div class="@CatalogState.SearchPanelCssClass">
-        <SourceSearchPanel OnSearch="@OnSearchPanelSearch">
+        <TestSearchPanel OnSearch="@OnSearchPanelSearch">
 
-        </SourceSearchPanel>
+        </TestSearchPanel>
     </div>
 
     <div class="@CatalogState.GridPanelCssClass">
@@ -28,15 +33,15 @@
                                         ShowPager="@false"
                                         AllowRowSelection="@false"
                                         PageSize="@CatalogState.Condition.PageSize">
-                                
-                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceBarcode)">
-                                    <DisplayTemplate >
-                                        <BarcodeCell Context=@context/>
+
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.TestBarcode)">
+                                    <DisplayTemplate>
+                                        <BarcodeCell Context=@context />
                                     </DisplayTemplate>
                                 </DxDataGridColumn>
-                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceTemplateName)" Caption="Template Name"></DxDataGridColumn>
-                                <DxDataGridDateEditColumn Field="@nameof(SourceCatalogDto.SourceCreationDate)"></DxDataGridDateEditColumn>
-                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceType)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.TestTemplateName)" Caption="Template Name"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(TestCatalogDto.TestRegistrationDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.TestType)"></DxDataGridColumn>
                             </DxDataGrid>
                             @if (PageCount > 1)
                             {

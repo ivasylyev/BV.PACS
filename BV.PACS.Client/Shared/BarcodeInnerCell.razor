@@ -4,7 +4,7 @@
 
     if (Id > 0)
     {
-        <a href="/@Route/@Id" target="_blank" class="ml-md-auto">@Barcode</a>
+        <a href="/@PageRoute/@Id" class="ml-md-auto">@Barcode</a>
     }
     else
     {
@@ -18,7 +18,7 @@
     int Id { get; set; }
 
     [Parameter]
-    string Route { get; set; }
+    string PageRoute { get; set; }
 
     [Parameter]
     string Barcode { get; set; }

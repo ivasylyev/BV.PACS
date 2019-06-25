@@ -1,4 +1,5 @@
 ﻿@page "/AliquotCatalog"
+@layout MainLayout
 @using BV.PACS.Client.Catalogs
 @using BV.PACS.Client.SearchPanels
 @using BV.PACS.Shared.Models
@@ -31,7 +32,7 @@
                                         ShowPager="@false"
                                         AllowRowSelection="@false"
                                         PageSize="@CatalogState.Condition.PageSize">
-                               
+
                                 <DxDataGridColumn Field="@nameof(AliquotCatalogDto.AliquotBarcode)">
                                     <DisplayTemplate>
                                         <BarcodeCell Context=@context />
