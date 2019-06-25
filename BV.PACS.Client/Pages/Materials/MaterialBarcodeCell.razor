@@ -1,0 +1,24 @@
+﻿@using BV.PACS.Client.Pages
+@using BV.PACS.Client.Pages.Aliquots
+@using BV.PACS.Client.Pages.Materials
+@using BV.PACS.Client.Pages.Sources
+@using BV.PACS.Shared.Models
+@using Microsoft.AspNetCore.Components
+@{
+
+     if (Context is MaterialCatalogDto material)
+    {
+        <BarcodeCell Id=@material.MaterialId
+                          PageRoute=@nameof(MaterialTracking)
+                          Barcode=@material.MaterialBarcode>
+        </BarcodeCell>
+    }
+   
+}
+
+@functions {
+
+    [Parameter]
+    object Context { get; set; }
+
+}

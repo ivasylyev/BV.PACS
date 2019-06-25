@@ -1,40 +1,26 @@
 ﻿@using BV.PACS.Client.Pages
-@using BV.PACS.Shared.Models
 @using Microsoft.AspNetCore.Components
 @{
-    if (Context is SourceCatalogDto source)
+
+    if (Id > 0)
     {
-        <BarcodeInnerCell Id=@source.SourceId
-                          PageRoute=@nameof(SourceTracking)
-                          Barcode=@source.SourceBarcode>
-        </BarcodeInnerCell>
+        <a href="/@PageRoute/@Id" class="ml-md-auto">@Barcode</a>
     }
-    else if (Context is MaterialCatalogDto material)
+    else
     {
-        <BarcodeInnerCell Id=@material.MaterialId
-                          PageRoute=@nameof(MaterialTracking)
-                          Barcode=@material.MaterialBarcode>
-        </BarcodeInnerCell>
-    }
-    else if (Context is AliquotCatalogDto aliquot)
-    {
-        <BarcodeInnerCell Id=@aliquot.AliquotId
-                          PageRoute=@nameof(AliquotTracking)
-                          Barcode=@aliquot.AliquotBarcode>
-        </BarcodeInnerCell>
-    }
-    else if (Context is TestCatalogDto test)
-    {
-        <BarcodeInnerCell Id=@test.TestId
-                          PageRoute=@nameof(TestTracking)
-                          Barcode=@test.TestBarcode>
-        </BarcodeInnerCell>
+        @Barcode
     }
 }
 
 @functions {
 
     [Parameter]
-    object Context { get; set; }
+    int Id { get; set; }
+
+    [Parameter]
+    string PageRoute { get; set; }
+
+    [Parameter]
+    string Barcode { get; set; }
 
 }

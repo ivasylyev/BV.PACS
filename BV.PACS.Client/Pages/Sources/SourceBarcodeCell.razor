@@ -1,0 +1,18 @@
+﻿@using BV.PACS.Shared.Models
+@using Microsoft.AspNetCore.Components
+@{
+    if (Context is SourceCatalogDto source)
+    {
+        <BarcodeCell Id=@source.SourceId
+                          PageRoute=@nameof(SourceTracking)
+                          Barcode=@source.SourceBarcode>
+        </BarcodeCell>
+    }
+}
+
+@functions {
+
+    [Parameter]
+    object Context { get; set; }
+
+}
