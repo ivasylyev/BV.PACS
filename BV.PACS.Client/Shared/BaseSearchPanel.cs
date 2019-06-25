@@ -7,7 +7,7 @@ using BV.PACS.Shared.Models.Parameters;
 using BV.PACS.Shared.Utils;
 using Microsoft.AspNetCore.Components;
 
-namespace BV.PACS.Client.SearchPanels
+namespace BV.PACS.Client.Shared
 {
     public class BaseSearchPanel : ComponentBase
     {

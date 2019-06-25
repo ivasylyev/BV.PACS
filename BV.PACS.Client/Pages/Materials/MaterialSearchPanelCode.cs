@@ -1,6 +1,8 @@
-﻿using BV.PACS.Shared.Models;
+﻿
+using BV.PACS.Client.Shared;
+using BV.PACS.Shared.Models;
 
-namespace BV.PACS.Client.SearchPanels
+namespace BV.PACS.Client.Materials
 {
     [FormTemplate(FormTypes.Material)]
     public class MaterialSearchPanelCode : BaseSearchPanel

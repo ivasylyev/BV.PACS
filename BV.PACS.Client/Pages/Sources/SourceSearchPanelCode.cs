@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
-using BV.PACS.Client.SearchPanels;
+
+using BV.PACS.Client.Shared;
 using BV.PACS.Shared.Models;
 
 namespace BV.PACS.Client.Sources

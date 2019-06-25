@@ -1,5 +1,6 @@
-﻿@using BV.PACS.Shared.Models
-@inherits TestSearchPanelCode
+﻿
+@using BV.PACS.Shared.Models
+@inherits BV.PACS.Client.Aliquots.AliquotSearchPanelCode
 
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
     <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
@@ -9,30 +10,30 @@
     </DxFormLayoutItem>
 
 
-    <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestBarcode)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(AliquotCatalogDto.AliquotBarcode)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxTextBox bind-Text="@TestBarcode"></DxTextBox>
+            <DxTextBox bind-Text="@AliquotBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
+
+    <DxFormLayoutItem Caption="@nameof(AliquotCatalogDto.AliquotCreationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxDateEdit bind-Date="@StartDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(AliquotCatalogDto.AliquotCreationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxDateEdit bind-Date="@EndDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestTemplateName)" ColSpanLg="12" ColSpanMd="12">
-        <Template>
 
+    <DxFormLayoutItem Caption="@nameof(AliquotCatalogDto.AliquotTemplateName)" ColSpanLg="12" ColSpanMd="12">
+        <Template>
             <DxComboBox Data="@Templates"
                         TextFieldName="Name"
                         NullText="Select Template ..."
                         bind-SelectedItem="@Template">
             </DxComboBox>
-
         </Template>
     </DxFormLayoutItem>
 
