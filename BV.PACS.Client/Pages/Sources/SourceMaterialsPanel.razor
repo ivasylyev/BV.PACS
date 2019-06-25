@@ -1,0 +1,54 @@
+﻿@using BV.PACS.Client.Catalogs
+@using BV.PACS.Shared.Models
+@using BV.PACS.Shared.Models.Parameters
+@using BV.PACS.Shared.Utils
+@using Microsoft.AspNetCore.Components
+@inject HttpClient _http
+
+
+<div class="row">
+    <div class="col-sm-12">
+        <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+            <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                <Template Context="GridContext">
+                    <DxDataGrid Data="@DataSource"
+                                ShowFilterRow="@false"
+                                ShowPager="@true"
+                                AllowRowSelection="@false"
+                                PageSize="@BaseSettings.PageSize">
+
+                        <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialBarcode)">
+
+                        </DxDataGridColumn>
+                        <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialTemplateName)" Caption="Template Name"></DxDataGridColumn>
+                        <DxDataGridDateEditColumn Field="@nameof(MaterialGridDto.MaterialRegistrationDate)"></DxDataGridDateEditColumn>
+                        <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialType)"></DxDataGridColumn>
+                    </DxDataGrid>
+               
+                </Template>
+            </DxFormLayoutItem>
+        </DxFormLayout>
+
+    </div>
+</div>
+
+@functions {
+
+
+    [Parameter]
+    private int Id { get; set; }
+
+    MaterialGridDto[] DataSource { get; set; }
+
+    protected override async Task OnInitAsync()
+    {
+        DataSource = await GetSourceMaterials();
+    }
+
+    protected async Task<MaterialGridDto[]> GetSourceMaterials()
+    {
+        return await _http.PostJsonAsync<MaterialGridDto[]>("api/Grid/GetSourceMaterials",
+            new GridParameter(Id, GlobalSettings.CurrentLanguage));
+    }
+
+}

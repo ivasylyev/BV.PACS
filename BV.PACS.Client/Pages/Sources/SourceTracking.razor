@@ -24,12 +24,15 @@
                     @switch (ActiveTabIndex)
                     {
                         case 0:
+                    <i>"General info" tab is active.</i>
                             <SourceTrackingPanel Id=@Id>
 
                             </SourceTrackingPanel>
                             break;
                         case 1:
-                            <i>"Materials" tab is active.</i>
+                           <SourceMaterialsPanel  Id=@Id>
+
+                           </SourceMaterialsPanel>
                             break;
                         case 2:
                             <i>"Diagnostics" tab is active.</i>

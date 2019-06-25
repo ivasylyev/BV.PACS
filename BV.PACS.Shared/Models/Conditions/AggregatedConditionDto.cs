@@ -21,9 +21,9 @@ namespace BV.PACS.Shared.Models
 
        
         public int PageNumber { get; set; }
-        public int PageSize { get; set; } = 10;
+        public int PageSize { get; set; } = BaseSettings.PageSize;
 
-        public string Language { get; set; } = "en";
+        public string Language { get; set; } = BaseSettings.Language;
         public AggregatedConditionDto()
         {
             ConditionItems = new List<SearchConditionItemDto>();

@@ -155,7 +155,7 @@ namespace BV.Pacs.Tests
         {
             var list = _service.GetLookup(new BaseLookupParameter(BaseLookupTables.rftTestType, "en")).ToList();
             Assert.IsNotEmpty(list);
-  
+
             Assert.Pass();
         }
 
@@ -174,6 +174,26 @@ namespace BV.Pacs.Tests
             var list = _service.GetLookup(new BaseLookupParameter(BaseLookupTables.rftTestStatus, "en")).ToList();
             Assert.IsNotEmpty(list);
 
+            Assert.Pass();
+        }
+
+        [Test]
+        public void GetSourceMaterialsTest()
+        {
+            var condition = new AggregatedConditionDto();
+            condition.AddStandardConditionIfNotEmpty("strMaterialBarcode", "m", Operators.LikeOperator);
+            var items = _service.GetSources(condition).ToList();
+            Assert.IsNotEmpty(items);
+            var source = items[0];
+            Console.WriteLine($"Found source {source.SourceBarcode} with ID {source.SourceId}");
+
+            var list = _service.GetSourceMaterials(new GridParameter(source.SourceId, "en")).ToList();
+            Assert.IsNotEmpty(list);
+
+            Console.WriteLine($"received {list.Count} materials");
+            var materialBarcodes = list.Select(m => m.MaterialBarcode);
+
+            Console.WriteLine(string.Join(", ", materialBarcodes));
             Assert.Pass();
         }
     }

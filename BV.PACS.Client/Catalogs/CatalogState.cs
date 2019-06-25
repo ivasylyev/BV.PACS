@@ -13,7 +13,7 @@ namespace BV.PACS.Client.Catalogs
 
         public string SearchPanelCssClass => SearchPanelCollapsed ? "collapse" : "col-sm-3";
         public string GridPanelCssClass => SearchPanelCollapsed ? "col-sm-12" : "col-sm-9";
-        public string ShowHideSearchPanelCaption => SearchPanelCollapsed ?  "Show Search Panel": "Hide Search Panel";
+        public string ShowHideSearchPanelCaption => SearchPanelCollapsed ? "Show Search Panel" : "Hide Search Panel";
         private bool SearchPanelCollapsed { get; set; } = true;
 
 
