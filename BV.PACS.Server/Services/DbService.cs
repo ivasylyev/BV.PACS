@@ -23,6 +23,7 @@ namespace BV.PACS.Server.Services
                 InitialCatalog = "PACS_PrachiBMORU_200K"
             };
 
+            InitMapper<MaterialGridDto>();
 
             InitMapper<SourceCatalogDto>();
             InitMapper<MaterialCatalogDto>();
@@ -31,7 +32,6 @@ namespace BV.PACS.Server.Services
 
             InitMapper<TemplateLookupItem>();
             InitMapper<BaseLookupItem>();
-            
         }
 
         private static void InitMapper<T>()
@@ -97,10 +97,12 @@ namespace BV.PACS.Server.Services
         {
             return GetCatalogRecordCount(condition, "dbo.spStrain_QS_RecordCount");
         }
+
         public int GetAliquotsRecordCount(AggregatedConditionDto condition)
         {
             return GetCatalogRecordCount(condition, "dbo.spVial_QS_RecordsCount");
         }
+
         public int GetTestsRecordCount(AggregatedConditionDto condition)
         {
             return GetCatalogRecordCount(condition, "dbo.spTest_QS_RecordsCount");
@@ -124,18 +126,38 @@ namespace BV.PACS.Server.Services
             }
         }
 
-        public IEnumerable<TemplateLookupItem> GetTemplates(TemplateLookupParameter parameter)
+
+        public IEnumerable<MaterialGridDto> GetSourceMaterials(GridParameter parameter)
         {
-          
+            return GetSourceGridItems<MaterialGridDto>(parameter, "dbo.spSource_Materials");
+        }
+       
+
+        private IEnumerable<T> GetSourceGridItems<T>(GridParameter parameter, string spName)
+        {
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
-              
+                var result = connection.Query<T>(spName,
+                    new
+                    {
+                        LanguageID = parameter.Language,
+                        idfSource = parameter.Id
+                    },
+                    commandType: CommandType.StoredProcedure);
+
+                return result;
+            }
+        }
+
+        public IEnumerable<TemplateLookupItem> GetTemplates(TemplateLookupParameter parameter)
+        {
+            using (var connection = new SqlConnection(_builder.ConnectionString))
+            {
                 var result = connection.Query<TemplateLookupItem>("spCustomizableFormTemplatesByFormType_SelectLookup",
                     new
                     {
                         idfsCFormTypeID = parameter.LookupType,
                         LanguageID = parameter.Language
-
                     },
                     commandType: CommandType.StoredProcedure);
                 //return null;
@@ -145,16 +167,14 @@ namespace BV.PACS.Server.Services
 
         public IEnumerable<BaseLookupItem> GetLookup(BaseLookupParameter parameter)
         {
-
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
-
-                var result = connection.Query<BaseLookupItem>("Select idfsReference, [Name], strDefault, intOrder from fnReferenceLookup(@LanguageID, @LookupType) Order By IsNull(intOrder, 0), [Name]",
+                var result = connection.Query<BaseLookupItem>(
+                    "Select idfsReference, [Name], strDefault, intOrder from fnReferenceLookup(@LanguageID, @LookupType) Order By IsNull(intOrder, 0), [Name]",
                     new
                     {
                         LookupType = parameter.LookupType.ToString(),
                         LanguageID = parameter.Language
-
                     },
                     commandType: CommandType.Text);
                 //return null;

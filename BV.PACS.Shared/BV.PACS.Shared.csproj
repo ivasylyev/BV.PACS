@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Grids\" />
     <Folder Include="Models\TrackingForms\" />
   </ItemGroup>
 
