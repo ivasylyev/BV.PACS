@@ -16,7 +16,7 @@ namespace BV.PACS.Client.Shared
         private IUriHelper UriHelper { get; set; }
 
         [Parameter]
-        public Action<int> OnOpenTrackingForm { get; set; }
+        public Action<string, int> OnOpenTrackingForm { get; set; }
 
         private T[] _dataSource;
 
@@ -59,9 +59,9 @@ namespace BV.PACS.Client.Shared
         }
 
 
-        protected void OnSelectItem(int id)
+        protected void OnSelectItem(string pageName, int id)
         {
-            OnOpenTrackingForm?.Invoke(id);
+            OnOpenTrackingForm?.Invoke(pageName, id);
         }
 
         protected void OnSearchPanelToggle()

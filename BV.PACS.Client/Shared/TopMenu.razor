@@ -1,12 +1,17 @@
-﻿<nav class="navbar navbar-default top-bar ">
+﻿@using BV.PACS.Client.Pages.Sources
+@using BV.PACS.Client.Services
+@using Microsoft.AspNetCore.Components
+@inject StateService _stateService;
+
+<nav class="navbar navbar-default top-bar ">
     <div class="container-fluid">
 
         <a class="navbar-brand" href="">BV.PACS</a>
         <ul class="nav flex-column">
             <li class="nav-item px-3" style="padding-bottom: 0px; padding-top: 0px;">
-                <NavLink class="nav-link" href="SourceCatalog">
-                    <span class="oi oi-list-rich" aria-hidden="true"></span>&nbsp; Source Catalog
-                </NavLink>
+                <button onclick="@DoOpenSourceCatalog" class="btn btn-primary">Source Catalog</button>
+
+
             </li>
         </ul>
         <ul class="nav flex-column">
@@ -34,3 +39,23 @@
     </div>
 </nav>
 
+
+@functions
+{
+
+
+    [Parameter]
+    public Action OnMenuClick { get; set; }
+
+    private void DoOpenSourceCatalog()
+    {
+        DoOpenNewPage(nameof(SourceCatalog), 0);
+    }
+
+    private void DoOpenNewPage(string pageName, int context)
+    {
+        _stateService.OpenNewPage(pageName, context);
+        OnMenuClick?.Invoke();
+    }
+
+}

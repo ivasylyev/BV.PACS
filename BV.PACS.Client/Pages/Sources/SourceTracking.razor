@@ -1,7 +1,5 @@
-﻿
-
-@using Microsoft.AspNetCore.Components
-@inject HttpClient _http
+﻿@inject HttpClient _http
+@inherits BaseTrackingForm
 
 <h1>Source Tracking</h1>
 
@@ -23,15 +21,15 @@
                     @switch (ActiveTabIndex)
                     {
                         case 0:
-                    <i>"General info" tab is active.</i>
+                            <i>"General info" tab is active.</i>
                             <SourceTrackingPanel Id=@Id>
 
                             </SourceTrackingPanel>
                             break;
                         case 1:
-                           <SourceMaterialsPanel  Id=@Id>
+                            <SourceMaterialsPanel Id=@Id>
 
-                           </SourceMaterialsPanel>
+                            </SourceMaterialsPanel>
                             break;
                         case 2:
                             <i>"Diagnostics" tab is active.</i>
@@ -45,27 +43,22 @@
                     }
                 </div>
             </div>
+            <div class="card-body">
+                <ul class="nav flex-column float-right">
+                    <li class="nav-item px-3">
+                        <button onclick="@DoCancel" class="btn btn-secondary">Cancel</button>
+                    </li>
+                </ul>
+                <ul class="nav flex-column float-right">
+                    <li class="nav-item px-3">
+                        <button onclick="@DoOk" class="btn btn-primary">Ok</button>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-
-
 </div>
 
+
 @functions {
-
-    [Parameter]
-    private int Id { get; set; }
-
-    int activeTabIndex;
-
-    int ActiveTabIndex
-    {
-        get => activeTabIndex;
-        set
-        {
-            activeTabIndex = value;
-            StateHasChanged();
-        }
-    }
-
 }

@@ -4,7 +4,8 @@
 
     if (Id > 0)
     {
-        <span onclick="@OnClick" class="ml-md-auto">@Barcode</span>
+        
+        <button type="button" class="btn btn-link" onclick="@OnClick">@Barcode</button>
     }
     else
     {
@@ -21,10 +22,11 @@
     string Barcode => Context is SourceCatalogDto source ? source.SourceBarcode : string.Empty;
 
     [Parameter]
-    public Action<int> OnCellClick { get; set; }
+    public Action<string, int> OnCellClick { get; set; }
 
     private void OnClick()
     {
-        OnCellClick?.Invoke(Id);
+        OnCellClick?.Invoke(nameof(SourceTracking), Id);
     }
+
 }
