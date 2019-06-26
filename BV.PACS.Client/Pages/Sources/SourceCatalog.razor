@@ -4,55 +4,33 @@
 @using BV.PACS.Client
 @using BV.PACS.Client.Shared
 @using BV.PACS.Shared.Models
-@inherits BV.PACS.Client.Shared.BaseCatalog<BV.PACS.Shared.Models.SourceCatalogDto>
 
-<h1>Source Catalog</h1>
+@{
+    if (TrackingFormId > 0)
+    {
+        <SourceTracking
+                        Id=@TrackingFormId>
 
-<div class="row">
-    <div class="@State.SearchPanelCssClass">
-        <SourceSearchPanel OnSearch="@OnSearchPanelSearch">
+        </SourceTracking>
+    }
+    else
+    {
+        <SourceCatalogPanel
+            OnOpenTrackingForm=@OnOpenTrackingForm>
 
-        </SourceSearchPanel>
-    </div>
 
-    <div class="@State.GridPanelCssClass">
-        <div class="row">
+        </SourceCatalogPanel>
+    }
+}
 
-            <div class="col-sm-12">
-                <button onclick="@OnSearchPanelToggle" class="btn btn-primary float-right" style="margin-bottom: 16px;">@State.ShowHideSearchPanelCaption</button>
-            </div>
-            <div class="col-sm-12">
-                <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
-                    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
-                        <Template Context="GridContext">
-                            <DxDataGrid Data="@DataSource"
-                                        ShowFilterRow="@false"
-                                        ShowPager="@false"
-                                        AllowRowSelection="@false"
-                                        PageSize="@State.Condition.PageSize">
+@functions
+{
+    int TrackingFormId { get; set; }
+    protected void OnOpenTrackingForm(int id)
+    {
+        TrackingFormId = id;
+        StateHasChanged();
+    }
 
-                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceBarcode)">
-                                    <DisplayTemplate>
-                                        <SourceBarcodeCell Context=@context />
-                                    </DisplayTemplate>
-                                </DxDataGridColumn>
-                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceTemplateName)" Caption="Template Name"></DxDataGridColumn>
-                                <DxDataGridDateEditColumn Field="@nameof(SourceCatalogDto.SourceCreationDate)"></DxDataGridDateEditColumn>
-                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceType)"></DxDataGridColumn>
-                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.MaterialsAndAliquotsCount)"></DxDataGridColumn>
-                            </DxDataGrid>
-                            @if (PageCount > 1)
-                            {
-                                <DxPager PageCount=@PageCount
-                                         bind-ActivePageIndex=@ActivePageNumber
-                                         CollapseButtonCount=@BaseSettings.CollapseButtonCount>
-                                </DxPager>
-                            }
-                        </Template>
-                    </DxFormLayoutItem>
-                </DxFormLayout>
-            </div>
-        </div>
-    </div>
-</div>
 
+}

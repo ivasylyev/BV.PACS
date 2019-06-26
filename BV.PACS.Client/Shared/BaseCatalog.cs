@@ -58,6 +58,12 @@ namespace BV.PACS.Client.Shared
             await BeginGetPageCountAsync(State.Condition);
         }
 
+
+        protected void OnSelectItem(int id)
+        {
+            OnOpenTrackingForm?.Invoke(id);
+        }
+
         protected void OnSearchPanelToggle()
         {
             State.SearchPanelToggle();
@@ -71,6 +77,7 @@ namespace BV.PACS.Client.Shared
 
             DoSearch();
         }
+
 
         private void DoSearch()
         {
