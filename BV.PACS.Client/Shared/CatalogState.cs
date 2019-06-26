@@ -1,10 +1,10 @@
 ﻿using BV.PACS.Shared.Models;
 
-namespace BV.PACS.Client.Catalogs
+namespace BV.PACS.Client.Shared
 {
     public class CatalogState
     {
-        public const int CollapseButtonCount = 10;
+
 
         public AggregatedConditionDto Condition => SearchPanelCollapsed ? _condition : _lastSearchPanelCondition;
 

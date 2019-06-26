@@ -1,6 +1,6 @@
 ﻿using System;
 using BV.PACS.Shared.Models;
-namespace BV.PACS.Client.Catalogs
+namespace BV.PACS.Client.Shared
 {
     public static class CatalogDtoFactory
     {

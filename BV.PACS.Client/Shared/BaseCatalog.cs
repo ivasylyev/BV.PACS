@@ -1,10 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using BV.PACS.Shared.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace BV.PACS.Client.Catalogs
+namespace BV.PACS.Client.Shared
 {
     public class BaseCatalog<T> : ComponentBase where T : new()
     {
@@ -14,19 +15,22 @@ namespace BV.PACS.Client.Catalogs
         [Inject]
         private IUriHelper UriHelper { get; set; }
 
+        [Parameter]
+        public Action<int> OnOpenTrackingForm { get; set; }
+
         private T[] _dataSource;
 
-        protected CatalogState CatalogState { get; } = new CatalogState();
+        public CatalogState State { get; set; } = new CatalogState();
 
         protected int PageCount { get; set; }
 
         public int ActivePageNumber
         {
-            get => CatalogState.Condition.PageNumber;
+            get => State.Condition.PageNumber;
             set
             {
-                CatalogState.Condition.PageNumber = value;
-                BeginGetDataAsync(CatalogState.Condition).ContinueWith(x => { StateHasChanged(); });
+                State.Condition.PageNumber = value;
+                BeginGetDataAsync(State.Condition).ContinueWith(x => { StateHasChanged(); });
             }
         }
 
@@ -36,7 +40,7 @@ namespace BV.PACS.Client.Catalogs
             {
                 if (_dataSource == null)
                 {
-                    _dataSource = new T[CatalogState.Condition.PageSize];
+                    _dataSource = new T[State.Condition.PageSize];
                     for (var i = 0; i < _dataSource.Length; i++)
                     {
                         _dataSource[i] = CatalogDtoFactory.CreateEmptyItem<T>("Loading...");
@@ -50,28 +54,28 @@ namespace BV.PACS.Client.Catalogs
 
         protected override async Task OnInitAsync()
         {
-            await BeginGetDataAsync(CatalogState.Condition);
-            await BeginGetPageCountAsync(CatalogState.Condition);
+            await BeginGetDataAsync(State.Condition);
+            await BeginGetPageCountAsync(State.Condition);
         }
 
         protected void OnSearchPanelToggle()
         {
-            CatalogState.SearchPanelToggle();
+            State.SearchPanelToggle();
 
             DoSearch();
         }
 
         protected void OnSearchPanelSearch(AggregatedConditionDto cond)
         {
-            CatalogState.SetSearchPanelCondition(cond);
+            State.SetSearchPanelCondition(cond);
 
             DoSearch();
         }
 
         private void DoSearch()
         {
-            BeginGetDataAsync(CatalogState.Condition).ContinueWith(x => { StateHasChanged(); });
-            BeginGetPageCountAsync(CatalogState.Condition).ContinueWith(x => { StateHasChanged(); });
+            BeginGetDataAsync(State.Condition).ContinueWith(x => { StateHasChanged(); });
+            BeginGetPageCountAsync(State.Condition).ContinueWith(x => { StateHasChanged(); });
         }
 
         private async Task BeginGetPageCountAsync(AggregatedConditionDto cond)

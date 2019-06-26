@@ -1,20 +1,17 @@
-﻿@layout MainLayout
-
-@page "/TestCatalog"
-
-@using BV.PACS.Client.Shared
+﻿
 @using BV.PACS.Shared.Models
-@inherits BV.PACS.Client.Shared.BaseCatalog<BV.PACS.Shared.Models.TestCatalogDto>
+@using Microsoft.AspNetCore.Components
+@inherits BV.PACS.Client.Shared.BaseCatalog<BV.PACS.Shared.Models.AliquotCatalogDto>
 @inject HttpClient _http
 
-<h1>Test Catalog</h1>
+<h1>Aliquot Catalog</h1>
 
 
 <div class="row">
     <div class="@State.SearchPanelCssClass">
-        <TestSearchPanel OnSearch="@OnSearchPanelSearch">
+        <AliquotSearchPanel OnSearch="@OnSearchPanelSearch">
 
-        </TestSearchPanel>
+        </AliquotSearchPanel>
     </div>
 
     <div class="@State.GridPanelCssClass">
@@ -33,14 +30,14 @@
                                         AllowRowSelection="@false"
                                         PageSize="@State.Condition.PageSize">
 
-                                <DxDataGridColumn Field="@nameof(TestCatalogDto.TestBarcode)">
+                                <DxDataGridColumn Field="@nameof(AliquotCatalogDto.AliquotBarcode)">
                                     <DisplayTemplate>
-                                        <TestBarcodeCell Context=@context />
+                                        <AliquotBarcodeCell Context=@context />
                                     </DisplayTemplate>
                                 </DxDataGridColumn>
-                                <DxDataGridColumn Field="@nameof(TestCatalogDto.TestTemplateName)" Caption="Template Name"></DxDataGridColumn>
-                                <DxDataGridDateEditColumn Field="@nameof(TestCatalogDto.TestRegistrationDate)"></DxDataGridDateEditColumn>
-                                <DxDataGridColumn Field="@nameof(TestCatalogDto.TestType)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotCatalogDto.AliquotTemplateName)" Caption="Template Name"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(AliquotCatalogDto.AliquotCreationDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotCatalogDto.AliquotStatus)"></DxDataGridColumn>
                             </DxDataGrid>
                             @if (PageCount > 1)
                             {
@@ -57,3 +54,8 @@
     </div>
 </div>
 
+
+@functions {
+
+
+}

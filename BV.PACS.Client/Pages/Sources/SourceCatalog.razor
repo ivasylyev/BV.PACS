@@ -2,25 +2,24 @@
 
 @page "/SourceCatalog"
 @using BV.PACS.Client
-@using BV.PACS.Client.Catalogs
 @using BV.PACS.Client.Shared
 @using BV.PACS.Shared.Models
-@inherits BV.PACS.Client.Catalogs.BaseCatalog<BV.PACS.Shared.Models.SourceCatalogDto>
+@inherits BV.PACS.Client.Shared.BaseCatalog<BV.PACS.Shared.Models.SourceCatalogDto>
 
 <h1>Source Catalog</h1>
 
 <div class="row">
-    <div class="@CatalogState.SearchPanelCssClass">
+    <div class="@State.SearchPanelCssClass">
         <SourceSearchPanel OnSearch="@OnSearchPanelSearch">
 
         </SourceSearchPanel>
     </div>
 
-    <div class="@CatalogState.GridPanelCssClass">
+    <div class="@State.GridPanelCssClass">
         <div class="row">
 
             <div class="col-sm-12">
-                <button onclick="@OnSearchPanelToggle" class="btn btn-primary float-right" style="margin-bottom: 16px;">@CatalogState.ShowHideSearchPanelCaption</button>
+                <button onclick="@OnSearchPanelToggle" class="btn btn-primary float-right" style="margin-bottom: 16px;">@State.ShowHideSearchPanelCaption</button>
             </div>
             <div class="col-sm-12">
                 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
@@ -30,7 +29,7 @@
                                         ShowFilterRow="@false"
                                         ShowPager="@false"
                                         AllowRowSelection="@false"
-                                        PageSize="@CatalogState.Condition.PageSize">
+                                        PageSize="@State.Condition.PageSize">
 
                                 <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceBarcode)">
                                     <DisplayTemplate>
@@ -46,7 +45,7 @@
                             {
                                 <DxPager PageCount=@PageCount
                                          bind-ActivePageIndex=@ActivePageNumber
-                                         CollapseButtonCount=@CatalogState.CollapseButtonCount>
+                                         CollapseButtonCount=@BaseSettings.CollapseButtonCount>
                                 </DxPager>
                             }
                         </Template>

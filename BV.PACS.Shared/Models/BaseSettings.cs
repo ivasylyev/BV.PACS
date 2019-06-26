@@ -2,6 +2,7 @@
 {
     public static class BaseSettings
     {
+        public static int CollapseButtonCount { get; set; } = 10;
         public static int PageSize { get; set; } = 10;
 
         public static string Language { get; set; } = "en";
