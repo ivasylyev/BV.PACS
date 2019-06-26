@@ -28,7 +28,7 @@ namespace BV.PACS.Shared.Models
 
         public void AddStandardIfNotEmpty(string fieldId, string fieldName, object value, string oper)
         {
-            if (!value.IsEmpty())
+            if (!value.IsNullOrEmpty())
             {
                 Items.Add(new SearchConditionItemDto(fieldId, fieldName, value.Str(), oper, false));
             }

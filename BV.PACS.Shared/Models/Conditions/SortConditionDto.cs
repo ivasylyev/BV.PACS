@@ -35,7 +35,7 @@ namespace BV.PACS.Shared.Models
 
         public void AddStandardIfNotEmpty(string fieldId, string objectId, OrderDirection direction = OrderDirection.ASC)
         {
-            if (!fieldId.IsEmpty())
+            if (!fieldId.IsNullOrEmpty())
             {
                 var itemsCount = Items.Count;
                 Items.Add(new SortConditionItemDto(fieldId, objectId, direction) {SortingOrder = itemsCount});

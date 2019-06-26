@@ -4,7 +4,7 @@ namespace BV.PACS.Shared.Utils
 {
     public static class ObjectExtender
     {
-        public static bool IsEmpty(this object obj)
+        public static bool IsNullOrEmpty(this object obj)
         {
             if (obj == null || obj == DBNull.Value || obj.ToString().Trim() == string.Empty)
             {
