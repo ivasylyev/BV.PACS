@@ -13,7 +13,9 @@
 
 <div class="content px-4">
     @{
+
         var state = _stateService.CurrentPageState;
+        <div>Debug: Stack depth = @_stateService._states.Count</div>
         <div>Debug: Context = @state?.Context</div>
         <div>Debug: PageName  = @state?.PageName</div>
         switch (state?.PageName)

@@ -30,7 +30,8 @@
 
                                 <DxDataGridColumn Field="@nameof(MaterialCatalogDto.MaterialBarcode)">
                                     <DisplayTemplate>
-                                        <MaterialBarcodeCell Context="@context"/>
+                                        <MaterialBarcodeCell Context="@context"
+                                                             OnCellClick="@OnSelectItem"/>
                                     </DisplayTemplate>
                                 </DxDataGridColumn>
                                 <DxDataGridColumn Field="@nameof(MaterialCatalogDto.MaterialTemplateName)" Caption="Template Name"></DxDataGridColumn>

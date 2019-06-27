@@ -29,7 +29,8 @@
 
                                 <DxDataGridColumn Field="@nameof(TestCatalogDto.TestBarcode)">
                                     <DisplayTemplate>
-                                        <TestBarcodeCell Context="@context"/>
+                                        <TestBarcodeCell Context="@context"
+                                                         OnCellClick="@OnSelectItem"/>
                                     </DisplayTemplate>
                                 </DxDataGridColumn>
                                 <DxDataGridColumn Field="@nameof(TestCatalogDto.TestTemplateName)" Caption="Template Name"></DxDataGridColumn>
