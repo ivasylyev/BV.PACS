@@ -9,7 +9,7 @@ namespace BV.PACS.Client
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<StateService>(provider => new StateService());
+            services.AddSingleton<ApplicationContextService>(provider => new ApplicationContextService());
         }
 
         public void Configure(IComponentsApplicationBuilder app)

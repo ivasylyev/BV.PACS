@@ -4,7 +4,7 @@
 @using BV.PACS.Client.Pages.Sources
 @using BV.PACS.Client.Pages.Tests
 @using BV.PACS.Client.Services
-@inject StateService _stateService;
+@inject ApplicationContextService _applicationContextService;
 
 
 <TopMenu
@@ -14,43 +14,49 @@
 <div class="content px-4">
     @{
 
-        var state = _stateService.CurrentPageState;
-        <div>Debug: Stack depth = @_stateService._states.Count</div>
-        <div>Debug: Context = @state?.Context</div>
+        var state = _applicationContextService.CurrentApplicationContext;
+        <div>Debug: Stack depth = @_applicationContextService._contexts.Count</div>
+        <div>Debug: Context = @state?.PageContext</div>
         <div>Debug: PageName  = @state?.PageName</div>
+
+
+        TrackingFormContext trackingFormContext =  state?.PageContext as TrackingFormContext;
+
+        var id = trackingFormContext?.Id ?? 0;
+
         switch (state?.PageName)
         {
             case nameof(SourceCatalog):
-                <SourceCatalog OnOpenTrackingForm=@DoOpenNewPage>
+                <SourceCatalog OnOpenTrackingForm=@DoOpenTrackingForm>
                 </SourceCatalog>
                 break;
             case nameof(MaterialCatalog):
-                <MaterialCatalog OnOpenTrackingForm=@DoOpenNewPage>
+                <MaterialCatalog OnOpenTrackingForm=@DoOpenTrackingForm>
                 </MaterialCatalog>
                 break;
             case nameof(AliquotCatalog):
-                <AliquotCatalog OnOpenTrackingForm=@DoOpenNewPage>
+                <AliquotCatalog OnOpenTrackingForm=@DoOpenTrackingForm>
                 </AliquotCatalog>
                 break;
             case nameof(TestCatalog):
-                <TestCatalog OnOpenTrackingForm=@DoOpenNewPage>
+                <TestCatalog OnOpenTrackingForm=@DoOpenTrackingForm>
                 </TestCatalog>
                 break;
 
             case nameof(SourceTracking):
-                <SourceTracking Id=@state.Context OnClose=@DoClosePage>
+                <SourceTracking Id=@id OnClose=@DoClosePage>
                 </SourceTracking>
                 break;
             case nameof(MaterialTracking):
-                <MaterialTracking Id=@state.Context OnClose=@DoClosePage>
+                <MaterialTracking Id=@id OnClose=@DoClosePage>
                 </MaterialTracking>
                 break;
             case nameof(AliquotTracking):
-                <AliquotTracking Id=@state.Context OnClose=@DoClosePage>
+                <AliquotTracking Id=@id OnClose=@DoClosePage>
                 </AliquotTracking>
                 break;
             case nameof(TestTracking):
-                <TestTracking Id=@state.Context OnClose=@DoClosePage>
+                <TestTracking Id=@id OnClose=@DoClosePage>
                 </TestTracking>
                 break;
 
@@ -65,14 +71,14 @@
 @functions
 {
 
-    public void DoOpenNewPage(string pageName, int context)
+    public void DoOpenTrackingForm(string pageName, int context)
     {
-        _stateService.OpenNewPage(pageName, context);
+        _applicationContextService.OpenTrackingPage(pageName, context);
         StateHasChanged();
     }
     public void DoClosePage(DialogResult result)
     {
-        _stateService.ClosePage( result);
+        _applicationContextService.ClosePage( result);
         StateHasChanged();
     }
 }

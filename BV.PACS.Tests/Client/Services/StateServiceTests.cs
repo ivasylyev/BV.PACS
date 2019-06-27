@@ -19,8 +19,8 @@ namespace BV.Pacs.Tests
         [Test]
         public void StateServiceTest()
         {
-            StateService service = new StateService();
-            var currentPageState = service.CurrentPageState;
+            ApplicationContextService service = new ApplicationContextService();
+            var currentPageState = service.CurrentApplicationContext;
             Assert.IsNull(currentPageState);
             Assert.Pass();
         }

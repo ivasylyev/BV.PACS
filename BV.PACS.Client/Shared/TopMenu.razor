@@ -4,7 +4,7 @@
 @using BV.PACS.Client.Pages.Tests
 @using BV.PACS.Client.Services
 @using Microsoft.AspNetCore.Components
-@inject StateService _stateService;
+@inject ApplicationContextService _applicationContextService;
 
 <nav class="navbar navbar-default top-bar ">
     <div class="container-fluid">
@@ -62,13 +62,15 @@
 
     private void DoOpenCatalogPage(string pageName)
     {
-        DoOpenNewPage(pageName, 0);
+        _applicationContextService.Clear();
+        _applicationContextService.OpenCatalogPage(pageName);
+        OnMenuClick?.Invoke();
     }
 
-    private void DoOpenNewPage(string pageName, int context)
+    private void DoOpenTrackingPage(string pageName, int context)
     {
-        _stateService.Clear();
-        _stateService.OpenNewPage(pageName, context);
+        _applicationContextService.Clear();
+        _applicationContextService.OpenTrackingPage(pageName, context);
         OnMenuClick?.Invoke();
     }
 
