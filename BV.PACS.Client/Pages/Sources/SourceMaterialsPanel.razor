@@ -4,32 +4,41 @@
 @using Microsoft.AspNetCore.Components
 @inject HttpClient _http
 
+@{
+    if (DataSource == null)
+    {
+        <div class="row">Loading...</div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+                    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                        <Template Context="GridContext">
+                            <DxDataGrid Data="@DataSource"
+                                        ShowFilterRow="@false"
+                                        ShowPager="@true"
+                                        AllowRowSelection="@false"
+                                        PageSize="@BaseSettings.PageSize">
 
-<div class="row">
-    <div class="col-sm-12">
-        <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
-            <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
-                <Template Context="GridContext">
-                    <DxDataGrid Data="@DataSource"
-                                ShowFilterRow="@false"
-                                ShowPager="@true"
-                                AllowRowSelection="@false"
-                                PageSize="@BaseSettings.PageSize">
+                                <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialBarcode)">
 
-                        <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialBarcode)">
+                                </DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialTemplateName)" Caption="Template Name"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(MaterialGridDto.MaterialRegistrationDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialType)"></DxDataGridColumn>
+                            </DxDataGrid>
 
-                        </DxDataGridColumn>
-                        <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialTemplateName)" Caption="Template Name"></DxDataGridColumn>
-                        <DxDataGridDateEditColumn Field="@nameof(MaterialGridDto.MaterialRegistrationDate)"></DxDataGridDateEditColumn>
-                        <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialType)"></DxDataGridColumn>
-                    </DxDataGrid>
-               
-                </Template>
-            </DxFormLayoutItem>
-        </DxFormLayout>
+                        </Template>
+                    </DxFormLayoutItem>
+                </DxFormLayout>
 
-    </div>
-</div>
+            </div>
+        </div>
+    }
+}
+
 
 @functions {
 

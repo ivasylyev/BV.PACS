@@ -21,6 +21,9 @@
 {
     margin: 0;
 }
+    .card {
+        background-color: rgb(238, 247, 254);
+    }
 .dxbs-lp span.image
 {
     animation-name: spin;
@@ -2132,10 +2135,10 @@ input:-webkit-autofill + .dxbs-null-text
 {
     transform: rotate(90deg);
 }
-.dxbs-gridview > .card .dxbs-table
-{
-    margin-bottom: 0;
-}
+    .dxbs-gridview > .card .dxbs-table {
+        margin-bottom: 0;
+        background-color: rgb(238, 247, 254);
+    }
 .dxbs-gridview > .card > .dxbs-nohor-borders > tbody > tr > td
 {
     border-bottom: 0;
