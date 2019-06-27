@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Components
+<div class="card-body row">
+    <ul class="nav flex-column ">
+        <li class="nav-item px-3">
+            <button onclick="@DoOk" class="btn btn-primary">Ok</button>
+        </li>
+    </ul>
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <button onclick="@DoCancel" class="btn btn-secondary">Cancel</button>
+        </li>
+    </ul>
+
+</div>
+
+@functions {
+
+    [Parameter]
+    public Action OnOk { get; set; }
+
+    [Parameter]
+    public Action OnCancel { get; set; }
+
+
+    public void DoOk()
+    {
+        OnOk?.Invoke();
+    }
+
+    public void DoCancel()
+    {
+        OnCancel?.Invoke();
+    }
+
+}

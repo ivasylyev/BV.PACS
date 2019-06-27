@@ -17,12 +17,8 @@
         var state = _applicationContextService.CurrentApplicationContext;
         <div>Debug: Stack depth = @_applicationContextService._contexts.Count</div>
         <div>Debug: Context = @state?.PageContext</div>
-        <div>Debug: PageName  = @state?.PageName</div>
+        <div>Debug: PageName = @state?.PageName</div>
 
-
-        TrackingFormContext trackingFormContext =  state?.PageContext as TrackingFormContext;
-
-        var id = trackingFormContext?.Id ?? 0;
 
         switch (state?.PageName)
         {
@@ -44,19 +40,19 @@
                 break;
 
             case nameof(SourceTracking):
-                <SourceTracking Id=@id OnClose=@DoClosePage>
+                <SourceTracking OnClose=@DoClosePage>
                 </SourceTracking>
                 break;
             case nameof(MaterialTracking):
-                <MaterialTracking Id=@id OnClose=@DoClosePage>
+                <MaterialTracking OnClose=@DoClosePage>
                 </MaterialTracking>
                 break;
             case nameof(AliquotTracking):
-                <AliquotTracking Id=@id OnClose=@DoClosePage>
+                <AliquotTracking OnClose=@DoClosePage>
                 </AliquotTracking>
                 break;
             case nameof(TestTracking):
-                <TestTracking Id=@id OnClose=@DoClosePage>
+                <TestTracking OnClose=@DoClosePage>
                 </TestTracking>
                 break;
 
@@ -76,9 +72,11 @@
         _applicationContextService.OpenTrackingPage(pageName, context);
         StateHasChanged();
     }
+
     public void DoClosePage(DialogResult result)
     {
-        _applicationContextService.ClosePage( result);
+        _applicationContextService.ClosePage(result);
         StateHasChanged();
     }
+
 }

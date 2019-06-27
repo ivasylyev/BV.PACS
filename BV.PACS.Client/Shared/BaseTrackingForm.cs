@@ -1,4 +1,5 @@
 ﻿using System;
+using BV.PACS.Client.Services;
 using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.Client.Shared
@@ -7,11 +8,15 @@ namespace BV.PACS.Client.Shared
     {
         private int _activeTabIndex;
 
-        [Parameter]
-        public int Id { get; set; }
+        [Inject]
+        private ApplicationContextService ApplicationContextService { get; set; }
 
         [Parameter]
         public Action<DialogResult> OnClose { get; set; }
+
+        public int Id => PageContext?.Id ?? 0;
+
+        private TrackingFormContext PageContext => ApplicationContextService.CurrentApplicationContext.PageContext as TrackingFormContext;
 
 
         public int ActiveTabIndex

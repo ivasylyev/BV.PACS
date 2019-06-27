@@ -43,18 +43,10 @@
                     }
                 </div>
             </div>
-            <div class="card-body">
-                <ul class="nav flex-column float-right">
-                    <li class="nav-item px-3">
-                        <button onclick="@DoCancel" class="btn btn-secondary">Cancel</button>
-                    </li>
-                </ul>
-                <ul class="nav flex-column float-right">
-                    <li class="nav-item px-3">
-                        <button onclick="@DoOk" class="btn btn-primary">Ok</button>
-                    </li>
-                </ul>
-            </div>
+            <OkCancelPanel OnOk=@DoOk
+                           OnCancel=@DoCancel>
+            </OkCancelPanel>
+            
         </div>
     </div>
 </div>
