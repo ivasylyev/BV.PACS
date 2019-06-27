@@ -1,11 +1,5 @@
-﻿@layout MainLayout
-
-@page "/TestCatalog"
-
-@using BV.PACS.Client.Shared
-@using BV.PACS.Shared.Models
-@inherits BV.PACS.Client.Shared.BaseCatalog<BV.PACS.Shared.Models.TestCatalogDto>
-@inject HttpClient _http
+﻿@using BV.PACS.Shared.Models
+@inherits BaseCatalog<BV.PACS.Shared.Models.TestCatalogDto>
 
 <h1>Test Catalog</h1>
 
@@ -35,7 +29,7 @@
 
                                 <DxDataGridColumn Field="@nameof(TestCatalogDto.TestBarcode)">
                                     <DisplayTemplate>
-                                        <TestBarcodeCell Context=@context />
+                                        <TestBarcodeCell Context="@context"/>
                                     </DisplayTemplate>
                                 </DxDataGridColumn>
                                 <DxDataGridColumn Field="@nameof(TestCatalogDto.TestTemplateName)" Caption="Template Name"></DxDataGridColumn>
@@ -56,4 +50,3 @@
         </div>
     </div>
 </div>
-

@@ -1,8 +1,6 @@
-﻿@page "/MaterialTracking/{Id:int}"
-@layout MainLayout
-@using Microsoft.AspNetCore.Components
-@inject HttpClient _http
+﻿@using Microsoft.AspNetCore.Components
 
+@inherits BaseTrackingForm
 <h1>Material Tracking</h1>
 
 <div class="row">
@@ -44,19 +42,6 @@
 
 @functions {
 
-    [Parameter]
-    private int Id { get; set; }
 
-    int activeTabIndex;
-
-    int ActiveTabIndex
-    {
-        get => activeTabIndex;
-        set
-        {
-            activeTabIndex = value;
-            StateHasChanged();
-        }
-    }
 
 }

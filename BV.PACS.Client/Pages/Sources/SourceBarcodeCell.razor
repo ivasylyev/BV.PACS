@@ -1,17 +1,6 @@
 ﻿@using BV.PACS.Shared.Models
 @using Microsoft.AspNetCore.Components
-@{
-
-    if (Id > 0)
-    {
-        
-        <button type="button" class="btn btn-link" onclick="@OnClick">@Barcode</button>
-    }
-    else
-    {
-        @Barcode
-    }
-}
+<button type="button" class="btn btn-link" onclick="@OnClick">@Barcode</button>
 
 @functions {
 
@@ -26,7 +15,10 @@
 
     private void OnClick()
     {
-        OnCellClick?.Invoke(nameof(SourceTracking), Id);
+        if (Id > 0)
+        {
+            OnCellClick?.Invoke(nameof(SourceTracking), Id);
+        }
     }
 
 }

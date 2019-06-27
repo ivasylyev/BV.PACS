@@ -1,7 +1,6 @@
-﻿@page "/TestTracking/{Id:int}"
-@layout MainLayout
+﻿
 @using Microsoft.AspNetCore.Components
-@inject HttpClient _http
+@inherits BaseTrackingForm
 
 <h1>Test Tracking</h1>
 
@@ -37,19 +36,6 @@
 
 @functions {
 
-    [Parameter]
-    private int Id { get; set; }
 
-    int activeTabIndex;
-
-    int ActiveTabIndex
-    {
-        get => activeTabIndex;
-        set
-        {
-            activeTabIndex = value;
-            StateHasChanged();
-        }
-    }
 
 }

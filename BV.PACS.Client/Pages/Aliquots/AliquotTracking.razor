@@ -1,7 +1,5 @@
-﻿@page "/AliquotTracking/{Id:int}"
-@layout MainLayout
-@using Microsoft.AspNetCore.Components
-@inject HttpClient _http
+﻿@using Microsoft.AspNetCore.Components
+@inherits BaseTrackingForm
 
 <h1>Aliquot Tracking</h1>
 
@@ -44,19 +42,6 @@
 
 @functions {
 
-    [Parameter]
-    private int Id { get; set; }
 
-    int activeTabIndex;
-
-    int ActiveTabIndex
-    {
-        get => activeTabIndex;
-        set
-        {
-            activeTabIndex = value;
-            StateHasChanged();
-        }
-    }
 
 }

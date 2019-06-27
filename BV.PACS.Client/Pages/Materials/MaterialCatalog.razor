@@ -1,11 +1,5 @@
-﻿@page "/MaterialCatalog"
-@layout MainLayout
-
-
-@using BV.PACS.Client.Shared
-@using BV.PACS.Shared.Models
-@using Microsoft.AspNetCore.Components
-@inherits BV.PACS.Client.Shared.BaseCatalog<BV.PACS.Shared.Models.MaterialCatalogDto>
+﻿@using BV.PACS.Shared.Models
+@inherits BaseCatalog<BV.PACS.Shared.Models.MaterialCatalogDto>
 @inject HttpClient _http
 
 <h1>Material Catalog</h1>
@@ -36,7 +30,7 @@
 
                                 <DxDataGridColumn Field="@nameof(MaterialCatalogDto.MaterialBarcode)">
                                     <DisplayTemplate>
-                                        <MaterialBarcodeCell Context=@context />
+                                        <MaterialBarcodeCell Context="@context"/>
                                     </DisplayTemplate>
                                 </DxDataGridColumn>
                                 <DxDataGridColumn Field="@nameof(MaterialCatalogDto.MaterialTemplateName)" Caption="Template Name"></DxDataGridColumn>
@@ -60,7 +54,4 @@
 
 
 @functions {
-
-
-
 }

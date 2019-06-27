@@ -1,8 +1,5 @@
-﻿
-@using BV.PACS.Client
-@using BV.PACS.Client.Shared
-@using BV.PACS.Shared.Models
-@inherits BV.PACS.Client.Shared.BaseCatalog<BV.PACS.Shared.Models.SourceCatalogDto>
+﻿@using BV.PACS.Shared.Models
+@inherits BaseCatalog<BV.PACS.Shared.Models.SourceCatalogDto>
 
 <h1>Source Catalog</h1>
 
@@ -31,8 +28,8 @@
 
                                 <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceBarcode)">
                                     <DisplayTemplate>
-                                        <SourceBarcodeCell Context=@context
-                                                           OnCellClick=@OnSelectItem>
+                                        <SourceBarcodeCell Context="@context"
+                                                           OnCellClick="@OnSelectItem">
 
                                         </SourceBarcodeCell>
                                     </DisplayTemplate>
@@ -56,4 +53,3 @@
         </div>
     </div>
 </div>
-

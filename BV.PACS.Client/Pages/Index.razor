@@ -1,30 +1,55 @@
 ﻿@page "/"
+@using BV.PACS.Client.Pages.Aliquots
+@using BV.PACS.Client.Pages.Materials
 @using BV.PACS.Client.Pages.Sources
+@using BV.PACS.Client.Pages.Tests
 @using BV.PACS.Client.Services
 @inject StateService _stateService;
 
 
 <TopMenu
     OnMenuClick="@StateHasChanged">
-
 </TopMenu>
 
 <div class="content px-4">
-
-
     @{
         var state = _stateService.CurrentPageState;
-
+        <div>Debug: Context = @state?.Context</div>
+        <div>Debug: PageName  = @state?.PageName</div>
         switch (state?.PageName)
         {
             case nameof(SourceCatalog):
                 <SourceCatalog OnOpenTrackingForm=@DoOpenNewPage>
                 </SourceCatalog>
                 break;
+            case nameof(MaterialCatalog):
+                <MaterialCatalog OnOpenTrackingForm=@DoOpenNewPage>
+                </MaterialCatalog>
+                break;
+            case nameof(AliquotCatalog):
+                <AliquotCatalog OnOpenTrackingForm=@DoOpenNewPage>
+                </AliquotCatalog>
+                break;
+            case nameof(TestCatalog):
+                <TestCatalog OnOpenTrackingForm=@DoOpenNewPage>
+                </TestCatalog>
+                break;
 
             case nameof(SourceTracking):
                 <SourceTracking Id=@state.Context OnClose=@DoClosePage>
                 </SourceTracking>
+                break;
+            case nameof(MaterialTracking):
+                <MaterialTracking Id=@state.Context OnClose=@DoClosePage>
+                </MaterialTracking>
+                break;
+            case nameof(AliquotTracking):
+                <AliquotTracking Id=@state.Context OnClose=@DoClosePage>
+                </AliquotTracking>
+                break;
+            case nameof(TestTracking):
+                <TestTracking Id=@state.Context OnClose=@DoClosePage>
+                </TestTracking>
                 break;
 
             default:
