@@ -67,6 +67,7 @@
 
     private void DoOpenNewPage(string pageName, int context)
     {
+        _stateService.Clear();
         _stateService.OpenNewPage(pageName, context);
         OnMenuClick?.Invoke();
     }

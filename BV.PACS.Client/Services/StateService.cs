@@ -12,6 +12,11 @@ namespace BV.PACS.Client.Services
                 ? null
                 : _states.Peek();
 
+        public void Clear()
+        {
+            _states.Clear();
+        }
+
         public void OpenNewPage(string pageName, int context)
         {
             PageState state = new PageState(pageName, context);
