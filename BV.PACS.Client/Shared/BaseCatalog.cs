@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using BV.PACS.Client.Services;
 using BV.PACS.Shared.Models;
 using Microsoft.AspNetCore.Components;
 
@@ -13,49 +14,55 @@ namespace BV.PACS.Client.Shared
         private HttpClient Http { get; set; }
 
         [Inject]
-        private IUriHelper UriHelper { get; set; }
+        private ApplicationContextService ApplicationContextService { get; set; }
+
 
         [Parameter]
         public Action<string, int> OnOpenTrackingForm { get; set; }
 
-        private T[] _dataSource;
-
-        public CatalogState State { get; set; } = new CatalogState();
-
-        protected int PageCount { get; set; }
-
-        public int ActivePageNumber
-        {
-            get => State.Condition.PageNumber;
-            set
-            {
-                State.Condition.PageNumber = value;
-                BeginGetDataAsync(State.Condition).ContinueWith(x => { StateHasChanged(); });
-            }
-        }
-
-        protected T[] DataSource
+        protected CatalogContext<T> PageContext
         {
             get
             {
-                if (_dataSource == null)
+                var context = ApplicationContextService.CurrentApplicationContext.PageContext as CatalogContext<T>;
+                if (context == null)
                 {
-                    _dataSource = new T[State.Condition.PageSize];
-                    for (var i = 0; i < _dataSource.Length; i++)
-                    {
-                        _dataSource[i] = CatalogDtoFactory.CreateEmptyItem<T>("Loading...");
-                    }
+                    context = new CatalogContext<T>();
+                    ApplicationContextService.CurrentApplicationContext.PageContext = context;
                 }
-
-                return _dataSource;
+                return context;
             }
-            set => _dataSource = value;
+        }
+
+
+      
+        protected int PageCount
+        {
+            get => PageContext.PageCount;
+            set => PageContext.PageCount = value;
+        }
+
+        public int ActivePageNumber
+        {
+            get => PageContext.Condition.PageNumber;
+            set
+            {
+                PageContext.Condition.PageNumber = value;
+                BeginGetDataAsync(PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
+            }
+        }
+
+        
+        protected T[] DataSource
+        {
+            get => PageContext.DataSource;
+            set => PageContext.DataSource = value;
         }
 
         protected override async Task OnInitAsync()
         {
-            await BeginGetDataAsync(State.Condition);
-            await BeginGetPageCountAsync(State.Condition);
+            await BeginGetDataAsync(PageContext.Condition);
+            await BeginGetPageCountAsync(PageContext.Condition);
         }
 
 
@@ -66,14 +73,14 @@ namespace BV.PACS.Client.Shared
 
         protected void OnSearchPanelToggle()
         {
-            State.SearchPanelToggle();
+            PageContext.SearchPanelToggle();
 
             DoSearch();
         }
 
         protected void OnSearchPanelSearch(AggregatedConditionDto cond)
         {
-            State.SetSearchPanelCondition(cond);
+            PageContext.SetSearchPanelCondition(cond);
 
             DoSearch();
         }
@@ -81,8 +88,8 @@ namespace BV.PACS.Client.Shared
 
         private void DoSearch()
         {
-            BeginGetDataAsync(State.Condition).ContinueWith(x => { StateHasChanged(); });
-            BeginGetPageCountAsync(State.Condition).ContinueWith(x => { StateHasChanged(); });
+            BeginGetDataAsync(PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
+            BeginGetPageCountAsync(PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
         }
 
         private async Task BeginGetPageCountAsync(AggregatedConditionDto cond)

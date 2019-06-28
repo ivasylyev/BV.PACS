@@ -1,6 +1,6 @@
 ﻿namespace BV.PACS.Client.Services
 {
-    public class TrackingFormContext: BasePageContext
+    public class TrackingFormContext: IPageContext
     {
         public int Id { get; set; }
 

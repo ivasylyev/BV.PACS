@@ -4,17 +4,17 @@
 <h1>Source Catalog</h1>
 
 <div class="row">
-    <div class="@State.SearchPanelCssClass" >
+    <div class="@PageContext.SearchPanelCssClass" >
         <SourceSearchPanel OnSearch="@OnSearchPanelSearch">
 
         </SourceSearchPanel>
     </div>
 
-    <div class="@State.GridPanelCssClass" >
+    <div class="@PageContext.GridPanelCssClass" >
         <div class="row">
 
             <div class="col-sm-12">
-                <button onclick="@OnSearchPanelToggle" class="btn btn-primary float-right" style="margin-bottom: 16px;">@State.ShowHideSearchPanelCaption</button>
+                <button onclick="@OnSearchPanelToggle" class="btn btn-primary float-right" style="margin-bottom: 16px;">@PageContext.ShowHideSearchPanelCaption</button>
             </div>
             <div class="col-sm-12">
                 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
@@ -24,7 +24,7 @@
                                         ShowFilterRow="@false"
                                         ShowPager="@false"
                                         AllowRowSelection="@false"
-                                        PageSize="@State.Condition.PageSize">
+                                        PageSize="@PageContext.Condition.PageSize">
 
                                 <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceBarcode)">
                                     <DisplayTemplate>

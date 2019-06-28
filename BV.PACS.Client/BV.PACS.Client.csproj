@@ -13,6 +13,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Catalogs\**" />
+    <Content Remove="Catalogs\**" />
+    <EmbeddedResource Remove="Catalogs\**" />
+    <None Remove="Catalogs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="DevExpress.Blazor" Version="0.0.10-ctp" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor" Version="3.0.0-preview5-19227-01" />
     <PackageReference Include="Microsoft.AspNetCore.Blazor.Build" Version="3.0.0-preview5-19227-01" PrivateAssets="all" />
@@ -20,10 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BV.PACS.Shared\BV.PACS.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Catalogs\" />
   </ItemGroup>
 
 </Project>

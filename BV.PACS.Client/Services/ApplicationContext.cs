@@ -2,10 +2,14 @@
 {
     public class ApplicationContext
     {
-        public BasePageContext PageContext { get; set; }
+        public IPageContext PageContext { get; set; }
         public string PageName { get; set; }
 
-        public ApplicationContext(string pageName, BasePageContext pageContext)
+        public ApplicationContext(string pageName)
+        {
+            PageName = pageName;
+        }
+        public ApplicationContext(string pageName, IPageContext pageContext)
         {
             PageName = pageName;
             PageContext = pageContext;

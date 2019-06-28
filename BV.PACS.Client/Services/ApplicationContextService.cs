@@ -24,7 +24,7 @@ namespace BV.PACS.Client.Services
         }
         public void OpenCatalogPage(string pageName)
         {
-            ApplicationContext state = new ApplicationContext(pageName, new CatalogContext());
+            ApplicationContext state = new ApplicationContext(pageName);
             _contexts.Push(state);
         }
         public void ClosePage(DialogResult result)

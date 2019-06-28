@@ -1,6 +1,6 @@
 ﻿namespace BV.PACS.Client.Services
 {
-    public class BasePageContext
+    public interface IPageContext
     {
         
     }
