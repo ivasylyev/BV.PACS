@@ -62,14 +62,12 @@
 
     private void DoOpenCatalogPage(string pageName)
     {
-        _applicationContextService.Clear();
-        _applicationContextService.OpenCatalogPage(pageName);
+        _applicationContextService.OpenLastOrNewCatalogPage(pageName);
         OnMenuClick?.Invoke();
     }
 
     private void DoOpenTrackingPage(string pageName, int context)
     {
-        _applicationContextService.Clear();
         _applicationContextService.OpenTrackingPage(pageName, context);
         OnMenuClick?.Invoke();
     }

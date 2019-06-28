@@ -5,12 +5,12 @@ namespace BV.PACS.Client.Services
 {
     public class ApplicationContextService
     {
-        public readonly Stack<ApplicationContext> _contexts = new Stack<ApplicationContext>();
+        public readonly LinkedList<ApplicationContext> _contexts = new LinkedList<ApplicationContext>();
 
         public ApplicationContext CurrentApplicationContext =>
             _contexts.Count == 0
                 ? null
-                : _contexts.Peek();
+                : _contexts.Last.Value;
 
         public void Clear()
         {
@@ -19,19 +19,44 @@ namespace BV.PACS.Client.Services
 
         public void OpenTrackingPage(string pageName, int id)
         {
-            ApplicationContext state = new ApplicationContext(pageName, new TrackingFormContext(id));
-            _contexts.Push(state);
+            ApplicationContext context = new ApplicationContext(pageName, new TrackingFormContext(id));
+            _contexts.AddLast(context);
         }
-        public void OpenCatalogPage(string pageName)
+        public void OpenNewCatalogPage(string pageName)
         {
-            ApplicationContext state = new ApplicationContext(pageName);
-            _contexts.Push(state);
+            ApplicationContext context = new ApplicationContext(pageName);
+            _contexts.AddLast(context);
+        }
+        public void OpenLastOrNewCatalogPage(string pageName)
+        {
+            ApplicationContext context = null;
+            if (_contexts.Count > 0)
+            {
+                var last = _contexts.Last;
+                while (last != null && last.Value.PageName != pageName)
+                {
+                    last = last.Previous;
+                }
+
+                if (last !=null && last.Value.PageName == pageName)
+                {
+                    context = last.Value;
+                    _contexts.Remove(context);
+                    _contexts.AddLast(context);
+                }
+            }
+
+            if (context == null)
+            {
+                context = new ApplicationContext(pageName);
+                _contexts.AddLast(context);
+            }
         }
         public void ClosePage(DialogResult result)
         {
             if (_contexts.Count != 0)
             {
-                _contexts.Pop();
+                _contexts.RemoveLast();
             }
         }
     }
