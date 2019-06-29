@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using BV.PACS.Server.Services;
 using BV.PACS.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -8,17 +9,17 @@ namespace BV.PACS.Server.Controllers
     [Route("api/[controller]")]
     public class CatalogController : Controller
     {
-        private readonly DbService _dbService;
+        private readonly CatalogDbService _dbService;
 
-        public CatalogController(DbService dbService)
+        public CatalogController(CatalogDbService dbService)
         {
             _dbService = dbService;
         }
 
         [HttpPost("[action]")]
-        public IEnumerable<SourceCatalogDto> GetSources([FromBody] AggregatedConditionDto condition)
+        public async Task<IEnumerable<SourceCatalogDto>> GetSources([FromBody] AggregatedConditionDto condition)
         {
-            return _dbService.GetSources(condition);
+            return await _dbService.GetSources(condition);
         }
 
         [HttpPost("[action]")]
@@ -26,10 +27,11 @@ namespace BV.PACS.Server.Controllers
         {
             return _dbService.GetSourcesRecordCount(condition);
         }
+
         [HttpPost("[action]")]
-        public IEnumerable<MaterialCatalogDto> GetMaterials([FromBody] AggregatedConditionDto condition)
+        public async Task<IEnumerable<MaterialCatalogDto>> GetMaterials([FromBody] AggregatedConditionDto condition)
         {
-            return _dbService.GetMaterials(condition);
+            return await _dbService.GetMaterials(condition);
         }
 
         [HttpPost("[action]")]
@@ -39,9 +41,9 @@ namespace BV.PACS.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public IEnumerable<AliquotCatalogDto> GetAliquots([FromBody] AggregatedConditionDto condition)
+        public async Task<IEnumerable<AliquotCatalogDto>> GetAliquots([FromBody] AggregatedConditionDto condition)
         {
-            return _dbService.GetAliquots(condition);
+            return await _dbService.GetAliquots(condition);
         }
 
         [HttpPost("[action]")]
@@ -51,9 +53,9 @@ namespace BV.PACS.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public IEnumerable<TestCatalogDto> GetTests([FromBody] AggregatedConditionDto condition)
+        public async Task<IEnumerable<TestCatalogDto>> GetTests([FromBody] AggregatedConditionDto condition)
         {
-            return _dbService.GetTests(condition);
+            return await _dbService.GetTests(condition);
         }
 
         [HttpPost("[action]")]

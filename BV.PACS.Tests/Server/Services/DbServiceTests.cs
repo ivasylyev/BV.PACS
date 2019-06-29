@@ -10,107 +10,22 @@ namespace BV.Pacs.Tests
     public class DbServiceTests
     {
         private DbService _service;
+        private CatalogDbService _catalogService;
 
         [SetUp]
         public void Setup()
         {
             _service = new DbService();
+            _catalogService = new CatalogDbService();
         }
 
-        [Test]
-        public void GetSourcesTest()
-        {
-            var condition = new AggregatedConditionDto();
-            var items = _service.GetSources(condition).ToList();
-            Assert.IsNotEmpty(items);
-
-            Console.WriteLine(items[0]);
-            Assert.Pass();
-        }
-
-        [Test]
-        public void GetSourcesRecordCountTest()
-        {
-            var condition = new AggregatedConditionDto();
-            var count = _service.GetSourcesRecordCount(condition);
-            Assert.IsTrue(count > 0);
-
-            Console.WriteLine($"Total sources: {count}");
-            Assert.Pass();
-        }
-
-        [Test]
-        public void GetMaterialsTest()
-        {
-            var condition = new AggregatedConditionDto();
-            var items = _service.GetMaterials(condition).ToList();
-            Assert.IsNotEmpty(items);
-
-            Console.WriteLine(items[0]);
-            Assert.Pass();
-        }
-
-        [Test]
-        public void GetMaterialsRecordCountTest()
-        {
-            var condition = new AggregatedConditionDto();
-            var count = _service.GetMaterialsRecordCount(condition);
-            Assert.IsTrue(count > 0);
-
-            Console.WriteLine($"Total Materials: {count}");
-            Assert.Pass();
-        }
-
-        [Test]
-        public void GetAliquotsTest()
-        {
-            var condition = new AggregatedConditionDto();
-            var items = _service.GetAliquots(condition).ToList();
-            Assert.IsNotEmpty(items);
-
-            Console.WriteLine(items[0]);
-            Assert.Pass();
-        }
-
-        [Test]
-        public void GetAliquotsRecordCountTest()
-        {
-            var condition = new AggregatedConditionDto();
-            var count = _service.GetAliquotsRecordCount(condition);
-            Assert.IsTrue(count > 0);
-
-            Console.WriteLine($"Total Aliquots: {count}");
-            Assert.Pass();
-        }
-
-        [Test]
-        public void GetTestsTest()
-        {
-            var condition = new AggregatedConditionDto();
-            var items = _service.GetTests(condition).ToList();
-            Assert.IsNotEmpty(items);
-
-            Console.WriteLine(items[0]);
-            Assert.Pass();
-        }
-
-        [Test]
-        public void GetTestsRecordCountTest()
-        {
-            var condition = new AggregatedConditionDto();
-            var count = _service.GetTestsRecordCount(condition);
-            Assert.IsTrue(count > 0);
-
-            Console.WriteLine($"Total Tests: {count}");
-            Assert.Pass();
-        }
-
+  
         [Test]
         public void GetSourceTrackingTest()
         {
             var condition = new AggregatedConditionDto {PageSize = 1};
             condition.AddStandardConditionIfNotEmpty("strMaterialBarcode", "m", Operators.LikeOperator);
-            var items = _service.GetSources(condition).ToList();
+            var items = _catalogService.GetSources(condition).Result.ToList();
             Assert.IsNotEmpty(items);
             var source = items[0];
             Console.WriteLine($"Found source {source.SourceBarcode} with ID {source.SourceId}");
@@ -199,7 +114,7 @@ namespace BV.Pacs.Tests
         {
             var condition = new AggregatedConditionDto();
             condition.AddStandardConditionIfNotEmpty("strMaterialBarcode", "m", Operators.LikeOperator);
-            var items = _service.GetSources(condition).ToList();
+            var items = _catalogService.GetSources(condition).Result.ToList();
             Assert.IsNotEmpty(items);
             var source = items[0];
             Console.WriteLine($"Found source {source.SourceBarcode} with ID {source.SourceId}");

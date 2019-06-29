@@ -1,11 +1,10 @@
+using System.Linq;
+using BV.PACS.Server.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json.Serialization;
-using System.Linq;
-using BV.PACS.Server.Services;
 
 namespace BV.PACS.Server
 {
@@ -16,11 +15,13 @@ namespace BV.PACS.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<DbService>();
+            services.AddScoped<CatalogDbService>();
+
             services.AddMvc().AddNewtonsoftJson();
             services.AddResponseCompression(opts =>
             {
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
-                    new[] { "application/octet-stream" });
+                    new[] {"application/octet-stream"});
             });
         }
 
@@ -37,10 +38,7 @@ namespace BV.PACS.Server
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapDefaultControllerRoute();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapDefaultControllerRoute(); });
 
             app.UseBlazor<Client.Startup>();
         }
