@@ -6,9 +6,9 @@ using BV.PACS.Client.Services;
 using BV.PACS.Shared.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace BV.PACS.Client.Shared
+namespace BV.PACS.Client.Shared.Base
 {
-    public class BaseCatalog<T> : ComponentBase where T : new()
+    public class Catalog<T> : ComponentBase where T : new()
     {
         [Inject]
         private HttpClient Http { get; set; }

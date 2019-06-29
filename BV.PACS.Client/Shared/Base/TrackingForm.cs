@@ -2,9 +2,9 @@
 using BV.PACS.Client.Services;
 using Microsoft.AspNetCore.Components;
 
-namespace BV.PACS.Client.Shared
+namespace BV.PACS.Client.Shared.Base
 {
-    public class BaseTrackingForm : ComponentBase
+    public class TrackingForm : ComponentBase
     {
         private int _activeTabIndex;
 

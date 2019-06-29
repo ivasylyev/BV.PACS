@@ -1,11 +1,12 @@
 ﻿
 using BV.PACS.Client.Shared;
+using BV.PACS.Client.Shared.Base;
 using BV.PACS.Shared.Models;
 
 namespace BV.PACS.Client.Tests
 {
     [FormTemplate(FormTypes.Test)]
-    public class TestSearchPanelCode : BaseSearchPanel
+    public class TestSearchPanelCode : SearchPanel
     {
         protected string TestBarcode { get; set; }
 

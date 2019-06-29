@@ -1,11 +1,12 @@
 ﻿
 using BV.PACS.Client.Shared;
+using BV.PACS.Client.Shared.Base;
 using BV.PACS.Shared.Models;
 
 namespace BV.PACS.Client.Aliquots
 {
     [FormTemplate(FormTypes.Aliquot)]
-    public class AliquotSearchPanelCode : BaseSearchPanel
+    public class AliquotSearchPanelCode : SearchPanel
     {
         protected string AliquotBarcode { get; set; }
 

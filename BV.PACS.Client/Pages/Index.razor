@@ -4,22 +4,16 @@
 @using BV.PACS.Client.Pages.Sources
 @using BV.PACS.Client.Pages.Tests
 @using BV.PACS.Client.Services
+@using BV.PACS.Client.Shared.Components
 @inject ApplicationContextService _applicationContextService;
 
 
-<TopMenu
-    OnMenuClick="@StateHasChanged">
+<TopMenu OnMenuClick="@StateHasChanged">
 </TopMenu>
 
 <div class="content px-4">
     @{
-
         var state = _applicationContextService.CurrentApplicationContext;
-        <div>Debug: Stack depth = @_applicationContextService._contexts.Count</div>
-        <div>Debug: Context = @state?.PageContext</div>
-        <div>Debug: PageName = @state?.PageName</div>
-
-
         switch (state?.PageName)
         {
             case nameof(SourceCatalog):
@@ -63,6 +57,7 @@
     }
 
 </div>
+<DebugPanel></DebugPanel>
 
 @functions
 {

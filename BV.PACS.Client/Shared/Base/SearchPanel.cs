@@ -7,9 +7,9 @@ using BV.PACS.Shared.Models.Parameters;
 using BV.PACS.Shared.Utils;
 using Microsoft.AspNetCore.Components;
 
-namespace BV.PACS.Client.Shared
+namespace BV.PACS.Client.Shared.Base
 {
-    public class BaseSearchPanel : ComponentBase
+    public class SearchPanel : ComponentBase
     {
         [Inject]
         private HttpClient Http { get; set; }
