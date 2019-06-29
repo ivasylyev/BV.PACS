@@ -105,6 +105,23 @@ namespace BV.Pacs.Tests
             Assert.Pass();
         }
 
+        [Test]
+        public void GetSourceTrackingTest()
+        {
+            var condition = new AggregatedConditionDto {PageSize = 1};
+            condition.AddStandardConditionIfNotEmpty("strMaterialBarcode", "m", Operators.LikeOperator);
+            var items = _service.GetSources(condition).ToList();
+            Assert.IsNotEmpty(items);
+            var source = items[0];
+            Console.WriteLine($"Found source {source.SourceBarcode} with ID {source.SourceId}");
+
+            var sourceTracking = _service.GetSourceTracking<SourceTrackingDto>(new TrackingParameter(source.SourceId, "en"));
+            Assert.IsNotNull(sourceTracking);
+
+            Console.WriteLine(sourceTracking);
+            Assert.Pass();
+        }
+
 
         [Test]
         public void GetSourceTemplatesTest()

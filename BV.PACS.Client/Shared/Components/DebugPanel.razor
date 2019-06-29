@@ -4,12 +4,16 @@
 @{
 
     var state = _applicationContextService.CurrentApplicationContext;
-    <div class="row">
-        <div class="alert alert-primary background-white">
 
-            <div>Debug: Stack depth = @_applicationContextService._contexts.Count</div>
-            <div>Debug: Context = @state?.PageContext</div>
-            <div>Debug: PageName = @state?.PageName</div>
+    <div class="content px-4">
+        <div class="row alert alert-primary background-white">
+            <div class="col-sm-12">
+
+                <div>Debug: Stack depth = @_applicationContextService._contexts.Count</div>
+                <div>Debug: Context = @state?.PageContext</div>
+                <div>Debug: PageName = @state?.PageName</div>
+
+            </div>
         </div>
     </div>
 }

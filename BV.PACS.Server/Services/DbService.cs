@@ -30,6 +30,8 @@ namespace BV.PACS.Server.Services
             InitMapper<AliquotCatalogDto>();
             InitMapper<TestCatalogDto>();
 
+            InitMapper<SourceTrackingDto>();
+
             InitMapper<TemplateLookupItem>();
             InitMapper<BaseLookupItem>();
         }
@@ -123,6 +125,30 @@ namespace BV.PACS.Server.Services
                     commandType: CommandType.StoredProcedure);
 
                 return result;
+            }
+        }
+
+
+        public T GetSourceTracking<T>(TrackingParameter parameter)
+        {
+            return GetTracking<T>(parameter, "dbo.spSource_SelectDetail");
+        }
+
+        private T GetTracking<T>(TrackingParameter parameter, string spName)
+        {
+            using (var connection = new SqlConnection(_builder.ConnectionString))
+            {
+                var result = connection.QueryMultiple(spName,
+                    new
+                    {
+                        LanguageID = parameter.Language,
+                        idfSource = parameter.Id
+                    },
+                    commandType: CommandType.StoredProcedure);
+                var sourceTracking = result.ReadSingleOrDefault<T>();
+                //todo: implement reading of custom fields
+                var customFields = result.Read();
+                return sourceTracking;
             }
         }
 
