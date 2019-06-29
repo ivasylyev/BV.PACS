@@ -6,18 +6,7 @@ namespace BV.PACS.Shared.Models
     [DataUrl("api/Tracking/GetSource")]
     public class SourceTrackingDto
     {
-        /*
 
-	
-	[Source].idfAddress_GeoLocation AS 'Source_idfGeoLocation',
-	s_addr.idfsGeoLocation,
-	s_addr.strLocationDesription,
-
-	SourceType_List.strShortName as 'strSourceTypeShortName',
-	TemplateNameRef.[Name] AS 'TemplateName',
-
-	s_ggl.strLevelGeoLocationPath as 'Location'
-         */
         [Column("idfSource")]
         public int SourceId { get; set; }
 

@@ -129,9 +129,9 @@ namespace BV.PACS.Server.Services
         }
 
 
-        public T GetSourceTracking<T>(TrackingParameter parameter)
+        public SourceTrackingDto GetSourceTracking(TrackingParameter parameter)
         {
-            return GetTracking<T>(parameter, "dbo.spSource_SelectDetail");
+            return GetTracking<SourceTrackingDto>(parameter, "dbo.spSource_SelectDetail");
         }
 
         private T GetTracking<T>(TrackingParameter parameter, string spName)

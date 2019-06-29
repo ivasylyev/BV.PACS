@@ -1,4 +1,6 @@
-﻿@using Microsoft.AspNetCore.Components
+﻿@using BV.PACS.Shared.Models
+@using BV.PACS.Shared.Models.Parameters
+@using Microsoft.AspNetCore.Components
 @inject HttpClient _http
 
 
@@ -6,6 +8,12 @@
 <div class="row">
 
    ID = @Id
+   @{
+       if (TrackingObject != null)
+       {
+           <div>@TrackingObject</div>
+       }
+   }
 
 
 </div>
@@ -15,6 +23,22 @@
     [Parameter]
     private int Id { get; set; }
 
+    private SourceTrackingDto TrackingObject { get; set; }
 
+    protected override async Task OnInitAsync()
+    {
+        await BeginGetDataAsync(new TrackingParameter(Id, BaseSettings.Language));
+        
+    }
+
+
+    private async Task BeginGetDataAsync(TrackingParameter parameter)
+    {
+        var attr = typeof(SourceTrackingDto).GetCustomAttributes(typeof(DataUrlAttribute), false).FirstOrDefault();
+        if (attr is DataUrlAttribute urlAttribute)
+        {
+            TrackingObject = await _http.PostJsonAsync<SourceTrackingDto>(urlAttribute.Url, parameter);
+        }
+    }
 
 }

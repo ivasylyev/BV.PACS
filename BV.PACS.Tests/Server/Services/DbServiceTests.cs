@@ -115,7 +115,7 @@ namespace BV.Pacs.Tests
             var source = items[0];
             Console.WriteLine($"Found source {source.SourceBarcode} with ID {source.SourceId}");
 
-            var sourceTracking = _service.GetSourceTracking<SourceTrackingDto>(new TrackingParameter(source.SourceId, "en"));
+            var sourceTracking = _service.GetSourceTracking(new TrackingParameter(source.SourceId, "en"));
             Assert.IsNotNull(sourceTracking);
 
             Console.WriteLine(sourceTracking);
