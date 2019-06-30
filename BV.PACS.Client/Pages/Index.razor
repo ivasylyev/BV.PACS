@@ -7,7 +7,6 @@
 @using BV.PACS.Client.Shared.Components
 @inject ApplicationContextService _applicationContextService;
 
-
 <TopMenu OnMenuClick="@StateHasChanged">
 </TopMenu>
 
@@ -57,11 +56,12 @@
     }
 
 </div>
-<DebugPanel></DebugPanel>
+
+<DebugPanel ContextService=@_applicationContextService>
+</DebugPanel>
 
 @functions
 {
-
     public void DoOpenTrackingForm(string pageName, int context)
     {
         _applicationContextService.OpenTrackingPage(pageName, context);
