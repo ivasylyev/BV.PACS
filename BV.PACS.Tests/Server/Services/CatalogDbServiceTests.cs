@@ -31,7 +31,7 @@ namespace BV.Pacs.Tests
         public void GetSourcesRecordCountTest()
         {
             var condition = new AggregatedConditionDto();
-            var count = _service.GetSourcesRecordCount(condition);
+            var count = _service.GetSourcesRecordCount(condition).Result;
             Assert.IsTrue(count > 0);
 
             Console.WriteLine($"Total sources: {count}");
@@ -53,7 +53,7 @@ namespace BV.Pacs.Tests
         public void GetMaterialsRecordCountTest()
         {
             var condition = new AggregatedConditionDto();
-            var count = _service.GetMaterialsRecordCount(condition);
+            var count = _service.GetMaterialsRecordCount(condition).Result;
             Assert.IsTrue(count > 0);
 
             Console.WriteLine($"Total Materials: {count}");
@@ -75,7 +75,7 @@ namespace BV.Pacs.Tests
         public void GetAliquotsRecordCountTest()
         {
             var condition = new AggregatedConditionDto();
-            var count = _service.GetAliquotsRecordCount(condition);
+            var count = _service.GetAliquotsRecordCount(condition).Result;
             Assert.IsTrue(count > 0);
 
             Console.WriteLine($"Total Aliquots: {count}");
@@ -97,7 +97,7 @@ namespace BV.Pacs.Tests
         public void GetTestsRecordCountTest()
         {
             var condition = new AggregatedConditionDto();
-            var count = _service.GetTestsRecordCount(condition);
+            var count = _service.GetTestsRecordCount(condition).Result;
             Assert.IsTrue(count > 0);
 
             Console.WriteLine($"Total Tests: {count}");

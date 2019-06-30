@@ -48,7 +48,7 @@ namespace BV.Pacs.Tests
             var source = items[0];
             Console.WriteLine($"Found source {source.SourceBarcode} with ID {source.SourceId}");
 
-            var list = _trackingService.GetSourceMaterials(new GridParameter(source.SourceId, "en")).ToList();
+            var list = _trackingService.GetSourceMaterials(new GridParameter(source.SourceId, "en")).Result.ToList();
             Assert.IsNotEmpty(list);
 
             Console.WriteLine($"received {list.Count} materials");

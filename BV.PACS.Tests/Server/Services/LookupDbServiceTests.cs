@@ -21,7 +21,7 @@ namespace BV.Pacs.Tests
         [Test]
         public void GetSourceTemplatesTest()
         {
-            var templates = _service.GetTemplates(new TemplateLookupParameter(FormTypes.Source, "en")).ToList();
+            var templates = _service.GetTemplates(new TemplateLookupParameter(FormTypes.Source, "en")).Result.ToList();
             Assert.IsNotEmpty(templates);
             Assert.IsNotNull(templates.FirstOrDefault(t => t.Name == "Default for source"));
             Assert.IsNotNull(templates.FirstOrDefault(t => t.Id == "fftSource"));
@@ -32,7 +32,7 @@ namespace BV.Pacs.Tests
         [Test]
         public void GetMaterialTemplatesTest()
         {
-            var templates = _service.GetTemplates(new TemplateLookupParameter(FormTypes.Material, "en")).ToList();
+            var templates = _service.GetTemplates(new TemplateLookupParameter(FormTypes.Material, "en")).Result.ToList();
             Assert.IsNotEmpty(templates);
             Assert.IsNotNull(templates.FirstOrDefault(t => t.Name == "Default for material"));
             Assert.IsNotNull(templates.FirstOrDefault(t => t.Id == "fftStrain"));
@@ -43,7 +43,7 @@ namespace BV.Pacs.Tests
         [Test]
         public void GetAliquotTemplatesTest()
         {
-            var templates = _service.GetTemplates(new TemplateLookupParameter(FormTypes.Aliquot, "en")).ToList();
+            var templates = _service.GetTemplates(new TemplateLookupParameter(FormTypes.Aliquot, "en")).Result.ToList();
             Assert.IsNotEmpty(templates);
             Assert.IsNotNull(templates.FirstOrDefault(t => t.Name == "Default for aliquot"));
             Assert.IsNotNull(templates.FirstOrDefault(t => t.Id == "fftAliquot"));
@@ -54,7 +54,7 @@ namespace BV.Pacs.Tests
         [Test]
         public void GetTestTemplatesTest()
         {
-            var templates = _service.GetTemplates(new TemplateLookupParameter(FormTypes.Test, "en")).ToList();
+            var templates = _service.GetTemplates(new TemplateLookupParameter(FormTypes.Test, "en")).Result.ToList();
             Assert.IsNotEmpty(templates);
             Assert.IsNotNull(templates.FirstOrDefault(t => t.Name == "Default for test"));
             Assert.IsNotNull(templates.FirstOrDefault(t => t.Id == "fftTest"));
@@ -65,7 +65,7 @@ namespace BV.Pacs.Tests
         [Test]
         public void GetTestTypesTest()
         {
-            var list = _service.GetLookup(new BaseLookupParameter(BaseLookupTables.rftTestType, "en")).ToList();
+            var list = _service.GetLookup(new BaseLookupParameter(BaseLookupTables.rftTestType, "en")).Result.ToList();
             Assert.IsNotEmpty(list);
 
             Assert.Pass();
@@ -74,7 +74,7 @@ namespace BV.Pacs.Tests
         [Test]
         public void GetTestResultTest()
         {
-            var list = _service.GetLookup(new BaseLookupParameter(BaseLookupTables.rftTestResult, "en")).ToList();
+            var list = _service.GetLookup(new BaseLookupParameter(BaseLookupTables.rftTestResult, "en")).Result.ToList();
             Assert.IsNotEmpty(list);
 
             Assert.Pass();
@@ -83,7 +83,7 @@ namespace BV.Pacs.Tests
         [Test]
         public void GetTestStatusTest()
         {
-            var list = _service.GetLookup(new BaseLookupParameter(BaseLookupTables.rftTestStatus, "en")).ToList();
+            var list = _service.GetLookup(new BaseLookupParameter(BaseLookupTables.rftTestStatus, "en")).Result.ToList();
             Assert.IsNotEmpty(list);
 
             Assert.Pass();

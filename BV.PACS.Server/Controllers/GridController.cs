@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using BV.PACS.Server.Services;
 using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
@@ -17,9 +18,9 @@ namespace BV.PACS.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public IEnumerable<MaterialGridDto> GetSourceMaterials([FromBody] GridParameter parameter)
+        public async Task<IEnumerable<MaterialGridDto>> GetSourceMaterials([FromBody] GridParameter parameter)
         {
-            return _trackingDbService.GetSourceMaterials(parameter);
+            return await _trackingDbService.GetSourceMaterials(parameter);
         }
     }
 }

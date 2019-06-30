@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
 using Dapper;
@@ -16,11 +17,11 @@ namespace BV.PACS.Server.Services
         }
 
 
-        public IEnumerable<TemplateLookupItem> GetTemplates(TemplateLookupParameter parameter)
+        public async Task<IEnumerable<TemplateLookupItem>> GetTemplates(TemplateLookupParameter parameter)
         {
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
-                var result = connection.Query<TemplateLookupItem>("spCustomizableFormTemplatesByFormType_SelectLookup",
+                var result = await connection.QueryAsync<TemplateLookupItem>("spCustomizableFormTemplatesByFormType_SelectLookup",
                     new
                     {
                         idfsCFormTypeID = parameter.LookupType,
@@ -32,11 +33,11 @@ namespace BV.PACS.Server.Services
             }
         }
 
-        public IEnumerable<BaseLookupItem> GetLookup(BaseLookupParameter parameter)
+        public async Task<IEnumerable<BaseLookupItem>> GetLookup(BaseLookupParameter parameter)
         {
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
-                var result = connection.Query<BaseLookupItem>(
+                var result = await connection.QueryAsync<BaseLookupItem>(
                     "Select idfsReference, [Name], strDefault, intOrder from fnReferenceLookup(@LanguageID, @LookupType) Order By IsNull(intOrder, 0), [Name]",
                     new
                     {

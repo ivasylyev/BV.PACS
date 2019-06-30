@@ -58,33 +58,33 @@ namespace BV.PACS.Server.Services
             }
         }
 
-        public int GetSourcesRecordCount(AggregatedConditionDto condition)
+        public async Task<int> GetSourcesRecordCount(AggregatedConditionDto condition)
         {
-            return GetCatalogRecordCount(condition, "dbo.spSource_QS_RecordCount");
+            return await GetCatalogRecordCount(condition, "dbo.spSource_QS_RecordCount");
         }
 
-        public int GetMaterialsRecordCount(AggregatedConditionDto condition)
+        public async Task<int> GetMaterialsRecordCount(AggregatedConditionDto condition)
         {
-            return GetCatalogRecordCount(condition, "dbo.spStrain_QS_RecordCount");
+            return await GetCatalogRecordCount(condition, "dbo.spStrain_QS_RecordCount");
         }
 
-        public int GetAliquotsRecordCount(AggregatedConditionDto condition)
+        public async Task<int> GetAliquotsRecordCount(AggregatedConditionDto condition)
         {
-            return GetCatalogRecordCount(condition, "dbo.spVial_QS_RecordsCount");
+            return await GetCatalogRecordCount(condition, "dbo.spVial_QS_RecordsCount");
         }
 
-        public int GetTestsRecordCount(AggregatedConditionDto condition)
+        public async Task<int> GetTestsRecordCount(AggregatedConditionDto condition)
         {
-            return GetCatalogRecordCount(condition, "dbo.spTest_QS_RecordsCount");
+            return await GetCatalogRecordCount(condition, "dbo.spTest_QS_RecordsCount");
         }
 
-        private int GetCatalogRecordCount(AggregatedConditionDto condition, string spName)
+        private async Task<int> GetCatalogRecordCount(AggregatedConditionDto condition, string spName)
         {
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
                 var xml = condition.Serialize();
 
-                var result = connection.ExecuteScalar<int>(spName,
+                var result = await connection.ExecuteScalarAsync<int>(spName,
                     new
                     {
                         SearchConditionXml = xml,

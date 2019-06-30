@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using BV.PACS.Server.Services;
 using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
@@ -17,9 +18,9 @@ namespace BV.PACS.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public SourceTrackingDto GetSource([FromBody] TrackingParameter parameter)
+        public async Task<SourceTrackingDto> GetSource([FromBody] TrackingParameter parameter)
         {
-            return _trackingDbService.GetSourceTracking(parameter);
+            return await _trackingDbService.GetSourceTracking(parameter);
         }
     }
 }

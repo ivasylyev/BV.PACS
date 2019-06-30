@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using BV.PACS.Server.Services;
 using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
@@ -17,15 +18,15 @@ namespace BV.PACS.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public IEnumerable<TemplateLookupItem> GetTemplatesLookup([FromBody] TemplateLookupParameter parameter)
+        public async Task<IEnumerable<TemplateLookupItem>> GetTemplatesLookup([FromBody] TemplateLookupParameter parameter)
         {
-            return _dbService.GetTemplates(parameter);
+            return await _dbService.GetTemplates(parameter);
         }
 
         [HttpPost("[action]")]
-        public IEnumerable<BaseLookupItem> GetLookup([FromBody] BaseLookupParameter parameter)
+        public async Task<IEnumerable<BaseLookupItem>> GetLookup([FromBody] BaseLookupParameter parameter)
         {
-            return _dbService.GetLookup(parameter);
+            return await _dbService.GetLookup(parameter);
         }
     }
 }

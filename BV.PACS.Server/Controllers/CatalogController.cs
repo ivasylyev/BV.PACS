@@ -23,9 +23,9 @@ namespace BV.PACS.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public int GetSourcesRecordCount([FromBody] AggregatedConditionDto condition)
+        public async Task<int> GetSourcesRecordCount([FromBody] AggregatedConditionDto condition)
         {
-            return _dbService.GetSourcesRecordCount(condition);
+            return await _dbService.GetSourcesRecordCount(condition);
         }
 
         [HttpPost("[action]")]
@@ -35,9 +35,9 @@ namespace BV.PACS.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public int GetMaterialsRecordCount([FromBody] AggregatedConditionDto condition)
+        public async Task<int> GetMaterialsRecordCount([FromBody] AggregatedConditionDto condition)
         {
-            return _dbService.GetMaterialsRecordCount(condition);
+            return await _dbService.GetMaterialsRecordCount(condition);
         }
 
         [HttpPost("[action]")]
@@ -47,9 +47,9 @@ namespace BV.PACS.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public int GetAliquotsRecordCount([FromBody] AggregatedConditionDto condition)
+        public async Task<int> GetAliquotsRecordCount([FromBody] AggregatedConditionDto condition)
         {
-            return _dbService.GetAliquotsRecordCount(condition);
+            return await _dbService.GetAliquotsRecordCount(condition);
         }
 
         [HttpPost("[action]")]
@@ -59,9 +59,9 @@ namespace BV.PACS.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public int GetTestsRecordCount([FromBody] AggregatedConditionDto condition)
+        public async Task<int> GetTestsRecordCount([FromBody] AggregatedConditionDto condition)
         {
-            return _dbService.GetTestsRecordCount(condition);
+            return await _dbService.GetTestsRecordCount(condition);
         }
     }
 }
