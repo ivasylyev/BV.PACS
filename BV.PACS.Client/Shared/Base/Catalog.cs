@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using BV.PACS.Client.Services.Api;
@@ -52,8 +51,8 @@ namespace BV.PACS.Client.Shared.Base
             set
             {
                 PageContext.Condition.PageNumber = value;
-                // ApiCatalogService.GetData<T>(Http, PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
-                BeginGetDataAsync(PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
+
+                GetData().ContinueWith(x => { StateHasChanged(); });
             }
         }
 
@@ -66,10 +65,8 @@ namespace BV.PACS.Client.Shared.Base
 
         protected override async Task OnInitAsync()
         {
-            await BeginGetDataAsync(PageContext.Condition);
-            await BeginGetPageCountAsync(PageContext.Condition);
-            // await ApiCatalogService.GetData<T>(Http, PageContext.Condition);
-            // await ApiCatalogService.GetPageCount<T>(Http, PageContext.Condition);
+            await GetData();
+            await GetPageCount();
         }
 
 
@@ -95,28 +92,18 @@ namespace BV.PACS.Client.Shared.Base
 
         private void DoSearch()
         {
-            // ApiCatalogService.GetData<T>(Http, PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
-            //  ApiCatalogService.GetPageCount<T>(Http, PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
-            BeginGetDataAsync(PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
-            BeginGetPageCountAsync(PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
+            GetData().ContinueWith(x => { StateHasChanged(); });
+            GetPageCount().ContinueWith(x => { StateHasChanged(); });
         }
 
-        private async Task BeginGetPageCountAsync(AggregatedConditionDto cond)
+        private async Task GetPageCount()
         {
-            var attr = typeof(T).GetCustomAttributes(typeof(CountUrlAttribute), false).FirstOrDefault();
-            if (attr is CountUrlAttribute urlAttribute)
-            {
-                PageCount = await Http.PostJsonAsync<int>(urlAttribute.Url, cond) / cond.PageSize;
-            }
+            PageCount = await ApiCatalogService.GetPageCount<T>(Http, PageContext.Condition);
         }
 
-        private async Task BeginGetDataAsync(AggregatedConditionDto cond)
+        private async Task GetData()
         {
-            var attr = typeof(T).GetCustomAttributes(typeof(DataUrlAttribute), false).FirstOrDefault();
-            if (attr is DataUrlAttribute urlAttribute)
-            {
-                DataSource = await Http.PostJsonAsync<T[]>(urlAttribute.Url, cond);
-            }
+            DataSource = await ApiCatalogService.GetData<T>(Http, PageContext.Condition);
         }
     }
 }
