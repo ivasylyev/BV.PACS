@@ -1,35 +1,44 @@
-﻿@using Microsoft.AspNetCore.Components
-@using BV.PACS.Client.Shared.Components
+﻿@using BV.PACS.Client.Shared.Components
+
 @inherits BV.PACS.Client.Shared.Base.TrackingForm
 
-<h1>Aliquot Tracking</h1>
+<h1>Source Tracking</h1>
 
 <div class="row">
 
-    <div class="card demo-card alert alert-primary background-white">
+    <div class="card demo-card alert alert-primary background-white ">
         <div class="card-body  border-top-0">
             <DxTabs bind-ActiveTabIndex="@ActiveTabIndex">
+
                 <DxTab Text="General info"></DxTab>
+                <DxTab Text="Materials"></DxTab>
+                <DxTab Text="Diagnostics"></DxTab>
                 <DxTab Text="Tests"></DxTab>
-                <DxTab Text="Checkout history"></DxTab>
                 <DxTab Text="Audit log"></DxTab>
+
             </DxTabs>
             <div class="card demo-card dxbs-border-top-0 dxbs-border-radius-top-0">
                 <div class="card-body">
                     @switch (ActiveTabIndex)
                     {
                         case 0:
-                            <AliquotTrackingPanel Id=@Id>
+                            <i>"General info" tab is active.</i>
+                            <SourceTrackingPanel Id=@Id>
 
-                            </AliquotTrackingPanel>
+                            </SourceTrackingPanel>
                             break;
                         case 1:
-                            <i>"Tests" tab is active.</i>
+                            <SourceMaterialsPanel Id=@Id>
+
+                            </SourceMaterialsPanel>
                             break;
                         case 2:
-                            <i>"Checkout history" tab is active.</i>
+                            <i>"Diagnostics" tab is active.</i>
                             break;
                         case 3:
+                            <i>"Tests" tab is active.</i>
+                            break;
+                        case 4:
                             <i>"Audit log" tab is active.</i>
                             break;
                     }
@@ -38,14 +47,11 @@
             <OkCancelPanel OnOk=@DoOk
                            OnCancel=@DoCancel>
             </OkCancelPanel>
+
         </div>
     </div>
-
-
 </div>
 
+
 @functions {
-
-
-
 }

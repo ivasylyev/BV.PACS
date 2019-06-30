@@ -20,34 +20,51 @@ namespace BV.PACS.Server.Services
 
         public async Task<SourceTrackingDto> GetSourceTracking(TrackingParameter parameter)
         {
-            return await GetTracking<SourceTrackingDto>(parameter, "dbo.spSource_SelectDetail");
+            var sqlParameter = new
+            {
+                LanguageID = parameter.Language,
+                idfSource = parameter.Id
+            };
+            return await GetTracking<SourceTrackingDto>(sqlParameter, "dbo.spSource_SelectDetail");
         }
 
         public async Task<MaterialTrackingDto> GetMaterialTracking(TrackingParameter parameter)
         {
-            return await GetTracking<MaterialTrackingDto>(parameter, "dbo.spStrainPassport_SelectDetail");
+            var sqlParameter = new
+            {
+                LanguageID = parameter.Language,
+                idfMaterial = parameter.Id
+            };
+            return await GetTracking<MaterialTrackingDto>(sqlParameter, "dbo.spStrainPassport_SelectDetail");
         }
 
         public async Task<AliquotTrackingDto> GetAliquotTracking(TrackingParameter parameter)
         {
-            return await GetTracking<AliquotTrackingDto>(parameter, "dbo.spVial_SelectDetail");
+            var sqlParameter = new
+            {
+                LanguageID = parameter.Language,
+                idfContainer = parameter.Id
+            };
+            return await GetTracking<AliquotTrackingDto>(sqlParameter, "dbo.spVial_SelectDetail");
         }
 
         public async Task<TestTrackingDto> GetTestTracking(TrackingParameter parameter)
         {
-            return await GetTracking<TestTrackingDto>(parameter, "dbo.spTest_SelectDetail");
+            var sqlParameter = new
+            {
+                LanguageID = parameter.Language,
+                idfTest = parameter.Id
+            };
+            return await GetTracking<TestTrackingDto>(sqlParameter, "dbo.spTest_SelectDetail");
         }
 
-        private async Task<T> GetTracking<T>(TrackingParameter parameter, string spName)
+        private async Task<T> GetTracking<T>(object sqlParameter, string spName)
         {
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
+                
                 var result = await connection.QueryMultipleAsync(spName,
-                    new
-                    {
-                        LanguageID = parameter.Language,
-                        idfSource = parameter.Id
-                    },
+                    sqlParameter,
                     commandType: CommandType.StoredProcedure);
                 var sourceTracking = result.ReadSingleOrDefault<T>();
                 //todo: implement reading of custom fields
