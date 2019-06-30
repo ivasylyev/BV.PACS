@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Components
-@inject HttpClient _http
+@inherits BV.PACS.Client.Shared.Base.TrackingPanel<BV.PACS.Shared.Models.AliquotTrackingDto>
 
 
 
@@ -11,10 +11,6 @@
 </div>
 
 @functions {
-
-    [Parameter]
-    private int Id { get; set; }
-
 
 
 }

@@ -22,5 +22,20 @@ namespace BV.PACS.Server.Controllers
         {
             return await _trackingDbService.GetSourceTracking(parameter);
         }
+        [HttpPost("[action]")]
+        public async Task<MaterialTrackingDto> GetMaterial([FromBody] TrackingParameter parameter)
+        {
+            return await _trackingDbService.GetMaterialTracking(parameter);
+        }
+        [HttpPost("[action]")]
+        public async Task<AliquotTrackingDto> GetAliquot([FromBody] TrackingParameter parameter)
+        {
+            return await _trackingDbService.GetAliquotTracking(parameter);
+        }
+        [HttpPost("[action]")]
+        public async Task<TestTrackingDto> GetTest([FromBody] TrackingParameter parameter)
+        {
+            return await _trackingDbService.GetTestTracking(parameter);
+        }
     }
 }

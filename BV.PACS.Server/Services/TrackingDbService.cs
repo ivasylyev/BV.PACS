@@ -23,6 +23,21 @@ namespace BV.PACS.Server.Services
             return await GetTracking<SourceTrackingDto>(parameter, "dbo.spSource_SelectDetail");
         }
 
+        public async Task<MaterialTrackingDto> GetMaterialTracking(TrackingParameter parameter)
+        {
+            return await GetTracking<MaterialTrackingDto>(parameter, "dbo.spStrainPassport_SelectDetail");
+        }
+
+        public async Task<AliquotTrackingDto> GetAliquotTracking(TrackingParameter parameter)
+        {
+            return await GetTracking<AliquotTrackingDto>(parameter, "dbo.spVial_SelectDetail");
+        }
+
+        public async Task<TestTrackingDto> GetTestTracking(TrackingParameter parameter)
+        {
+            return await GetTracking<TestTrackingDto>(parameter, "dbo.spTest_SelectDetail");
+        }
+
         private async Task<T> GetTracking<T>(TrackingParameter parameter, string spName)
         {
             using (var connection = new SqlConnection(_builder.ConnectionString))
