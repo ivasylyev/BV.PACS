@@ -9,18 +9,16 @@ namespace BV.PACS.Client.Services.Api
 {
     public class LookupService: ComponentBase
     {
-        [Inject]
-        private HttpClient Http { get; set; }
 
-        public async Task<TemplateLookupItem[]> GetTemplatesLookup(string lookupType)
+        public async Task<TemplateLookupItem[]> GetTemplatesLookup(HttpClient client, string lookupType)
         {
-            return await Http.PostJsonAsync<TemplateLookupItem[]>("api/Lookup/GetTemplatesLookup",
+            return await client.PostJsonAsync<TemplateLookupItem[]>("api/Lookup/GetTemplatesLookup",
                 new TemplateLookupParameter(lookupType, GlobalSettings.CurrentLanguage));
         }
 
-        public async Task<BaseLookupItem[]> GetLookup(BaseLookupTables lookupType)
+        public async Task<BaseLookupItem[]> GetLookup(HttpClient client, BaseLookupTables lookupType)
         {
-            return await Http.PostJsonAsync<BaseLookupItem[]>("api/Lookup/GetLookup",
+            return await client.PostJsonAsync<BaseLookupItem[]>("api/Lookup/GetLookup",
                 new BaseLookupParameter(lookupType, GlobalSettings.CurrentLanguage));
         }
     }

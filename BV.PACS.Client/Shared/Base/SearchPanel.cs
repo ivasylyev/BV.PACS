@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using BV.PACS.Client.Services.Api;
 using BV.PACS.Shared.Models;
-using BV.PACS.Shared.Models.Parameters;
 using BV.PACS.Shared.Utils;
 using Microsoft.AspNetCore.Components;
 
@@ -16,7 +15,7 @@ namespace BV.PACS.Client.Shared.Base
         protected LookupService ApiService { get; set; }
 
         [Inject]
-        private HttpClient Http { get; set; }
+        protected HttpClient Http { get; set; }
 
         [Parameter]
         public Action<AggregatedConditionDto> OnSearch { get; set; }
@@ -37,20 +36,8 @@ namespace BV.PACS.Client.Shared.Base
 
             var attr = GetType().GetCustomAttributes(typeof(FormTemplateAttribute), true).FirstOrDefault();
             Templates = attr is FormTemplateAttribute templateAttribute
-                ? await GetTemplatesLookup(templateAttribute.FormType)
+                ? await ApiService.GetTemplatesLookup(Http, templateAttribute.FormType)
                 : new TemplateLookupItem[0];
-        }
-
-        protected async Task<TemplateLookupItem[]> GetTemplatesLookup(string lookupType)
-        {
-            return await Http.PostJsonAsync<TemplateLookupItem[]>("api/Lookup/GetTemplatesLookup",
-                new TemplateLookupParameter(lookupType, GlobalSettings.CurrentLanguage));
-        }
-
-        protected async Task<BaseLookupItem[]> GetLookup(BaseLookupTables lookupType)
-        {
-            return await Http.PostJsonAsync<BaseLookupItem[]>("api/Lookup/GetLookup",
-                new BaseLookupParameter(lookupType, GlobalSettings.CurrentLanguage));
         }
     }
 }

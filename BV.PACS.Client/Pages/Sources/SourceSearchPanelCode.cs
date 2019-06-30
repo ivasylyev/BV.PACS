@@ -30,9 +30,9 @@ namespace BV.PACS.Client.Sources
         {
             await base.OnInitAsync();
 
-            _testStatuses = await GetLookup(BaseLookupTables.rftTestStatus);
-            _testTypes = await GetLookup(BaseLookupTables.rftTestType);
-            _testResults = await GetLookup(BaseLookupTables.rftTestResult);
+            _testStatuses = await ApiService.GetLookup(Http, BaseLookupTables.rftTestStatus);
+            _testTypes = await ApiService.GetLookup(Http, BaseLookupTables.rftTestType);
+            _testResults = await ApiService.GetLookup(Http, BaseLookupTables.rftTestResult);
         }
 
 
