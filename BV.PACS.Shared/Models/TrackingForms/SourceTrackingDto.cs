@@ -48,7 +48,7 @@ namespace BV.PACS.Shared.Models
         public string SourceTemplateName { get; set; }
 
         [Column("Location")]
-        public string LocationPath { get; set; }
+        public string SourcePointOfOrigin { get; set; }
 
 
         public override string ToString()
