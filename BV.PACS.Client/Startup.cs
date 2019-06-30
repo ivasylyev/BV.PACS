@@ -12,7 +12,7 @@ namespace BV.PACS.Client
             services.AddScoped<ApplicationContextService>();
             services.AddScoped<LookupService>();
             services.AddScoped<CatalogService>();
-            
+            services.AddScoped<TrackingService>();
         }
 
         public void Configure(IComponentsApplicationBuilder app)

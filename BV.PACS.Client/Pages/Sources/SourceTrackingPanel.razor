@@ -4,6 +4,7 @@
 @using Microsoft.AspNetCore.Components
 @inject HttpClient _http
 @inject LookupService _apiLookupService
+@inherits BV.PACS.Client.Sources.SourceTrackingPanelCode
 
 <div class="row">
 
@@ -62,73 +63,6 @@
 
 @functions {
 
-    [Parameter]
-    private int Id { get; set; }
-
-    private string SourceBarcode
-    {
-        get => TrackingObject.SourceBarcode;
-        set => TrackingObject.SourceBarcode = value;
-    }
-
-    private DateTime SourceRegistrationDate
-    {
-        get => TrackingObject.SourceRegistrationDate;
-        set => TrackingObject.SourceRegistrationDate = value;
-    }
-
-    private string SourceType
-    {
-        get => TrackingObject.SourceType;
-        set => TrackingObject.SourceType = value;
-    }
-
-    protected TemplateLookupItem[] Templates { get; set; }
-
-    protected TemplateLookupItem Template
-    {
-        get { return Templates.FirstOrDefault(t => t.Id == TrackingObject.SourceTemplateId); }
-        set
-        {
-            TrackingObject.SourceTemplateId = value.Id;
-            TrackingObject.SourceTemplateName = value.Name;
-        }
-    }
-
-
-    private string SourceNote
-    {
-        get => TrackingObject.SourceNote;
-        set => TrackingObject.SourceNote = value;
-    }
-
-    private string SourcePointOfOrigin
-    {
-        get => TrackingObject.SourcePointOfOrigin;
-        set => TrackingObject.SourcePointOfOrigin = value;
-    }
-
-
-    private SourceTrackingDto TrackingObject { get; set; }
-
-    protected override async Task OnInitAsync()
-    {
-        await BeginGetDataAsync(new TrackingParameter(Id, BaseSettings.Language));
-        await BeginGetLookupsAsync();
-    }
-
-    private async Task BeginGetLookupsAsync()
-    {
-        Templates = await _apiLookupService.GetTemplatesLookup(_http, FormTypes.Source);
-    }
-
-    private async Task BeginGetDataAsync(TrackingParameter parameter)
-    {
-        var attr = typeof(SourceTrackingDto).GetCustomAttributes(typeof(DataUrlAttribute), false).FirstOrDefault();
-        if (attr is DataUrlAttribute urlAttribute)
-        {
-            TrackingObject = await _http.PostJsonAsync<SourceTrackingDto>(urlAttribute.Url, parameter);
-        }
-    }
+ 
 
 }
