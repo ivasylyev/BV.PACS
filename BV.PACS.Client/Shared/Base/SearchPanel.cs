@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using BV.PACS.Client.Services.Api;
 using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
 using BV.PACS.Shared.Utils;
@@ -11,6 +12,9 @@ namespace BV.PACS.Client.Shared.Base
 {
     public class SearchPanel : ComponentBase
     {
+        [Inject]
+        protected LookupService ApiService { get; set; }
+
         [Inject]
         private HttpClient Http { get; set; }
 
@@ -36,7 +40,6 @@ namespace BV.PACS.Client.Shared.Base
                 ? await GetTemplatesLookup(templateAttribute.FormType)
                 : new TemplateLookupItem[0];
         }
-
 
         protected async Task<TemplateLookupItem[]> GetTemplatesLookup(string lookupType)
         {
