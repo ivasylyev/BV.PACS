@@ -9,17 +9,17 @@ namespace BV.PACS.Server.Controllers
     [Route("api/[controller]")]
     public class GridController : Controller
     {
-        private readonly DbService _dbService;
+        private readonly TrackingDbService _trackingDbService;
 
-        public GridController(DbService dbService)
+        public GridController(TrackingDbService trackingDbService)
         {
-            _dbService = dbService;
+            _trackingDbService = trackingDbService;
         }
 
         [HttpPost("[action]")]
         public IEnumerable<MaterialGridDto> GetSourceMaterials([FromBody] GridParameter parameter)
         {
-            return _dbService.GetSourceMaterials(parameter);
+            return _trackingDbService.GetSourceMaterials(parameter);
         }
     }
 }

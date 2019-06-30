@@ -9,21 +9,21 @@ namespace BV.PACS.Server.Controllers
     [Route("api/[controller]")]
     public class LookupController : Controller
     {
-        private readonly DbService _dbService;
+        private readonly LookupDbService _dbService;
 
-        public LookupController(DbService dbService)
+        public LookupController(LookupDbService dbService)
         {
             _dbService = dbService;
         }
 
         [HttpPost("[action]")]
-        public IEnumerable<TemplateLookupItem> GetTemplatesLookup([FromBody]TemplateLookupParameter parameter)
+        public IEnumerable<TemplateLookupItem> GetTemplatesLookup([FromBody] TemplateLookupParameter parameter)
         {
             return _dbService.GetTemplates(parameter);
         }
-      
+
         [HttpPost("[action]")]
-        public IEnumerable<BaseLookupItem> GetLookup([FromBody]BaseLookupParameter parameter)
+        public IEnumerable<BaseLookupItem> GetLookup([FromBody] BaseLookupParameter parameter)
         {
             return _dbService.GetLookup(parameter);
         }

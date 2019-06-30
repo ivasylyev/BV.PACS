@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using BV.PACS.Server.Services;
 using BV.PACS.Shared.Models;
@@ -7,34 +6,15 @@ using NUnit.Framework;
 
 namespace BV.Pacs.Tests
 {
-    public class DbServiceTests
+    public class LookupDbServiceTests
     {
-        private DbService _service;
-        private CatalogDbService _catalogService;
+        private LookupDbService _service;
+
 
         [SetUp]
         public void Setup()
         {
-            _service = new DbService();
-            _catalogService = new CatalogDbService();
-        }
-
-  
-        [Test]
-        public void GetSourceTrackingTest()
-        {
-            var condition = new AggregatedConditionDto {PageSize = 1};
-            condition.AddStandardConditionIfNotEmpty("strMaterialBarcode", "m", Operators.LikeOperator);
-            var items = _catalogService.GetSources(condition).Result.ToList();
-            Assert.IsNotEmpty(items);
-            var source = items[0];
-            Console.WriteLine($"Found source {source.SourceBarcode} with ID {source.SourceId}");
-
-            var sourceTracking = _service.GetSourceTracking(new TrackingParameter(source.SourceId, "en"));
-            Assert.IsNotNull(sourceTracking);
-
-            Console.WriteLine(sourceTracking);
-            Assert.Pass();
+            _service = new LookupDbService();
         }
 
 
@@ -106,26 +86,6 @@ namespace BV.Pacs.Tests
             var list = _service.GetLookup(new BaseLookupParameter(BaseLookupTables.rftTestStatus, "en")).ToList();
             Assert.IsNotEmpty(list);
 
-            Assert.Pass();
-        }
-
-        [Test]
-        public void GetSourceMaterialsTest()
-        {
-            var condition = new AggregatedConditionDto();
-            condition.AddStandardConditionIfNotEmpty("strMaterialBarcode", "m", Operators.LikeOperator);
-            var items = _catalogService.GetSources(condition).Result.ToList();
-            Assert.IsNotEmpty(items);
-            var source = items[0];
-            Console.WriteLine($"Found source {source.SourceBarcode} with ID {source.SourceId}");
-
-            var list = _service.GetSourceMaterials(new GridParameter(source.SourceId, "en")).ToList();
-            Assert.IsNotEmpty(list);
-
-            Console.WriteLine($"received {list.Count} materials");
-            var materialBarcodes = list.Select(m => m.MaterialBarcode);
-
-            Console.WriteLine(string.Join(", ", materialBarcodes));
             Assert.Pass();
         }
     }

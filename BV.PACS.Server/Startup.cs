@@ -16,6 +16,8 @@ namespace BV.PACS.Server
         {
             services.AddScoped<DbService>();
             services.AddScoped<CatalogDbService>();
+            services.AddScoped<TrackingDbService>();
+            
 
             services.AddMvc().AddNewtonsoftJson();
             services.AddResponseCompression(opts =>

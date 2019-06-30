@@ -9,17 +9,17 @@ namespace BV.PACS.Server.Controllers
     [Route("api/[controller]")]
     public class TrackingController : Controller
     {
-        private readonly DbService _dbService;
+        private readonly TrackingDbService _trackingDbService;
 
-        public TrackingController(DbService dbService)
+        public TrackingController(TrackingDbService trackingDbService)
         {
-            _dbService = dbService;
+            _trackingDbService = trackingDbService;
         }
 
         [HttpPost("[action]")]
         public SourceTrackingDto GetSource([FromBody] TrackingParameter parameter)
         {
-            return _dbService.GetSourceTracking(parameter);
+            return _trackingDbService.GetSourceTracking(parameter);
         }
     }
 }
