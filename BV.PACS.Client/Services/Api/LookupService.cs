@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.Client.Services.Api
 {
-    public class LookupService: ComponentBase
+    public class LookupService
     {
 
         public async Task<TemplateLookupItem[]> GetTemplatesLookup(HttpClient client, string lookupType)

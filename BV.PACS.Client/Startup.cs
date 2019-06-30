@@ -11,6 +11,8 @@ namespace BV.PACS.Client
         {
             services.AddScoped<ApplicationContextService>();
             services.AddScoped<LookupService>();
+            services.AddScoped<CatalogService>();
+            
         }
 
         public void Configure(IComponentsApplicationBuilder app)

@@ -3,7 +3,7 @@
 @using BV.PACS.Shared.Models.Parameters
 @using Microsoft.AspNetCore.Components
 @inject HttpClient _http
-@inject LookupService _apiService
+@inject LookupService _apiLookupService
 
 <div class="row">
 
@@ -119,7 +119,7 @@
 
     private async Task BeginGetLookupsAsync()
     {
-        Templates = await _apiService.GetTemplatesLookup(_http, FormTypes.Source);
+        Templates = await _apiLookupService.GetTemplatesLookup(_http, FormTypes.Source);
     }
 
     private async Task BeginGetDataAsync(TrackingParameter parameter)

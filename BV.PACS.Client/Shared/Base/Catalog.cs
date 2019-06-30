@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using BV.PACS.Client.Services.Api;
 using BV.PACS.Client.Services.Context;
 using BV.PACS.Shared.Models;
 using Microsoft.AspNetCore.Components;
@@ -12,6 +13,9 @@ namespace BV.PACS.Client.Shared.Base
     {
         [Inject]
         private HttpClient Http { get; set; }
+
+        [Inject]
+        private CatalogService ApiCatalogService { get; set; }
 
         [Inject]
         private ApplicationContextService ApplicationContextService { get; set; }
@@ -30,12 +34,12 @@ namespace BV.PACS.Client.Shared.Base
                     context = new CatalogContext<T>();
                     ApplicationContextService.CurrentApplicationContext.PageContext = context;
                 }
+
                 return context;
             }
         }
 
 
-      
         protected int PageCount
         {
             get => PageContext.PageCount;
@@ -48,11 +52,12 @@ namespace BV.PACS.Client.Shared.Base
             set
             {
                 PageContext.Condition.PageNumber = value;
+                // ApiCatalogService.GetData<T>(Http, PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
                 BeginGetDataAsync(PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
             }
         }
 
-        
+
         protected T[] DataSource
         {
             get => PageContext.DataSource;
@@ -63,6 +68,8 @@ namespace BV.PACS.Client.Shared.Base
         {
             await BeginGetDataAsync(PageContext.Condition);
             await BeginGetPageCountAsync(PageContext.Condition);
+            // await ApiCatalogService.GetData<T>(Http, PageContext.Condition);
+            // await ApiCatalogService.GetPageCount<T>(Http, PageContext.Condition);
         }
 
 
@@ -88,6 +95,8 @@ namespace BV.PACS.Client.Shared.Base
 
         private void DoSearch()
         {
+            // ApiCatalogService.GetData<T>(Http, PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
+            //  ApiCatalogService.GetPageCount<T>(Http, PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
             BeginGetDataAsync(PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
             BeginGetPageCountAsync(PageContext.Condition).ContinueWith(x => { StateHasChanged(); });
         }
