@@ -17,4 +17,8 @@
     <ProjectReference Include="..\BV.PACS.Shared\BV.PACS.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Client\Services\Api\" />
+  </ItemGroup>
+
 </Project>

@@ -4,7 +4,7 @@ using BV.PACS.Server.Services;
 using BV.PACS.Shared.Models;
 using NUnit.Framework;
 
-namespace BV.Pacs.Tests
+namespace BV.Pacs.Tests.Server.Services
 {
     public class CatalogDbServiceTests
     {

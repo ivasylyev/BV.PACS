@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using BV.PACS.Client.Services;
+using BV.PACS.Client.Services.Context;
 using BV.PACS.Shared.Models;
 using Microsoft.AspNetCore.Components;
 

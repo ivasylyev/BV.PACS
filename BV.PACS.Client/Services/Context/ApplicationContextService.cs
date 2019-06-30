@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using BV.PACS.Client.Shared;
 
-namespace BV.PACS.Client.Services
+namespace BV.PACS.Client.Services.Context
 {
     public class ApplicationContextService
     {

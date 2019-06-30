@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using BV.PACS.Client.Services;
+using BV.PACS.Client.Services.Context;
 using BV.PACS.Client.Shared;
 using BV.PACS.Shared.Models;
 using NUnit.Framework;
 
-namespace BV.Pacs.Tests
+namespace BV.Pacs.Tests.Client.Services.Context
 {
     public class PanelsTests
     {

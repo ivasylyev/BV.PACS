@@ -1,5 +1,5 @@
 ﻿using System;
-using BV.PACS.Client.Services;
+using BV.PACS.Client.Services.Context;
 using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.Client.Shared.Base

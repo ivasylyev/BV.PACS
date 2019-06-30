@@ -4,7 +4,7 @@ using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
 using NUnit.Framework;
 
-namespace BV.Pacs.Tests
+namespace BV.Pacs.Tests.Server.Services
 {
     public class LookupDbServiceTests
     {

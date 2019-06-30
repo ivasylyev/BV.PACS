@@ -1,7 +1,7 @@
 ﻿using BV.PACS.Client.Shared;
 using BV.PACS.Shared.Models;
 
-namespace BV.PACS.Client.Services
+namespace BV.PACS.Client.Services.Context
 {
     public class CatalogContext<T> : IPageContext where T : new()
     {
