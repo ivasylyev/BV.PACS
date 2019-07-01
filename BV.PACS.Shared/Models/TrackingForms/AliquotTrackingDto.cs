@@ -22,19 +22,19 @@ namespace BV.PACS.Shared.Models
         public string AliquotNote { get; set; }
 
         [Column("fltVolume")]
-        public float Volume { get; set; }
+        public decimal Volume { get; set; }
 
         [Column("fltWeight")]
-        public float Weight { get; set; }
+        public decimal Weight { get; set; }
 
         [Column("NullableVolume")]
-        public float? NullableVolume { get; set; }
+        public decimal? NullableVolume { get; set; }
 
         [Column("NullableWeight")]
-        public float? NullableWeight { get; set; }
+        public decimal? NullableWeight { get; set; }
 
         [Column("intGeneration")]
-        public int Generation { get; set; }
+        public int Passage { get; set; }
 
         [Column("StatusRef_Name")]
         public string AliquotStatus { get; set; }
