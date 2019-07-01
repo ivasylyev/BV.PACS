@@ -8,6 +8,7 @@ namespace BV.PACS.Server.Services
 
         public DbService()
         {
+            // todo: move to config
             _builder = new SqlConnectionStringBuilder
             {
                 DataSource = "DESKTOP-A0AN5I9\\PACS",

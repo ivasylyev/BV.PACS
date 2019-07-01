@@ -14,6 +14,7 @@ namespace BV.Pacs.Tests.Server.Services
         public void Setup()
         {
             _service = new CatalogDbService();
+            SqlMapperEx.InitMappers();
         }
 
         [Test]

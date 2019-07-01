@@ -17,6 +17,7 @@ namespace BV.Pacs.Tests.Server.Services
         {
             _trackingService = new TrackingDbService();
             _catalogService = new CatalogDbService();
+            SqlMapperEx.InitMappers();
         }
 
 

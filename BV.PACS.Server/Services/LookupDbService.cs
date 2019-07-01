@@ -10,13 +10,6 @@ namespace BV.PACS.Server.Services
 {
     public class LookupDbService : DbService
     {
-        public LookupDbService()
-        {
-            SqlMapperEx.InitMapper<TemplateLookupItem>();
-            SqlMapperEx.InitMapper<BaseLookupItem>();
-        }
-
-
         public async Task<IEnumerable<TemplateLookupItem>> GetTemplates(TemplateLookupParameter parameter)
         {
             using (var connection = new SqlConnection(_builder.ConnectionString))
@@ -28,7 +21,6 @@ namespace BV.PACS.Server.Services
                         LanguageID = parameter.Language
                     },
                     commandType: CommandType.StoredProcedure);
-                //return null;
                 return result;
             }
         }
@@ -45,7 +37,6 @@ namespace BV.PACS.Server.Services
                         LanguageID = parameter.Language
                     },
                     commandType: CommandType.Text);
-                //return null;
                 return result;
             }
         }

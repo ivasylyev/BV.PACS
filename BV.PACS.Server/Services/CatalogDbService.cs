@@ -9,15 +9,6 @@ namespace BV.PACS.Server.Services
 {
     public class CatalogDbService : DbService
     {
-        public CatalogDbService()
-        {
-            SqlMapperEx.InitMapper<SourceCatalogDto>();
-            SqlMapperEx.InitMapper<MaterialCatalogDto>();
-            SqlMapperEx.InitMapper<AliquotCatalogDto>();
-            SqlMapperEx.InitMapper<TestCatalogDto>();
-        }
-
-
         public async Task<IEnumerable<SourceCatalogDto>> GetSources(AggregatedConditionDto condition)
         {
             return await GetCatalogItems<SourceCatalogDto>(condition, "dbo.spSource_QS");

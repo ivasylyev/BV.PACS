@@ -10,14 +10,6 @@ namespace BV.PACS.Server.Services
 {
     public class TrackingDbService : DbService
     {
-        public TrackingDbService()
-        {
-            SqlMapperEx.InitMapper<SourceTrackingDto>();
-
-            SqlMapperEx.InitMapper<MaterialGridDto>();
-        }
-
-
         public async Task<SourceTrackingDto> GetSourceTracking(TrackingParameter parameter)
         {
             var sqlParameter = new
@@ -62,14 +54,13 @@ namespace BV.PACS.Server.Services
         {
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
-                
                 var result = await connection.QueryMultipleAsync(spName,
                     sqlParameter,
                     commandType: CommandType.StoredProcedure);
-                var sourceTracking = result.ReadSingleOrDefault<T>();
+                var tracking = result.ReadSingleOrDefault<T>();
                 //todo: implement reading of custom fields
                 //var customFields = result.Read();
-                return sourceTracking;
+                return tracking;
             }
         }
 
