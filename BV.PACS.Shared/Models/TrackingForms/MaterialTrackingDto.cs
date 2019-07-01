@@ -57,10 +57,10 @@ namespace BV.PACS.Shared.Models
         public int AddressGeoLocationId { get; set; }
 
         [Column("idfsGeoLocation")]
-        public int GeoLocationId { get; set; }
+        public string GeoLocationId { get; set; }
 
         [Column("idfsGeoLocationNew")]
-        public int GeoLocationNewId { get; set; }
+        public string GeoLocationNewId { get; set; }
 
         [Column("strCultureShortName")]
         public string MaterialTypeShort { get; set; }
