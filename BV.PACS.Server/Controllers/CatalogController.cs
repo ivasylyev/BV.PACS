@@ -4,6 +4,7 @@ using BV.PACS.Server.Filters;
 using BV.PACS.Server.Services;
 using BV.PACS.Shared.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace BV.PACS.Server.Controllers
 {
@@ -11,16 +12,19 @@ namespace BV.PACS.Server.Controllers
     public class CatalogController : Controller
     {
         private readonly CatalogDbService _dbService;
+        private readonly ILogger _logger;
 
-        public CatalogController(CatalogDbService dbService)
+        public CatalogController(CatalogDbService dbService, ILogger<CatalogController> logger)
         {
             _dbService = dbService;
+            _logger = logger;
         }
 
         [PacsExceptionFilter]
         [HttpPost("[action]")]
         public async Task<IEnumerable<SourceCatalogDto>> GetSources([FromBody] AggregatedConditionDto condition)
         {
+            _logger.LogInformation("test");
             return await _dbService.GetSources(condition);
         }
 
