@@ -10,8 +10,8 @@ namespace BV.PACS.Client.Services.Api
     {
         public async Task<int> GetPageCount<T>(HttpClient client, AggregatedConditionDto cond)
         {
-            var attr = typeof(T).GetCustomAttributes(typeof(CountUrlAttribute), false).FirstOrDefault();
-            if (attr is CountUrlAttribute urlAttribute)
+            var attr = typeof(T).GetCustomAttributes(typeof(GetCountUrlAttribute), false).FirstOrDefault();
+            if (attr is GetCountUrlAttribute urlAttribute)
             {
                 return await client.PostJsonAsync<int>(urlAttribute.Url, cond) / cond.PageSize;
             }
@@ -21,8 +21,8 @@ namespace BV.PACS.Client.Services.Api
 
         public async Task<T[]> GetData<T>(HttpClient client, AggregatedConditionDto cond)
         {
-            var attr = typeof(T).GetCustomAttributes(typeof(DataUrlAttribute), false).FirstOrDefault();
-            if (attr is DataUrlAttribute urlAttribute)
+            var attr = typeof(T).GetCustomAttributes(typeof(GetDataUrlAttribute), false).FirstOrDefault();
+            if (attr is GetDataUrlAttribute urlAttribute)
             {
                 return await client.PostJsonAsync<T[]>(urlAttribute.Url, cond);
             }

@@ -1,5 +1,5 @@
-﻿@using BV.PACS.Client.Shared.Components
-
+﻿@using Microsoft.AspNetCore.Components
+@using BV.PACS.Client.Shared.Components
 @inherits BV.PACS.Client.Shared.Base.TrackingForm
 
 <h1>Source Tracking</h1>
@@ -23,7 +23,8 @@
                     {
                         case 0:
                             <i>"General info" tab is active.</i>
-                            <SourceTrackingPanel Id=@Id>
+                            <SourceTrackingPanel Id=@Id 
+                                                 ref=@TrackingPanel>
 
                             </SourceTrackingPanel>
                             break;
@@ -44,8 +45,8 @@
                     }
                 </div>
             </div>
-            <OkCancelPanel OnOk=@DoOk
-                           OnCancel=@DoCancel>
+            <OkCancelPanel OnOk="@DoOk"
+                           OnCancel="@DoCancel">
             </OkCancelPanel>
 
         </div>
@@ -54,4 +55,7 @@
 
 
 @functions {
+   
+   
+
 }

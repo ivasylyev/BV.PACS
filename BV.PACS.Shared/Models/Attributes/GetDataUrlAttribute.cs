@@ -3,10 +3,11 @@
 namespace BV.PACS.Shared.Models
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class CountUrlAttribute :Attribute
+    public class GetDataUrlAttribute :Attribute
     {
         public string Url { get; set; }
-        public CountUrlAttribute(string url)
+
+        public GetDataUrlAttribute(string url)
         {
             Url = url;
         }

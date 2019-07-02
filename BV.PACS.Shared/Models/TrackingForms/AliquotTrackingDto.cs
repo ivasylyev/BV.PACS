@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BV.PACS.Shared.Models
 {
-    [DataUrl("api/Tracking/GetAliquot")]
+    [GetDataUrl("api/Tracking/GetAliquot")]
+    [PostDataUrl("api/Tracking/PostAliquot")]
     public class AliquotTrackingDto
     {
         [Column("idfContainer")]

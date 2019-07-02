@@ -86,5 +86,54 @@ namespace BV.PACS.Server.Services
                 return result;
             }
         }
+
+
+        public async Task  PostSourceTracking(TrackingPostParameter<SourceTrackingDto> parameter)
+        {
+            //todo: implement
+            var data = parameter.Data;
+            var sqlParameter = new
+            {
+                LanguageID = parameter.Language,
+                Action = 16,
+                idfSource = data.SourceId,
+
+            };
+           
+            /*
+             
+             
+            declare @p3 int
+set @p3=221164
+exec spSource_Post @LanguageID=N'en',
+@Action=16,
+@idfSource=@p3 output,
+@strBarcode=N'S_19025I_',
+@datRegistration_Date='2019-06-17 18:57:11',
+@idfsCFormTemplateID=N'fftSource',
+@strNote=N'nnnxcsdc',
+@idfsSourceType=N'srcTurkey',
+@idfsGeoLocation=N'63367990-ec67-42c2-8cc1-40745bdf7f2a',
+@idfOwner=1,
+@Source_idfGeoLocation=210687,
+@strLocationDesription=NULL
+select @p3
+             */
+        }
+
+        public async Task  PostMaterialTracking(TrackingPostParameter<MaterialTrackingDto> parameter)
+        {
+           //todo: implement
+        }
+
+        public async Task PostAliquotTracking(TrackingPostParameter<AliquotTrackingDto> parameter)
+        {
+            //todo: implement
+        }
+
+        public async Task PostTestTracking(TrackingPostParameter<TestTrackingDto> parameter)
+        {
+            //todo: implement
+        }
     }
 }

@@ -44,5 +44,33 @@ namespace BV.PACS.Server.Controllers
         {
             return await _trackingDbService.GetTestTracking(parameter);
         }
+
+        [PacsExceptionFilter]
+        [HttpPost("[action]")]
+        public async Task PostSource([FromBody] TrackingPostParameter<SourceTrackingDto> parameter)
+        {
+             await _trackingDbService.PostSourceTracking(parameter);
+        }
+
+        [PacsExceptionFilter]
+        [HttpPost("[action]")]
+        public async Task PostMaterial([FromBody] TrackingPostParameter<MaterialTrackingDto> parameter)
+        {
+             await _trackingDbService.PostMaterialTracking(parameter);
+        }
+
+        [PacsExceptionFilter]
+        [HttpPost("[action]")]
+        public async Task PostAliquot([FromBody] TrackingPostParameter<AliquotTrackingDto> parameter)
+        {
+             await _trackingDbService.PostAliquotTracking(parameter);
+        }
+
+        [PacsExceptionFilter]
+        [HttpPost("[action]")]
+        public async Task PostTest([FromBody] TrackingPostParameter<TestTrackingDto> parameter)
+        {
+             await _trackingDbService.PostTestTracking(parameter);
+        }
     }
 }

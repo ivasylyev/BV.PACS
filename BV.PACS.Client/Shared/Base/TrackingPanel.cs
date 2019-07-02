@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using BV.PACS.Client.Services.Api;
 using BV.PACS.Shared.Models;
@@ -8,20 +7,30 @@ using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.Client.Shared.Base
 {
-    public class TrackingPanel<T> : ComponentBase where T : new()
+    public class TrackingPanel<T> : ComponentBase, IPostable where T : new()
     {
         [Parameter]
-        protected int Id { get; set; }
+        public int Id { get; set; }
+
 
         [Inject]
         protected HttpClient Http { get; set; }
 
         [Inject]
+        protected TrackingService ApiTrackingService { get; set; }
+
+        [Inject]
         protected LookupService ApiLookupService { get; set; }
 
-        protected T TrackingObject { get; set; }
+        public T TrackingObject { get; set; }
         protected TemplateLookupItem[] Templates { get; set; }
 
+        public bool HasChanges { get; set; } = true;
+
+        public virtual bool Post()
+        {
+            return true;
+        }
 
         protected override async Task OnInitAsync()
         {
@@ -31,23 +40,17 @@ namespace BV.PACS.Client.Shared.Base
 
         protected virtual async Task GetLookups()
         {
-            Templates = await ApiLookupService.GetTemplatesLookup(Http, FormTypes.Source);
+            await Task.Run(() => Templates = new TemplateLookupItem[0]);
+        }
+
+        protected async Task GetLookups(string lookupType)
+        {
+            Templates = await ApiLookupService.GetTemplatesLookup(Http, lookupType);
         }
 
         private async Task GetData()
         {
-            TrackingObject = await GetData(new TrackingParameter(Id, BaseSettings.Language));
-        }
-
-        private async Task<T> GetData(TrackingParameter parameter)
-        {
-            var attr = typeof(T).GetCustomAttributes(typeof(DataUrlAttribute), false).FirstOrDefault();
-            if (attr is DataUrlAttribute urlAttribute)
-            {
-                return await Http.PostJsonAsync<T>(urlAttribute.Url, parameter);
-            }
-
-            return default;
+            TrackingObject = await ApiTrackingService.GetData<T>(Http, new TrackingParameter(Id, BaseSettings.Language));
         }
     }
 }

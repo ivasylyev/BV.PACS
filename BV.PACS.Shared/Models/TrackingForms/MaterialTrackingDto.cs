@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BV.PACS.Shared.Models
 {
-    [DataUrl("api/Tracking/GetMaterial")]
+    [GetDataUrl("api/Tracking/GetMaterial")]
+    [PostDataUrl("api/Tracking/PostMaterial")]
     public class MaterialTrackingDto
     {
 

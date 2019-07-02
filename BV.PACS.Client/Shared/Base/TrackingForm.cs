@@ -16,6 +16,8 @@ namespace BV.PACS.Client.Shared.Base
 
         public int Id => PageContext?.Id ?? 0;
 
+        public IPostable TrackingPanel { get; set; }
+
         private TrackingFormContext PageContext => ApplicationContextService.CurrentApplicationContext.PageContext as TrackingFormContext;
 
 
@@ -29,12 +31,19 @@ namespace BV.PACS.Client.Shared.Base
             }
         }
 
-        public void DoOk()
+        public virtual void DoOk()
         {
-            OnClose?.Invoke(DialogResult.Ok);
+            if (TrackingPanel == null || !TrackingPanel.HasChanges || TrackingPanel.Post())
+            {
+                OnClose?.Invoke(DialogResult.Ok);
+            }
+            else
+            {
+                ActiveTabIndex = 0;
+            }
         }
 
-        public void DoCancel()
+        public virtual void DoCancel()
         {
             OnClose?.Invoke(DialogResult.Cancel);
         }

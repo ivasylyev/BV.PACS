@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BV.PACS.Shared.Models
 {
-    [DataUrl("api/Catalog/GetSources")]
-    [CountUrl("api/Catalog/GetSourcesRecordCount")]
+    [GetDataUrl("api/Catalog/GetSources")]
+    [GetCountUrl("api/Catalog/GetSourcesRecordCount")]
     public class SourceCatalogDto
     {
         [Column("idfSource")]

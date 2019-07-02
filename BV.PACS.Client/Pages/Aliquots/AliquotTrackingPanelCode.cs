@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using BV.PACS.Client.Shared.Base;
 using BV.PACS.Shared.Models;
 
@@ -15,6 +16,11 @@ namespace BV.PACS.Client.Aliquots
                 TrackingObject.AliquotTemplateId = value.Id;
                 TrackingObject.AliquotTemplateName = value.Name;
             }
+        }
+
+        protected override async Task GetLookups()
+        {
+            await GetLookups(FormTypes.Aliquot);
         }
 
         protected string AliquotBarcode

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using BV.PACS.Client.Shared.Base;
 using BV.PACS.Shared.Models;
+using BV.PACS.Shared.Models.Parameters;
 
 namespace BV.PACS.Client.Sources
 {
@@ -16,6 +18,11 @@ namespace BV.PACS.Client.Sources
                 TrackingObject.SourceTemplateId = value.Id;
                 TrackingObject.SourceTemplateName = value.Name;
             }
+        }
+
+        protected override async Task GetLookups()
+        {
+            await GetLookups(FormTypes.Source);
         }
 
         protected string SourceBarcode
@@ -47,6 +54,13 @@ namespace BV.PACS.Client.Sources
         {
             get => TrackingObject.SourcePointOfOrigin;
             set => TrackingObject.SourcePointOfOrigin = value;
+        }
+
+        public override bool Post()
+        {
+            ApiTrackingService.PostData(Http, new TrackingPostParameter<SourceTrackingDto>(TrackingObject, BaseSettings.Language))
+                .ContinueWith(x => StateHasChanged());
+            return true;
         }
     }
 }

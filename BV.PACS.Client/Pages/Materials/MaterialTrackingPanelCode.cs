@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
+using BV.PACS.Client.Shared.Base;
 using BV.PACS.Shared.Models;
 
 namespace BV.PACS.Client.Materials
 {
-    public class MaterialTrackingPanelCode: BV.PACS.Client.Shared.Base.TrackingPanel<BV.PACS.Shared.Models.MaterialTrackingDto>
+    public class MaterialTrackingPanelCode : TrackingPanel<MaterialTrackingDto>
     {
         protected TemplateLookupItem Template
         {
@@ -14,6 +16,11 @@ namespace BV.PACS.Client.Materials
                 TrackingObject.MaterialTemplateId = value.Id;
                 TrackingObject.MaterialTemplateName = value.Name;
             }
+        }
+
+        protected override async Task GetLookups()
+        {
+            await GetLookups(FormTypes.Material);
         }
 
         protected string MaterialBarcode
@@ -72,5 +79,7 @@ namespace BV.PACS.Client.Materials
             get => TrackingObject.MaterialPointOfOrigin;
             set => TrackingObject.MaterialPointOfOrigin = value;
         }
+
+     
     }
 }
