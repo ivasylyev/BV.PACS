@@ -1,10 +1,10 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BV.PACS.Shared.Models
 {
     [GetDataUrl("api/Catalog/GetAliquots")]
     [GetCountUrl("api/Catalog/GetAliquotsRecordCount")]
+
     public class AliquotCatalogDto
     {
         [GetColumn("idfContainer")]

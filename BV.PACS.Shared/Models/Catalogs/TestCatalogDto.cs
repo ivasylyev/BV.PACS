@@ -5,6 +5,7 @@ namespace BV.PACS.Shared.Models
 {
     [GetDataUrl("api/Catalog/GetTests")]
     [GetCountUrl("api/Catalog/GetTestsRecordCount")]
+
     public class TestCatalogDto
     {
         [GetColumn("idfTest")]

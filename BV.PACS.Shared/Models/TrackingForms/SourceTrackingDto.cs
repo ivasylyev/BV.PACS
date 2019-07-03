@@ -5,6 +5,7 @@ namespace BV.PACS.Shared.Models
 {
     [GetDataUrl("api/Tracking/GetSource")]
     [PostDataUrl("api/Tracking/PostSource")]
+    [StoredProcedures("dbo.spSource_SelectDetail", "dbo.spSource_Post", "idfSource")]
     public class SourceTrackingDto
     {
 

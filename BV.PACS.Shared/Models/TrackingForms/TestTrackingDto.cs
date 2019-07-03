@@ -5,6 +5,7 @@ namespace BV.PACS.Shared.Models
 {
     [GetDataUrl("api/Tracking/GetTest")]
     [PostDataUrl("api/Tracking/PostTest")]
+    [StoredProcedures("dbo.spTest_SelectDetail", "dbo.spTest_Post", "idfTest")]
     public class TestTrackingDto
     {
         [GetColumn("idfTest")]

@@ -5,6 +5,7 @@ namespace BV.PACS.Shared.Models
 {
     [GetDataUrl("api/Tracking/GetMaterial")]
     [PostDataUrl("api/Tracking/PostMaterial")]
+    [StoredProcedures("dbo.spStrainPassport_SelectDetail", "dbo.spStrainPassport", "idfMaterial")]
     public class MaterialTrackingDto
     {
 

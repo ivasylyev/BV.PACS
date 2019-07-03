@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
 using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
-using BV.PACS.Shared.Utils;
 using Dapper;
 
 namespace BV.PACS.Server.Services
@@ -14,50 +12,37 @@ namespace BV.PACS.Server.Services
     {
         public async Task<SourceTrackingDto> GetSourceTracking(TrackingParameter parameter)
         {
-            var sqlParameter = new
-            {
-                LanguageID = parameter.Language,
-                idfSource = parameter.Id
-            };
-            return await GetTracking<SourceTrackingDto>(sqlParameter, "dbo.spSource_SelectDetail");
+            return await GetTracking<SourceTrackingDto>(parameter);
         }
 
         public async Task<MaterialTrackingDto> GetMaterialTracking(TrackingParameter parameter)
         {
-            var sqlParameter = new
-            {
-                LanguageID = parameter.Language,
-                idfMaterial = parameter.Id
-            };
-            return await GetTracking<MaterialTrackingDto>(sqlParameter, "dbo.spStrainPassport_SelectDetail");
+            return await GetTracking<MaterialTrackingDto>(parameter);
         }
 
         public async Task<AliquotTrackingDto> GetAliquotTracking(TrackingParameter parameter)
         {
-            var sqlParameter = new
-            {
-                LanguageID = parameter.Language,
-                idfContainer = parameter.Id
-            };
-            return await GetTracking<AliquotTrackingDto>(sqlParameter, "dbo.spVial_SelectDetail");
+            return await GetTracking<AliquotTrackingDto>(parameter);
         }
 
         public async Task<TestTrackingDto> GetTestTracking(TrackingParameter parameter)
         {
-            var sqlParameter = new
-            {
-                LanguageID = parameter.Language,
-                idfTest = parameter.Id
-            };
-            return await GetTracking<TestTrackingDto>(sqlParameter, "dbo.spTest_SelectDetail");
+            return await GetTracking<TestTrackingDto>(parameter);
         }
 
-        private async Task<T> GetTracking<T>(object sqlParameter, string spName)
+
+        private async Task<T> GetTracking<T>(TrackingParameter parameter)
         {
+            var procAttr = SqlMapperEx.GetStoredProcedureAttribute<T>();
+
+            var sqlParameters = new DynamicParameters();
+            sqlParameters.Add(procAttr.KeyColumnName, parameter.Id);
+            sqlParameters.Add("LanguageID", parameter.Language);
+
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
-                var result = await connection.QueryMultipleAsync(spName,
-                    sqlParameter,
+                var result = await connection.QueryMultipleAsync(procAttr.GetProcedureName,
+                    sqlParameters,
                     commandType: CommandType.StoredProcedure);
                 var tracking = result.ReadSingleOrDefault<T>();
                 //todo: implement reading of custom fields
@@ -69,20 +54,22 @@ namespace BV.PACS.Server.Services
 
         public async Task<IEnumerable<MaterialGridDto>> GetSourceMaterials(GridParameter parameter)
         {
-            return await GetSourceGridItems<MaterialGridDto>(parameter, "dbo.spSource_Materials");
+            return await GetSourceGridItems<MaterialGridDto>(parameter);
         }
 
 
-        private async Task<IEnumerable<T>> GetSourceGridItems<T>(GridParameter parameter, string spName)
+        private async Task<IEnumerable<T>> GetSourceGridItems<T>(GridParameter parameter)
         {
+            var procAttr = SqlMapperEx.GetStoredProcedureAttribute<T>();
+
+            var sqlParameters = new DynamicParameters();
+            sqlParameters.Add(procAttr.KeyColumnName, parameter.Id);
+            sqlParameters.Add("LanguageID", parameter.Language);
+
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
-                var result = await connection.QueryAsync<T>(spName,
-                    new
-                    {
-                        LanguageID = parameter.Language,
-                        idfSource = parameter.Id
-                    },
+                var result = await connection.QueryAsync<T>(procAttr.GetProcedureName,
+                    sqlParameters,
                     commandType: CommandType.StoredProcedure);
 
                 return result;
@@ -93,46 +80,15 @@ namespace BV.PACS.Server.Services
         public async Task PostSourceTracking(TrackingPostParameter<SourceTrackingDto> parameter)
         {
             await PostTracking<SourceTrackingDto>(parameter, "dbo.spSource_Post");
-//            //todo: implement
-//            var data = parameter.Data;
-//            var sqlParameter = new
-//            {
-//                LanguageID = parameter.Language,
-//                Action = 16,
-//                idfSource = data.SourceId,
-//                strBarcode = data.SourceBarcode,
-//                datRegistration_Date = data.SourceRegistrationDate,
-//                idfsCFormTemplateID = data.SourceTemplateId,
-//                strNote = data.SourceNote,
-//                idfsSourceType = data.SourceTypeId,
-//                idfsGeoLocation = data.GeoLocationId,
-//                idfOwner = data.OwnerId,
-//                Source_idfGeoLocation = data.AddressGeoLocationId,
-//                strLocationDesription = data.GeoLocationDescription
-//            };
-//            using (var connection = new SqlConnection(_builder.ConnectionString))
-//            {
-//                var result = connection.ExecuteScalar("spSource_Post", sqlParameter, commandType: CommandType.StoredProcedure);
-//            }
         }
 
         private async Task PostTracking<T>(TrackingPostParameter<SourceTrackingDto> parameter, string spName)
         {
-            var mapping = new Dictionary<string, string>();
-            foreach (var prop in typeof(T).GetProperties())
-            {
-                var postAttribute = prop.GetCustomAttributes(false)
-                    .OfType<PostColumnAttribute>()
-                    .FirstOrDefault();
-                if (postAttribute != null && !postAttribute.Name.IsNullOrEmpty())
-                {
-                    mapping.Add(prop.Name, postAttribute.Name);
-                }
-            }
+            var mapping = SqlMapperEx.GetMapping<T>();
 
             var sqlParameters = new DynamicParameters();
-            sqlParameters.Add("Action", 16);
-            sqlParameters.Add("LanguageID", parameter.Language);
+
+
             foreach (var pair in mapping)
             {
                 var propName = pair.Key;
@@ -143,11 +99,15 @@ namespace BV.PACS.Server.Services
                 sqlParameters.Add(sqlName, value);
             }
 
+            sqlParameters.Add("Action", 16);
+            sqlParameters.Add("LanguageID", parameter.Language);
+
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
                 await connection.ExecuteScalarAsync(spName, sqlParameters, commandType: CommandType.StoredProcedure);
             }
         }
+
 
         public async Task PostMaterialTracking(TrackingPostParameter<MaterialTrackingDto> parameter)
         {

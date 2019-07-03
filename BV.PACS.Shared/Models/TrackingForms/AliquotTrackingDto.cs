@@ -5,6 +5,7 @@ namespace BV.PACS.Shared.Models
 {
     [GetDataUrl("api/Tracking/GetAliquot")]
     [PostDataUrl("api/Tracking/PostAliquot")]
+    [StoredProcedures("dbo.spVial_SelectDetail", "dbo.spVial_Post", "idfContainer")]
     public class AliquotTrackingDto
     {
         [GetColumn("idfContainer")]

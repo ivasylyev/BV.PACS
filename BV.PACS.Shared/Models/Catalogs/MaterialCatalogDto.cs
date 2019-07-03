@@ -5,6 +5,7 @@ namespace BV.PACS.Shared.Models
 {
     [GetDataUrl("api/Catalog/GetMaterials")]
     [GetCountUrl("api/Catalog/GetMaterialsRecordCount")]
+
     public class MaterialCatalogDto
     {
         [GetColumn("idfMaterial")]

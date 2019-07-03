@@ -1,26 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BV.PACS.Shared.Models;
+using BV.PACS.Shared.Utils;
 using Dapper;
 
 namespace BV.PACS.Server.Services
 {
     public static class SqlMapperEx
     {
-        public static void InitMapper<T>()
-        {
-            SqlMapper.SetTypeMap(
-                typeof(T),
-                new CustomPropertyTypeMap(
-                    typeof(T),
-                    (type, columnName) =>
-                        type.GetProperties().FirstOrDefault(prop =>
-                            prop.Name == columnName ||
-                            prop.GetCustomAttributes(false)
-                                .OfType<GetColumnAttribute>()
-                                .Any(attr => attr.Name == columnName))));
-        }
-
         public static void InitMappers()
         {
             InitMapper<SourceCatalogDto>();
@@ -37,7 +25,48 @@ namespace BV.PACS.Server.Services
 
             InitMapper<TemplateLookupItem>();
             InitMapper<BaseLookupItem>();
+        }
 
+        public static void InitMapper<T>()
+        {
+            SqlMapper.SetTypeMap(
+                typeof(T),
+                new CustomPropertyTypeMap(
+                    typeof(T),
+                    (type, columnName) =>
+                        type.GetProperties().FirstOrDefault(prop =>
+                            prop.Name == columnName ||
+                            prop.GetCustomAttributes(false)
+                                .OfType<GetColumnAttribute>()
+                                .Any(attr => attr.Name == columnName))));
+        }
+
+        public static StoredProceduresAttribute GetStoredProcedureAttribute<T>()
+        {
+            var attr = typeof(T).GetCustomAttributes(typeof(StoredProceduresAttribute), true).FirstOrDefault() as StoredProceduresAttribute;
+            if (attr == null)
+            {
+                throw new ArgumentException($"Type {typeof(T)} doesn't have an attribute of type {typeof(StoredProceduresAttribute)}");
+            }
+
+            return attr;
+        }
+
+        public static Dictionary<string, string> GetMapping<T>()
+        {
+            var mapping = new Dictionary<string, string>();
+            foreach (var prop in typeof(T).GetProperties())
+            {
+                var postAttribute = prop.GetCustomAttributes(false)
+                    .OfType<PostColumnAttribute>()
+                    .FirstOrDefault();
+                if (postAttribute != null && !postAttribute.Name.IsNullOrEmpty())
+                {
+                    mapping.Add(prop.Name, postAttribute.Name);
+                }
+            }
+
+            return mapping;
         }
     }
 }
