@@ -7,79 +7,79 @@ namespace BV.PACS.Shared.Models
     [GetCountUrl("api/Catalog/GetAliquotsRecordCount")]
     public class AliquotCatalogDto
     {
-        [Column("idfContainer")]
+        [GetColumn("idfContainer")]
         public int AliquotId { get; set; }
 
-        [Column("strBarcode")]
+        [GetColumn("strBarcode")]
         public string AliquotBarcode { get; set; }
 
-        [Column("datCreationDate")]
+        [GetColumn("datCreationDate")]
         public DateTime AliquotCreationDate { get; set; }
 
-        [Column("Material_strBarcode")]
+        [GetColumn("Material_strBarcode")]
         public string MaterialBarcode { get; set; }
 
-        [Column("FreezerSubdivision_strBarcode")]
+        [GetColumn("FreezerSubdivision_strBarcode")]
         public string FreezerSubdivisionBarcode { get; set; }
 
-        [Column("idfsContainer_Status")]
+        [GetColumn("idfsContainer_Status")]
         public string AliquotStatusId { get; set; }
 
-        [Column("StatusRef_Name")]
+        [GetColumn("StatusRef_Name")]
         public string AliquotStatus { get; set; }
 
-        [Column("intGeneration")]
+        [GetColumn("intGeneration")]
         public int Generation { get; set; }
 
-        [Column("idfMaterial")]
+        [GetColumn("idfMaterial")]
         public string MaterialId { get; set; }
 
-        [Column("MaterialType")]
+        [GetColumn("MaterialType")]
         public string MaterialType { get; set; }
 
-        [Column("LogicalLockingStatus")]
+        [GetColumn("LogicalLockingStatus")]
         public string AliquotLockingStatusId { get; set; }
 
-        [Column("strVolume")]
+        [GetColumn("strVolume")]
         public string VolumeString { get; set; }
 
-        [Column("strWeight")]
+        [GetColumn("strWeight")]
         public string WeightString { get; set; }
 
-        [Column("strNote")]
+        [GetColumn("strNote")]
         public string AliquotNote { get; set; }
 
-        [Column("strRFIDCode")]
+        [GetColumn("strRFIDCode")]
         public string RFIDCode { get; set; }
 
-        [Column("strSpotPosition")]
+        [GetColumn("strSpotPosition")]
         public string SpotPosition { get; set; }
 
-        [Column("DerivativeType")]
+        [GetColumn("DerivativeType")]
         public string DerivativeType { get; set; }
 
-        [Column("strSourceNumber")]
+        [GetColumn("strSourceNumber")]
         public string SourceBarcode { get; set; }
 
-        [Column("TemplateName")]
+        [GetColumn("TemplateName")]
         public string AliquotTemplateName { get; set; }
 
-        [Column("LocationPath")]
+        [GetColumn("LocationPath")]
         public string LocationPath { get; set; }
 
-        [Column("idfsCFormTemplateID")]
+        [GetColumn("idfsCFormTemplateID")]
         public string AliquotTemplateId { get; set; }
 
-        [Column("idfsVolumeUnit")]
+        [GetColumn("idfsVolumeUnit")]
         public string VolumeUnitId { get; set; }
 
-        [Column("idfsWeightUnit")]
+        [GetColumn("idfsWeightUnit")]
         public string WeightUnitId { get; set; }
 
-        [Column("fltVolume")]
+        [GetColumn("fltVolume")]
         public float Volume { get; set; }
 
-        [Column("fltWeight")]
+        [GetColumn("fltWeight")]
         public float Weight { get; set; }
 
 

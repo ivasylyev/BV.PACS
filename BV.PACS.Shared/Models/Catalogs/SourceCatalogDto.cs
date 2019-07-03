@@ -7,64 +7,64 @@ namespace BV.PACS.Shared.Models
     [GetCountUrl("api/Catalog/GetSourcesRecordCount")]
     public class SourceCatalogDto
     {
-        [Column("idfSource")]
+        [GetColumn("idfSource")]
         public int SourceId { get; set; }
 
-        [Column("idfsSourceType")]
+        [GetColumn("idfsSourceType")]
         public string SourceTypeId { get; set; }
 
-        [Column("datRegistration_Date")]
+        [GetColumn("datRegistration_Date")]
         public DateTime SourceRegistrationDate { get; set; }
 
-        [Column("SourceType")]
+        [GetColumn("SourceType")]
         public string SourceType { get; set; }
 
-        [Column("strPointOfOrigin")]
+        [GetColumn("strPointOfOrigin")]
         public string SourcePointOfOrigin { get; set; }
 
-        [Column("TemplateName")]
+        [GetColumn("TemplateName")]
         public string SourceTemplateName { get; set; }
 
-        [Column("intNmbrOfMaterials")]
+        [GetColumn("intNmbrOfMaterials")]
         public string MaterialsAndAliquotsCount { get; set; }
 
-        [Column("strNote")]
+        [GetColumn("strNote")]
         public string SourceNote { get; set; }
 
-        [Column("idfsCFormTemplateID")]
+        [GetColumn("idfsCFormTemplateID")]
         public string SourceTemplateId { get; set; }
 
-        [Column("idfsLogicalLockingStatus")]
+        [GetColumn("idfsLogicalLockingStatus")]
         public string SourceLockingStatusId { get; set; }
 
-        [Column("strBarcode")]
+        [GetColumn("strBarcode")]
         public string SourceBarcode { get; set; }
 
-        [Column("strMaterialType")]
+        [GetColumn("strMaterialType")]
         public string MaterialTypes { get; set; }
 
-        [Column("strMaterialID")]
+        [GetColumn("strMaterialID")]
         public string MaterialBarcodes { get; set; }
 
-        [Column("datCreationDate")]
+        [GetColumn("datCreationDate")]
         public DateTime SourceCreationDate { get; set; }
 
-        [Column("idfsGeoLocation")]
+        [GetColumn("idfsGeoLocation")]
         public string SourceGeoLocationId { get; set; }
 
-        [Column("strAliquotID")]
+        [GetColumn("strAliquotID")]
         public string AliquotBarcodes { get; set; }
 
-        [Column("strTestDate")]
+        [GetColumn("strTestDate")]
         public string TestDates { get; set; }
 
-        [Column("strTestTypeID")]
+        [GetColumn("strTestTypeID")]
         public string TestTypes { get; set; }
 
-        [Column("strTestResultID")]
+        [GetColumn("strTestResultID")]
         public string TestResults { get; set; }
 
-        [Column("TestStatusId")]
+        [GetColumn("TestStatusId")]
         public string TestStatuses { get; set; }
 
         public static SourceCatalogDto CreateEmptyItem(string defValue)

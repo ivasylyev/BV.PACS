@@ -7,67 +7,67 @@ namespace BV.PACS.Shared.Models
     [GetCountUrl("api/Catalog/GetTestsRecordCount")]
     public class TestCatalogDto
     {
-        [Column("idfTest")]
+        [GetColumn("idfTest")]
         public int TestId { get; set; }
 
-        [Column("idfsTestType")]
+        [GetColumn("idfsTestType")]
         public string TestTypeId { get; set; }
 
-        [Column("datTestDate")]
+        [GetColumn("datTestDate")]
         public DateTime TestDate { get; set; }
 
-        [Column("idfsTestResult")]
+        [GetColumn("idfsTestResult")]
         public string TestResultId { get; set; }
 
-        [Column("datRegistration_Date")]
+        [GetColumn("datRegistration_Date")]
         public DateTime TestRegistrationDate { get; set; }
 
-        [Column("idfsTestStatus")]
+        [GetColumn("idfsTestStatus")]
         public string TestStatusId { get; set; }
 
-        [Column("idfContainer")]
+        [GetColumn("idfContainer")]
         public string AliquotId { get; set; }
 
-        [Column("strContainerNumber")]
+        [GetColumn("strContainerNumber")]
         public string AliquotBarcode { get; set; }
 
-        [Column("idfsMaterialType")]
+        [GetColumn("idfsMaterialType")]
         public string MaterialTypeId { get; set; }
 
-        [Column("strMaterialNumber")]
+        [GetColumn("strMaterialNumber")]
         public string MaterialBarcode { get; set; }
 
-        [Column("idfsCFormTemplateID")]
+        [GetColumn("idfsCFormTemplateID")]
         public string TestTemplateId { get; set; }
 
-        [Column("strSourceNumber")]
+        [GetColumn("strSourceNumber")]
         public string SourceBarcode { get; set; }
 
-        [Column("SourceName")]
+        [GetColumn("SourceName")]
         public string SourceType { get; set; }
 
-        [Column("MaterialType")]
+        [GetColumn("MaterialType")]
         public string MaterialType { get; set; }
 
-        [Column("TestType")]
+        [GetColumn("TestType")]
         public string TestType { get; set; }
 
-        [Column("TestResult")]
+        [GetColumn("TestResult")]
         public string TestResult { get; set; }
 
-        [Column("TestStatus")]
+        [GetColumn("TestStatus")]
         public string TestStatus { get; set; }
 
-        [Column("TemplateName")]
+        [GetColumn("TemplateName")]
         public string TestTemplateName { get; set; }
 
-        [Column("LocationPath")]
+        [GetColumn("LocationPath")]
         public string LocationPath { get; set; }
 
-        [Column("LogicalLockingStatus")]
+        [GetColumn("LogicalLockingStatus")]
         public string TestLockingStatusId { get; set; }
 
-        [Column("strBarcode")]
+        [GetColumn("strBarcode")]
         public string TestBarcode { get; set; }
 
         public override string ToString()

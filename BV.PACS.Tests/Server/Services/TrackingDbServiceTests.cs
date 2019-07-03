@@ -1,8 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using BV.PACS.Server.Services;
 using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
+using BV.PACS.Shared.Utils;
+using Dapper;
 using NUnit.Framework;
 
 namespace BV.Pacs.Tests.Server.Services
@@ -106,5 +109,40 @@ namespace BV.Pacs.Tests.Server.Services
             Console.WriteLine(testTracking);
             Assert.Pass();
         }
+
+        [Test]
+        public void GetMappingTest()
+        {
+
+
+            Dictionary<string, string> mapping = new Dictionary<string, string>();
+            foreach (var prop in typeof(SourceTrackingDto).GetProperties())
+            {
+                var postAttribute = prop.GetCustomAttributes(false)
+                    .OfType<PostColumnAttribute>()
+                    .FirstOrDefault();
+                if (postAttribute != null && !postAttribute.Name.IsNullOrEmpty())
+                {
+                    mapping.Add(prop.Name, postAttribute.Name);
+                }
+            }
+//            var sqlParameters = new DynamicParameters();
+//            foreach (var pair in mapping)
+//            {
+//               
+//                    var propName = pair.Key;
+//                    var sqlName = pair.Value;
+//                    if (!sqlName.IsNullOrEmpty())
+//                    {
+//                        var value = typeof(SourceTrackingDto).GetProperty(propName).GetValue(parameter.Data, null);
+//                        // parameters.Add("@newId", DbType.Int32, direction: ParameterDirection.Output);
+//                        sqlParameters.Add(sqlName, value);
+//                    }
+//                
+//            }
+
+        }
+
+     
     }
 }

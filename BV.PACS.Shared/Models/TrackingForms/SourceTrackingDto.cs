@@ -8,47 +8,57 @@ namespace BV.PACS.Shared.Models
     public class SourceTrackingDto
     {
 
-        [Column("idfSource")]
+        [GetColumn("idfSource")]
+        [PostColumn("idfSource")]
         public int SourceId { get; set; }
 
-        [Column("idfsCFormTemplateID")]
+        [GetColumn("idfsCFormTemplateID")]
+        [PostColumn("idfsCFormTemplateID")]
         public string SourceTemplateId { get; set; }
 
-        [Column("strBarcode")]
+        [GetColumn("strBarcode")]
+        [PostColumn("strBarcode")]
         public string SourceBarcode { get; set; }
 
-        [Column("strNote")]
+        [GetColumn("strNote")]
+        [PostColumn("strNote")]
         public string SourceNote { get; set; }
 
-        [Column("idfsSourceType")]
+        [GetColumn("idfsSourceType")]
+        [PostColumn("idfsSourceType")]
         public string SourceTypeId { get; set; }
 
-        [Column("idfOwner")]
+        [GetColumn("idfOwner")]
+        [PostColumn("idfOwner")]
         public int OwnerId { get; set; }
 
-        [Column("SourceType")]
+        [GetColumn("SourceType")]
         public string SourceType { get; set; }
 
-        [Column("strSourceTypeShortName")]
+        [GetColumn("strSourceTypeShortName")]
         public string SourceTypeShort { get; set; }
 
-        [Column("datRegistration_Date")]
+        [GetColumn("datRegistration_Date")]
+        [PostColumn("datRegistration_Date")]
         public DateTime SourceRegistrationDate { get; set; }
 
-        [Column("strLocationDesription")]
+        [GetColumn("strLocationDesription")]
+        [PostColumn("strLocationDesription")]
         public string GeoLocationDescription { get; set; }
 
-        [Column("idfsGeoLocation")]
+        [GetColumn("idfsGeoLocation")]
+        [PostColumn("idfsGeoLocation")]
         public string GeoLocationId { get; set; }
 
-        [Column("Source_idfGeoLocation")]
+        [GetColumn("Source_idfGeoLocation")]
+        [PostColumn("Source_idfGeoLocation")]
         public string AddressGeoLocationId { get; set; }
 
 
-        [Column("TemplateName")]
+        [GetColumn("TemplateName")]
         public string SourceTemplateName { get; set; }
 
-        [Column("Location")]
+        [GetColumn("Location")]
         public string SourcePointOfOrigin { get; set; }
 
 

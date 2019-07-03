@@ -4,16 +4,16 @@ namespace BV.PACS.Shared.Models
 {
     public class BaseLookupItem
     {
-        [Column("idfsReference")]
+        [GetColumn("idfsReference")]
         public string Id { get; set; }
 
-        [Column("Name")]
+        [GetColumn("Name")]
         public string Name { get; set; }
 
-        [Column("strDefault")]
+        [GetColumn("strDefault")]
         public string DefaultName { get; set; }
 
-        [Column("intOrder")]
+        [GetColumn("intOrder")]
         public int Order { get; set; }
 
         public override string ToString()

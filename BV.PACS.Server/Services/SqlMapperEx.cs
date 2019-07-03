@@ -17,7 +17,7 @@ namespace BV.PACS.Server.Services
                         type.GetProperties().FirstOrDefault(prop =>
                             prop.Name == columnName ||
                             prop.GetCustomAttributes(false)
-                                .OfType<ColumnAttribute>()
+                                .OfType<GetColumnAttribute>()
                                 .Any(attr => attr.Name == columnName))));
         }
 

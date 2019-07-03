@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
+using BV.PACS.Shared.Utils;
 using Dapper;
 
 namespace BV.PACS.Server.Services
@@ -90,26 +92,60 @@ namespace BV.PACS.Server.Services
 
         public async Task PostSourceTracking(TrackingPostParameter<SourceTrackingDto> parameter)
         {
-            //todo: implement
-            var data = parameter.Data;
-            var sqlParameter = new
+            await PostTracking<SourceTrackingDto>(parameter, "dbo.spSource_Post");
+//            //todo: implement
+//            var data = parameter.Data;
+//            var sqlParameter = new
+//            {
+//                LanguageID = parameter.Language,
+//                Action = 16,
+//                idfSource = data.SourceId,
+//                strBarcode = data.SourceBarcode,
+//                datRegistration_Date = data.SourceRegistrationDate,
+//                idfsCFormTemplateID = data.SourceTemplateId,
+//                strNote = data.SourceNote,
+//                idfsSourceType = data.SourceTypeId,
+//                idfsGeoLocation = data.GeoLocationId,
+//                idfOwner = data.OwnerId,
+//                Source_idfGeoLocation = data.AddressGeoLocationId,
+//                strLocationDesription = data.GeoLocationDescription
+//            };
+//            using (var connection = new SqlConnection(_builder.ConnectionString))
+//            {
+//                var result = connection.ExecuteScalar("spSource_Post", sqlParameter, commandType: CommandType.StoredProcedure);
+//            }
+        }
+
+        private async Task PostTracking<T>(TrackingPostParameter<SourceTrackingDto> parameter, string spName)
+        {
+            var mapping = new Dictionary<string, string>();
+            foreach (var prop in typeof(T).GetProperties())
             {
-                LanguageID = parameter.Language,
-                Action = 16,
-                idfSource = data.SourceId,
-                strBarcode = data.SourceBarcode,
-                datRegistration_Date = data.SourceRegistrationDate,
-                idfsCFormTemplateID = data.SourceTemplateId,
-                strNote = data.SourceNote,
-                idfsSourceType = data.SourceTypeId,
-                idfsGeoLocation = data.GeoLocationId,
-                idfOwner = data.OwnerId,
-                Source_idfGeoLocation = data.AddressGeoLocationId,
-                strLocationDesription = data.GeoLocationDescription
-            };
+                var postAttribute = prop.GetCustomAttributes(false)
+                    .OfType<PostColumnAttribute>()
+                    .FirstOrDefault();
+                if (postAttribute != null && !postAttribute.Name.IsNullOrEmpty())
+                {
+                    mapping.Add(prop.Name, postAttribute.Name);
+                }
+            }
+
+            var sqlParameters = new DynamicParameters();
+            sqlParameters.Add("Action", 16);
+            sqlParameters.Add("LanguageID", parameter.Language);
+            foreach (var pair in mapping)
+            {
+                var propName = pair.Key;
+                var sqlName = pair.Value;
+
+                var value = typeof(T).GetProperty(propName).GetValue(parameter.Data, null);
+                // parameters.Add("@newId", DbType.Int32, direction: ParameterDirection.Output);
+                sqlParameters.Add(sqlName, value);
+            }
+
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
-                await connection.ExecuteScalarAsync("spSource_Post", sqlParameter, commandType: CommandType.StoredProcedure);
+                await connection.ExecuteScalarAsync(spName, sqlParameters, commandType: CommandType.StoredProcedure);
             }
         }
 

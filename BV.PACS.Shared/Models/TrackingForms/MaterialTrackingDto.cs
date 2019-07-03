@@ -8,62 +8,62 @@ namespace BV.PACS.Shared.Models
     public class MaterialTrackingDto
     {
 
-        [Column("idfMaterial")]
+        [GetColumn("idfMaterial")]
         public int MaterialId { get; set; }
 
-        [Column("idfsCFormTemplateID")]
+        [GetColumn("idfsCFormTemplateID")]
         public string MaterialTemplateId { get; set; }
 
-        [Column("strBarcode")]
+        [GetColumn("strBarcode")]
         public string MaterialBarcode { get; set; }
 
-        [Column("strNote")]
+        [GetColumn("strNote")]
         public string MaterialNote { get; set; }
 
-        [Column("idfsMaterialTypeID")]
+        [GetColumn("idfsMaterialTypeID")]
         public string MaterialTypeId { get; set; }
 
-        [Column("MaterialType")]
+        [GetColumn("MaterialType")]
         public string MaterialType { get; set; }
 
 
-        [Column("TemplateName")]
+        [GetColumn("TemplateName")]
         public string MaterialTemplateName { get; set; }
 
-        [Column("idfOwner")]
+        [GetColumn("idfOwner")]
         public int MaterialOwnerId { get; set; }
 
-        [Column("Owner")]
+        [GetColumn("Owner")]
         public string MaterialOwnerName { get; set; }
 
-        [Column("idfSource")]
+        [GetColumn("idfSource")]
         public int SourceId { get; set; }
 
-        [Column("datRegistration_Date")]
+        [GetColumn("datRegistration_Date")]
         public DateTime MaterialRegistrationDate { get; set; }
 
-        [Column("ParentMaterialNumber")]
+        [GetColumn("ParentMaterialNumber")]
         public string ParentMaterialBarcode { get; set; }
 
-        [Column("ParentMaterial")]
+        [GetColumn("ParentMaterial")]
         public int ParentMaterialId { get; set; }
 
-        [Column("SourceBarcode")]
+        [GetColumn("SourceBarcode")]
         public string SourceBarcode { get; set; }
 
-        [Column("Location")]
+        [GetColumn("Location")]
         public string MaterialPointOfOrigin { get; set; }
 
-        [Column("Isolation_idfGeoLocation")]
+        [GetColumn("Isolation_idfGeoLocation")]
         public int AddressGeoLocationId { get; set; }
 
-        [Column("idfsGeoLocation")]
+        [GetColumn("idfsGeoLocation")]
         public string GeoLocationId { get; set; }
 
-        [Column("idfsGeoLocationNew")]
+        [GetColumn("idfsGeoLocationNew")]
         public string GeoLocationNewId { get; set; }
 
-        [Column("strCultureShortName")]
+        [GetColumn("strCultureShortName")]
         public string MaterialTypeShort { get; set; }
        
         public override string ToString()

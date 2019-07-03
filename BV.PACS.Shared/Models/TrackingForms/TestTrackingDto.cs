@@ -7,72 +7,72 @@ namespace BV.PACS.Shared.Models
     [PostDataUrl("api/Tracking/PostTest")]
     public class TestTrackingDto
     {
-        [Column("idfTest")]
+        [GetColumn("idfTest")]
         public int TestId { get; set; }
 
-        [Column("idfsTestType")]
+        [GetColumn("idfsTestType")]
         public string TestTypeId { get; set; }
 
-        [Column("datTestDate")]
+        [GetColumn("datTestDate")]
         public DateTime TestDate { get; set; }
 
-        [Column("idfsTestResult")]
+        [GetColumn("idfsTestResult")]
         public string TestResultId { get; set; }
 
-        [Column("idfsCFormTemplateID")]
+        [GetColumn("idfsCFormTemplateID")]
         public string TestTemplateId { get; set; }
 
-        [Column("TemplateName")]
+        [GetColumn("TemplateName")]
         public string TestTemplateName { get; set; }
 
-        [Column("strBarcode")]
+        [GetColumn("strBarcode")]
         public string TestBarcode { get; set; }
 
-        [Column("strNote")]
+        [GetColumn("strNote")]
         public string TestNote { get; set; }
 
-        [Column("datRegistration_Date")]
+        [GetColumn("datRegistration_Date")]
         public DateTime TestRegistrationDate { get; set; }
 
-        [Column("idfsTestStatus")]
+        [GetColumn("idfsTestStatus")]
         public string TestStatusId { get; set; }
 
-        [Column("idfContainer")]
+        [GetColumn("idfContainer")]
         public string AliquotId { get; set; }
 
 
-        [Column("strSourceBarcode")]
+        [GetColumn("strSourceBarcode")]
         public string SourceBarcode { get; set; }
 
-        [Column("strContainerBarcode")]
+        [GetColumn("strContainerBarcode")]
         public string AliquotBarcode { get; set; }
 
 
-        [Column("idfsMaterialType")]
+        [GetColumn("idfsMaterialType")]
         public string MaterialTypeId { get; set; }
 
 
-        [Column("TestType")]
+        [GetColumn("TestType")]
         public string TestType { get; set; }
 
-        [Column("TestResult")]
+        [GetColumn("TestResult")]
         public string TestResult { get; set; }
 
-        [Column("TestStatus")]
+        [GetColumn("TestStatus")]
         public string TestStatus { get; set; }
 
 
-        [Column("idfsTestSet")]
+        [GetColumn("idfsTestSet")]
         public string TestSetId { get; set; }
 
-        [Column("idfSource")]
+        [GetColumn("idfSource")]
         public string SourceId { get; set; }
 
 
-        [Column("strMaterialBarcode")]
+        [GetColumn("strMaterialBarcode")]
         public string MaterialBarcode { get; set; }
 
-        [Column("idfMaterial")]
+        [GetColumn("idfMaterial")]
         public string MaterialId { get; set; }
 
 

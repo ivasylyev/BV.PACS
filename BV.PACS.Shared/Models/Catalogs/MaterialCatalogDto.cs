@@ -7,52 +7,52 @@ namespace BV.PACS.Shared.Models
     [GetCountUrl("api/Catalog/GetMaterialsRecordCount")]
     public class MaterialCatalogDto
     {
-        [Column("idfMaterial")]
+        [GetColumn("idfMaterial")]
         public int MaterialId { get; set; }
 
-        [Column("idfsMaterialTypeID")]
+        [GetColumn("idfsMaterialTypeID")]
         public string MaterialTypeId { get; set; }
 
-        [Column("datRegistration_Date")]
+        [GetColumn("datRegistration_Date")]
         public DateTime MaterialRegistrationDate { get; set; }
 
-        [Column("AllowDelete")]
+        [GetColumn("AllowDelete")]
         public bool AllowDelete { get; set; }
 
-        [Column("MaterialType")]
+        [GetColumn("MaterialType")]
         public string MaterialType { get; set; }
 
-        [Column("LogicalLockingStatus")]
+        [GetColumn("LogicalLockingStatus")]
         public string MaterialLockingStatusId { get; set; }
 
-        [Column("strBarcode")]
+        [GetColumn("strBarcode")]
         public string MaterialBarcode { get; set; }
 
-        [Column("SourceName")]
+        [GetColumn("SourceName")]
         public string SourceName { get; set; }
 
-        [Column("TemplateName")]
+        [GetColumn("TemplateName")]
         public string MaterialTemplateName { get; set; }
 
-        [Column("strNote")]
+        [GetColumn("strNote")]
         public string MaterialNote { get; set; }
 
-        [Column("idfsCFormTemplateID")]
+        [GetColumn("idfsCFormTemplateID")]
         public string MaterialTemplateId { get; set; }
 
-        [Column("intNmbrOfContainers")]
+        [GetColumn("intNmbrOfContainers")]
         public string AliquotsCount { get; set; }
 
-        [Column("strSourceNumber")]
+        [GetColumn("strSourceNumber")]
         public string SourceBarcode { get; set; }
 
-        [Column("strOwnerName")]
+        [GetColumn("strOwnerName")]
         public string MaterialOwnerName { get; set; }
 
-        [Column("strAliquotID")]
+        [GetColumn("strAliquotID")]
         public string Aliquots { get; set; }
 
-        [Column("strPointOfOrigin")]
+        [GetColumn("strPointOfOrigin")]
         public string MaterialPointOfOrigin { get; set; }
 
 

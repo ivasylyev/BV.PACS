@@ -5,24 +5,24 @@ namespace BV.PACS.Shared.Utils
     public class GlobalSettings
     {
         //Do not change value for this variable!!! 
-        private static DateTimeFormatInfo m_AnsiDateTimeFormatInfo;
+        private static DateTimeFormatInfo _ansiDateTimeFormatInfo;
      
         public static DateTimeFormatInfo AnsiDateTimeFormatInfo
         {
             get
             {
-                if (m_AnsiDateTimeFormatInfo == null)
+                if (_ansiDateTimeFormatInfo == null)
                 {
-                    m_AnsiDateTimeFormatInfo = new DateTimeFormatInfo
+                    _ansiDateTimeFormatInfo = new DateTimeFormatInfo
                     {
                         ShortDatePattern = "yyyy-MM-dd",
                         ShortTimePattern = "HH:mm:ss.fff"
                     };
-                    m_AnsiDateTimeFormatInfo.LongDatePattern = m_AnsiDateTimeFormatInfo.ShortDatePattern;
-                    m_AnsiDateTimeFormatInfo.LongTimePattern = m_AnsiDateTimeFormatInfo.ShortTimePattern;
+                    _ansiDateTimeFormatInfo.LongDatePattern = _ansiDateTimeFormatInfo.ShortDatePattern;
+                    _ansiDateTimeFormatInfo.LongTimePattern = _ansiDateTimeFormatInfo.ShortTimePattern;
                 }
 
-                return m_AnsiDateTimeFormatInfo;
+                return _ansiDateTimeFormatInfo;
             }
         }
 

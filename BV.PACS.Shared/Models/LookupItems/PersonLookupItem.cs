@@ -4,25 +4,25 @@ namespace BV.PACS.Shared.Models
 {
     public class PersonLookupItem
     {
-        [Column("idfEmployee")]
+        [GetColumn("idfEmployee")]
         public string Id { get; set; }
 
-        [Column("FullName")]
+        [GetColumn("FullName")]
         public string FullName { get; set; }
 
-        [Column("Organization")]
+        [GetColumn("Organization")]
         public string Organization { get; set; }
 
-        [Column("Position")]
+        [GetColumn("Position")]
         public int Position { get; set; }
 
-        [Column("strFirstName")]
+        [GetColumn("strFirstName")]
         public int FirstName { get; set; }
 
-        [Column("strFamilyName")]
+        [GetColumn("strFamilyName")]
         public int FamilyName { get; set; }
 
-        [Column("strSecondName")]
+        [GetColumn("strSecondName")]
         public int SecondName { get; set; }
 
 

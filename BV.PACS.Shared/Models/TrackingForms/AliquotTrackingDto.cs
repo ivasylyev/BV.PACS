@@ -7,118 +7,118 @@ namespace BV.PACS.Shared.Models
     [PostDataUrl("api/Tracking/PostAliquot")]
     public class AliquotTrackingDto
     {
-        [Column("idfContainer")]
+        [GetColumn("idfContainer")]
         public int AliquotId { get; set; }
 
-        [Column("idfActivity")]
+        [GetColumn("idfActivity")]
         public int ActivityId { get; set; }
 
-        [Column("strBarcode")]
+        [GetColumn("strBarcode")]
         public string AliquotBarcode { get; set; }
 
-        [Column("datCreationDate")]
+        [GetColumn("datCreationDate")]
         public DateTime AliquotCreationDate { get; set; }
 
-        [Column("strNote")]
+        [GetColumn("strNote")]
         public string AliquotNote { get; set; }
 
-        [Column("fltVolume")]
+        [GetColumn("fltVolume")]
         public decimal Volume { get; set; }
 
-        [Column("fltWeight")]
+        [GetColumn("fltWeight")]
         public decimal Weight { get; set; }
 
-        [Column("NullableVolume")]
+        [GetColumn("NullableVolume")]
         public decimal? NullableVolume { get; set; }
 
-        [Column("NullableWeight")]
+        [GetColumn("NullableWeight")]
         public decimal? NullableWeight { get; set; }
 
-        [Column("intGeneration")]
+        [GetColumn("intGeneration")]
         public int Passage { get; set; }
 
-        [Column("StatusRef_Name")]
+        [GetColumn("StatusRef_Name")]
         public string AliquotStatus { get; set; }
 
-        [Column("idfsMaterialType")]
+        [GetColumn("idfsMaterialType")]
         public string MaterialTypeId { get; set; }
 
-        [Column("MaterialType")]
+        [GetColumn("MaterialType")]
         public string MaterialType { get; set; }
 
-        [Column("strCultureShortName")]
+        [GetColumn("strCultureShortName")]
         public string MaterialTypeShort { get; set; }
 
-        [Column("LocationPath")]
+        [GetColumn("LocationPath")]
         public string LocationPath { get; set; }
 
-        [Column("idfMaterial")]
+        [GetColumn("idfMaterial")]
         public int MaterialId { get; set; }
 
-        [Column("idfSubdivisionID")]
+        [GetColumn("idfSubdivisionID")]
         public int SubdivisionId { get; set; }
 
-        [Column("idfsContainer_Status")]
+        [GetColumn("idfsContainer_Status")]
         public string AliquotStatusId { get; set; }
 
-        [Column("idfsStoring_Type")]
+        [GetColumn("idfsStoring_Type")]
         public string StoringTypeId { get; set; }
 
-        [Column("idfsVolumeUnit")]
+        [GetColumn("idfsVolumeUnit")]
         public string VolumeUnitId { get; set; }
 
-        [Column("idfsWeightUnit")]
+        [GetColumn("idfsWeightUnit")]
         public string WeightUnitId { get; set; }
 
-        [Column("idfsWeightUnit")]
+        [GetColumn("idfsWeightUnit")]
         public string AliquotInitialBarcode { get; set; }
 
-        [Column("strInitialContainerID")]
+        [GetColumn("strInitialContainerID")]
         public string InitialContainerId { get; set; }
 
-        [Column("Material_strBarcode")]
+        [GetColumn("Material_strBarcode")]
         public string MaterialBarcode { get; set; }
 
-        [Column("VolumeUnitName")]
+        [GetColumn("VolumeUnitName")]
         public string VolumeUnitName { get; set; }
 
-        [Column("WeightUnitName")]
+        [GetColumn("WeightUnitName")]
         public string WeightUnitName { get; set; }
 
-        [Column("Container_Detail_Status")]
+        [GetColumn("Container_Detail_Status")]
         public string AliquotDetailStatus { get; set; }
 
-        [Column("blnTrackStockContainers")]
+        [GetColumn("blnTrackStockContainers")]
         public bool TrackStocAliquots { get; set; }
 
-        [Column("idfParentActivity")]
+        [GetColumn("idfParentActivity")]
         public int ParentActivityId { get; set; }
 
-        [Column("idfsActivity_Type")]
+        [GetColumn("idfsActivity_Type")]
         public string ActivityType { get; set; }
 
-        [Column("idfsDerivativeType")]
+        [GetColumn("idfsDerivativeType")]
         public string DerivativeTypeId { get; set; }
 
-        [Column("DerivativeType")]
+        [GetColumn("DerivativeType")]
         public string DerivativeType { get; set; }
 
-        [Column("strDerivativeShortName")]
+        [GetColumn("strDerivativeShortName")]
         public string DerivativeShortName { get; set; }
 
-        [Column("TemplateName")]
+        [GetColumn("TemplateName")]
         public string AliquotTemplateName { get; set; }
 
-        [Column("idfsCFormTemplateID")]
+        [GetColumn("idfsCFormTemplateID")]
         public string AliquotTemplateId { get; set; }
 
-        [Column("strParentBarcode")]
+        [GetColumn("strParentBarcode")]
         public string AliquotParentBarcode { get; set; }
 
-        [Column("idfsUsageType")]
+        [GetColumn("idfsUsageType")]
         public string UsageTypeId { get; set; }
 
-        [Column("UsageType_strDefault")]
+        [GetColumn("UsageType_strDefault")]
         public string UsageType { get; set; }
 
 

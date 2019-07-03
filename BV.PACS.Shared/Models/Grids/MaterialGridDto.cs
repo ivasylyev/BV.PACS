@@ -7,31 +7,31 @@ namespace BV.PACS.Shared.Models
     [GetCountUrl("api/Catalog/GetMaterialsRecordCount")]
     public class MaterialGridDto
     {
-        [Column("idfMaterial")]
+        [GetColumn("idfMaterial")]
         public int MaterialId { get; set; }
 
-        [Column("intNmbrOfContainers")]
+        [GetColumn("intNmbrOfContainers")]
         public string AliquotsCount { get; set; }
 
-        [Column("strStrainNumber")]
+        [GetColumn("strStrainNumber")]
         public string MaterialBarcode { get; set; }
 
-        [Column("MaterialType")]
+        [GetColumn("MaterialType")]
         public string MaterialType { get; set; }
 
-        [Column("datRegistration_Date")]
+        [GetColumn("datRegistration_Date")]
         public DateTime MaterialRegistrationDate { get; set; }
 
-        [Column("strNote")]
+        [GetColumn("strNote")]
         public string MaterialNote { get; set; }
 
-        [Column("strPointOfOrigin")]
+        [GetColumn("strPointOfOrigin")]
         public string MaterialPointOfOrigin { get; set; }
 
-        [Column("idfsCFormTemplateID")]
+        [GetColumn("idfsCFormTemplateID")]
         public string MaterialTemplateId { get; set; }
 
-        [Column("TemplateName")]
+        [GetColumn("TemplateName")]
         public string MaterialTemplateName { get; set; }
 
 

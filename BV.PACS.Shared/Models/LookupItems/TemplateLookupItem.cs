@@ -4,10 +4,10 @@ namespace BV.PACS.Shared.Models
 {
     public class TemplateLookupItem
     {
-        [Column("idfsReference")]
+        [GetColumn("idfsReference")]
         public string Id { get; set; }
 
-        [Column("Name")]
+        [GetColumn("Name")]
         public string Name { get; set; }
          
          public override string ToString()
