@@ -1,10 +1,8 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BV.PACS.Shared.Models
 {
-    [GetDataUrl("api/Catalog/GetSources")]
-    [GetCountUrl("api/Catalog/GetSourcesRecordCount")]
+    // ReSharper disable once InconsistentNaming
     public class SourceCatalogDto
     {
         [GetColumn("idfSource")]
@@ -69,7 +67,7 @@ namespace BV.PACS.Shared.Models
 
         public static SourceCatalogDto CreateEmptyItem(string defValue)
         {
-            return new SourceCatalogDto()
+            return new SourceCatalogDto
             {
                 SourceCreationDate = DateTime.Now,
                 SourceTypeId = defValue,
@@ -88,7 +86,7 @@ namespace BV.PACS.Shared.Models
                 TestDates = defValue,
                 TestTypes = defValue,
                 TestResults = defValue,
-                TestStatuses = defValue,
+                TestStatuses = defValue
             };
         }
 

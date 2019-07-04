@@ -37,8 +37,8 @@ namespace BV.PACS.Client.Tests
 
         protected DateTime TestDate
         {
-            get => TrackingObject.TestDate?? DateTime.MinValue;
-            set => TrackingObject.TestDate = value == DateTime.MinValue ? (DateTime?)null : value;
+            get => TrackingObject.TestDate ?? DateTime.MinValue;
+            set => TrackingObject.TestDate = value == DateTime.MinValue ? (DateTime?) null : value;
         }
 
         protected string TestType
