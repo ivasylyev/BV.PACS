@@ -1,50 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using BV.PACS.Shared.Models;
+using BV.PACS.Shared.Utils;
 using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.Client.Services.Api
 {
     public class CatalogService
     {
-        private readonly Dictionary<Type, string> _urlDataMapping = new Dictionary<Type, string>
-        {
-            {typeof(AliquotCatalogDto), "api/Catalog/GetAliquots"},
-            {typeof(MaterialCatalogDto), "api/Catalog/GetMaterials"},
-            {typeof(SourceCatalogDto), "api/Catalog/GetSources"},
-            {typeof(TestCatalogDto), "api/Catalog/GetTests"}
-        };
+        private readonly UrlMappingService _urlMapping;
 
-        private readonly Dictionary<Type, string> _urlCountMapping = new Dictionary<Type, string>
+        public CatalogService(UrlMappingService urlMapping)
         {
-            {typeof(AliquotCatalogDto), "api/Catalog/GetAliquotsRecordCount"},
-            {typeof(MaterialCatalogDto), "api/Catalog/GetMaterialsRecordCount"},
-            {typeof(SourceCatalogDto), "api/Catalog/GetSourcesRecordCount"},
-            {typeof(TestCatalogDto), "api/Catalog/GetTestsRecordCount"}
-        };
+            _urlMapping = urlMapping;
+        }
 
         public async Task<int> GetPageCount<T>(HttpClient client, AggregatedConditionDto cond)
         {
-            if (_urlCountMapping.ContainsKey(typeof(T)))
-            {
-                var url = _urlCountMapping[typeof(T)];
-                return await client.PostJsonAsync<int>(url, cond) / cond.PageSize;
-            }
-
-            return 0;
+            var url = _urlMapping.GetCatalogCountUrl<T>();
+            return url.IsNullOrEmpty()
+                ? 0
+                : await client.PostJsonAsync<int>(url, cond) / cond.PageSize;
         }
 
         public async Task<T[]> GetData<T>(HttpClient client, AggregatedConditionDto cond)
         {
-            if (_urlDataMapping.ContainsKey(typeof(T)))
-            {
-                var url = _urlDataMapping[typeof(T)];
-                return await client.PostJsonAsync<T[]>(url, cond);
-            }
-
-            return new T[0];
+            var url = _urlMapping.GetCatalogDataUrl<T>();
+            return url.IsNullOrEmpty()
+                ? new T[0]
+                : await client.PostJsonAsync<T[]>(url, cond);
         }
     }
 }

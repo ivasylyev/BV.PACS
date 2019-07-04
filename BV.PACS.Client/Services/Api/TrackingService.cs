@@ -9,6 +9,13 @@ namespace BV.PACS.Client.Services.Api
 {
     public class TrackingService
     {
+        private UrlMappingService _urlMapping;
+
+        public TrackingService(UrlMappingService urlMapping)
+        {
+            _urlMapping = urlMapping;
+        }
+
         public async Task<T> GetData<T>(HttpClient client, TrackingParameter parameter) where T : new()
         {
             var attr = typeof(T).GetCustomAttributes(typeof(GetDataUrlAttribute), false).FirstOrDefault();
