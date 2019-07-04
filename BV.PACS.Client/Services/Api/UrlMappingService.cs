@@ -23,6 +23,21 @@ namespace BV.PACS.Client.Services.Api
             {typeof(TestCatalogDto), "api/Catalog/GetTestsRecordCount"}
         };
 
+        private readonly Dictionary<Type, string> _urlGetTrackingMapping = new Dictionary<Type, string>
+        {
+            {typeof(AliquotTrackingDto), "api/Tracking/GetAliquot"},
+            {typeof(MaterialTrackingDto), "api/Tracking/GetMaterial"},
+            {typeof(SourceTrackingDto), "api/Tracking/GetSource"},
+            {typeof(TestTrackingDto), "api/Tracking/GetTest"}
+        };
+        private readonly Dictionary<Type, string> _urlPostTrackingMapping = new Dictionary<Type, string>
+        {
+            {typeof(AliquotTrackingDto), "api/Tracking/PostAliquot"},
+            {typeof(MaterialTrackingDto), "api/Tracking/PostMaterial"},
+            {typeof(SourceTrackingDto), "api/Tracking/PostSource"},
+            {typeof(TestTrackingDto), "api/Tracking/PostTest"}
+        };
+
         private readonly Dictionary<Type, string> _urlLookupMapping = new Dictionary<Type, string>
         {
             {typeof(TemplateLookupItem), "api/Lookup/GetTemplatesLookup"},
@@ -34,22 +49,32 @@ namespace BV.PACS.Client.Services.Api
             {typeof(MaterialGridDto), "api/Grid/GetSourceMaterials"}
         };
 
-        public string GetCatalogCountUrl<T>()
+        public string CatalogCountUrl<T>()
         {
             return GetUrl<T>(_urlCountMapping);
         }
 
-        public string GetCatalogDataUrl<T>()
+        public string CatalogDataUrl<T>()
         {
             return GetUrl<T>(_urlDataMapping);
         }
 
-        public string GetLookupUrl<T>()
+        public string GetTrackingUrl<T>()
+        {
+            return GetUrl<T>(_urlGetTrackingMapping);
+        }
+
+        public string PostTrackingUrl<T>()
+        {
+            return GetUrl<T>(_urlPostTrackingMapping);
+        }
+
+        public string LookupUrl<T>()
         {
             return GetUrl<T>(_urlLookupMapping);
         }
 
-        public string GetGridUrl<T>()
+        public string GridUrl<T>()
         {
             return GetUrl<T>(_urlGridMapping);
         }

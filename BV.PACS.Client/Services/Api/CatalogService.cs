@@ -17,7 +17,7 @@ namespace BV.PACS.Client.Services.Api
 
         public async Task<int> GetPageCount<T>(HttpClient client, AggregatedConditionDto cond)
         {
-            var url = _urlMapping.GetCatalogCountUrl<T>();
+            var url = _urlMapping.CatalogCountUrl<T>();
             return url.IsNullOrEmpty()
                 ? 0
                 : await client.PostJsonAsync<int>(url, cond) / cond.PageSize;
@@ -25,7 +25,7 @@ namespace BV.PACS.Client.Services.Api
 
         public async Task<T[]> GetData<T>(HttpClient client, AggregatedConditionDto cond)
         {
-            var url = _urlMapping.GetCatalogDataUrl<T>();
+            var url = _urlMapping.CatalogDataUrl<T>();
             return url.IsNullOrEmpty()
                 ? new T[0]
                 : await client.PostJsonAsync<T[]>(url, cond);

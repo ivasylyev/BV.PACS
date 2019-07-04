@@ -3,28 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BV.PACS.Shared.Models
 {
-    [GetDataUrl("api/Tracking/GetAliquot")]
-    [PostDataUrl("api/Tracking/PostAliquot")]
+  
     [StoredProcedures("dbo.spVial_SelectDetail", "dbo.spVial_Post", "idfContainer")]
     public class AliquotTrackingDto
     {
-
-
-        //            idfContainer = @p2 output,
-        //            strBarcode = N'M-19032F_-1',
-        //            idfMaterial = 214624,
-        //            idfsCFormTemplateID = N'6dcfd0e6-36ea-4846-a1fc-770669dce6d4',
-        //            idfsContainer_Status = N'cotInRepository',
-        //            idfsStoring_Type = NULL,
-        //            strNote = NULL,
-        //            idfSubdivisionID = 4797,
-        //            strRFIDCode = NULL,
-        //            idfsDerivativeType = NULL,
-        //            idfSourceContainer = NULL,
-        //            fltVolume = 0,
-        //            fltWeight = 0,
-        //            idfsVolumeUnit = N'vmtMilliLitre',
-        //            idfsWeightUnit = N'wmtMilliGramm'
 
         [GetColumn("idfContainer")]
         [PostColumn("idfContainer")]

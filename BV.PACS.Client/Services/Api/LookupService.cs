@@ -19,14 +19,14 @@ namespace BV.PACS.Client.Services.Api
 
         public async Task<TemplateLookupItem[]> GetTemplatesLookup(HttpClient client, string lookupType)
         {
-            var url = _urlMapping.GetLookupUrl<TemplateLookupItem>();
+            var url = _urlMapping.LookupUrl<TemplateLookupItem>();
             return await client.PostJsonAsync<TemplateLookupItem[]>(url,
                 new TemplateLookupParameter(lookupType, GlobalSettings.CurrentLanguage));
         }
 
         public async Task<BaseLookupItem[]> GetLookup(HttpClient client, BaseLookupTables lookupType)
         {
-            var url = _urlMapping.GetLookupUrl<BaseLookupItem>();
+            var url = _urlMapping.LookupUrl<BaseLookupItem>();
             return await client.PostJsonAsync<BaseLookupItem[]>(url,
                 new BaseLookupParameter(lookupType, GlobalSettings.CurrentLanguage));
         }
