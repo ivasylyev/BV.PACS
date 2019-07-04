@@ -17,7 +17,7 @@ namespace BV.PACS.Shared.Models
 
         [GetColumn("datTestDate")]
         [PostColumn("datTestDate")]
-        public DateTime TestDate { get; set; }
+        public DateTime? TestDate { get; set; }
 
         [GetColumn("idfsTestResult")]
         public string TestResultId { get; set; }

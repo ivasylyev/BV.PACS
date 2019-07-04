@@ -29,6 +29,8 @@ namespace BV.PACS.Client.Shared.Base
 
         public virtual bool Post()
         {
+            ApiTrackingService.PostData(Http, new TrackingPostParameter<T>(TrackingObject, BaseSettings.Language))
+                .ContinueWith(x => StateHasChanged());
             return true;
         }
 

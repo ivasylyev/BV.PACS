@@ -56,11 +56,6 @@ namespace BV.PACS.Client.Sources
             set => TrackingObject.SourcePointOfOrigin = value;
         }
 
-        public override bool Post()
-        {
-            ApiTrackingService.PostData(Http, new TrackingPostParameter<SourceTrackingDto>(TrackingObject, BaseSettings.Language))
-                .ContinueWith(x => StateHasChanged());
-            return true;
-        }
+       
     }
 }

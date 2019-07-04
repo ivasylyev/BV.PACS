@@ -81,11 +81,6 @@ namespace BV.PACS.Client.Materials
             set => TrackingObject.MaterialPointOfOrigin = value;
         }
 
-        public override bool Post()
-        {
-            ApiTrackingService.PostData(Http, new TrackingPostParameter<MaterialTrackingDto>(TrackingObject, BaseSettings.Language))
-                .ContinueWith(x => StateHasChanged());
-            return true;
-        }
+
     }
 }
