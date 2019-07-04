@@ -11,7 +11,6 @@ namespace BV.Pacs.Tests.Server.Services
         {
         }
 
-
         [Test]
         public void StoredProceduresMappingTest()
         {
@@ -22,6 +21,7 @@ namespace BV.Pacs.Tests.Server.Services
         }
 
         [Test]
+        // ReSharper disable once InconsistentNaming
         public void SourceTrackingMappingTest()
         {
             var mapping = SqlMapperEx.GetMapping<SourceTrackingDto>();
@@ -36,7 +36,6 @@ namespace BV.Pacs.Tests.Server.Services
             Assert.IsTrue(mapping.ContainsValue("idfOwner"));
             Assert.IsTrue(mapping.ContainsValue("Source_idfGeoLocation"));
             Assert.IsTrue(mapping.ContainsValue("strLocationDesription"));
-
 
             Assert.Pass();
         }
@@ -54,15 +53,50 @@ namespace BV.Pacs.Tests.Server.Services
             Assert.IsTrue(mapping.ContainsValue("ParentMaterial"));
             Assert.IsTrue(mapping.ContainsValue("datRegistration_Date"));
             Assert.IsTrue(mapping.ContainsValue("Isolation_idfGeoLocation"));
-            Assert.IsTrue(mapping.ContainsValue("idfsGeoLocation"));
             Assert.IsTrue(mapping.ContainsValue("strLocationDesription"));
-
             Assert.IsTrue(mapping.ContainsValue("idfOwner"));
-
             Assert.IsTrue(mapping.ContainsValue("idfSource"));
-            Assert.IsTrue(mapping.ContainsValue("ParentMaterialBarcode"));
-            Assert.IsTrue(mapping.ContainsValue("LastUsedAliquotNumber"));
 
+            Assert.Pass();
+        }
+
+        [Test]
+        public void AliquotTrackingMappingTest()
+        {
+            var mapping = SqlMapperEx.GetMapping<AliquotTrackingDto>();
+            Assert.IsNotEmpty(mapping);
+            Assert.IsTrue(mapping.ContainsValue("idfContainer"));
+            Assert.IsTrue(mapping.ContainsValue("strBarcode"));
+            Assert.IsTrue(mapping.ContainsValue("idfMaterial"));
+            Assert.IsTrue(mapping.ContainsValue("idfsCFormTemplateID"));
+            Assert.IsTrue(mapping.ContainsValue("strNote"));
+            Assert.IsTrue(mapping.ContainsValue("idfsContainer_Status"));
+            Assert.IsTrue(mapping.ContainsValue("strRFIDCode"));
+            Assert.IsTrue(mapping.ContainsValue("idfsDerivativeType"));
+            Assert.IsTrue(mapping.ContainsValue("idfSourceContainer"));
+            Assert.IsTrue(mapping.ContainsValue("fltVolume"));
+            Assert.IsTrue(mapping.ContainsValue("fltWeight"));
+            Assert.IsTrue(mapping.ContainsValue("idfsVolumeUnit"));
+            Assert.IsTrue(mapping.ContainsValue("idfsWeightUnit"));
+
+            Assert.Pass();
+        }
+
+        [Test]
+        public void TestTrackingMappingTest()
+        {
+            var mapping = SqlMapperEx.GetMapping<TestTrackingDto>();
+            Assert.IsNotEmpty(mapping);
+            Assert.IsTrue(mapping.ContainsValue("idfTest"));
+            Assert.IsTrue(mapping.ContainsValue("strBarcode"));
+            Assert.IsTrue(mapping.ContainsValue("datRegistration_Date"));
+            Assert.IsTrue(mapping.ContainsValue("idfsCFormTemplateID"));
+            Assert.IsTrue(mapping.ContainsValue("strNote"));
+            Assert.IsTrue(mapping.ContainsValue("idfsTestType"));
+            Assert.IsTrue(mapping.ContainsValue("idfContainer"));
+            Assert.IsTrue(mapping.ContainsValue("datTestDate"));
+            Assert.IsTrue(mapping.ContainsValue("idfsTestStatus"));
+            Assert.IsTrue(mapping.ContainsValue("idfsTestSet"));
 
             Assert.Pass();
         }

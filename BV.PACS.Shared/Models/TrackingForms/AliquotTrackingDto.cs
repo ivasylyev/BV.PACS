@@ -8,25 +8,52 @@ namespace BV.PACS.Shared.Models
     [StoredProcedures("dbo.spVial_SelectDetail", "dbo.spVial_Post", "idfContainer")]
     public class AliquotTrackingDto
     {
+
+
+        //            idfContainer = @p2 output,
+        //            strBarcode = N'M-19032F_-1',
+        //            idfMaterial = 214624,
+        //            idfsCFormTemplateID = N'6dcfd0e6-36ea-4846-a1fc-770669dce6d4',
+        //            idfsContainer_Status = N'cotInRepository',
+        //            idfsStoring_Type = NULL,
+        //            strNote = NULL,
+        //            idfSubdivisionID = 4797,
+        //            strRFIDCode = NULL,
+        //            idfsDerivativeType = NULL,
+        //            idfSourceContainer = NULL,
+        //            fltVolume = 0,
+        //            fltWeight = 0,
+        //            idfsVolumeUnit = N'vmtMilliLitre',
+        //            idfsWeightUnit = N'wmtMilliGramm'
+
         [GetColumn("idfContainer")]
+        [PostColumn("idfContainer")]
         public int AliquotId { get; set; }
 
         [GetColumn("idfActivity")]
         public int ActivityId { get; set; }
 
         [GetColumn("strBarcode")]
+        [PostColumn("strBarcode")]
         public string AliquotBarcode { get; set; }
+
+        [GetColumn("strRFIDCode")]
+        [PostColumn("strRFIDCode")]
+        public string RFIDCode { get; set; }
 
         [GetColumn("datCreationDate")]
         public DateTime AliquotCreationDate { get; set; }
 
         [GetColumn("strNote")]
+        [PostColumn("strNote")]
         public string AliquotNote { get; set; }
 
         [GetColumn("fltVolume")]
+        [PostColumn("fltVolume")]
         public decimal Volume { get; set; }
 
         [GetColumn("fltWeight")]
+        [PostColumn("fltWeight")]
         public decimal Weight { get; set; }
 
         [GetColumn("NullableVolume")]
@@ -36,7 +63,7 @@ namespace BV.PACS.Shared.Models
         public decimal? NullableWeight { get; set; }
 
         [GetColumn("intGeneration")]
-        public int Passage { get; set; }
+        public int? Passage { get; set; }
 
         [GetColumn("StatusRef_Name")]
         public string AliquotStatus { get; set; }
@@ -54,27 +81,34 @@ namespace BV.PACS.Shared.Models
         public string LocationPath { get; set; }
 
         [GetColumn("idfMaterial")]
-        public int MaterialId { get; set; }
+        [PostColumn("idfMaterial")]
+        public int? MaterialId { get; set; }
 
         [GetColumn("idfSubdivisionID")]
-        public int SubdivisionId { get; set; }
+        [PostColumn("idfSubdivisionID")]
+        public int? SubdivisionId { get; set; }
 
         [GetColumn("idfsContainer_Status")]
+        [PostColumn("idfsContainer_Status")]
         public string AliquotStatusId { get; set; }
 
         [GetColumn("idfsStoring_Type")]
+        [PostColumn("idfsStoring_Type")]
         public string StoringTypeId { get; set; }
 
         [GetColumn("idfsVolumeUnit")]
+        [PostColumn("idfsVolumeUnit")]
         public string VolumeUnitId { get; set; }
 
         [GetColumn("idfsWeightUnit")]
+        [PostColumn("idfsWeightUnit")]
         public string WeightUnitId { get; set; }
 
         [GetColumn("idfsWeightUnit")]
         public string AliquotInitialBarcode { get; set; }
 
         [GetColumn("strInitialContainerID")]
+        [PostColumn("idfSourceContainer")]
         public string InitialContainerId { get; set; }
 
         [GetColumn("Material_strBarcode")]
@@ -93,12 +127,13 @@ namespace BV.PACS.Shared.Models
         public bool TrackStocAliquots { get; set; }
 
         [GetColumn("idfParentActivity")]
-        public int ParentActivityId { get; set; }
+        public int? ParentActivityId { get; set; }
 
         [GetColumn("idfsActivity_Type")]
         public string ActivityType { get; set; }
 
         [GetColumn("idfsDerivativeType")]
+        [PostColumn("idfsDerivativeType")]
         public string DerivativeTypeId { get; set; }
 
         [GetColumn("DerivativeType")]
@@ -111,6 +146,7 @@ namespace BV.PACS.Shared.Models
         public string AliquotTemplateName { get; set; }
 
         [GetColumn("idfsCFormTemplateID")]
+        [PostColumn("idfsCFormTemplateID")]
         public string AliquotTemplateId { get; set; }
 
         [GetColumn("strParentBarcode")]

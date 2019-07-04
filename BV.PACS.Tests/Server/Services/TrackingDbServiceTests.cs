@@ -5,7 +5,6 @@ using BV.PACS.Server.Services;
 using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
 using BV.PACS.Shared.Utils;
-using Dapper;
 using NUnit.Framework;
 
 namespace BV.Pacs.Tests.Server.Services
@@ -23,7 +22,6 @@ namespace BV.Pacs.Tests.Server.Services
             SqlMapperEx.InitMappers();
         }
 
-
         [Test]
         public void GetSourceTrackingTest()
         {
@@ -40,7 +38,6 @@ namespace BV.Pacs.Tests.Server.Services
             Console.WriteLine(sourceTracking);
             Assert.Pass();
         }
-
 
         [Test]
         public void GetSourceMaterialsTest()
@@ -65,7 +62,7 @@ namespace BV.Pacs.Tests.Server.Services
         [Test]
         public void GetMaterialTrackingTest()
         {
-            var condition = new AggregatedConditionDto { PageSize = 1 };
+            var condition = new AggregatedConditionDto {PageSize = 1};
             var items = _catalogService.GetMaterials(condition).Result.ToList();
             Assert.IsNotEmpty(items);
             var material = items[0];
@@ -81,7 +78,7 @@ namespace BV.Pacs.Tests.Server.Services
         [Test]
         public void GetAliquotTrackingTest()
         {
-            var condition = new AggregatedConditionDto { PageSize = 1 };
+            var condition = new AggregatedConditionDto {PageSize = 1};
             var items = _catalogService.GetAliquots(condition).Result.ToList();
             Assert.IsNotEmpty(items);
             var aliquot = items[0];
@@ -97,7 +94,7 @@ namespace BV.Pacs.Tests.Server.Services
         [Test]
         public void GetTestTrackingTest()
         {
-            var condition = new AggregatedConditionDto { PageSize = 1 };
+            var condition = new AggregatedConditionDto {PageSize = 1};
             var items = _catalogService.GetTests(condition).Result.ToList();
             Assert.IsNotEmpty(items);
             var test = items[0];
@@ -110,39 +107,6 @@ namespace BV.Pacs.Tests.Server.Services
             Assert.Pass();
         }
 
-        [Test]
-        public void GetMappingTest()
-        {
-
-
-            Dictionary<string, string> mapping = new Dictionary<string, string>();
-            foreach (var prop in typeof(SourceTrackingDto).GetProperties())
-            {
-                var postAttribute = prop.GetCustomAttributes(false)
-                    .OfType<PostColumnAttribute>()
-                    .FirstOrDefault();
-                if (postAttribute != null && !postAttribute.Name.IsNullOrEmpty())
-                {
-                    mapping.Add(prop.Name, postAttribute.Name);
-                }
-            }
-//            var sqlParameters = new DynamicParameters();
-//            foreach (var pair in mapping)
-//            {
-//               
-//                    var propName = pair.Key;
-//                    var sqlName = pair.Value;
-//                    if (!sqlName.IsNullOrEmpty())
-//                    {
-//                        var value = typeof(SourceTrackingDto).GetProperty(propName).GetValue(parameter.Data, null);
-//                        // parameters.Add("@newId", DbType.Int32, direction: ParameterDirection.Output);
-//                        sqlParameters.Add(sqlName, value);
-//                    }
-//                
-//            }
-
-        }
-
-     
+      
     }
 }

@@ -37,7 +37,7 @@ namespace BV.PACS.Client.Aliquots
         }
 
 
-        protected int Passage
+        protected int? Passage
         {
             get => TrackingObject.Passage;
             set => TrackingObject.Passage = value;

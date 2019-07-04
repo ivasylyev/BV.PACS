@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BV.PACS.Client.Shared.Base;
 using BV.PACS.Shared.Models;
+using BV.PACS.Shared.Models.Parameters;
 
 namespace BV.PACS.Client.Materials
 {
@@ -80,6 +81,11 @@ namespace BV.PACS.Client.Materials
             set => TrackingObject.MaterialPointOfOrigin = value;
         }
 
-     
+        public override bool Post()
+        {
+            ApiTrackingService.PostData(Http, new TrackingPostParameter<MaterialTrackingDto>(TrackingObject, BaseSettings.Language))
+                .ContinueWith(x => StateHasChanged());
+            return true;
+        }
     }
 }

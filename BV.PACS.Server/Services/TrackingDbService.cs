@@ -79,16 +79,30 @@ namespace BV.PACS.Server.Services
 
         public async Task PostSourceTracking(TrackingPostParameter<SourceTrackingDto> parameter)
         {
-            await PostTracking<SourceTrackingDto>(parameter, "dbo.spSource_Post");
+            await PostTracking(parameter);
         }
 
-        private async Task PostTracking<T>(TrackingPostParameter<SourceTrackingDto> parameter, string spName)
+        public async Task PostMaterialTracking(TrackingPostParameter<MaterialTrackingDto> parameter)
         {
+            await PostTracking(parameter);
+        }
+
+        public async Task PostAliquotTracking(TrackingPostParameter<AliquotTrackingDto> parameter)
+        {
+            await PostTracking(parameter);
+        }
+
+        public async Task PostTestTracking(TrackingPostParameter<TestTrackingDto> parameter)
+        {
+            await PostTracking(parameter);
+        }
+
+        private async Task PostTracking<T>(TrackingPostParameter<T> parameter) where T : new()
+        {
+            var procAttr = SqlMapperEx.GetStoredProcedureAttribute<T>();
             var mapping = SqlMapperEx.GetMapping<T>();
 
             var sqlParameters = new DynamicParameters();
-
-
             foreach (var pair in mapping)
             {
                 var propName = pair.Key;
@@ -96,7 +110,15 @@ namespace BV.PACS.Server.Services
 
                 var value = typeof(T).GetProperty(propName).GetValue(parameter.Data, null);
                 // parameters.Add("@newId", DbType.Int32, direction: ParameterDirection.Output);
-                sqlParameters.Add(sqlName, value);
+                if (sqlName == procAttr.KeyColumnName)
+                {
+                    sqlParameters.Add(sqlName, value,direction: ParameterDirection.InputOutput);
+                }
+                else
+                {
+                    sqlParameters.Add(sqlName, value);
+                }
+                
             }
 
             sqlParameters.Add("Action", 16);
@@ -104,24 +126,8 @@ namespace BV.PACS.Server.Services
 
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
-                await connection.ExecuteScalarAsync(spName, sqlParameters, commandType: CommandType.StoredProcedure);
+                await connection.ExecuteScalarAsync(procAttr.PostProcedureName, sqlParameters, commandType: CommandType.StoredProcedure);
             }
-        }
-
-
-        public async Task PostMaterialTracking(TrackingPostParameter<MaterialTrackingDto> parameter)
-        {
-            //todo: implement
-        }
-
-        public async Task PostAliquotTracking(TrackingPostParameter<AliquotTrackingDto> parameter)
-        {
-            //todo: implement
-        }
-
-        public async Task PostTestTracking(TrackingPostParameter<TestTrackingDto> parameter)
-        {
-            //todo: implement
         }
     }
 }

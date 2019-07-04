@@ -31,7 +31,7 @@ namespace BV.PACS.Shared.Models
 
         [GetColumn("idfOwner")]
         [PostColumn("idfOwner")]
-        public int OwnerId { get; set; }
+        public int? OwnerId { get; set; }
 
         [GetColumn("SourceType")]
         public string SourceType { get; set; }
