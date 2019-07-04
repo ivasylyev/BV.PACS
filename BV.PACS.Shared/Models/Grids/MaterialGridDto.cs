@@ -3,8 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BV.PACS.Shared.Models
 {
-    [GetDataUrl("api/Catalog/GetMaterials")]
-    [GetCountUrl("api/Catalog/GetMaterialsRecordCount")]
     [StoredProcedures(GetProcedureName= "dbo.spSource_Materials", KeyColumnName= "idfSource")]
     public class MaterialGridDto
     {

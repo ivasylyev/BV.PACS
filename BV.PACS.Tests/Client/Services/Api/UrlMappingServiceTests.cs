@@ -22,6 +22,10 @@ namespace BV.PACS.Tests.Client.Services.Api
 
             url = _service.GetLookupUrl<BaseLookupItem>();
             Assert.AreEqual("api/Lookup/GetLookup", url);
+
+            url = _service.GetLookupUrl<string>();
+            Assert.AreEqual(string.Empty, url);
+
             Assert.Pass();
         }
 
@@ -36,6 +40,10 @@ namespace BV.PACS.Tests.Client.Services.Api
             Assert.AreEqual("api/Catalog/GetAliquots", url);
             url = _service.GetCatalogDataUrl<TestCatalogDto>();
             Assert.AreEqual("api/Catalog/GetTests", url);
+
+            url = _service.GetCatalogDataUrl<string>();
+            Assert.AreEqual(string.Empty, url);
+
             Assert.Pass();
         }
 
@@ -50,6 +58,20 @@ namespace BV.PACS.Tests.Client.Services.Api
             Assert.AreEqual("api/Catalog/GetAliquotsRecordCount", url);
             url = _service.GetCatalogCountUrl<TestCatalogDto>();
             Assert.AreEqual("api/Catalog/GetTestsRecordCount", url);
+            url = _service.GetCatalogCountUrl<string>();
+            Assert.AreEqual(string.Empty, url);
+            Assert.Pass();
+        }
+
+        [Test]
+        public void GetGridUrlTest()
+        {
+            var url = _service.GetGridUrl<MaterialGridDto>();
+            Assert.AreEqual("api/Grid/GetSourceMaterials", url);
+
+            url = _service.GetGridUrl<string>();
+            Assert.AreEqual(string.Empty, url);
+
             Assert.Pass();
         }
     }

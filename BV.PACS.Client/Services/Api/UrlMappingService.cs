@@ -28,22 +28,35 @@ namespace BV.PACS.Client.Services.Api
             {typeof(TemplateLookupItem), "api/Lookup/GetTemplatesLookup"},
             {typeof(BaseLookupItem), "api/Lookup/GetLookup"}
         };
+
+        private readonly Dictionary<Type, string> _urlGridMapping = new Dictionary<Type, string>
+        {
+            {typeof(MaterialGridDto), "api/Grid/GetSourceMaterials"}
+        };
+
         public string GetCatalogCountUrl<T>()
         {
-            return _urlCountMapping.TryGetValue(typeof(T), out string url) 
-                ? url 
-                : string.Empty;
+            return GetUrl<T>(_urlCountMapping);
         }
+
         public string GetCatalogDataUrl<T>()
         {
-            return _urlDataMapping.TryGetValue(typeof(T), out string url)
-                ? url
-                : string.Empty;
+            return GetUrl<T>(_urlDataMapping);
         }
 
         public string GetLookupUrl<T>()
         {
-            return _urlLookupMapping.TryGetValue(typeof(T), out string url)
+            return GetUrl<T>(_urlLookupMapping);
+        }
+
+        public string GetGridUrl<T>()
+        {
+            return GetUrl<T>(_urlGridMapping);
+        }
+
+        private static string GetUrl<T>(Dictionary<Type, string> mapping)
+        {
+            return mapping.TryGetValue(typeof(T), out var url)
                 ? url
                 : string.Empty;
         }
