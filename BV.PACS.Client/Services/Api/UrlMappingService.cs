@@ -49,7 +49,12 @@ namespace BV.PACS.Client.Services.Api
             {typeof(MaterialGridDto), "api/Grid/GetSourceMaterials"},
             {typeof(SourceTestGridDto), "api/Grid/GetSourceTests"},
             {typeof(AliquotTestGridDto), "api/Grid/GetAliquotTests"},
+            {typeof(SourceDiagnosticsDto), "api/Grid/GetSourceDiagnostics"},
 
+            {typeof(SourceAuditGridDto), "api/Grid/GetSourceAudit"},
+            {typeof(MaterialAuditGridDto), "api/Grid/GetMaterialAudit"},
+            {typeof(AliquotAuditGridDto), "api/Grid/GetAliquotAudit"},
+            {typeof(TestAuditGridDto), "api/Grid/GetTestAudit"},
         };
 
         public string CatalogCountUrl<T>()

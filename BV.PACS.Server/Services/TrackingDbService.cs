@@ -57,6 +57,11 @@ namespace BV.PACS.Server.Services
             return await GetGridItems<MaterialGridDto>(parameter);
         }
 
+        public async Task<IEnumerable<SourceDiagnosticsDto>> GetSourceDiagnostics(GridParameter parameter)
+        {
+            return await GetGridItems<SourceDiagnosticsDto>(parameter);
+        }
+
         public async Task<IEnumerable<SourceTestGridDto>> GetSourceTests(GridParameter parameter)
         {
             return await GetGridItems<SourceTestGridDto>(parameter);
@@ -67,13 +72,45 @@ namespace BV.PACS.Server.Services
             return await GetGridItems<AliquotTestGridDto>(parameter);
         }
 
-        private async Task<IEnumerable<T>> GetGridItems<T>(GridParameter parameter)
+        public async Task<IEnumerable<SourceAuditGridDto>> GetSourceAudit(GridParameter parameter)
+        {
+            return await GetGridItems<SourceAuditGridDto>(parameter, 
+                new Dictionary<string, object> {{"strAuditObjectName", "daoSource"}});
+        }
+
+        public async Task<IEnumerable<MaterialAuditGridDto>> GetMaterialAudit(GridParameter parameter)
+        {
+            return await GetGridItems<MaterialAuditGridDto>(parameter,
+                new Dictionary<string, object> {{"strAuditObjectName", "daoStrainPassport"}});
+        }
+
+        public async Task<IEnumerable<AliquotAuditGridDto>> GetAliquotAudit(GridParameter parameter)
+        {
+            return await GetGridItems<AliquotAuditGridDto>(parameter,
+                new Dictionary<string, object> { { "strAuditObjectName", "daoVialDetail" } });
+        }
+
+        public async Task<IEnumerable<TestAuditGridDto>> GetTestAudit(GridParameter parameter)
+        {
+            return await GetGridItems<TestAuditGridDto>(parameter,
+                new Dictionary<string, object> { { "strAuditObjectName", "daoTest" } });
+        }
+
+        private async Task<IEnumerable<T>> GetGridItems<T>(GridParameter parameter, Dictionary<string, object> extraParameters = null)
         {
             var procAttr = SqlMapperEx.GetStoredProcedureAttribute<T>();
 
             var sqlParameters = new DynamicParameters();
             sqlParameters.Add(procAttr.KeyColumnName, parameter.Id);
             sqlParameters.Add("LanguageID", parameter.Language);
+
+            if (extraParameters != null)
+            {
+                foreach (var pair in extraParameters)
+                {
+                    sqlParameters.Add(pair.Key, pair.Value);
+                }
+            }
 
             using (var connection = new SqlConnection(_builder.ConnectionString))
             {
@@ -121,13 +158,12 @@ namespace BV.PACS.Server.Services
                 // parameters.Add("@newId", DbType.Int32, direction: ParameterDirection.Output);
                 if (sqlName == procAttr.KeyColumnName)
                 {
-                    sqlParameters.Add(sqlName, value,direction: ParameterDirection.InputOutput);
+                    sqlParameters.Add(sqlName, value, direction: ParameterDirection.InputOutput);
                 }
                 else
                 {
                     sqlParameters.Add(sqlName, value);
                 }
-                
             }
 
             sqlParameters.Add("Action", 16);

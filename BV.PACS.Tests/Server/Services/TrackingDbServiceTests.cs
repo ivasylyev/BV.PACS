@@ -51,6 +51,14 @@ namespace BV.Pacs.Tests.Server.Services
             Assert.Pass();
         }
 
+        [Test]
+        public void GetSourceDiagnosticsTest()
+        {
+            var list = _trackingService.GetSourceDiagnostics(new GridParameter(SourceWithMaterial.Value.SourceId, "en")).Result.ToList();
+          // todo: select non-empty diagnostics here
+            Assert.Pass();
+        }
+
 
         [Test]
         public void GetSourceTestsTest()
@@ -110,6 +118,43 @@ namespace BV.Pacs.Tests.Server.Services
             Assert.Pass();
         }
 
+        [Test]
+        public void GetSourceAuditTest()
+        {
+            var list = _trackingService.GetSourceAudit(new GridParameter(SourceWithMaterial.Value.SourceId, "en")).Result.ToList();
+            Assert.IsNotEmpty(list);
+            Console.WriteLine($"received {list.Count} audit records");
+         
+            Assert.Pass();
+        }
+
+        [Test]
+        public void GetMaterialAuditTest()
+        {
+            var list = _trackingService.GetMaterialAudit(new GridParameter(Material.Value.MaterialId, "en")).Result.ToList();
+            Assert.IsNotEmpty(list);
+            Console.WriteLine($"received {list.Count} audit records");
+
+            Assert.Pass();
+        }
+        [Test]
+        public void GetAliquotAuditTest()
+        {
+            var list = _trackingService.GetAliquotAudit(new GridParameter(Aliquot.Value.AliquotId, "en")).Result.ToList();
+            Assert.IsNotEmpty(list);
+            Console.WriteLine($"received {list.Count} audit records");
+
+            Assert.Pass();
+        }
+        [Test]
+        public void GetTestAuditTest()
+        {
+            var list = _trackingService.GetTestAudit(new GridParameter(Test.Value.TestId, "en")).Result.ToList();
+            Assert.IsNotEmpty(list);
+            Console.WriteLine($"received {list.Count} audit records");
+
+            Assert.Pass();
+        }
 
         private SourceCatalogDto GetSourceWithMaterial()
         {

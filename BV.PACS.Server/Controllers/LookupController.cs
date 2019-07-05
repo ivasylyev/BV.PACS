@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BV.PACS.Server.Controllers
 {
     [Route("api/[controller]")]
+    [PacsExceptionFilter]
     public class LookupController : Controller
     {
         private readonly LookupDbService _dbService;
@@ -18,14 +19,14 @@ namespace BV.PACS.Server.Controllers
             _dbService = dbService;
         }
 
-        [PacsExceptionFilter]
+       
         [HttpPost("[action]")]
         public async Task<IEnumerable<TemplateLookupItem>> GetTemplatesLookup([FromBody] TemplateLookupParameter parameter)
         {
             return await _dbService.GetTemplates(parameter);
         }
 
-        [PacsExceptionFilter]
+        
         [HttpPost("[action]")]
         public async Task<IEnumerable<BaseLookupItem>> GetLookup([FromBody] BaseLookupParameter parameter)
         {

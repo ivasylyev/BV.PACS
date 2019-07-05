@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BV.PACS.Server.Controllers
 {
     [Route("api/[controller]")]
+    [PacsExceptionFilter]
     public class TrackingController : Controller
     {
         private readonly TrackingDbService _trackingDbService;
@@ -17,56 +18,56 @@ namespace BV.PACS.Server.Controllers
             _trackingDbService = trackingDbService;
         }
 
-        [PacsExceptionFilter]
+      
         [HttpPost("[action]")]
         public async Task<SourceTrackingDto> GetSource([FromBody] TrackingParameter parameter)
         {
             return await _trackingDbService.GetSourceTracking(parameter);
         }
 
-        [PacsExceptionFilter]
+       
         [HttpPost("[action]")]
         public async Task<MaterialTrackingDto> GetMaterial([FromBody] TrackingParameter parameter)
         {
             return await _trackingDbService.GetMaterialTracking(parameter);
         }
 
-        [PacsExceptionFilter]
+        
         [HttpPost("[action]")]
         public async Task<AliquotTrackingDto> GetAliquot([FromBody] TrackingParameter parameter)
         {
             return await _trackingDbService.GetAliquotTracking(parameter);
         }
 
-        [PacsExceptionFilter]
+        
         [HttpPost("[action]")]
         public async Task<TestTrackingDto> GetTest([FromBody] TrackingParameter parameter)
         {
             return await _trackingDbService.GetTestTracking(parameter);
         }
 
-        [PacsExceptionFilter]
+       
         [HttpPost("[action]")]
         public async Task PostSource([FromBody] TrackingPostParameter<SourceTrackingDto> parameter)
         {
              await _trackingDbService.PostSourceTracking(parameter);
         }
 
-        [PacsExceptionFilter]
+       
         [HttpPost("[action]")]
         public async Task PostMaterial([FromBody] TrackingPostParameter<MaterialTrackingDto> parameter)
         {
              await _trackingDbService.PostMaterialTracking(parameter);
         }
 
-        [PacsExceptionFilter]
+       
         [HttpPost("[action]")]
         public async Task PostAliquot([FromBody] TrackingPostParameter<AliquotTrackingDto> parameter)
         {
              await _trackingDbService.PostAliquotTracking(parameter);
         }
 
-        [PacsExceptionFilter]
+       
         [HttpPost("[action]")]
         public async Task PostTest([FromBody] TrackingPostParameter<TestTrackingDto> parameter)
         {

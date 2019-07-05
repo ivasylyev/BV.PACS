@@ -24,9 +24,17 @@ namespace BV.PACS.Server.Services
             InitMapper<MaterialGridDto>();
             InitMapper<SourceTestGridDto>();
             InitMapper<AliquotTestGridDto>();
+            InitMapper<SourceDiagnosticsDto>();
+
+
+            InitMapper<SourceAuditGridDto>();
+            InitMapper<MaterialAuditGridDto>();
+            InitMapper<AliquotAuditGridDto>();
+            InitMapper<TestAuditGridDto>();
 
             InitMapper<TemplateLookupItem>();
             InitMapper<BaseLookupItem>();
+            
         }
 
         public static void InitMapper<T>()
