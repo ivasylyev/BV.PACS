@@ -1,9 +1,5 @@
-﻿@using BV.PACS.Client.Services.Api
-@using BV.PACS.Shared.Models
-@using BV.PACS.Shared.Models.Parameters
-@using BV.PACS.Shared.Utils
-@using Microsoft.AspNetCore.Components
-@inject HttpClient _http
+﻿@using BV.PACS.Shared.Models
+@inherits BV.PACS.Client.Shared.Base.GridPanel<BV.PACS.Shared.Models.MaterialGridDto>
 
 @{
     if (DataSource == null)
@@ -23,12 +19,13 @@
                                         AllowRowSelection="@false"
                                         PageSize="@BaseSettings.PageSize">
 
-                                <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialBarcode)">
-
-                                </DxDataGridColumn>
-                                <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialTemplateName)" Caption="Template Name"></DxDataGridColumn>
-                                <DxDataGridDateEditColumn Field="@nameof(MaterialGridDto.MaterialRegistrationDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialBarcode)"></DxDataGridColumn>
                                 <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialType)"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(MaterialGridDto.MaterialRegistrationDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialTemplateName)" Caption="Template Name"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialGridDto.AliquotsCount)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialPointOfOrigin)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialNote)"></DxDataGridColumn>
                             </DxDataGrid>
 
                         </Template>
@@ -42,25 +39,4 @@
 
 
 @functions {
-
-
-    [Parameter]
-    private int Id { get; set; }
-
-    [Inject]
-    UrlMappingService MappingService { get; set; }
-
-    MaterialGridDto[] DataSource { get; set; }
-
-    protected override async Task OnInitAsync()
-    {
-        DataSource = await GetSourceMaterials();
-    }
-
-    protected async Task<MaterialGridDto[]> GetSourceMaterials()
-    {
-        var url = MappingService.GridUrl<MaterialGridDto>();
-        return await _http.PostJsonAsync<MaterialGridDto[]>(url, new GridParameter(Id, GlobalSettings.CurrentLanguage));
-    }
-
 }
