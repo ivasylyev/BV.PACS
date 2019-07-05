@@ -25,7 +25,9 @@
                             </AliquotTrackingPanel>
                             break;
                         case 1:
-                            <i>"Tests" tab is active.</i>
+                            <AliquotTestPanel Id=@Id>
+
+                            </AliquotTestPanel>
                             break;
                         case 2:
                             <i>"Checkout history" tab is active.</i>
@@ -36,8 +38,8 @@
                     }
                 </div>
             </div>
-            <OkCancelPanel OnOk=@DoOk
-                           OnCancel=@DoCancel>
+            <OkCancelPanel OnOk="@DoOk"
+                           OnCancel="@DoCancel">
             </OkCancelPanel>
         </div>
     </div>
@@ -46,7 +48,4 @@
 </div>
 
 @functions {
-
-
-
 }

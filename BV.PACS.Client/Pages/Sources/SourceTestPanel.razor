@@ -1,0 +1,70 @@
+﻿@using BV.PACS.Client.Services.Api
+@using BV.PACS.Shared.Models
+@using BV.PACS.Shared.Models.Parameters
+@using BV.PACS.Shared.Utils
+@using Microsoft.AspNetCore.Components
+@inject HttpClient _http
+
+@{
+    if (DataSource == null)
+    {
+        <div class="row">Loading...</div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+                    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                        <Template Context="GridContext">
+                            <DxDataGrid Data="@DataSource"
+                                        ShowFilterRow="@false"
+                                        ShowPager="@true"
+                                        AllowRowSelection="@false"
+                                        PageSize="@BaseSettings.PageSize">
+
+                                <DxDataGridColumn Field="@nameof(SourceTestGridDto.TestBarcode)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(SourceTestGridDto.AliquotBarcode)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(SourceTestGridDto.MaterialBarcode)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(SourceTestGridDto.MaterialType)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(SourceTestGridDto.SourceBarcode)"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(SourceTestGridDto.TestRegistrationDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(SourceTestGridDto.TestType)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(SourceTestGridDto.TestResult)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(SourceTestGridDto.TestStatus)"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(SourceTestGridDto.TestDate)"></DxDataGridDateEditColumn>
+                            </DxDataGrid>
+
+                        </Template>
+                    </DxFormLayoutItem>
+                </DxFormLayout>
+
+            </div>
+        </div>
+    }
+}
+
+
+@functions {
+
+
+    [Parameter]
+    private int Id { get; set; }
+
+    [Inject]
+    UrlMappingService MappingService { get; set; }
+
+    SourceTestGridDto[] DataSource { get; set; }
+
+    protected override async Task OnInitAsync()
+    {
+        DataSource = await GetSourceTests();
+    }
+
+    protected async Task<SourceTestGridDto[]> GetSourceTests()
+    {
+        var url = MappingService.GridUrl<SourceTestGridDto>();
+        return await _http.PostJsonAsync<SourceTestGridDto[]>(url, new GridParameter(Id, GlobalSettings.CurrentLanguage));
+    }
+
+}

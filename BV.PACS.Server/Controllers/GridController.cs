@@ -25,5 +25,21 @@ namespace BV.PACS.Server.Controllers
         {
             return await _trackingDbService.GetSourceMaterials(parameter);
         }
+
+        [PacsExceptionFilter]
+
+        [HttpPost("[action]")]
+        public async Task<IEnumerable<SourceTestGridDto>> GetSourceTests([FromBody] GridParameter parameter)
+        {
+            return await _trackingDbService.GetSourceTests(parameter);
+        }
+
+        [PacsExceptionFilter]
+
+        [HttpPost("[action]")]
+        public async Task<IEnumerable<AliquotTestGridDto>> GetAliquotTests([FromBody] GridParameter parameter)
+        {
+            return await _trackingDbService.GetAliquotTests(parameter);
+        }
     }
 }

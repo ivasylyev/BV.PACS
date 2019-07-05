@@ -54,11 +54,20 @@ namespace BV.PACS.Server.Services
 
         public async Task<IEnumerable<MaterialGridDto>> GetSourceMaterials(GridParameter parameter)
         {
-            return await GetSourceGridItems<MaterialGridDto>(parameter);
+            return await GetGridItems<MaterialGridDto>(parameter);
         }
 
+        public async Task<IEnumerable<SourceTestGridDto>> GetSourceTests(GridParameter parameter)
+        {
+            return await GetGridItems<SourceTestGridDto>(parameter);
+        }
 
-        private async Task<IEnumerable<T>> GetSourceGridItems<T>(GridParameter parameter)
+        public async Task<IEnumerable<AliquotTestGridDto>> GetAliquotTests(GridParameter parameter)
+        {
+            return await GetGridItems<AliquotTestGridDto>(parameter);
+        }
+
+        private async Task<IEnumerable<T>> GetGridItems<T>(GridParameter parameter)
         {
             var procAttr = SqlMapperEx.GetStoredProcedureAttribute<T>();
 

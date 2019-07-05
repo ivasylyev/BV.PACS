@@ -106,6 +106,10 @@ namespace BV.PACS.Tests.Client.Services.Api
         {
             var url = _service.GridUrl<MaterialGridDto>();
             Assert.AreEqual("api/Grid/GetSourceMaterials", url);
+            url = _service.GridUrl<SourceTestGridDto>();
+            Assert.AreEqual("api/Grid/GetSourceTests", url);
+            url = _service.GridUrl<AliquotTestGridDto>();
+            Assert.AreEqual("api/Grid/GetAliquotTests", url);
 
             url = _service.GridUrl<string>();
             Assert.AreEqual(string.Empty, url);

@@ -46,7 +46,10 @@ namespace BV.PACS.Client.Services.Api
 
         private readonly Dictionary<Type, string> _urlGridMapping = new Dictionary<Type, string>
         {
-            {typeof(MaterialGridDto), "api/Grid/GetSourceMaterials"}
+            {typeof(MaterialGridDto), "api/Grid/GetSourceMaterials"},
+            {typeof(SourceTestGridDto), "api/Grid/GetSourceTests"},
+            {typeof(AliquotTestGridDto), "api/Grid/GetAliquotTests"},
+
         };
 
         public string CatalogCountUrl<T>()
