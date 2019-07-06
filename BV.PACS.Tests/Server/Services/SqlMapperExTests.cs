@@ -18,6 +18,16 @@ namespace BV.Pacs.Tests.Server.Services
             Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<MaterialTrackingDto>());
             Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<AliquotTrackingDto>());
             Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<TestTrackingDto>());
+
+            Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<AliquotAuditGridDto>());
+            Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<AliquotTestGridDto>());
+            Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<MaterialAuditGridDto>());
+            Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<MaterialGridDto>());
+            Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<SourceAuditGridDto>());
+            Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<SourceDiagnosticsDto>());
+            Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<SourceTestGridDto>());
+            Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<TestAuditGridDto>());
+
         }
 
         [Test]

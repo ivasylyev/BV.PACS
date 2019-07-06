@@ -1,0 +1,52 @@
+﻿@using BV.PACS.Shared.Models
+@inherits BV.PACS.Client.Shared.Base.GridPanel<BV.PACS.Shared.Models.SourceAuditGridDto>
+
+@{
+    if (GroupedSource == null)
+    {
+        <div class="row">Loading...</div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+                    @{
+                        foreach (var group in GroupedSource)
+                        {
+                            <SourceAuditGroup
+                                Caption=@group.Key
+                                DataSource=@group.Value>
+
+                            </SourceAuditGroup>
+                        }
+                    }
+                </DxFormLayout>
+
+            </div>
+        </div>
+    }
+}
+
+
+@functions {
+    SortedDictionary<string, List<SourceAuditGridDto>> GroupedSource { get; set; }
+
+
+    protected override async Task OnInitAsync()
+    {
+        await base.OnInitAsync();
+        GroupedSource = new SortedDictionary<string, List<SourceAuditGridDto>>();
+   
+        foreach (var dto in DataSource)
+        {
+            if (!GroupedSource.ContainsKey(dto.GroupHeader))
+            {
+                GroupedSource.Add(dto.GroupHeader, new List<SourceAuditGridDto>());
+            }
+            GroupedSource[dto.GroupHeader].Add(dto);
+
+        }
+    }
+
+}
