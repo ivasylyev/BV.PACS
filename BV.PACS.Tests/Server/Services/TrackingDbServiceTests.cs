@@ -83,6 +83,18 @@ namespace BV.Pacs.Tests.Server.Services
             Assert.Pass();
         }
 
+        [Test]
+        public void GetMaterialAliquotsTest()
+        {
+            var list = _trackingService.GetMaterialAliquots(new GridParameter(Material.Value.MaterialId, "en")).Result.ToList();
+            Assert.IsNotEmpty(list);
+
+            Console.WriteLine($"received {list.Count} aliquots");
+            var aliquots = list.Select(m => m.AliquotBarcode);
+
+            Console.WriteLine(string.Join(", ", aliquots));
+            Assert.Pass();
+        }
 
         [Test]
         public void GetAliquotTrackingTest()
@@ -170,6 +182,7 @@ namespace BV.Pacs.Tests.Server.Services
         private MaterialCatalogDto GetMaterial()
         {
             var condition = new AggregatedConditionDto {PageSize = 1};
+            condition.AddStandardConditionIfNotEmpty("idfsTestStatus", "ttsInProgress", Operators.EqualsOperator);
             var items = _catalogService.GetMaterials(condition).Result.ToList();
             Assert.IsNotEmpty(items);
             var material = items[0];

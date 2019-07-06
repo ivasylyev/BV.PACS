@@ -51,7 +51,6 @@ namespace BV.PACS.Server.Services
             }
         }
 
-
         public async Task<IEnumerable<MaterialGridDto>> GetSourceMaterials(GridParameter parameter)
         {
             return await GetGridItems<MaterialGridDto>(parameter);
@@ -67,6 +66,11 @@ namespace BV.PACS.Server.Services
             return await GetGridItems<SourceTestGridDto>(parameter);
         }
 
+        public async Task<IEnumerable<MaterialAliquotGridDto>> GetMaterialAliquots(GridParameter parameter)
+        {
+            return await GetGridItems<MaterialAliquotGridDto>(parameter);
+        }
+
         public async Task<IEnumerable<AliquotTestGridDto>> GetAliquotTests(GridParameter parameter)
         {
             return await GetGridItems<AliquotTestGridDto>(parameter);
@@ -74,7 +78,7 @@ namespace BV.PACS.Server.Services
 
         public async Task<IEnumerable<SourceAuditGridDto>> GetSourceAudit(GridParameter parameter)
         {
-            return await GetGridItems<SourceAuditGridDto>(parameter, 
+            return await GetGridItems<SourceAuditGridDto>(parameter,
                 new Dictionary<string, object> {{"strAuditObjectName", "daoSource"}});
         }
 
@@ -87,13 +91,13 @@ namespace BV.PACS.Server.Services
         public async Task<IEnumerable<AliquotAuditGridDto>> GetAliquotAudit(GridParameter parameter)
         {
             return await GetGridItems<AliquotAuditGridDto>(parameter,
-                new Dictionary<string, object> { { "strAuditObjectName", "daoVialDetail" } });
+                new Dictionary<string, object> {{"strAuditObjectName", "daoVialDetail"}});
         }
 
         public async Task<IEnumerable<TestAuditGridDto>> GetTestAudit(GridParameter parameter)
         {
             return await GetGridItems<TestAuditGridDto>(parameter,
-                new Dictionary<string, object> { { "strAuditObjectName", "daoTest" } });
+                new Dictionary<string, object> {{"strAuditObjectName", "daoTest"}});
         }
 
         private async Task<IEnumerable<T>> GetGridItems<T>(GridParameter parameter, Dictionary<string, object> extraParameters = null)
