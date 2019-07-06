@@ -18,14 +18,15 @@
                     @switch (ActiveTabIndex)
                     {
                         case 0:
-                            <TestTrackingPanel Id=@Id 
+                            <TestTrackingPanel Id=@Id
                                                ref=@TrackingPanel>
 
                             </TestTrackingPanel>
                             break;
 
                         case 1:
-                            <i>"Audit log" tab is active.</i>
+                            <TestAuditPanel Id=@Id>
+                            </TestAuditPanel>
                             break;
                     }
                 </div>

@@ -1,5 +1,5 @@
 ﻿@using BV.PACS.Shared.Models
-@inherits BV.PACS.Client.Shared.Base.AuditPanel<BV.PACS.Shared.Models.SourceAuditGridDto>
+@inherits BV.PACS.Client.Shared.Base.AuditPanel<BV.PACS.Shared.Models.AliquotAuditGridDto>
 
 @{
     if (GroupedData == null)
@@ -27,10 +27,10 @@
                                                 ShowPager="@false"
                                                 AllowRowSelection="@false"
                                                 PageSize="@BaseSettings.MaxSize">
-                                        <DxDataGridColumn Field="@nameof(SourceAuditGridDto.ColumnName)"></DxDataGridColumn>
-                                        <DxDataGridColumn Field="@nameof(SourceAuditGridDto.OldValue)"></DxDataGridColumn>
-                                        <DxDataGridColumn Field="@nameof(SourceAuditGridDto.NewValue)"></DxDataGridColumn>
-                                        <DxDataGridColumn Field="@nameof(SourceAuditGridDto.Object)"></DxDataGridColumn>
+                                        <DxDataGridColumn Field="@nameof(AliquotAuditGridDto.ColumnName)"></DxDataGridColumn>
+                                        <DxDataGridColumn Field="@nameof(AliquotAuditGridDto.OldValue)"></DxDataGridColumn>
+                                        <DxDataGridColumn Field="@nameof(AliquotAuditGridDto.NewValue)"></DxDataGridColumn>
+                                        <DxDataGridColumn Field="@nameof(AliquotAuditGridDto.Object)"></DxDataGridColumn>
 
                                     </DxDataGrid>
                                 }

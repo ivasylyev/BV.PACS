@@ -6,26 +6,26 @@ namespace BV.PACS.Client.Shared.Base
 {
     public class AuditPanel<T> : GridPanel<T> where T : AuditGridDto, new()
     {
-        protected Dictionary<string, AuditGroupedDto<T>> GroupedSource { get; set; }
+        protected Dictionary<string, AuditGroupedDto<T>> GroupedData { get; set; }
 
         public void OnClick(string groupName)
         {
-            GroupedSource[groupName].GroupVisibility = !GroupedSource[groupName].GroupVisibility;
+            GroupedData[groupName].GroupVisibility = !GroupedData[groupName].GroupVisibility;
             StateHasChanged();
         }
 
         protected override async Task OnInitAsync()
         {
             await base.OnInitAsync();
-            GroupedSource = new Dictionary<string, AuditGroupedDto<T>>();
+            GroupedData = new Dictionary<string, AuditGroupedDto<T>>();
 
             foreach (var dto in DataSource)
             {
-                if (!GroupedSource.ContainsKey(dto.GroupHeader))
+                if (!GroupedData.ContainsKey(dto.GroupHeader))
                 {
-                    GroupedSource.Add(dto.GroupHeader, new AuditGroupedDto<T>(dto.GroupHeader));
+                    GroupedData.Add(dto.GroupHeader, new AuditGroupedDto<T>(dto.GroupHeader));
                 }
-                GroupedSource[dto.GroupHeader].Data.Add(dto);
+                GroupedData[dto.GroupHeader].Data.Add(dto);
             }
         }
     }
