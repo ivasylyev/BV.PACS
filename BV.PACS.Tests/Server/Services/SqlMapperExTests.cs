@@ -27,6 +27,7 @@ namespace BV.Pacs.Tests.Server.Services
             Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<SourceDiagnosticsDto>());
             Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<SourceTestGridDto>());
             Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<TestAuditGridDto>());
+            Assert.IsNotNull(SqlMapperEx.GetStoredProcedureAttribute<MaterialAliquotGridDto>());
 
         }
 
