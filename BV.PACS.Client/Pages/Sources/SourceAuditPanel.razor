@@ -1,5 +1,5 @@
 ﻿@using BV.PACS.Shared.Models
-@inherits BV.PACS.Client.Shared.Base.GridPanel<BV.PACS.Shared.Models.SourceAuditGridDto>
+@inherits BV.PACS.Client.Shared.Base.AuditPanel<BV.PACS.Shared.Models.SourceAuditGridDto>
 
 @{
     if (GroupedSource == null)
@@ -14,11 +14,32 @@
                     @{
                         foreach (var group in GroupedSource)
                         {
-                            <SourceAuditGroup
-                                Caption=@group.Key
-                                DataSource=@group.Value>
+                            <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
 
-                            </SourceAuditGroup>
+                                <Template Context="GridContext">
+                                    <div class="card-header">
+                                        <button type="button" class="btn btn-link" onclick=@{()=>OnClick(group.Key)}>@group.Key</button>
+                                    </div>
+                                    @if (GroupedSource[group.Key].GroupVisibility)
+                                    {
+                                        <DxDataGrid Data=@GroupedSource[group.Key].Data
+                                                    ShowFilterRow="@false"
+                                                    ShowPager="@false"
+                                                    AllowRowSelection="@false"
+                                                    PageSize="@BaseSettings.MaxSize">
+
+
+                                            <DxDataGridColumn Field="@nameof(SourceAuditGridDto.ColumnName)"></DxDataGridColumn>
+                                            <DxDataGridColumn Field="@nameof(SourceAuditGridDto.OldValue)"></DxDataGridColumn>
+                                            <DxDataGridColumn Field="@nameof(SourceAuditGridDto.NewValue)"></DxDataGridColumn>
+                                            <DxDataGridColumn Field="@nameof(SourceAuditGridDto.Object)"></DxDataGridColumn>
+
+                                        </DxDataGrid>
+                                    }
+
+
+                                </Template>
+                            </DxFormLayoutItem>
                         }
                     }
                 </DxFormLayout>
@@ -30,23 +51,6 @@
 
 
 @functions {
-    SortedDictionary<string, List<SourceAuditGridDto>> GroupedSource { get; set; }
 
-
-    protected override async Task OnInitAsync()
-    {
-        await base.OnInitAsync();
-        GroupedSource = new SortedDictionary<string, List<SourceAuditGridDto>>();
-   
-        foreach (var dto in DataSource)
-        {
-            if (!GroupedSource.ContainsKey(dto.GroupHeader))
-            {
-                GroupedSource.Add(dto.GroupHeader, new List<SourceAuditGridDto>());
-            }
-            GroupedSource[dto.GroupHeader].Add(dto);
-
-        }
-    }
 
 }
