@@ -18,7 +18,7 @@
 
                             <Template Context="GridContext">
                                 <div class="card-header">
-                                    <button type="button" class="btn btn-link" onclick=@{() => OnClick(group.Key)}>@group.Key</button>
+                                    <button type="button" class="btn btn-link" @onclick=@{() => OnClick(group.Key)}>@group.Key</button>
                                 </div>
                                 @if (GroupedData[group.Key].GroupVisibility)
                                 {

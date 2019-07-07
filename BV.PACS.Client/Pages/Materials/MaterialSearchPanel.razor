@@ -4,34 +4,34 @@
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
     <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <button onclick="@DoSearch" class="btn btn-primary">Search</button>
+            <button @onclick="@DoSearch" class="btn btn-primary">Search</button>
         </Template>
     </DxFormLayoutItem>
 
 
     <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.SourceBarcode)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxTextBox bind-Text="@SourceBarcode"></DxTextBox>
+            <DxTextBox @bind-Text="@SourceBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.Aliquots)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxTextBox bind-Text="@AliquotBarcode"></DxTextBox>
+            <DxTextBox @bind-Text="@AliquotBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.MaterialBarcode)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxTextBox bind-Text="@MaterialBarcode"></DxTextBox>
+            <DxTextBox @bind-Text="@MaterialBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.MaterialRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxDateEdit bind-Date="@StartDate"></DxDateEdit>
+            <DxDateEdit @bind-Date="@StartDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.MaterialRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxDateEdit bind-Date="@EndDate"></DxDateEdit>
+            <DxDateEdit @bind-Date="@EndDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.MaterialTemplateName)" ColSpanLg="12" ColSpanMd="12">
@@ -40,7 +40,7 @@
             <DxComboBox Data="@Templates"
                         TextFieldName="Name"
                         NullText="Select Template ..."
-                        bind-SelectedItem="@Template">
+                        @bind-SelectedItem="@Template">
             </DxComboBox>
 
         </Template>
@@ -48,13 +48,13 @@
 
     <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.MaterialNote)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxTextBox bind-Text="@MaterialNotes"></DxTextBox>
+            <DxTextBox @bind-Text="@MaterialNotes"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
 
     <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <button onclick="@DoSearch" class="btn btn-primary">Search</button>
+            <button @onclick="@DoSearch" class="btn btn-primary">Search</button>
         </Template>
     </DxFormLayoutItem>
 </DxFormLayout>

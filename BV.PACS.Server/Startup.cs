@@ -42,11 +42,16 @@ namespace BV.PACS.Server
             }
             loggerFactory.AddFile("Logs/BV.PACS.Server_{Date}.log");
 
+            app.UseClientSideBlazorFiles<Client.Startup>();
             app.UseRouting();
 
-            app.UseEndpoints(endpoints => { endpoints.MapDefaultControllerRoute(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapDefaultControllerRoute();
+                endpoints.MapFallbackToClientSideBlazor<Client.Startup>("index.html");
+            });
 
-            app.UseBlazor<Client.Startup>();
+
         }
     }
 }

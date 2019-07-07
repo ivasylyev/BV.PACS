@@ -11,19 +11,19 @@
         <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
             <DxFormLayoutItem Caption="@nameof(SourceTrackingDto.SourceBarcode)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@SourceBarcode"></DxTextBox>
+                    <DxTextBox @bind-Text="@SourceBarcode"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(SourceTrackingDto.SourceRegistrationDate)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxDateEdit bind-Date="@SourceRegistrationDate"></DxDateEdit>
+                    <DxDateEdit @bind-Date="@SourceRegistrationDate"></DxDateEdit>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(SourceTrackingDto.SourceType)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@SourceType"></DxTextBox>
+                    <DxTextBox @bind-Text="@SourceType"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
             @if (Templates != null)
@@ -34,7 +34,7 @@
                         <DxComboBox Data="@Templates"
                                     TextFieldName="Name"
                                     NullText="Select Template ..."
-                                    bind-SelectedItem="@Template">
+                                    @bind-SelectedItem="@Template">
                         </DxComboBox>
 
                     </Template>
@@ -42,12 +42,12 @@
             }
             <DxFormLayoutItem Caption="@nameof(SourceTrackingDto.SourceNote)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@SourceNote"></DxTextBox>
+                    <DxTextBox @bind-Text="@SourceNote"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
             <DxFormLayoutItem Caption="@nameof(SourceTrackingDto.SourcePointOfOrigin)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@SourcePointOfOrigin"></DxTextBox>
+                    <DxTextBox @bind-Text="@SourcePointOfOrigin"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 

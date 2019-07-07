@@ -8,13 +8,13 @@
         <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.AliquotBarcode)" ColSpanLg="12" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@AliquotBarcode"></DxTextBox>
+                    <DxTextBox @bind-Text="@AliquotBarcode"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.MaterialType)" ColSpanLg="12" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@MaterialType"></DxTextBox>
+                    <DxTextBox @bind-Text="@MaterialType"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
@@ -26,7 +26,7 @@
                         <DxComboBox Data="@Templates"
                                     TextFieldName="Name"
                                     NullText="Select Template ..."
-                                    bind-SelectedItem="@Template">
+                                    @bind-SelectedItem="@Template">
                         </DxComboBox>
 
                     </Template>
@@ -35,78 +35,78 @@
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.Passage)" ColSpanLg="12" ColSpanMd="12">
                 <Template>
-                    <DxSpinEdit bind-Value="@Passage"></DxSpinEdit>
+                    <DxSpinEdit @bind-Value="@Passage"></DxSpinEdit>
                 </Template>
             </DxFormLayoutItem>
 
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.AliquotCreationDate)" ColSpanLg="12" ColSpanMd="12">
                 <Template>
-                    <DxDateEdit bind-Date="@AliquotCreationDate"></DxDateEdit>
+                    <DxDateEdit @bind-Date="@AliquotCreationDate"></DxDateEdit>
                 </Template>
             </DxFormLayoutItem>
 
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.MaterialBarcode)" ColSpanLg="12" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@MaterialBarcode"></DxTextBox>
+                    <DxTextBox @bind-Text="@MaterialBarcode"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.AliquotStatus)" ColSpanLg="12" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@AliquotStatus"></DxTextBox>
+                    <DxTextBox @bind-Text="@AliquotStatus"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.AliquotParentBarcode)" ColSpanLg="12" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@AliquotParentBarcode"></DxTextBox>
+                    <DxTextBox @bind-Text="@AliquotParentBarcode"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.LocationPath)" ColSpanLg="12" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@LocationPath"></DxTextBox>
+                    <DxTextBox @bind-Text="@LocationPath"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.Volume)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxSpinEdit bind-Value="@Volume"></DxSpinEdit>
+                    <DxSpinEdit @bind-Value="@Volume"></DxSpinEdit>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.VolumeUnitName)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@VolumeUnitName"></DxTextBox>
+                    <DxTextBox @bind-Text="@VolumeUnitName"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.Weight)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxSpinEdit bind-Value="@Weight"></DxSpinEdit>
+                    <DxSpinEdit @bind-Value="@Weight"></DxSpinEdit>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.WeightUnitName)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@WeightUnitName"></DxTextBox>
+                    <DxTextBox @bind-Text="@WeightUnitName"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.AliquotNote)" ColSpanLg="12" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@AliquotNote"></DxTextBox>
+                    <DxTextBox @bind-Text="@AliquotNote"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.DerivativeType)" ColSpanLg="12" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@DerivativeType"></DxTextBox>
+                    <DxTextBox @bind-Text="@DerivativeType"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 

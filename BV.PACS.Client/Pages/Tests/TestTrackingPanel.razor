@@ -8,7 +8,7 @@
         <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
             <DxFormLayoutItem Caption="@nameof(TestTrackingDto.TestBarcode)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@TestBarcode"></DxTextBox>
+                    <DxTextBox @bind-Text="@TestBarcode"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
             @if (Templates != null)
@@ -19,7 +19,7 @@
                         <DxComboBox Data="@Templates"
                                     TextFieldName="Name"
                                     NullText="Select Template ..."
-                                    bind-SelectedItem="@Template">
+                                    @bind-SelectedItem="@Template">
                         </DxComboBox>
 
                     </Template>
@@ -28,55 +28,55 @@
 
             <DxFormLayoutItem Caption="@nameof(TestTrackingDto.TestType)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@TestType"></DxTextBox>
+                    <DxTextBox @bind-Text="@TestType"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(TestTrackingDto.TestRegistrationDate)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxDateEdit bind-Date="@TestRegistrationDate"></DxDateEdit>
+                    <DxDateEdit @bind-Date="@TestRegistrationDate"></DxDateEdit>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(TestTrackingDto.TestResult)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@TestResult"></DxTextBox>
+                    <DxTextBox @bind-Text="@TestResult"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(TestTrackingDto.TestStatus)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@TestStatus"></DxTextBox>
+                    <DxTextBox @bind-Text="@TestStatus"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(TestTrackingDto.TestDate)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxDateEdit bind-Date="@TestDate"></DxDateEdit>
+                    <DxDateEdit @bind-Date="@TestDate"></DxDateEdit>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(TestTrackingDto.SourceBarcode)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@SourceBarcode"></DxTextBox>
+                    <DxTextBox @bind-Text="@SourceBarcode"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(TestTrackingDto.MaterialBarcode)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@MaterialBarcode"></DxTextBox>
+                    <DxTextBox @bind-Text="@MaterialBarcode"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(TestTrackingDto.AliquotBarcode)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@AliquotBarcode"></DxTextBox>
+                    <DxTextBox @bind-Text="@AliquotBarcode"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
             <DxFormLayoutItem Caption="@nameof(TestTrackingDto.TestNote)" ColSpanLg="12" ColSpanMd="12">
                 <Template>
-                    <DxTextBox bind-Text="@TestNote"></DxTextBox>
+                    <DxTextBox @bind-Text="@TestNote"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 

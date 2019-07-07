@@ -4,24 +4,24 @@
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
     <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <button onclick="@DoSearch" class="btn btn-primary">Search</button>
+            <button @onclick="@DoSearch" class="btn btn-primary">Search</button>
         </Template>
     </DxFormLayoutItem>
 
 
     <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestBarcode)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxTextBox bind-Text="@TestBarcode"></DxTextBox>
+            <DxTextBox @bind-Text="@TestBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxDateEdit bind-Date="@StartDate"></DxDateEdit>
+            <DxDateEdit @bind-Date="@StartDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <DxDateEdit bind-Date="@EndDate"></DxDateEdit>
+            <DxDateEdit @bind-Date="@EndDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
     <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestTemplateName)" ColSpanLg="12" ColSpanMd="12">
@@ -30,7 +30,7 @@
             <DxComboBox Data="@Templates"
                         TextFieldName="Name"
                         NullText="Select Template ..."
-                        bind-SelectedItem="@Template">
+                        @bind-SelectedItem="@Template">
             </DxComboBox>
 
         </Template>
@@ -39,7 +39,7 @@
 
     <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <button onclick="@DoSearch" class="btn btn-primary">Search</button>
+            <button @onclick="@DoSearch" class="btn btn-primary">Search</button>
         </Template>
     </DxFormLayoutItem>
 </DxFormLayout>
