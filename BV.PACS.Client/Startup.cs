@@ -10,7 +10,7 @@ namespace BV.PACS.Client
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ApplicationContextService>();
-            
+
             services.AddScoped<UrlMappingService>();
             services.AddScoped<LookupService>();
             services.AddScoped<CatalogService>();

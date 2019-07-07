@@ -3,21 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Exe</OutputType>
-    <RestoreAdditionalProjectSources>
-      https://dotnet.myget.org/F/aspnetcore-dev/api/v3/index.json;
-      https://dotnet.myget.org/F/blazor-dev/api/v3/index.json;
-    </RestoreAdditionalProjectSources>
     <LangVersion>7.3</LangVersion>
     <RazorLangVersion>3.0</RazorLangVersion>
-    <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Catalogs\**" />
-    <Content Remove="Catalogs\**" />
-    <EmbeddedResource Remove="Catalogs\**" />
-    <None Remove="Catalogs\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="DevExpress.Blazor" Version="0.0.11-ctp" />

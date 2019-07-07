@@ -5,8 +5,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
+using System.Linq;
 using Microsoft.Extensions.Logging;
-
 namespace BV.PACS.Server
 {
     public class Startup
@@ -26,7 +27,7 @@ namespace BV.PACS.Server
             services.AddResponseCompression(opts =>
             {
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
-                    new[] {"application/octet-stream"});
+                    new[] { "application/octet-stream" });
             });
         }
 
@@ -50,8 +51,6 @@ namespace BV.PACS.Server
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapFallbackToClientSideBlazor<Client.Startup>("index.html");
             });
-
-
         }
     }
 }
