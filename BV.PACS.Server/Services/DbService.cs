@@ -11,7 +11,8 @@ namespace BV.PACS.Server.Services
             // todo: move to config
             _builder = new SqlConnectionStringBuilder
             {
-                DataSource = "DESKTOP-A0AN5I9\\PACS",
+                //DataSource = "DESKTOP-A0AN5I9\\PACS",
+                DataSource = "GRADIENT-PC\\SQLEXPRESS",
                 UserID = "sa",
                 Password = "btrp!2010",
                 InitialCatalog = "PACS_PrachiBMORU_200K"

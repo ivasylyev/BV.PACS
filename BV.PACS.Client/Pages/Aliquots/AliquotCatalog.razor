@@ -41,7 +41,7 @@
                             @if (PageCount > 1)
                             {
                                 <DxPager PageCount=@PageCount
-                                         bind-ActivePageIndex=@ActivePageNumber
+                                         @bind-ActivePageIndex=@ActivePageNumber
                                          CollapseButtonCount=@BaseSettings.CollapseButtonCount>
                                 </DxPager>
                             }
