@@ -68,6 +68,8 @@ namespace BV.PACS.Client.Shared.Base
 
         protected override async Task OnInitAsync()
         {
+            await base.OnInitAsync();
+
             await GetData();
             await GetPageCount();
         }

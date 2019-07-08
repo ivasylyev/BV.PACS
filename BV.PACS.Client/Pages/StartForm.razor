@@ -19,7 +19,7 @@
         I18nText.Text MyText = new I18nText.Text();
     protected override async Task OnInitAsync()
     {
-
+        await base.OnInitAsync();
         MyText = await I18nText.GetTextTableAsync<I18nText.Text>(this);
     }
 

@@ -1,7 +1,7 @@
 ﻿@using BV.PACS.Shared.Models
-@inherits BV.PACS.Client.Shared.Base.Catalog<BV.PACS.Shared.Models.SourceCatalogDto, BV.PACS.Client.I18nText.Text>
+@inherits BV.PACS.Client.Shared.Base.Catalog<BV.PACS.Shared.Models.SourceCatalogDto, BV.PACS.Client.I18nText.SourceCatalog>
 
-<h1>Source Catalog</h1>
+<h1>@Translations.Caption</h1>
 
 <div class="row">
     <div class="@PageContext.SearchPanelCssClass" >
@@ -26,7 +26,7 @@
                                         AllowRowSelection="@false"
                                         PageSize="@PageContext.Condition.PageSize">
 
-                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceBarcode)">
+                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceBarcode)" Caption="@Translations.SourceBarcode">
                                     <DisplayTemplate>
                                         <SourceBarcodeCell Context="@context"
                                                            OnCellClick="@OnSelectItem">
@@ -34,10 +34,17 @@
                                         </SourceBarcodeCell>
                                     </DisplayTemplate>
                                 </DxDataGridColumn>
-                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceTemplateName)" Caption="Template Name"></DxDataGridColumn>
-                                <DxDataGridDateEditColumn Field="@nameof(SourceCatalogDto.SourceCreationDate)"></DxDataGridDateEditColumn>
-                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceType)"></DxDataGridColumn>
-                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.MaterialsAndAliquotsCount)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceTemplateName)" Caption="@Translations.SourceTemplateName">
+                                </DxDataGridColumn>
+
+                                <DxDataGridDateEditColumn Field="@nameof(SourceCatalogDto.SourceCreationDate)" Caption="@Translations.SourceCreationDate">
+                                </DxDataGridDateEditColumn>
+
+                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.SourceType)" Caption="@Translations.SourceType">
+                                </DxDataGridColumn>
+
+                                <DxDataGridColumn Field="@nameof(SourceCatalogDto.MaterialsAndAliquotsCount)" Caption="@Translations.MaterialsAndAliquotsCount">
+                                </DxDataGridColumn>
                             </DxDataGrid>
                             @if (PageCount > 1)
                             {

@@ -51,4 +51,17 @@
     <Watch Remove="i18ntext\Pages\Aliquots\AliquotTrackingForm.ru-RU.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="i18ntext\Pages\Materials\" />
+    <Folder Include="i18ntext\Pages\Tests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Sources\SourceCatalog.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Sources\SourceCatalog.ru-RU.json" />
+  </ItemGroup>
+
 </Project>

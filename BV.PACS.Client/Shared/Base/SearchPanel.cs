@@ -33,6 +33,8 @@ namespace BV.PACS.Client.Shared.Base
 
         protected override async Task OnInitAsync()
         {
+            await base.OnInitAsync();
+
             StartDate = DateTime.Now.Date.AddYears(-1);
             EndDate = DateTime.Now.Date;
 
