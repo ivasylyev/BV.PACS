@@ -6,7 +6,7 @@ using BV.PACS.Shared.Models;
 
 namespace BV.PACS.Client.Tests
 {
-    public class TestTrackingPanelCode : TrackingPanel<TestTrackingDto>
+    public class TestTrackingPanelCode : TrackingPanel<TestTrackingDto, BV.PACS.Client.I18nText.Text>
     {
         protected TemplateLookupItem Template
         {

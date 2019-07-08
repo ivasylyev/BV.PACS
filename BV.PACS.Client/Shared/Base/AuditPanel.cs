@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BV.PACS.Shared.Models;
+using Toolbelt.Blazor.I18nText.Interfaces;
 
 namespace BV.PACS.Client.Shared.Base
 {
-    public class AuditPanel<TModel> : GridPanel<TModel> where TModel : AuditGridDto, new()
+    public class AuditPanel<TModel, TTranslation> : GridPanel<TModel, TTranslation>
+        where TModel : AuditGridDto, new()
+        where TTranslation : class, I18nTextFallbackLanguage, new()
     {
         protected Dictionary<string, AuditGroupedDto<TModel>> GroupedData { get; set; }
 

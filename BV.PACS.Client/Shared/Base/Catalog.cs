@@ -5,10 +5,13 @@ using BV.PACS.Client.Services.Api;
 using BV.PACS.Client.Services.Context;
 using BV.PACS.Shared.Models;
 using Microsoft.AspNetCore.Components;
+using Toolbelt.Blazor.I18nText.Interfaces;
 
 namespace BV.PACS.Client.Shared.Base
 {
-    public class Catalog<TModel> : ComponentBase where TModel : new()
+    public class Catalog<TModel, TTranslation> : TranslatablePanel<TTranslation> 
+        where TModel : new() 
+        where TTranslation : class, I18nTextFallbackLanguage, new()
     {
         [Inject]
         private HttpClient Http { get; set; }

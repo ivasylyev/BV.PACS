@@ -5,15 +5,16 @@ using I18nTextService = Toolbelt.Blazor.I18nText.I18nText;
 
 namespace BV.PACS.Client.Shared.Base
 {
-    public class TranslatablePanel<T> : ComponentBase where T : class, I18nTextFallbackLanguage, new()
+    public class TranslatablePanel<TTranslation> : ComponentBase
+        where TTranslation : class, I18nTextFallbackLanguage, new()
     {
         [Inject] protected I18nTextService TranslationService { get; set; }
 
-        protected T Translations { get; set; } = new T();
+        protected TTranslation Translations { get; set; } = new TTranslation();
 
         protected override async Task OnInitAsync()
         {
-            Translations = await TranslationService.GetTextTableAsync<T>(this);
+            Translations = await TranslationService.GetTextTableAsync<TTranslation>(this);
         }
     }
 }

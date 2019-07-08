@@ -1,10 +1,12 @@
 ﻿using System;
 using BV.PACS.Client.Services.Context;
 using Microsoft.AspNetCore.Components;
+using Toolbelt.Blazor.I18nText.Interfaces;
 
 namespace BV.PACS.Client.Shared.Base
 {
-    public class TrackingForm : ComponentBase
+    public class TrackingForm <TTranslation> : TranslatablePanel<TTranslation>
+        where TTranslation : class, I18nTextFallbackLanguage, new()
     {
         private int _activeTabIndex;
 

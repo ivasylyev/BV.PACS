@@ -6,7 +6,7 @@ using BV.PACS.Shared.Models;
 namespace BV.PACS.Client.Tests
 {
     [FormTemplate(FormTypes.Test)]
-    public class TestSearchPanelCode : SearchPanel
+    public class TestSearchPanelCode : SearchPanel< BV.PACS.Client.I18nText.Text>
     {
         protected string TestBarcode { get; set; }
 

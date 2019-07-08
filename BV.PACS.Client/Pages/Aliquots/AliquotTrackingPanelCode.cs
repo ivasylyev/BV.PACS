@@ -6,7 +6,7 @@ using BV.PACS.Shared.Models;
 
 namespace BV.PACS.Client.Aliquots
 {
-    public class AliquotTrackingPanelCode : TrackingPanel<AliquotTrackingDto>
+    public class AliquotTrackingPanelCode : TrackingPanel<AliquotTrackingDto, BV.PACS.Client.I18nText.Text>
     {
         protected TemplateLookupItem Template
         {

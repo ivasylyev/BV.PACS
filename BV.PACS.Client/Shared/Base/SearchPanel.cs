@@ -6,10 +6,12 @@ using BV.PACS.Client.Services.Api;
 using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Utils;
 using Microsoft.AspNetCore.Components;
+using Toolbelt.Blazor.I18nText.Interfaces;
 
 namespace BV.PACS.Client.Shared.Base
 {
-    public class SearchPanel : ComponentBase
+    public class SearchPanel<TTranslation> : TranslatablePanel<TTranslation>  
+        where TTranslation : class, I18nTextFallbackLanguage, new()
     {
         [Inject]
         protected LookupService ApiService { get; set; }

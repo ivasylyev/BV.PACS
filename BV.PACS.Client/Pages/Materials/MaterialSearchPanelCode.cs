@@ -6,7 +6,7 @@ using BV.PACS.Shared.Models;
 namespace BV.PACS.Client.Materials
 {
     [FormTemplate(FormTypes.Material)]
-    public class MaterialSearchPanelCode : SearchPanel
+    public class MaterialSearchPanelCode : SearchPanel<BV.PACS.Client.I18nText.Text>
     {
         protected string SourceBarcode { get; set; }
         protected string AliquotBarcode { get; set; }

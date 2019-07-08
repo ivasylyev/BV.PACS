@@ -4,10 +4,11 @@ using BV.PACS.Client.Services.Api;
 using BV.PACS.Shared.Models.Parameters;
 using BV.PACS.Shared.Utils;
 using Microsoft.AspNetCore.Components;
+using Toolbelt.Blazor.I18nText.Interfaces;
 
 namespace BV.PACS.Client.Shared.Base
 {
-    public class GridPanel<TModel> : ComponentBase where TModel : new()
+    public class GridPanel<TModel, TTranslation> : TranslatablePanel<TTranslation> where TModel : new() where TTranslation : class, I18nTextFallbackLanguage, new()
     {
         [Parameter]
         public int Id { get; set; }

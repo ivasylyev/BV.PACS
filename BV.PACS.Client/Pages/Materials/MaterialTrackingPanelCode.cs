@@ -7,7 +7,7 @@ using BV.PACS.Shared.Models.Parameters;
 
 namespace BV.PACS.Client.Materials
 {
-    public class MaterialTrackingPanelCode : TrackingPanel<MaterialTrackingDto>
+    public class MaterialTrackingPanelCode : TrackingPanel<MaterialTrackingDto, BV.PACS.Client.I18nText.Text>
     {
         protected TemplateLookupItem Template
         {

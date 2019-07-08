@@ -8,7 +8,7 @@ using BV.PACS.Shared.Models.Parameters;
 namespace BV.PACS.Client.Sources
 {
     // ReSharper disable once InconsistentNaming
-    public class SourceTrackingPanelCode : TrackingPanel<SourceTrackingDto>
+    public class SourceTrackingPanelCode : TrackingPanel<SourceTrackingDto, BV.PACS.Client.I18nText.Text>
     {
         protected TemplateLookupItem Template
         {

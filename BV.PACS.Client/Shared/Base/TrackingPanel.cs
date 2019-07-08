@@ -4,23 +4,22 @@ using BV.PACS.Client.Services.Api;
 using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
 using Microsoft.AspNetCore.Components;
+using Toolbelt.Blazor.I18nText.Interfaces;
 
 namespace BV.PACS.Client.Shared.Base
 {
-    public class TrackingPanel<TModel> : ComponentBase, IPostable where TModel : new()
+    public class TrackingPanel<TModel, TTranslation> : TranslatablePanel<TTranslation>, IPostable
+        where TModel : new()
+        where TTranslation : class, I18nTextFallbackLanguage, new()
+
     {
-        [Parameter]
-        public int Id { get; set; }
+        [Parameter] public int Id { get; set; }
 
+        [Inject] protected HttpClient Http { get; set; }
 
-        [Inject]
-        protected HttpClient Http { get; set; }
+        [Inject] protected TrackingService ApiTrackingService { get; set; }
 
-        [Inject]
-        protected TrackingService ApiTrackingService { get; set; }
-
-        [Inject]
-        protected LookupService ApiLookupService { get; set; }
+        [Inject] protected LookupService ApiLookupService { get; set; }
 
         public TModel TrackingObject { get; set; }
         protected TemplateLookupItem[] Templates { get; set; }
@@ -52,7 +51,8 @@ namespace BV.PACS.Client.Shared.Base
 
         private async Task GetData()
         {
-            TrackingObject = await ApiTrackingService.GetData<TModel>(Http, new TrackingParameter(Id, BaseSettings.Language));
+            TrackingObject =
+                await ApiTrackingService.GetData<TModel>(Http, new TrackingParameter(Id, BaseSettings.Language));
         }
     }
 }
