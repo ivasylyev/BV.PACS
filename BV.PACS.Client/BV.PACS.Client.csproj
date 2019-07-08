@@ -27,4 +27,28 @@
     <Watch Remove="i18ntext\Text.ru-RU.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Text.ru-RU.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="i18ntext\Pages\Text.ru-RU.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Text.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="i18ntext\Pages\Text.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Aliquots\AliquotTrackingForm.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Aliquots\AliquotTrackingForm.ru-RU.json" />
+  </ItemGroup>
+
 </Project>

@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Components
 @using BV.PACS.Client.Shared.Components
 @inherits BV.PACS.Client.Shared.Base.TrackingForm
-
-<h1>Aliquot Tracking</h1>
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+<h1>@MyText.Caption</h1>
 
 <div class="row">
 
@@ -49,4 +49,12 @@
 </div>
 
 @functions {
+    I18nText.AliquotTrackingForm MyText = new I18nText.AliquotTrackingForm();
+    protected override async Task OnInitAsync()
+    {
+
+        MyText = await I18nText.GetTextTableAsync<I18nText.AliquotTrackingForm>(this);
+    }
+
+
 }
