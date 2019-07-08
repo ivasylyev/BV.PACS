@@ -1,19 +1,27 @@
 ﻿@using BV.PACS.Client.Pages
 @using Microsoft.AspNetCore.Components
+@inject Toolbelt.Blazor.I18nText.I18nText I18nText
 <h1>Welcome to the new PACS app.</h1>
 
 
 
 <div class="row alert alert-primary background-white">
     <div class="col-sm-12">
-       
-            <span class="oi oi-pencil mr-2" aria-hidden="true"></span>
-            <strong>PACS Start Page</strong>
-        
+
+        <span class="oi oi-pencil mr-2" aria-hidden="true"></span>
+        <strong>PACS Start Page</strong>
+        <strong>@MyText.HelloWorld</strong>
+
     </div>
 </div>
 
 @functions {
+        I18nText.Text MyText = new I18nText.Text();
+    protected override async Task OnInitAsync()
+    {
 
-   
+        MyText = await I18nText.GetTextTableAsync<I18nText.Text>(this);
+    }
+
+
 }

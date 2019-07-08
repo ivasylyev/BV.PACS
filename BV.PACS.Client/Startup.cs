@@ -2,6 +2,7 @@ using BV.PACS.Client.Services.Api;
 using BV.PACS.Client.Services.Context;
 using Microsoft.AspNetCore.Components.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Toolbelt.Blazor.Extensions.DependencyInjection;
 
 namespace BV.PACS.Client
 {
@@ -9,6 +10,8 @@ namespace BV.PACS.Client
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddI18nText<Startup>();
+
             services.AddScoped<ApplicationContextService>();
 
             services.AddScoped<UrlMappingService>();
