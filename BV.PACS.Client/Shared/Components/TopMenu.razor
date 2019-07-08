@@ -40,8 +40,8 @@
                 </div>
                 <div class="col-auto">
                     <select class="form-control form-control-sm" @onchange="@OnChangeCurrentLang">
-                        <option value="en" selected="@(CurrentLang == "en")">English</option>
-                        <option value="ru" selected="@(CurrentLang == "ru")">Русский</option>
+                        <option value="en-US" selected="@(CurrentLang == "en-US")">English</option>
+                        <option value="ru-RU" selected="@(CurrentLang == "ru-RU")">Русский</option>
                     </select>
                 </div>
             </div>
@@ -61,13 +61,14 @@
     protected override async Task OnInitAsync()
     {
         var lang = await I18nText.GetCurrentLanguageAsync();
-        if (new[] { "en",  "ru" }.Contains(lang.Split('-')[0]))
+         Console.WriteLine($"current lang: {lang}");
+        if (new[] { "en-US",  "ru-RU" }.Contains(lang))
         {
             CurrentLang = lang;
         }
         else
         {
-            CurrentLang = "en";
+            CurrentLang = "en-US";
         }
     }
 

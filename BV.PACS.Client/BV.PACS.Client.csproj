@@ -19,4 +19,12 @@
     <ProjectReference Include="..\BV.PACS.Shared\BV.PACS.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Text.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Text.ru-RU.json" />
+  </ItemGroup>
+
 </Project>
