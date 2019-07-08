@@ -1,0 +1,8 @@
+﻿{
+  "Logo": "BV.PACS",
+  "SourceCatalog": "Каталог источников",
+  "MaterialCatalog": "Каталог материалов",
+  "AliquotCatalog": "Каталог аликвот",
+  "TestCatalog": "Каталог тестов"
+
+}

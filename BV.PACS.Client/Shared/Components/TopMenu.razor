@@ -4,38 +4,36 @@
 @using BV.PACS.Client.Pages.Tests
 @using BV.PACS.Client.Services.Context
 @using Microsoft.AspNetCore.Components
-
+@inherits BV.PACS.Client.Shared.Base.TranslatablePanel<BV.PACS.Client.I18nText.TopMenu>
 @inject ApplicationContextService _applicationContextService;
-
 
 <nav class="navbar navbar-default top-bar ">
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="">BV.PACS</a>
+        <a class="navbar-brand" href="">@Translations.Logo</a>
         <ul class="nav flex-column">
             <li class="nav-item px-3" style="padding-bottom: 0px; padding-top: 0px;">
-                <button @onclick="@DoOpenSourceCatalog" class="btn btn-primary">Source Catalog</button>
+                <button @onclick="@DoOpenSourceCatalog" class="btn btn-primary">@Translations.SourceCatalog</button>
             </li>
         </ul>
         <ul class="nav flex-column">
             <li class="nav-item px-3" style="padding-bottom: 0px; padding-top: 0px;">
-                <button @onclick="@DoOpenMaterialCatalog" class="btn btn-primary">Material Catalog</button>
+                <button @onclick="@DoOpenMaterialCatalog" class="btn btn-primary">@Translations.MaterialCatalog</button>
             </li>
         </ul>
         <ul class="nav flex-column">
             <li class="nav-item px-3" style="padding-bottom: 0px; padding-top: 0px;">
-                <button @onclick="@DoOpenAliquotCatalog" class="btn btn-primary">Aliquot Catalog</button>
+                <button @onclick="@DoOpenAliquotCatalog" class="btn btn-primary">@Translations.AliquotCatalog</button>
             </li>
         </ul>
         <ul class="nav flex-column">
             <li class="nav-item px-3" style="padding-bottom: 0px; padding-top: 0px;">
-                <button @onclick="@DoOpenTestCatalog" class="btn btn-primary">Test Catalog</button>
+                <button @onclick="@DoOpenTestCatalog" class="btn btn-primary">@Translations.TestCatalog</button>
             </li>
         </ul>
 
-       <LanguageSelector></LanguageSelector>
-            
-        <a href="http://blazor.net" target="_blank" class="ml-md-auto">A fancy link</a>
+        <LanguageSelector></LanguageSelector>
+
     </div>
 </nav>
 
@@ -46,7 +44,7 @@
     [Parameter]
     public Action OnMenuClick { get; set; }
 
-  
+
     private void DoOpenSourceCatalog()
     {
         DoOpenCatalogPage(nameof(SourceCatalog));

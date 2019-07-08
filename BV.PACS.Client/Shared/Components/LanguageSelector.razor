@@ -1,23 +1,25 @@
 ﻿@using BV.PACS.Client.Services.Context
 @using Microsoft.AspNetCore.Components
+@using Toolbelt.Blazor.I18nText
 @inject ApplicationContextService _applicationContextService;
-@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+@inject I18nText I18nText
 
 
-       
-            <div class="form-row align-items-center text-muted px-4">
-                <div class="col"></div>
-                <div class="col-auto">
-                    <span class="oi oi-globe" aria-hidden="true"></span>
-                </div>
-                <div class="col-auto">
-                    <select class="form-control form-control-sm" @onchange="@OnChangeCurrentLang">
-                        <option value="en-US" selected="@(CurrentLang == "en-US")">English</option>
-                        <option value="ru-RU" selected="@(CurrentLang == "ru-RU")">Русский</option>
-                    </select>
-                </div>
-            </div>
-       
+<div class="ml-md-auto">
+    <div class="form-row align-items-center text-muted px-4 ">
+        <div class="col"></div>
+        <div class="col-auto">
+            <span class="oi oi-globe" aria-hidden="true"></span>
+        </div>
+        <div class="col-auto">
+            <select class="form-control form-control-sm" @onchange="@OnChangeCurrentLang">
+                <option value="en-US" selected="@(CurrentLang == "en-US")">English</option>
+                <option value="ru-RU" selected="@(CurrentLang == "ru-RU")">Русский</option>
+            </select>
+        </div>
+    </div>
+
+</div>
 
 @functions
 {
@@ -29,8 +31,8 @@
         await base.OnInitAsync();
 
         var lang = await I18nText.GetCurrentLanguageAsync();
-         Console.WriteLine($"current lang: {lang}");
-        if (new[] { "en-US",  "ru-RU" }.Contains(lang))
+        Console.WriteLine($"current lang: {lang}");
+        if (new[] {"en-US", "ru-RU"}.Contains(lang))
         {
             CurrentLang = lang;
         }

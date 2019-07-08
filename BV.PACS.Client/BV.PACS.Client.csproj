@@ -54,6 +54,7 @@
   <ItemGroup>
     <Folder Include="i18ntext\Pages\Materials\" />
     <Folder Include="i18ntext\Pages\Tests\" />
+    <Folder Include="i18ntext\Shared\Base\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -62,6 +63,22 @@
 
   <ItemGroup>
     <Watch Remove="i18ntext\Pages\Sources\SourceCatalog.ru-RU.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\StartForm.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\StartForm.ru-RU.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Shared\Components\TopMenu.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Shared\Components\TopMenu.ru-RU.json" />
   </ItemGroup>
 
 </Project>
