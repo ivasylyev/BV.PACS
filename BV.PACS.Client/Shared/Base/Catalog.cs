@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.Client.Shared.Base
 {
-    public class Catalog<T> : ComponentBase where T : new()
+    public class Catalog<TModel> : ComponentBase where TModel : new()
     {
         [Inject]
         private HttpClient Http { get; set; }
@@ -23,14 +23,14 @@ namespace BV.PACS.Client.Shared.Base
         [Parameter]
         public Action<string, int> OnOpenTrackingForm { get; set; }
 
-        protected CatalogContext<T> PageContext
+        protected CatalogContext<TModel> PageContext
         {
             get
             {
-                var context = ApplicationContextService.CurrentApplicationContext.PageContext as CatalogContext<T>;
+                var context = ApplicationContextService.CurrentApplicationContext.PageContext as CatalogContext<TModel>;
                 if (context == null)
                 {
-                    context = new CatalogContext<T>();
+                    context = new CatalogContext<TModel>();
                     ApplicationContextService.CurrentApplicationContext.PageContext = context;
                 }
 
@@ -57,7 +57,7 @@ namespace BV.PACS.Client.Shared.Base
         }
 
 
-        protected T[] DataSource
+        protected TModel[] DataSource
         {
             get => PageContext.DataSource;
             set => PageContext.DataSource = value;
@@ -98,12 +98,12 @@ namespace BV.PACS.Client.Shared.Base
 
         private async Task GetPageCount()
         {
-            PageCount = await ApiCatalogService.GetPageCount<T>(Http, PageContext.Condition);
+            PageCount = await ApiCatalogService.GetPageCount<TModel>(Http, PageContext.Condition);
         }
 
         private async Task GetData()
         {
-            DataSource = await ApiCatalogService.GetData<T>(Http, PageContext.Condition);
+            DataSource = await ApiCatalogService.GetData<TModel>(Http, PageContext.Condition);
         }
     }
 }

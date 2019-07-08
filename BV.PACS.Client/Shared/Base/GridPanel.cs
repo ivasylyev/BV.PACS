@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.Client.Shared.Base
 {
-    public class GridPanel<T> : ComponentBase where T : new()
+    public class GridPanel<TModel> : ComponentBase where TModel : new()
     {
         [Parameter]
         public int Id { get; set; }
@@ -18,12 +18,12 @@ namespace BV.PACS.Client.Shared.Base
         [Inject]
         private HttpClient Http { get; set; }
 
-        protected T[] DataSource { get; set; }
+        protected TModel[] DataSource { get; set; }
 
         protected override async Task OnInitAsync()
         {
-            var url = MappingService.GridUrl<T>();
-            DataSource = await Http.PostJsonAsync<T[]>(url, new GridParameter(Id, GlobalSettings.CurrentLanguage));
+            var url = MappingService.GridUrl<TModel>();
+            DataSource = await Http.PostJsonAsync<TModel[]>(url, new GridParameter(Id, GlobalSettings.CurrentLanguage));
         }
     }
 }

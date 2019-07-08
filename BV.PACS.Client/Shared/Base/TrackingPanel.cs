@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.Client.Shared.Base
 {
-    public class TrackingPanel<T> : ComponentBase, IPostable where T : new()
+    public class TrackingPanel<TModel> : ComponentBase, IPostable where TModel : new()
     {
         [Parameter]
         public int Id { get; set; }
@@ -22,14 +22,14 @@ namespace BV.PACS.Client.Shared.Base
         [Inject]
         protected LookupService ApiLookupService { get; set; }
 
-        public T TrackingObject { get; set; }
+        public TModel TrackingObject { get; set; }
         protected TemplateLookupItem[] Templates { get; set; }
 
         public bool HasChanges { get; set; } = true;
 
         public virtual bool Post()
         {
-            ApiTrackingService.PostData(Http, new TrackingPostParameter<T>(TrackingObject, BaseSettings.Language))
+            ApiTrackingService.PostData(Http, new TrackingPostParameter<TModel>(TrackingObject, BaseSettings.Language))
                 .ContinueWith(x => StateHasChanged());
             return true;
         }
@@ -52,7 +52,7 @@ namespace BV.PACS.Client.Shared.Base
 
         private async Task GetData()
         {
-            TrackingObject = await ApiTrackingService.GetData<T>(Http, new TrackingParameter(Id, BaseSettings.Language));
+            TrackingObject = await ApiTrackingService.GetData<TModel>(Http, new TrackingParameter(Id, BaseSettings.Language));
         }
     }
 }
