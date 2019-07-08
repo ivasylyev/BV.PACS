@@ -4,9 +4,9 @@
 @using BV.PACS.Client.Pages.Tests
 @using BV.PACS.Client.Services.Context
 @using Microsoft.AspNetCore.Components
-@using BV.PACS.Client.I18nText
+
 @inject ApplicationContextService _applicationContextService;
-@inject Toolbelt.Blazor.I18nText.I18nText I18nText
+
 
 <nav class="navbar navbar-default top-bar ">
     <div class="container-fluid">
@@ -32,20 +32,9 @@
                 <button @onclick="@DoOpenTestCatalog" class="btn btn-primary">Test Catalog</button>
             </li>
         </ul>
-        <div class="footer">
-            <div class="form-row align-items-center text-muted px-4">
-                <div class="col"></div>
-                <div class="col-auto">
-                    <span class="oi oi-globe" aria-hidden="true"></span>
-                </div>
-                <div class="col-auto">
-                    <select class="form-control form-control-sm" @onchange="@OnChangeCurrentLang">
-                        <option value="en-US" selected="@(CurrentLang == "en-US")">English</option>
-                        <option value="ru-RU" selected="@(CurrentLang == "ru-RU")">Русский</option>
-                    </select>
-                </div>
-            </div>
-        </div>
+
+       <LanguageSelector></LanguageSelector>
+            
         <a href="http://blazor.net" target="_blank" class="ml-md-auto">A fancy link</a>
     </div>
 </nav>
@@ -53,33 +42,11 @@
 
 @functions
 {
-    private string CurrentLang { get; set; }
 
     [Parameter]
     public Action OnMenuClick { get; set; }
 
-    protected override async Task OnInitAsync()
-    {
-        var lang = await I18nText.GetCurrentLanguageAsync();
-         Console.WriteLine($"current lang: {lang}");
-        if (new[] { "en-US",  "ru-RU" }.Contains(lang))
-        {
-            CurrentLang = lang;
-        }
-        else
-        {
-            CurrentLang = "en-US";
-        }
-    }
-
-    private async Task OnChangeCurrentLang(UIChangeEventArgs args)
-    {
-        Console.WriteLine($"OnChange: {args.Type}, {args.Value}");
-        CurrentLang = args.Value as string;
-        await I18nText.SetCurrentLanguageAsync(CurrentLang);
-    }
-
-
+  
     private void DoOpenSourceCatalog()
     {
         DoOpenCatalogPage(nameof(SourceCatalog));
