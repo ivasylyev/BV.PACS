@@ -1,8 +1,8 @@
 ﻿@using BV.PACS.Shared.Models
-@inherits BV.PACS.Client.Shared.Base.Catalog<BV.PACS.Shared.Models.MaterialCatalogDto,  BV.PACS.Client.I18nText.Text>
+@inherits BV.PACS.Client.Shared.Base.Catalog<BV.PACS.Shared.Models.MaterialCatalogDto,  BV.PACS.Client.I18nText.MaterialCatalog>
 @inject HttpClient _http
 
-<h1>Material Catalog</h1>
+<h1>@Translations.Caption</h1>
 
 
 <div class="row">
@@ -28,15 +28,17 @@
                                         AllowRowSelection="@false"
                                         PageSize="@PageContext.Condition.PageSize">
 
-                                <DxDataGridColumn Field="@nameof(MaterialCatalogDto.MaterialBarcode)">
+                                <DxDataGridColumn Field="@nameof(MaterialCatalogDto.MaterialBarcode)" Caption="@Translations.MaterialBarcode">
                                     <DisplayTemplate>
                                         <MaterialBarcodeCell Context="@context"
                                                              OnCellClick="@OnSelectItem"/>
                                     </DisplayTemplate>
                                 </DxDataGridColumn>
-                                <DxDataGridColumn Field="@nameof(MaterialCatalogDto.MaterialTemplateName)" Caption="Template Name"></DxDataGridColumn>
-                                <DxDataGridDateEditColumn Field="@nameof(MaterialCatalogDto.MaterialRegistrationDate)"></DxDataGridDateEditColumn>
-                                <DxDataGridColumn Field="@nameof(MaterialCatalogDto.MaterialType)"></DxDataGridColumn>
+
+                                <DxDataGridColumn Field="@nameof(MaterialCatalogDto.MaterialTemplateName)" Caption="@Translations.MaterialTemplateName"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(MaterialCatalogDto.MaterialRegistrationDate)" Caption="@Translations.MaterialRegistrationDate"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialCatalogDto.MaterialType)" Caption="@Translations.MaterialType"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialCatalogDto.AliquotsCount)" Caption="@Translations.AliquotsCount"></DxDataGridColumn>
                             </DxDataGrid>
                             @if (PageCount > 1)
                             {

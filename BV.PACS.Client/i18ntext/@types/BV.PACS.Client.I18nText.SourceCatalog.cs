@@ -9,10 +9,10 @@ namespace BV.PACS.Client.I18nText
         /// <summary>"Source Catalog"</summary>
         public string Caption;
 
-        /// <summary>"Materials And Aliquots Count"</summary>
+        /// <summary>"# of materials (aliquots)"</summary>
         public string MaterialsAndAliquotsCount;
 
-        /// <summary>"Barcode"</summary>
+        /// <summary>"Source ID"</summary>
         public string SourceBarcode;
 
         /// <summary>"Creation Date"</summary>

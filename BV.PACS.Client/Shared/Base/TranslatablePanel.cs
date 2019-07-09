@@ -16,6 +16,7 @@ namespace BV.PACS.Client.Shared.Base
         {
             await base.OnInitAsync();
             Translations = await TranslationService.GetTextTableAsync<TTranslation>(this);
+            StateHasChanged();
         }
     }
 }

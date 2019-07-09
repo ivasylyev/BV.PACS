@@ -52,7 +52,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="i18ntext\Pages\Materials\" />
     <Folder Include="i18ntext\Pages\Tests\" />
     <Folder Include="i18ntext\Shared\Base\" />
   </ItemGroup>
@@ -87,6 +86,22 @@
 
   <ItemGroup>
     <Watch Remove="i18ntext\Shared\Components\OkCancelPanel.ru-RU.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Sources\SourceAuditPanel.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Sources\SourceAuditPanel.ru-RU.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Materials\MaterialCatalog.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Materials\MaterialCatalog.ru-RU.json" />
   </ItemGroup>
 
 </Project>

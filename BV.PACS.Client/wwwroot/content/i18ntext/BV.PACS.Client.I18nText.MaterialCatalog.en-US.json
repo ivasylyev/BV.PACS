@@ -1,0 +1,9 @@
+{
+  "AliquotsCount": "# of aliquots",
+  "Caption": "Material Catalog",
+  "MaterialBarcode": "Material ID",
+  "MaterialPointOfOrigin": "Point Of Origin",
+  "MaterialRegistrationDate": "Creation Date",
+  "MaterialTemplateName": "Template",
+  "MaterialType": "Material Type"
+}

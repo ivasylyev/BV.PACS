@@ -1,9 +1,9 @@
 ﻿{
   "Caption": "Source Catalog",
-  "SourceBarcode": "Barcode",
+  "SourceBarcode": "Source ID",
   "SourceCreationDate": "Creation Date",
   "SourceType": "Source Type",
-  "MaterialsAndAliquotsCount": "Materials And Aliquots Count",
+  "MaterialsAndAliquotsCount": "# of materials (aliquots)",
   "SourceTemplateName": "Template",
   "SourcePointOfOrigin": "Point Of Origin"
 }

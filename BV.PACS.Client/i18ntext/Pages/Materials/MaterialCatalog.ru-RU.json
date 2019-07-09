@@ -1,0 +1,9 @@
+﻿{
+  "Caption": "Каталог материалов",
+  "MaterialBarcode": "Материал №",
+  "MaterialRegistrationDate": "Дата создания",
+  "MaterialType": "Тип материала",
+  "AliquotsCount": "Количество аликвот",
+  "MaterialTemplateName": "Шаблон",
+  "MaterialPointOfOrigin": "Место сбора"
+}
