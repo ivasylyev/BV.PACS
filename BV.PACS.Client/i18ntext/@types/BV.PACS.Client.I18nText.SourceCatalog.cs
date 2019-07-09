@@ -18,10 +18,13 @@ namespace BV.PACS.Client.I18nText
         /// <summary>"Creation Date"</summary>
         public string SourceCreationDate;
 
+        /// <summary>"Point Of Origin"</summary>
+        public string SourcePointOfOrigin;
+
         /// <summary>"Template"</summary>
         public string SourceTemplateName;
 
-        /// <summary>"Type"</summary>
+        /// <summary>"Source Type"</summary>
         public string SourceType;
     }
 }

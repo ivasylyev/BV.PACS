@@ -3,6 +3,7 @@
   "MaterialsAndAliquotsCount": "Materials And Aliquots Count",
   "SourceBarcode": "Barcode",
   "SourceCreationDate": "Creation Date",
+  "SourcePointOfOrigin": "Point Of Origin",
   "SourceTemplateName": "Template",
-  "SourceType": "Type"
+  "SourceType": "Source Type"
 }

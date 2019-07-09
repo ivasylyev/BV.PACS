@@ -1,8 +1,9 @@
 ﻿{
   "Caption": "Каталог источников",
-  "SourceBarcode": "Штрих-код",
+  "SourceBarcode": "Идентификатор источника",
   "SourceCreationDate": "Дата создания",
-  "SourceType": "Тип",
-  "MaterialsAndAliquotsCount": "Количество материалов и аликвот",
-  "SourceTemplateName": "Шаблон"
+  "SourceType": "Тип источника",
+  "MaterialsAndAliquotsCount": "Количество материалов (аликвот)",
+  "SourceTemplateName": "Шаблон",
+  "SourcePointOfOrigin": "Место сбора"
 }

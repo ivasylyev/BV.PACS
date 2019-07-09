@@ -81,4 +81,12 @@
     <Watch Remove="i18ntext\Shared\Components\TopMenu.ru-RU.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Shared\Components\OkCancelPanel.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Shared\Components\OkCancelPanel.ru-RU.json" />
+  </ItemGroup>
+
 </Project>
