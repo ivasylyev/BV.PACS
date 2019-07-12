@@ -1,0 +1,9 @@
+﻿{
+  "Caption": "Aliquot Catalog",
+  "AliquotBarcode": "Aliquot ID",
+  "AliquotCreationDate": "Creation Date",
+  "AliquotStatus": "Aliquot Status",
+ 
+  "AliquotTemplateName": "Template",
+
+}

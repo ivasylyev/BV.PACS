@@ -104,4 +104,8 @@
     <Watch Remove="i18ntext\Pages\Materials\MaterialCatalog.ru-RU.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Aliquots\AliquotCatalog.en-US.json" />
+  </ItemGroup>
+
 </Project>
