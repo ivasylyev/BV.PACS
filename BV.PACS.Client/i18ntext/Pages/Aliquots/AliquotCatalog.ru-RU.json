@@ -1,0 +1,9 @@
+﻿{
+  "Caption": "Каталог Аликвот",
+  "AliquotBarcode": "Идентификатор аликвоты",
+  "AliquotCreationDate": "Дата создания",
+  "AliquotStatus": "Статцус аликвоты",
+ 
+  "AliquotTemplateName": "Шиблон",
+
+}
