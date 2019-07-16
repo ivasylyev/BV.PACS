@@ -24,7 +24,7 @@ namespace BV.PACS.Client.I18nText
         /// <summary>"Test ID"</summary>
         public string TestBarcode;
 
-        /// <summary>"Creation Date"</summary>
+        /// <summary>"Test Date"</summary>
         public string TestDate;
 
         /// <summary>"Creation Date"</summary>

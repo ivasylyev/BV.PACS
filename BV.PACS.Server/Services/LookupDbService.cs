@@ -5,14 +5,19 @@ using System.Threading.Tasks;
 using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
 using Dapper;
+using Microsoft.Extensions.Configuration;
 
 namespace BV.PACS.Server.Services
 {
     public class LookupDbService : DbService
     {
+
+        public LookupDbService(IConfiguration config) : base(config)
+        {
+        }
         public async Task<IEnumerable<TemplateLookupItem>> GetTemplates(TemplateLookupParameter parameter)
         {
-            using (var connection = new SqlConnection(_builder.ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 var result = await connection.QueryAsync<TemplateLookupItem>("spCustomizableFormTemplatesByFormType_SelectLookup",
                     new
@@ -27,7 +32,7 @@ namespace BV.PACS.Server.Services
 
         public async Task<IEnumerable<BaseLookupItem>> GetLookup(BaseLookupParameter parameter)
         {
-            using (var connection = new SqlConnection(_builder.ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 var result = await connection.QueryAsync<BaseLookupItem>(
                     "Select idfsReference, [Name], strDefault, intOrder from fnReferenceLookup(@LanguageID, @LookupType) Order By IsNull(intOrder, 0), [Name]",
@@ -40,5 +45,7 @@ namespace BV.PACS.Server.Services
                 return result;
             }
         }
+
+        
     }
 }

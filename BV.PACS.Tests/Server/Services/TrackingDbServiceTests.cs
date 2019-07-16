@@ -3,6 +3,7 @@ using System.Linq;
 using BV.PACS.Server.Services;
 using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
+using BV.PACS.Tests;
 using NUnit.Framework;
 
 namespace BV.Pacs.Tests.Server.Services
@@ -23,8 +24,8 @@ namespace BV.Pacs.Tests.Server.Services
         [SetUp]
         public void Setup()
         {
-            _trackingService = new TrackingDbService();
-            _catalogService = new CatalogDbService();
+            _trackingService = new TrackingDbService(TestConfig.GetConfig());
+            _catalogService = new CatalogDbService(TestConfig.GetConfig());
             SqlMapperEx.InitMappers();
         }
 

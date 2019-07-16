@@ -1,22 +1,14 @@
-﻿using System.Data.SqlClient;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace BV.PACS.Server.Services
 {
     public class DbService
     {
-        protected readonly SqlConnectionStringBuilder _builder;
+        protected string ConnectionString { get; private set; }
 
-        public DbService()
+        public DbService(IConfiguration config)
         {
-            // todo: move to config
-            _builder = new SqlConnectionStringBuilder
-            {
-                //DataSource = "DESKTOP-A0AN5I9\\PACS",
-                DataSource = "GRADIENT-PC\\SQLEXPRESS",
-                UserID = "sa",
-                Password = "btrp!2010",
-                InitialCatalog = "PACS_PrachiBMORU_200K"
-            };
+            ConnectionString = config.GetConnectionString("DefaultConnection");
         }
     }
 }

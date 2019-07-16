@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using BV.PACS.Server.Services;
 using BV.PACS.Shared.Models;
+using BV.PACS.Tests;
 using NUnit.Framework;
 
 namespace BV.Pacs.Tests.Server.Services
@@ -13,7 +14,7 @@ namespace BV.Pacs.Tests.Server.Services
         [SetUp]
         public void Setup()
         {
-            _service = new CatalogDbService();
+            _service = new CatalogDbService(TestConfig.GetConfig());
             SqlMapperEx.InitMappers();
         }
 
@@ -43,7 +44,7 @@ namespace BV.Pacs.Tests.Server.Services
         public void GetMaterialsTest()
         {
             var condition = new AggregatedConditionDto();
-            var items = _service.GetMaterials(condition). Result.ToList();
+            var items = _service.GetMaterials(condition).Result.ToList();
             Assert.IsNotEmpty(items);
 
             Console.WriteLine(items[0]);

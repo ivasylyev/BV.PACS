@@ -116,4 +116,8 @@
     <Watch Remove="i18ntext\Pages\Tests\TestCatalog.en-US.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Tests\TestCatalog.ru-RU.json" />
+  </ItemGroup>
+
 </Project>

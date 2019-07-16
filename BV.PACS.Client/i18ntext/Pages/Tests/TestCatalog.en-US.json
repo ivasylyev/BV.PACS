@@ -5,7 +5,7 @@
   "TestType": "Test Type",
   "TestResult": "Test Result",
   "TestRegistrationDate": "Creation Date",
-  "TestDate": "Creation Date",
+  "TestDate": "Test Date",
   "TestStatus": "Test Status",
   "AliquotBarcode": "Aliquot ID",
   "MaterialBarcode": "Material ID",

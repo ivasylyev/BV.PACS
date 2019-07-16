@@ -5,7 +5,7 @@
   "MaterialType": "Material Type",
   "SourceBarcode": "Source ID",
   "TestBarcode": "Test ID",
-  "TestDate": "Creation Date",
+  "TestDate": "Test Date",
   "TestRegistrationDate": "Creation Date",
   "TestResult": "Test Result",
   "TestStatus": "Test Status",

@@ -5,11 +5,16 @@ using System.Threading.Tasks;
 using BV.PACS.Shared.Models;
 using BV.PACS.Shared.Models.Parameters;
 using Dapper;
+using Microsoft.Extensions.Configuration;
 
 namespace BV.PACS.Server.Services
 {
     public class TrackingDbService : DbService
     {
+        public TrackingDbService(IConfiguration config) : base(config)
+        {
+        }
+
         public async Task<SourceTrackingDto> GetSourceTracking(TrackingParameter parameter)
         {
             return await GetTracking<SourceTrackingDto>(parameter);
@@ -39,7 +44,7 @@ namespace BV.PACS.Server.Services
             sqlParameters.Add(procAttr.KeyColumnName, parameter.Id);
             sqlParameters.Add("LanguageID", parameter.Language);
 
-            using (var connection = new SqlConnection(_builder.ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 var result = await connection.QueryMultipleAsync(procAttr.GetProcedureName,
                     sqlParameters,
@@ -116,7 +121,7 @@ namespace BV.PACS.Server.Services
                 }
             }
 
-            using (var connection = new SqlConnection(_builder.ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 var result = await connection.QueryAsync<T>(procAttr.GetProcedureName,
                     sqlParameters,
@@ -173,7 +178,7 @@ namespace BV.PACS.Server.Services
             sqlParameters.Add("Action", 16);
             sqlParameters.Add("LanguageID", parameter.Language);
 
-            using (var connection = new SqlConnection(_builder.ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 await connection.ExecuteScalarAsync(procAttr.PostProcedureName, sqlParameters, commandType: CommandType.StoredProcedure);
             }

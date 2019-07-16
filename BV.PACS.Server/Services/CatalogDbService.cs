@@ -4,11 +4,15 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using BV.PACS.Shared.Models;
 using Dapper;
+using Microsoft.Extensions.Configuration;
 
 namespace BV.PACS.Server.Services
 {
     public class CatalogDbService : DbService
     {
+        public CatalogDbService(IConfiguration config) : base(config)
+        {
+        }
         public async Task<IEnumerable<SourceCatalogDto>> GetSources(AggregatedConditionDto condition)
         {
             return await GetCatalogItems<SourceCatalogDto>(condition, "dbo.spSource_QS");
@@ -33,7 +37,7 @@ namespace BV.PACS.Server.Services
         {
             var xml = condition.Serialize();
 
-            using (var connection = new SqlConnection(_builder.ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 var result = await connection.QueryAsync<T>(spName,
                     new
@@ -71,7 +75,7 @@ namespace BV.PACS.Server.Services
 
         private async Task<int> GetCatalogRecordCount(AggregatedConditionDto condition, string spName)
         {
-            using (var connection = new SqlConnection(_builder.ConnectionString))
+            using (var connection = new SqlConnection(ConnectionString))
             {
                 var xml = condition.Serialize();
 
@@ -86,5 +90,7 @@ namespace BV.PACS.Server.Services
                 return result;
             }
         }
+
+       
     }
 }

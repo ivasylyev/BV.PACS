@@ -1,0 +1,14 @@
+{
+  "AliquotBarcode": "Идентификатор аликвоты",
+  "Caption": "Каталог тестов",
+  "MaterialBarcode": "Материал №",
+  "MaterialType": "Тип материала",
+  "SourceBarcode": "Идентификатор источника",
+  "TestBarcode": "Идентификатор теста",
+  "TestDate": "Дата теста",
+  "TestRegistrationDate": "Creation Date",
+  "TestResult": "Результат",
+  "TestStatus": "Состояние",
+  "TestTemplateName": "Шаблон",
+  "TestType": "Тип теста"
+}
