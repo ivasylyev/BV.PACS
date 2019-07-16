@@ -20,5 +20,11 @@ namespace BV.PACS.Client.I18nText
 
         /// <summary>"Aliquot Catalog"</summary>
         public string Caption;
+
+        /// <summary>"Material ID"</summary>
+        public string MaterialBarcode;
+
+        /// <summary>"Material Type"</summary>
+        public string MaterialType;
     }
 }

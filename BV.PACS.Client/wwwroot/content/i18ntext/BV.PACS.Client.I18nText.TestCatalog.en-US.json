@@ -1,0 +1,14 @@
+{
+  "AliquotBarcode": "Aliquot ID",
+  "Caption": "Test Catalog",
+  "MaterialBarcode": "Material ID",
+  "MaterialType": "Material Type",
+  "SourceBarcode": "Source ID",
+  "TestBarcode": "Test ID",
+  "TestDate": "Creation Date",
+  "TestRegistrationDate": "Creation Date",
+  "TestResult": "Test Result",
+  "TestStatus": "Test Status",
+  "TestTemplateName": "Template",
+  "TestType": "Test Type"
+}

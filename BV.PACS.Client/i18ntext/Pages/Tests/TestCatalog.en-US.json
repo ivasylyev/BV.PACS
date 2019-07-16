@@ -1,0 +1,16 @@
+﻿{
+  "Caption": "Test Catalog",
+
+  "TestBarcode": "Test ID",
+  "TestType": "Test Type",
+  "TestResult": "Test Result",
+  "TestRegistrationDate": "Creation Date",
+  "TestDate": "Creation Date",
+  "TestStatus": "Test Status",
+  "AliquotBarcode": "Aliquot ID",
+  "MaterialBarcode": "Material ID",
+  "SourceBarcode": "Source ID",
+  "TestTemplateName": "Template",
+  "MaterialType": "Material Type"
+
+}

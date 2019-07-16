@@ -3,5 +3,7 @@
   "AliquotCreationDate": "Creation Date",
   "AliquotStatus": "Aliquot Status",
   "AliquotTemplateName": "Template",
-  "Caption": "Aliquot Catalog"
+  "Caption": "Aliquot Catalog",
+  "MaterialBarcode": "Material ID",
+  "MaterialType": "Material Type"
 }

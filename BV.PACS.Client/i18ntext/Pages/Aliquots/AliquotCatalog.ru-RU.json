@@ -3,7 +3,9 @@
   "AliquotBarcode": "Идентификатор аликвоты",
   "AliquotCreationDate": "Дата создания",
   "AliquotStatus": "Статцус аликвоты",
- 
-  "AliquotTemplateName": "Шиблон",
+
+  "AliquotTemplateName": "Шаблон",
+  "MaterialBarcode": "Материал №",
+  "MaterialType": "Тип материала"
 
 }

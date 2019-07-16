@@ -31,9 +31,11 @@
                                 <DxDataGridColumn Field="@nameof(AliquotCatalogDto.AliquotBarcode)" Caption="@Translations.AliquotBarcode">
                                     <DisplayTemplate>
                                         <AliquotBarcodeCell Context="@context"
-                                                            OnCellClick="@OnSelectItem"/>
+                                                            OnCellClick="@OnSelectItem" />
                                     </DisplayTemplate>
                                 </DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotCatalogDto.MaterialBarcode)" Caption="@Translations.MaterialBarcode"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotCatalogDto.MaterialType)" Caption="@Translations.MaterialType"></DxDataGridColumn>
                                 <DxDataGridColumn Field="@nameof(AliquotCatalogDto.AliquotTemplateName)" Caption="@Translations.AliquotTemplateName"></DxDataGridColumn>
                                 <DxDataGridDateEditColumn Field="@nameof(AliquotCatalogDto.AliquotCreationDate)" Caption="@Translations.AliquotCreationDate"></DxDataGridDateEditColumn>
                                 <DxDataGridColumn Field="@nameof(AliquotCatalogDto.AliquotStatus)" Caption="@Translations.AliquotStatus"></DxDataGridColumn>

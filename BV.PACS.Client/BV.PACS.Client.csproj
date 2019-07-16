@@ -52,7 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="i18ntext\Pages\Tests\" />
+    <Folder Include="i18ntext\%40types\" />
     <Folder Include="i18ntext\Shared\Base\" />
   </ItemGroup>
 
@@ -110,6 +110,10 @@
 
   <ItemGroup>
     <Watch Remove="i18ntext\Pages\Aliquots\AliquotCatalog.ru-RU.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Tests\TestCatalog.en-US.json" />
   </ItemGroup>
 
 </Project>
