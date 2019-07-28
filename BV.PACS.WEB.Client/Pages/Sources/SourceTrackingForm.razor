@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNetCore.Components
+@using BV.PACS.WEB.Client.Shared.Components
+@inherits BV.PACS.WEB.Client.Shared.Base.TrackingForm<BV.PACS.WEB.Client.I18nText.Text>
+
+<h1>Source Tracking</h1>
+
+<div class="row">
+
+    <div class="card demo-card alert alert-primary background-white ">
+        <div class="card-body  border-top-0">
+            <DxTabs @bind-ActiveTabIndex="@ActiveTabIndex">
+
+                <DxTab Text="General info"></DxTab>
+                <DxTab Text="Materials"></DxTab>
+                <DxTab Text="Diagnostics"></DxTab>
+                <DxTab Text="Tests"></DxTab>
+                <DxTab Text="Audit log"></DxTab>
+
+            </DxTabs>
+            <div class="card demo-card dxbs-border-top-0 dxbs-border-radius-top-0">
+                <div class="card-body">
+                    @switch (ActiveTabIndex)
+                    {
+                        case 0:
+                            <i>"General info" tab is active.</i>
+                            <SourceTrackingPanel Id=@Id 
+                                                 @ref=@TrackingPanel>
+                            </SourceTrackingPanel>
+                            break;
+
+                        case 1:
+                            <SourceMaterialsPanel Id=@Id>
+                            </SourceMaterialsPanel>
+                            break;
+
+                        case 2:
+                            <SourceDiagnosticsPanel Id=@Id>
+                            </SourceDiagnosticsPanel>
+                            break;
+
+                        case 3:
+                            <SourceTestPanel Id=@Id>
+                            </SourceTestPanel>
+                            break;
+
+                        case 4:
+                            <SourceAuditPanel Id=@Id>
+                            </SourceAuditPanel>
+                            break;
+                    }
+                </div>
+            </div>
+            <OkCancelPanel OnOk="@DoOk"
+                           OnCancel="@DoCancel">
+            </OkCancelPanel>
+
+        </div>
+    </div>
+</div>
+
+
+@functions {
+   
+   
+
+}

@@ -1,0 +1,25 @@
+﻿@using BV.PACS.WEB.Shared.Models
+@using Microsoft.AspNetCore.Components
+
+<button type="button" class="btn btn-link" @onclick="@OnClick">@Barcode</button>
+
+@functions {
+
+    [Parameter]
+    object Context { get; set; }
+
+    int Id => Context is SourceCatalogDto source ? source.SourceId : 0;
+    string Barcode => Context is SourceCatalogDto source ? source.SourceBarcode : string.Empty;
+
+    [Parameter]
+    public Action<string, int> OnCellClick { get; set; }
+
+    private void OnClick()
+    {
+        if (Id > 0)
+        {
+            OnCellClick?.Invoke(nameof(SourceTrackingForm), Id);
+        }
+    }
+
+}

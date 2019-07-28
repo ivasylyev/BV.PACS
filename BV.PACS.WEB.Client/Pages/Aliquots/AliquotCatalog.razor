@@ -1,0 +1,60 @@
+﻿@using BV.PACS.WEB.Shared.Models
+@inherits BV.PACS.WEB.Client.Shared.Base.Catalog<BV.PACS.WEB.Shared.Models.AliquotCatalogDto,  BV.PACS.WEB.Client.I18nText.AliquotCatalog>
+@inject HttpClient _http
+
+    <h1>@Translations.Caption</h1>
+
+
+<div class="row">
+    <div class="@PageContext.SearchPanelCssClass" >
+        <AliquotSearchPanel OnSearch="@OnSearchPanelSearch">
+
+        </AliquotSearchPanel>
+    </div>
+
+    <div class="@PageContext.GridPanelCssClass" >
+        <div class="row">
+
+            <div class="col-sm-12">
+                <button @onclick="@OnSearchPanelToggle" class="btn btn-primary float-right" style="margin-bottom: 16px;">@PageContext.ShowHideSearchPanelCaption</button>
+            </div>
+            <div class="col-sm-12">
+                <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+                    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                        <Template Context="GridContext">
+                            <DxDataGrid Data="@DataSource"
+                                        ShowFilterRow="@false"
+                                        ShowPager="@false"
+                                        AllowDataRowSelection="@false"
+                                        PageSize="@PageContext.Condition.PageSize">
+
+                                <DxDataGridColumn Field="@nameof(AliquotCatalogDto.AliquotBarcode)" Caption="@Translations.AliquotBarcode">
+                                    <DisplayTemplate>
+                                        <AliquotBarcodeCell Context="@context"
+                                                            OnCellClick="@OnSelectItem" />
+                                    </DisplayTemplate>
+                                </DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotCatalogDto.MaterialBarcode)" Caption="@Translations.MaterialBarcode"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotCatalogDto.MaterialType)" Caption="@Translations.MaterialType"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotCatalogDto.AliquotTemplateName)" Caption="@Translations.AliquotTemplateName"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(AliquotCatalogDto.AliquotCreationDate)" Caption="@Translations.AliquotCreationDate"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotCatalogDto.AliquotStatus)" Caption="@Translations.AliquotStatus"></DxDataGridColumn>
+                            </DxDataGrid>
+                            @if (PageCount > 1)
+                            {
+                                <DxPager PageCount=@PageCount
+                                         @bind-ActivePageIndex=@ActivePageNumber
+                                         CollapseButtonCount=@BaseSettings.CollapseButtonCount>
+                                </DxPager>
+                            }
+                        </Template>
+                    </DxFormLayoutItem>
+                </DxFormLayout>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@functions {
+}

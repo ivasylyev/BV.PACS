@@ -1,0 +1,8 @@
+﻿{
+  "Caption": "Source Catalog",
+  "SourceBarcode": "Barcode",
+  "SourceCreationDate": "Creation Date",
+  "SourceType": "Type",
+  "MaterialsAndAliquotsCount": "Materials And Aliquots Count",
+  "SourceTemplateName": "Template" 
+}

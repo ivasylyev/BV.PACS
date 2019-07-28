@@ -1,0 +1,47 @@
+﻿@using BV.PACS.WEB.Shared.Models
+@inherits BV.PACS.WEB.Client.Shared.Base.AuditPanel<BV.PACS.WEB.Shared.Models.TestAuditGridDto, BV.PACS.WEB.Client.I18nText.Text>
+
+@{
+    if (GroupedData == null)
+    {
+        <div class="row">Loading...</div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+
+                    @foreach (var group in GroupedData)
+                    {
+                        <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+
+                            <Template Context="GridContext">
+                                <div class="card-header">
+                                    @*<button type="button" class="btn btn-link" @onclick=@{() => OnClick(group.Key)}>@group.Key</button>*@
+                                </div>
+                                @if (GroupedData[group.Key].GroupVisibility)
+                                {
+                                    <DxDataGrid Data=@GroupedData[group.Key].Data
+                                                ShowFilterRow="@false"
+                                                ShowPager="@false"
+                                                AllowDataRowSelection="@false"
+                                                PageSize="@BaseSettings.MaxSize">
+                                        <DxDataGridColumn Field="@nameof(TestAuditGridDto.ColumnName)"></DxDataGridColumn>
+                                        <DxDataGridColumn Field="@nameof(TestAuditGridDto.OldValue)"></DxDataGridColumn>
+                                        <DxDataGridColumn Field="@nameof(TestAuditGridDto.NewValue)"></DxDataGridColumn>
+                                        <DxDataGridColumn Field="@nameof(TestAuditGridDto.Object)"></DxDataGridColumn>
+
+                                    </DxDataGrid>
+                                }
+
+                            </Template>
+                        </DxFormLayoutItem>
+                    }
+
+                </DxFormLayout>
+
+            </div>
+        </div>
+    }
+}

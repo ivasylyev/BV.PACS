@@ -1,0 +1,28 @@
+﻿@using BV.PACS.WEB.Client.Services.Context
+@using Microsoft.AspNetCore.Components
+@{
+
+    var state = ContextService.CurrentApplicationContext;
+
+    <div class="content px-4">
+        <div class="row alert alert-primary background-white">
+            <div class="col-sm-12">
+
+                <div>Debug: Stack depth = @ContextService._contexts.Count</div>
+                <div>Debug: Context = @state?.PageContext</div>
+                <div>Debug: PageName = @state?.PageName</div>
+
+            </div>
+        </div>
+    </div>
+}
+
+
+@functions
+
+{
+
+    [Parameter]
+    ApplicationContextService ContextService { get; set; }
+
+}

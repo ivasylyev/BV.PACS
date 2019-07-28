@@ -1,0 +1,77 @@
+﻿@page "/"
+@using BV.PACS.WEB.Client.Pages.Aliquots
+@using BV.PACS.WEB.Client.Pages.Materials
+@using BV.PACS.WEB.Client.Pages.Sources
+@using BV.PACS.WEB.Client.Pages.Tests
+@using BV.PACS.WEB.Client.Services.Context
+@using BV.PACS.WEB.Client.Shared.Components
+@inject ApplicationContextService _applicationContextService;
+
+<TopMenu OnMenuClick="@StateHasChanged">
+</TopMenu>
+
+<div class="content px-4">
+    @{
+        var state = _applicationContextService.CurrentApplicationContext;
+        switch (state?.PageName)
+        {
+            case nameof(SourceCatalog):
+                <SourceCatalog OnOpenTrackingForm=@DoOpenTrackingForm>
+                </SourceCatalog>
+                break;
+            case nameof(MaterialCatalog):
+                <MaterialCatalog OnOpenTrackingForm=@DoOpenTrackingForm>
+                </MaterialCatalog>
+                break;
+            case nameof(AliquotCatalog):
+                <AliquotCatalog OnOpenTrackingForm=@DoOpenTrackingForm>
+                </AliquotCatalog>
+                break;
+            case nameof(TestCatalog):
+                <TestCatalog OnOpenTrackingForm=@DoOpenTrackingForm>
+                </TestCatalog>
+                break;
+
+            case nameof(SourceTrackingForm):
+                <SourceTrackingForm OnClose=@DoClosePage>
+                </SourceTrackingForm>
+                break;
+            case nameof(MaterialTrackingForm):
+                <MaterialTrackingForm OnClose=@DoClosePage>
+                </MaterialTrackingForm>
+                break;
+            case nameof(AliquotTrackingForm):
+                <AliquotTrackingForm OnClose=@DoClosePage>
+                </AliquotTrackingForm>
+                break;
+            case nameof(TestTrackingForm):
+                <TestTrackingForm OnClose=@DoClosePage>
+                </TestTrackingForm>
+                break;
+
+            default:
+                <StartForm></StartForm>
+                break;
+        }
+    }
+
+</div>
+
+<DebugPanel ContextService=@_applicationContextService>
+</DebugPanel>
+
+@functions
+{
+    public void DoOpenTrackingForm(string pageName, int context)
+    {
+        _applicationContextService.OpenTrackingPage(pageName, context);
+        StateHasChanged();
+    }
+
+    public void DoClosePage(DialogResult result)
+    {
+        _applicationContextService.ClosePage(result);
+        StateHasChanged();
+    }
+
+}

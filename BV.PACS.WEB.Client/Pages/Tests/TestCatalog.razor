@@ -1,0 +1,62 @@
+﻿@using BV.PACS.WEB.Shared.Models
+@inherits BV.PACS.WEB.Client.Shared.Base.Catalog<BV.PACS.WEB.Shared.Models.TestCatalogDto, BV.PACS.WEB.Client.I18nText.TestCatalog>
+
+<h1>Test Catalog</h1>
+
+
+<div class="row">
+    <div class="@PageContext.SearchPanelCssClass">
+        <TestSearchPanel OnSearch="@OnSearchPanelSearch">
+
+        </TestSearchPanel>
+    </div>
+
+    <div class="@PageContext.GridPanelCssClass">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <button @onclick="@OnSearchPanelToggle" class="btn btn-primary float-right" style="margin-bottom: 16px;">@PageContext.ShowHideSearchPanelCaption</button>
+            </div>
+            <div class="col-sm-12">
+                <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+                    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                        <Template Context="GridContext">
+                            <DxDataGrid Data="@DataSource"
+                                        ShowFilterRow="@false"
+                                        ShowPager="@false"
+                                        AllowDataRowSelection="@false"
+                                        PageSize="@PageContext.Condition.PageSize">
+
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.TestBarcode)" Caption="@Translations.TestBarcode">
+                                    <DisplayTemplate>
+                                        <TestBarcodeCell Context="@context"
+                                                         OnCellClick="@OnSelectItem" />
+                                    </DisplayTemplate>
+                                </DxDataGridColumn>
+
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.TestType)" Caption="@Translations.TestType"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.TestResult)" Caption="@Translations.TestResult"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(TestCatalogDto.TestRegistrationDate)" Caption="@Translations.TestRegistrationDate"></DxDataGridDateEditColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(TestCatalogDto.TestDate)" Caption="@Translations.TestDate"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.TestStatus)" Caption="@Translations.TestStatus"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.AliquotBarcode)" Caption="@Translations.AliquotBarcode"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.TestTemplateName)" Caption="@Translations.TestTemplateName"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.MaterialBarcode)" Caption="@Translations.MaterialBarcode"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.MaterialType)" Caption="@Translations.MaterialType"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(TestCatalogDto.SourceBarcode)" Caption="@Translations.SourceBarcode"></DxDataGridColumn>
+
+                            </DxDataGrid>
+                            @if (PageCount > 1)
+                            {
+                                <DxPager PageCount=@PageCount
+                                         @bind-ActivePageIndex=@ActivePageNumber
+                                         CollapseButtonCount=@BaseSettings.CollapseButtonCount>
+                                </DxPager>
+                            }
+                        </Template>
+                    </DxFormLayoutItem>
+                </DxFormLayout>
+            </div>
+        </div>
+    </div>
+</div>

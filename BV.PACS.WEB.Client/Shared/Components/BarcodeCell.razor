@@ -1,0 +1,26 @@
+﻿@using BV.PACS.WEB.Client.Pages
+@using Microsoft.AspNetCore.Components
+@{
+
+    if (Id > 0)
+    {
+        <a href="/@PageRoute/@Id" class="ml-md-auto">@Barcode</a>
+    }
+    else
+    {
+        @Barcode
+    }
+}
+
+@functions {
+
+    [Parameter]
+    int Id { get; set; }
+
+    [Parameter]
+    string PageRoute { get; set; }
+
+    [Parameter]
+    string Barcode { get; set; }
+
+}

@@ -1,0 +1,42 @@
+﻿@using BV.PACS.WEB.Shared.Models
+@inherits BV.PACS.WEB.Client.Shared.Base.GridPanel<BV.PACS.WEB.Shared.Models.MaterialGridDto, BV.PACS.WEB.Client.I18nText.Text>
+
+@{
+    if (DataSource == null)
+    {
+        <div class="row">Loading...</div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+                    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                        <Template Context="GridContext">
+                            <DxDataGrid Data="@DataSource"
+                                        ShowFilterRow="@false"
+                                        ShowPager="@true"
+                                        AllowDataRowSelection="@false"
+                                        PageSize="@BaseSettings.PageSize">
+
+                                <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialBarcode)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialType)"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(MaterialGridDto.MaterialRegistrationDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialTemplateName)" Caption="Template Name"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialGridDto.AliquotsCount)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialPointOfOrigin)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(MaterialGridDto.MaterialNote)"></DxDataGridColumn>
+                            </DxDataGrid>
+
+                        </Template>
+                    </DxFormLayoutItem>
+                </DxFormLayout>
+
+            </div>
+        </div>
+    }
+}
+
+
+@functions {
+}

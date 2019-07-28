@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.Components
+@using BV.PACS.WEB.Client.Shared.Components
+@inherits BV.PACS.WEB.Client.Shared.Base.TrackingForm< BV.PACS.WEB.Client.I18nText.Text>
+<h1>Caption</h1>
+
+<div class="row">
+
+    <div class="card demo-card alert alert-primary background-white">
+        <div class="card-body  border-top-0">
+            <DxTabs @bind-ActiveTabIndex="@ActiveTabIndex">
+                <DxTab Text="General info"></DxTab>
+                <DxTab Text="Tests"></DxTab>
+                <DxTab Text="Checkout history"></DxTab>
+                <DxTab Text="Audit log"></DxTab>
+            </DxTabs>
+            <div class="card demo-card dxbs-border-top-0 dxbs-border-radius-top-0">
+                <div class="card-body">
+                    @switch (ActiveTabIndex)
+                    {
+                        case 0:
+                            <AliquotTrackingPanel Id=@Id
+                                                  @ref=@TrackingPanel>
+
+                            </AliquotTrackingPanel>
+                            break;
+                        case 1:
+                            <AliquotTestPanel Id=@Id>
+
+                            </AliquotTestPanel>
+                            break;
+                        case 2:
+                            <i>"Checkout history" tab is active.</i>
+                            break;
+                        case 3:
+                            <AliquotAuditPanel Id=@Id>
+                            </AliquotAuditPanel>
+                            break;
+                    }
+                </div>
+            </div>
+            <OkCancelPanel OnOk="@DoOk"
+                           OnCancel="@DoCancel">
+            </OkCancelPanel>
+        </div>
+    </div>
+
+
+</div>
+

@@ -1,0 +1,45 @@
+﻿@using BV.PACS.WEB.Shared.Models
+@inherits BV.PACS.WEB.Client.Shared.Base.GridPanel<BV.PACS.WEB.Shared.Models.AliquotTestGridDto,  BV.PACS.WEB.Client.I18nText.Text>
+
+@{
+    if (DataSource == null)
+    {
+        <div class="row">Loading...</div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+                    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                        <Template Context="GridContext">
+                            <DxDataGrid Data="@DataSource"
+                                        ShowFilterRow="@false"
+                                        ShowPager="@true"
+                                        AllowDataRowSelection="@false"
+                                        PageSize="@BaseSettings.PageSize">
+
+                                <DxDataGridColumn Field="@nameof(AliquotTestGridDto.TestBarcode)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotTestGridDto.AliquotBarcode)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotTestGridDto.MaterialBarcode)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotTestGridDto.MaterialType)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotTestGridDto.SourceBarcode)"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(AliquotTestGridDto.TestRegistrationDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotTestGridDto.TestType)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotTestGridDto.TestResult)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(AliquotTestGridDto.TestStatus)"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(AliquotTestGridDto.TestDate)"></DxDataGridDateEditColumn>
+                            </DxDataGrid>
+
+                        </Template>
+                    </DxFormLayoutItem>
+                </DxFormLayout>
+
+            </div>
+        </div>
+    }
+}
+
+
+@functions {
+}

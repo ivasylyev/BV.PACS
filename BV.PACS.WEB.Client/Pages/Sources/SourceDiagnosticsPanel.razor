@@ -1,0 +1,44 @@
+﻿@using BV.PACS.WEB.Shared.Models
+@inherits BV.PACS.WEB.Client.Shared.Base.GridPanel<BV.PACS.WEB.Shared.Models.SourceDiagnosticsDto,BV.PACS.WEB.Client.I18nText.Text>
+
+@{
+    if (DataSource == null)
+    {
+        <div class="row">Loading...</div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+                    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                        <Template Context="GridContext">
+                            <DxDataGrid Data="@DataSource"
+                                        ShowFilterRow="@false"
+                                        ShowPager="@true"
+                                        AllowDataRowSelection="@false"
+                                        PageSize="@BaseSettings.PageSize">
+
+                                <DxDataGridColumn Field="@nameof(SourceDiagnosticsDto.MaterialBarcode)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(SourceDiagnosticsDto.TestSet)"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(SourceDiagnosticsDto.StartDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(SourceDiagnosticsDto.Status)" Caption="Template Name"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(SourceDiagnosticsDto.PerformedByName)"></DxDataGridColumn>
+                                <DxDataGridColumn Field="@nameof(SourceDiagnosticsDto.ValidatedByName)"></DxDataGridColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(SourceDiagnosticsDto.ValidateDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridDateEditColumn Field="@nameof(SourceDiagnosticsDto.ChangedDate)"></DxDataGridDateEditColumn>
+                                <DxDataGridColumn Field="@nameof(SourceDiagnosticsDto.Note)"></DxDataGridColumn>
+                            </DxDataGrid>
+
+                        </Template>
+                    </DxFormLayoutItem>
+                </DxFormLayout>
+
+            </div>
+        </div>
+    }
+}
+
+
+@functions {
+}
