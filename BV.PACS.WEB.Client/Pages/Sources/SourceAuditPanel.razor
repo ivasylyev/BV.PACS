@@ -1,5 +1,5 @@
 ﻿@using BV.PACS.WEB.Shared.Models
-@inherits BV.PACS.WEB.Client.Shared.Base.AuditPanel<BV.PACS.WEB.Shared.Models.SourceAuditGridDto, BV.PACS.WEB.Client.I18nText.Text>
+@inherits BV.PACS.WEB.Client.Shared.Base.AuditPanel<BV.PACS.WEB.Shared.Models.SourceAuditGridDto, BV.PACS.WEB.Client.I18nText.SourceAuditPanel>
 
 @{
     if (GroupedData == null)
@@ -27,10 +27,10 @@
                                                 ShowPager="@false"
                                                 AllowDataRowSelection="@false"
                                                 PageSize="@BaseSettings.MaxSize">
-                                        <DxDataGridColumn Field="@nameof(SourceAuditGridDto.ColumnName)" Caption="@Translations.About"></DxDataGridColumn>
-                                        <DxDataGridColumn Field="@nameof(SourceAuditGridDto.OldValue)"></DxDataGridColumn>
-                                        <DxDataGridColumn Field="@nameof(SourceAuditGridDto.NewValue)"></DxDataGridColumn>
-                                        <DxDataGridColumn Field="@nameof(SourceAuditGridDto.Object)"></DxDataGridColumn>
+                                        <DxDataGridColumn Field="@nameof(SourceAuditGridDto.ColumnName)"  Caption="@Translations.ColumnName"></DxDataGridColumn>
+                                        <DxDataGridColumn Field="@nameof(SourceAuditGridDto.OldValue)" Caption="@Translations.OldValue"></DxDataGridColumn>
+                                        <DxDataGridColumn Field="@nameof(SourceAuditGridDto.NewValue)" Caption="@Translations.NewValue"></DxDataGridColumn>
+                                        <DxDataGridColumn Field="@nameof(SourceAuditGridDto.Object)" Caption="@Translations.Object"></DxDataGridColumn>
 
                                     </DxDataGrid>
                                 }

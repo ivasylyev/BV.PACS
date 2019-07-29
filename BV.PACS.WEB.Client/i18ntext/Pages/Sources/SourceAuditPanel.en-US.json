@@ -1,8 +1,7 @@
 ﻿{
-  "Caption": "Source Catalog",
-  "SourceBarcode": "Barcode",
-  "SourceCreationDate": "Creation Date",
-  "SourceType": "Type",
-  "MaterialsAndAliquotsCount": "Materials And Aliquots Count",
-  "SourceTemplateName": "Template" 
+  "ColumnName": "Column Name",
+  "OldValue": "Old Value",
+  "NewValue": "New Value",
+  "Object": "Object"
+ 
 }

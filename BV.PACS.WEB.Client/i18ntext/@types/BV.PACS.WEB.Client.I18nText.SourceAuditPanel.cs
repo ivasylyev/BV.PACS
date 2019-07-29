@@ -6,22 +6,16 @@ namespace BV.PACS.WEB.Client.I18nText
 
         public string this[string key] => global::Toolbelt.Blazor.I18nText.I18nTextExtensions.GetFieldValue(this, key);
 
-        /// <summary>"Source Catalog"</summary>
-        public string Caption;
+        /// <summary>"Column Name"</summary>
+        public string ColumnName;
 
-        /// <summary>"Materials And Aliquots Count"</summary>
-        public string MaterialsAndAliquotsCount;
+        /// <summary>"New Value"</summary>
+        public string NewValue;
 
-        /// <summary>"Barcode"</summary>
-        public string SourceBarcode;
+        /// <summary>"Object"</summary>
+        public string Object;
 
-        /// <summary>"Creation Date"</summary>
-        public string SourceCreationDate;
-
-        /// <summary>"Template"</summary>
-        public string SourceTemplateName;
-
-        /// <summary>"Type"</summary>
-        public string SourceType;
+        /// <summary>"Old Value"</summary>
+        public string OldValue;
     }
 }

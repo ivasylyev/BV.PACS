@@ -23,4 +23,8 @@
     <Watch Remove="i18ntext\Shared\Components\OkCancelPanel.en-US.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Sources\SourceAuditPanel.ru-RU.json" />
+  </ItemGroup>
+
 </Project>
