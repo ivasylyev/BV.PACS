@@ -106,6 +106,12 @@ namespace BV.PACS.WEB.Client.Shared.Base
         private async Task GetData()
         {
             DataSource = await ApiCatalogService.GetData<TModel>(Http, PageContext.Condition);
+
+            
+            if (PageContext != null)
+            {
+                PageContext.SerializedData = "xxx";
+            }
         }
     }
 }

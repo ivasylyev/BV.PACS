@@ -55,6 +55,12 @@ namespace BV.PACS.WEB.Client.Shared.Base
         {
             TrackingObject =
                 await ApiTrackingService.GetData<TModel>(Http, new TrackingParameter(Id, BaseSettings.Language));
+
+            var context = ApplicationContextService.CurrentApplicationContext?.PageContext;
+            if (context != null)
+            {
+                context.SerializedData = "xxx";
+            }
         }
     }
 }
