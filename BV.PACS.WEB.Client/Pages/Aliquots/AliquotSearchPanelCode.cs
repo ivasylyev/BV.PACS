@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using BV.PACS.WEB.Client.I18nText;
 using BV.PACS.WEB.Client.Shared.Base;
 using BV.PACS.WEB.Shared.Models;
@@ -12,9 +14,40 @@ namespace BV.PACS.WEB.Client.Aliquots
 
         protected string AliquotNotes { get; set; }
 
+
         protected override void InitSearchCondition(AggregatedConditionDto cond)
         {
-            throw new NotImplementedException();
+            var dates = new List<DateTime>();
+            foreach (var item in cond.ConditionItems)
+            {
+                switch (item.FieldName)
+                {
+                    case "strBarcode":
+                        AliquotBarcode = item.FieldValue;
+                        break;
+
+
+                    case "datCreationDate":
+                        if (DateTime.TryParse(item.FieldValue, out var date))
+                        {
+                            dates.Add(date);
+                        }
+
+                        break;
+                    case "idfsCFormTemplateID":
+                        Template = Templates?.FirstOrDefault(t => t.Id == item.FieldValue);
+                        break;
+                }
+            }
+
+            if (dates.Count > 0)
+            {
+                StartDate = dates.Min();
+                EndDate = dates.Max();
+                //  SourceBarcode = cond.Serialize();
+            }
+
+            StateHasChanged();
         }
 
         protected override void DoSearch()

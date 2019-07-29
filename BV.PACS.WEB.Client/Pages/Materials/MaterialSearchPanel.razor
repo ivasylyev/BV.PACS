@@ -2,12 +2,6 @@
 @inherits BV.PACS.WEB.Client.Materials.MaterialSearchPanelCode
 
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
-    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
-        <Template>
-            <button @onclick="@DoSearch" class="btn btn-primary">Search</button>
-        </Template>
-    </DxFormLayoutItem>
-
 
     <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.SourceBarcode)" ColSpanLg="12" ColSpanMd="12">
         <Template>
@@ -24,12 +18,12 @@
             <DxTextBox @bind-Text="@MaterialBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.MaterialRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.MaterialRegistrationDate)" ColSpanLg="6" ColSpanMd="12">
         <Template>
             <DxDateEdit @bind-Date="@StartDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.MaterialRegistrationDate)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@nameof(MaterialCatalogDto.MaterialRegistrationDate)" ColSpanLg="6" ColSpanMd="12">
         <Template>
             <DxDateEdit @bind-Date="@EndDate"></DxDateEdit>
         </Template>
