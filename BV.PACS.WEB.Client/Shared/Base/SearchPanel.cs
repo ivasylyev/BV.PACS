@@ -47,7 +47,12 @@ namespace BV.PACS.WEB.Client.Shared.Base
         protected abstract void DoSearch();
         protected abstract void InitSearchCondition(AggregatedConditionDto cond);
 
-
+        protected virtual void DoClear()
+        {
+            Condition = new AggregatedConditionDto();
+            StartDate = DateTime.Now.Date.AddYears(-1);
+            EndDate = DateTime.Now.Date;
+        }
 
         protected override async Task OnInitAsync()
         {

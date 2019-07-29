@@ -74,9 +74,14 @@
         </Template>
     </DxFormLayoutItem>
 
-    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem ColSpanLg="6" ColSpanMd="6">
         <Template>
             <button @onclick="@DoSearch" class="btn btn-primary">@Translations.Search</button>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem ColSpanLg="6" ColSpanMd="6">
+        <Template>
+            <button @onclick="@DoClear" class="btn btn-secondary">@Translations.Clear</button>
         </Template>
     </DxFormLayoutItem>
 </DxFormLayout>

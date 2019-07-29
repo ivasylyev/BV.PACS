@@ -87,6 +87,7 @@ namespace BV.PACS.WEB.Client.Sources
                 EndDate = dates.Max();
                 //  SourceBarcode = cond.Serialize();
             }
+
             StateHasChanged();
         }
 
@@ -113,6 +114,19 @@ namespace BV.PACS.WEB.Client.Sources
 
 
             OnSearch?.Invoke(condition);
+        }
+
+        protected override void DoClear()
+        {
+            base.DoClear();
+            SourceBarcode = string.Empty;
+            Template = null;
+            SourceNotes = string.Empty;
+            MaterialBarcode = string.Empty;
+            AliquotBarcode = string.Empty;
+            TestStatus = null;
+            TestType = null;
+            TestResult = null;
         }
     }
 }
