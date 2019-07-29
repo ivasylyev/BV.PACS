@@ -107,11 +107,6 @@ namespace BV.PACS.WEB.Client.Shared.Base
         {
             DataSource = await ApiCatalogService.GetData<TModel>(Http, PageContext.Condition);
 
-            
-            if (PageContext != null)
-            {
-                PageContext.SerializedData = "xxx";
-            }
         }
     }
 }

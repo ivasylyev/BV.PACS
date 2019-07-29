@@ -8,6 +8,6 @@
         {
             Id = id;
         }
-        public string SerializedData { get; set; }
+        
     }
 }

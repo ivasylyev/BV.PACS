@@ -2,6 +2,6 @@
 {
     public interface IPageContext
     {
-         string SerializedData { get; set; }
+     
     }
 }

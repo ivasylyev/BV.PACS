@@ -11,7 +11,6 @@ namespace BV.PACS.WEB.Client.Services.Context
 
         public AggregatedConditionDto Condition => SearchPanelCollapsed ? _condition : _lastSearchPanelCondition;
 
-        public string SerializedData { get; set; }
 
         public string SearchPanelCssClass => SearchPanelCollapsed ? "collapse" : "col-sm-3 alert alert-primary background-white";
 
