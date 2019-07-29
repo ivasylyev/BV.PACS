@@ -10,9 +10,6 @@ namespace BV.PACS.WEB.Client.Shared.Base
     {
         private int _activeTabIndex;
 
-        [Inject]
-        private ApplicationContextService ApplicationContextService { get; set; }
-
         [Parameter]
         public Action<DialogResult> OnClose { get; set; }
 

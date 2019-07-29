@@ -5,7 +5,7 @@
 @using BV.PACS.WEB.Client.Services.Context
 @using Microsoft.AspNetCore.Components
 @inherits BV.PACS.WEB.Client.Shared.Base.TranslatablePanel<BV.PACS.WEB.Client.I18nText.TopMenu>
-@inject ApplicationContextService _applicationContextService;
+
 
 <nav class="navbar navbar-default top-bar ">
     <div class="container-fluid">
@@ -67,13 +67,13 @@
 
     private void DoOpenCatalogPage(string pageName)
     {
-        _applicationContextService.OpenLastOrNewCatalogPage(pageName);
+        ApplicationContextService.OpenLastOrNewCatalogPage(pageName);
         OnMenuClick?.Invoke();
     }
 
     private void DoOpenTrackingPage(string pageName, int context)
     {
-        _applicationContextService.OpenTrackingPage(pageName, context);
+        ApplicationContextService.OpenTrackingPage(pageName, context);
         OnMenuClick?.Invoke();
     }
 

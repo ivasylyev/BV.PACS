@@ -19,9 +19,6 @@ namespace BV.PACS.WEB.Client.Shared.Base
         [Inject]
         private CatalogService ApiCatalogService { get; set; }
 
-        [Inject]
-        private ApplicationContextService ApplicationContextService { get; set; }
-
 
         [Parameter]
         public Action<string, int> OnOpenTrackingForm { get; set; }
