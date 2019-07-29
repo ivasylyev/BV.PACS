@@ -1,0 +1,13 @@
+{
+  "AliquotBarcodes": "Aliquot ID",
+  "Clear": "Очистить",
+  "MaterialBarcodes": "Материал №",
+  "Search": "Поиск",
+  "SourceBarcode": "Идентификатор источника",
+  "SourceCreationDate": "Дата создания",
+  "SourceNote": "Примечание",
+  "SourceTemplateName": "Шаблон источника",
+  "TestResults": "Результат теста",
+  "TestStatuses": "Статус теста",
+  "TestTypes": "Тип теста"
+}

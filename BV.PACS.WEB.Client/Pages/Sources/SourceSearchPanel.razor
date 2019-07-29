@@ -2,24 +2,24 @@
 @inherits BV.PACS.WEB.Client.Sources.SourceSearchPanelCode
 
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
-    <DxFormLayoutItem Caption="@nameof(SourceCatalogDto.SourceBarcode)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@Translations.SourceBarcode" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox @bind-Text="@SourceBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
 
-    <DxFormLayoutItem Caption="@nameof(SourceCatalogDto.SourceCreationDate)" ColSpanLg="6" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@Translations.SourceCreationDate" ColSpanLg="6" ColSpanMd="12">
         <Template>
             <DxDateEdit @bind-Date="@StartDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(SourceCatalogDto.SourceCreationDate)" ColSpanLg="6" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@Translations.SourceCreationDate" ColSpanLg="6" ColSpanMd="12">
         <Template>
             <DxDateEdit @bind-Date="@EndDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
 
-    <DxFormLayoutItem Caption="@nameof(SourceCatalogDto.SourceTemplateName)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@Translations.SourceTemplateName" ColSpanLg="12" ColSpanMd="12">
         <Template>
 
             <DxComboBox Data="@Templates"
@@ -31,25 +31,25 @@
         </Template>
     </DxFormLayoutItem>
 
-    <DxFormLayoutItem Caption="@nameof(SourceCatalogDto.SourceNote)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@Translations.SourceNote" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox @bind-Text="@SourceNotes"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
 
-    <DxFormLayoutItem Caption="@nameof(SourceCatalogDto.MaterialBarcodes)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@Translations.MaterialBarcodes" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox @bind-Text="@MaterialBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
 
-    <DxFormLayoutItem Caption="@nameof(SourceCatalogDto.AliquotBarcodes)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@Translations.AliquotBarcodes" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox @bind-Text="@AliquotBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
 
-    <DxFormLayoutItem Caption="@nameof(SourceCatalogDto.TestStatuses)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@Translations.TestStatuses" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxComboBox Data="@_testStatuses"
                         TextFieldName="Name"
@@ -57,7 +57,7 @@
             </DxComboBox>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(SourceCatalogDto.TestTypes)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@Translations.TestTypes" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxComboBox Data="@_testTypes"
                         TextFieldName="Name"
@@ -65,7 +65,7 @@
             </DxComboBox>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(SourceCatalogDto.TestResults)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@Translations.TestResults" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxComboBox Data="@_testResults"
                         TextFieldName="Name"
@@ -76,7 +76,7 @@
 
     <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
         <Template>
-            <button @onclick="@DoSearch" class="btn btn-primary">Search</button>
+            <button @onclick="@DoSearch" class="btn btn-primary">@Translations.Search</button>
         </Template>
     </DxFormLayoutItem>
 </DxFormLayout>

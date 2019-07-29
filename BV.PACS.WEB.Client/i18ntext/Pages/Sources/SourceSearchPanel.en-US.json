@@ -1,0 +1,14 @@
+﻿{
+
+  "SourceBarcode": "Source ID",
+  "SourceCreationDate": "Creation Date",
+  "SourceTemplateName": "Source Template",
+  "SourceNote": "Notes",
+  "MaterialBarcodes": "Material ID",
+  "AliquotBarcodes": "Aliquot ID",
+  "TestStatuses": "Test Status",
+  "TestTypes": "Test Type",
+  "TestResults": "Test Result",
+  "Search": "Search",
+  "Clear": "Clear",
+}

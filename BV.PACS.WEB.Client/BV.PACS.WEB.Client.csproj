@@ -27,4 +27,12 @@
     <Watch Remove="i18ntext\Pages\Sources\SourceAuditPanel.ru-RU.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Sources\SourceSearchPanel.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Sources\SourceSearchPanel.ru-RU.json" />
+  </ItemGroup>
+
 </Project>

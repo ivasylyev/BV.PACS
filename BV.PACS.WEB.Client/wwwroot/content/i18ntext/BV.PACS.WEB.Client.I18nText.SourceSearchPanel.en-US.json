@@ -1,0 +1,13 @@
+{
+  "AliquotBarcodes": "Aliquot ID",
+  "Clear": "Clear",
+  "MaterialBarcodes": "Material ID",
+  "Search": "Search",
+  "SourceBarcode": "Source ID",
+  "SourceCreationDate": "Creation Date",
+  "SourceNote": "Notes",
+  "SourceTemplateName": "Source Template",
+  "TestResults": "Test Result",
+  "TestStatuses": "Test Status",
+  "TestTypes": "Test Type"
+}

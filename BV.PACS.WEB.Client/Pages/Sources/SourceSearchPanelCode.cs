@@ -10,7 +10,7 @@ namespace BV.PACS.WEB.Client.Sources
 {
     [FormTemplate(FormTypes.Source)]
     // ReSharper disable once InconsistentNaming
-    public class SourceSearchPanelCode : SearchPanel<Text>
+    public class SourceSearchPanelCode : SearchPanel<SourceSearchPanel>
     {
         protected BaseLookupItem[] _testStatuses;
         protected BaseLookupItem[] _testTypes;

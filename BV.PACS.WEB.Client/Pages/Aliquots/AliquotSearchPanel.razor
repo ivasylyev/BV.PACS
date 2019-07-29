@@ -3,11 +3,6 @@
 @inherits BV.PACS.WEB.Client.Aliquots.AliquotSearchPanelCode
 
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
-    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
-        <Template>
-            <button @onclick="@DoSearch" class="btn btn-primary">Search</button>
-        </Template>
-    </DxFormLayoutItem>
 
 
     <DxFormLayoutItem Caption="@nameof(AliquotCatalogDto.AliquotBarcode)" ColSpanLg="12" ColSpanMd="12">

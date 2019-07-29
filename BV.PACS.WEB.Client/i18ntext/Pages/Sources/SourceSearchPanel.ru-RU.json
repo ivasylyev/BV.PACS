@@ -1,0 +1,14 @@
+﻿{
+
+  "SourceBarcode": "Идентификатор источника",
+  "SourceCreationDate": "Дата создания",
+  "SourceTemplateName": "Шаблон источника",
+  "SourceNote": "Примечание",
+  "MaterialBarcodes": "Материал №",
+  "AliquotBarcodes": "Aliquot ID",
+  "TestStatuses": "Статус теста",
+  "TestTypes": "Тип теста",
+  "TestResults": "Результат теста",
+  "Search": "Поиск",
+  "Clear": "Очистить",
+}
