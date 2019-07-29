@@ -1,4 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using BV.PACS.WEB.Client.I18nText;
 using BV.PACS.WEB.Client.Shared.Base;
 using BV.PACS.WEB.Shared.Models;
 
@@ -6,15 +10,14 @@ namespace BV.PACS.WEB.Client.Sources
 {
     [FormTemplate(FormTypes.Source)]
     // ReSharper disable once InconsistentNaming
-    public class SourceSearchPanelCode : SearchPanel< BV.PACS.WEB.Client.I18nText.Text>
+    public class SourceSearchPanelCode : SearchPanel<Text>
     {
         protected BaseLookupItem[] _testStatuses;
-
         protected BaseLookupItem[] _testTypes;
         protected BaseLookupItem[] _testResults;
 
-        protected string SourceBarcode { get; set; }
 
+        protected string SourceBarcode { get; set; }
 
         protected string SourceNotes { get; set; }
 
@@ -26,6 +29,7 @@ namespace BV.PACS.WEB.Client.Sources
         protected BaseLookupItem TestType { get; set; }
         protected BaseLookupItem TestResult { get; set; }
 
+
         protected override async Task OnInitAsync()
         {
             await base.OnInitAsync();
@@ -35,30 +39,80 @@ namespace BV.PACS.WEB.Client.Sources
             _testResults = await ApiService.GetLookup(Http, BaseLookupTables.rftTestResult);
         }
 
-
-        protected void DoSearch()
+        protected override void InitSearchCondition(AggregatedConditionDto cond)
         {
-            var cond = new AggregatedConditionDto();
+            var dates = new List<DateTime>();
+            foreach (var item in cond.ConditionItems)
+            {
+                switch (item.FieldName)
+                {
+                    case "strSourceBarcode":
+                        SourceBarcode = item.FieldValue;
+                        break;
+                    case "datCreationDate":
+                        if (DateTime.TryParse(item.FieldValue, out var date))
+                        {
+                            dates.Add(date);
+                        }
 
-            cond.AddStandardConditionIfNotEmpty("strSourceBarcode", SourceBarcode, Operators.LikeOperator);
+                        break;
+                    case "idfsCFormTemplateID":
+                        Template = Templates?.FirstOrDefault(t => t.Id == item.FieldValue);
+                        break;
+                    case "strNote":
+                        SourceNotes = item.FieldValue;
+                        break;
+                    case "strMaterialBarcode":
+                        MaterialBarcode = item.FieldValue;
+                        break;
+                    case "strContainerBarcode":
+                        AliquotBarcode = item.FieldValue;
+                        break;
 
-            cond.AddStandardConditionIfNotEmpty("datCreationDate", StartDateText, Operators.MoreOperator);
-            cond.AddStandardConditionIfNotEmpty("datCreationDate", EndDateText, Operators.LessOperator);
+                    case "idfsTestStatus":
+                        TestStatus = _testStatuses?.FirstOrDefault(t => t.Id == item.FieldValue);
+                        break;
+                    case "idfsTestTypeId":
+                        TestType = _testTypes?.FirstOrDefault(t => t.Id == item.FieldValue);
+                        break;
+                    case "idfsTestResultId":
+                        TestResult = _testResults?.FirstOrDefault(t => t.Id == item.FieldValue);
+                        break;
+                }
+            }
 
-            cond.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", Template?.Id, Operators.EqualsOperator);
+            if (dates.Count > 0)
+            {
+                StartDate = dates.Min();
+                EndDate = dates.Max();
+                //  SourceBarcode = cond.Serialize();
+            }
+            StateHasChanged();
+        }
 
-            cond.AddStandardConditionIfNotEmpty("strNote", SourceNotes, Operators.LikeOperator);
+        protected override void DoSearch()
+        {
+            var condition = new AggregatedConditionDto();
 
-            cond.AddStandardConditionIfNotEmpty("strMaterialBarcode", MaterialBarcode, Operators.LikeOperator);
+            condition.AddStandardConditionIfNotEmpty("strSourceBarcode", SourceBarcode, Operators.LikeOperator);
 
-            cond.AddStandardConditionIfNotEmpty("strContainerBarcode", AliquotBarcode, Operators.LikeOperator);
+            condition.AddStandardConditionIfNotEmpty("datCreationDate", StartDateText, Operators.MoreOperator);
+            condition.AddStandardConditionIfNotEmpty("datCreationDate", EndDateText, Operators.LessOperator);
 
-            cond.AddStandardConditionIfNotEmpty("idfsTestStatus", TestStatus?.Id, Operators.EqualsOperator);
-            cond.AddStandardConditionIfNotEmpty("idfsTestTypeId", TestType?.Id, Operators.EqualsOperator);
-            cond.AddStandardConditionIfNotEmpty("idfsTestResultId", TestResult?.Id, Operators.EqualsOperator);
+            condition.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", Template?.Id, Operators.EqualsOperator);
+
+            condition.AddStandardConditionIfNotEmpty("strNote", SourceNotes, Operators.LikeOperator);
+
+            condition.AddStandardConditionIfNotEmpty("strMaterialBarcode", MaterialBarcode, Operators.LikeOperator);
+
+            condition.AddStandardConditionIfNotEmpty("strContainerBarcode", AliquotBarcode, Operators.LikeOperator);
+
+            condition.AddStandardConditionIfNotEmpty("idfsTestStatus", TestStatus?.Id, Operators.EqualsOperator);
+            condition.AddStandardConditionIfNotEmpty("idfsTestTypeId", TestType?.Id, Operators.EqualsOperator);
+            condition.AddStandardConditionIfNotEmpty("idfsTestResultId", TestResult?.Id, Operators.EqualsOperator);
 
 
-            OnSearch?.Invoke(cond);
+            OnSearch?.Invoke(condition);
         }
     }
 }

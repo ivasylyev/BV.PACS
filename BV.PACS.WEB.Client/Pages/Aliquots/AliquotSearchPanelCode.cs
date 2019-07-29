@@ -1,18 +1,23 @@
-﻿
-using BV.PACS.WEB.Client.Shared;
+﻿using System;
+using BV.PACS.WEB.Client.I18nText;
 using BV.PACS.WEB.Client.Shared.Base;
 using BV.PACS.WEB.Shared.Models;
 
 namespace BV.PACS.WEB.Client.Aliquots
 {
     [FormTemplate(FormTypes.Aliquot)]
-    public class AliquotSearchPanelCode : SearchPanel<BV.PACS.WEB.Client.I18nText.Text>
+    public class AliquotSearchPanelCode : SearchPanel<Text>
     {
         protected string AliquotBarcode { get; set; }
 
         protected string AliquotNotes { get; set; }
 
-        protected void DoSearch()
+        protected override void InitSearchCondition(AggregatedConditionDto cond)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void DoSearch()
         {
             var cond = new AggregatedConditionDto();
 

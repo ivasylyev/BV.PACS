@@ -5,9 +5,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json.Serialization;
-using System.Linq;
 using Microsoft.Extensions.Logging;
+
 namespace BV.PACS.WEB.Server
 {
     public class Startup
@@ -27,7 +26,7 @@ namespace BV.PACS.WEB.Server
             services.AddResponseCompression(opts =>
             {
                 opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
-                    new[] { "application/octet-stream" });
+                    new[] {"application/octet-stream"});
             });
         }
 
@@ -41,6 +40,7 @@ namespace BV.PACS.WEB.Server
                 app.UseDeveloperExceptionPage();
                 app.UseBlazorDebugging();
             }
+
             loggerFactory.AddFile("Logs/BV.PACS.WEB.Server_{Date}.log");
 
             app.UseStaticFiles();

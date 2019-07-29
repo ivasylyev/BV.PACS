@@ -5,7 +5,9 @@
 
 <div class="row">
     <div class="@PageContext.SearchPanelCssClass" >
-        <SourceSearchPanel OnSearch="@OnSearchPanelSearch">
+        <SourceSearchPanel 
+                           OnSearch=@OnSearchPanelSearch
+                           Condition =@PageContext.Condition>
 
         </SourceSearchPanel>
     </div>

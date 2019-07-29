@@ -10,7 +10,7 @@ using Toolbelt.Blazor.I18nText.Interfaces;
 
 namespace BV.PACS.WEB.Client.Shared.Base
 {
-    public class SearchPanel<TTranslation> : TranslatablePanel<TTranslation>  
+    public abstract class SearchPanel<TTranslation> : TranslatablePanel<TTranslation>  
         where TTranslation : class, I18nTextFallbackLanguage, new()
     {
         [Inject]
@@ -18,6 +18,18 @@ namespace BV.PACS.WEB.Client.Shared.Base
 
         [Inject]
         protected HttpClient Http { get; set; }
+
+        protected AggregatedConditionDto _condition;
+        [Parameter]
+        public AggregatedConditionDto Condition
+        {
+            get => _condition;
+            set
+            {
+                _condition = value;
+                InitSearchCondition(value);
+            }
+        }
 
         [Parameter]
         public Action<AggregatedConditionDto> OnSearch { get; set; }
@@ -30,6 +42,12 @@ namespace BV.PACS.WEB.Client.Shared.Base
 
         protected string StartDateText => StartDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
         protected string EndDateText => EndDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
+
+
+        protected abstract void DoSearch();
+        protected abstract void InitSearchCondition(AggregatedConditionDto cond);
+
+
 
         protected override async Task OnInitAsync()
         {

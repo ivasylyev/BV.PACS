@@ -6,7 +6,7 @@ using I18nTextService = Toolbelt.Blazor.I18nText.I18nText;
 
 namespace BV.PACS.WEB.Client.Shared.Base
 {
-    public class TranslatablePanel<TTranslation> : ComponentBase
+    public abstract class TranslatablePanel<TTranslation> : ComponentBase
         where TTranslation : class, I18nTextFallbackLanguage, new()
     {
         [Inject]

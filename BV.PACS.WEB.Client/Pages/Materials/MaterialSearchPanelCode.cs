@@ -1,12 +1,12 @@
-﻿
-using BV.PACS.WEB.Client.Shared;
+﻿using System;
+using BV.PACS.WEB.Client.I18nText;
 using BV.PACS.WEB.Client.Shared.Base;
 using BV.PACS.WEB.Shared.Models;
 
 namespace BV.PACS.WEB.Client.Materials
 {
     [FormTemplate(FormTypes.Material)]
-    public class MaterialSearchPanelCode : SearchPanel<BV.PACS.WEB.Client.I18nText.Text>
+    public class MaterialSearchPanelCode : SearchPanel<Text>
     {
         protected string SourceBarcode { get; set; }
         protected string AliquotBarcode { get; set; }
@@ -14,8 +14,12 @@ namespace BV.PACS.WEB.Client.Materials
 
         protected string MaterialNotes { get; set; }
 
+        protected override void InitSearchCondition(AggregatedConditionDto cond)
+        {
+            throw new NotImplementedException();
+        }
 
-        protected void DoSearch()
+        protected override void DoSearch()
         {
             var cond = new AggregatedConditionDto();
 
