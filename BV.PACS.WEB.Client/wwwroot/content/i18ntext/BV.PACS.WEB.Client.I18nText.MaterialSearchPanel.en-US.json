@@ -1,0 +1,11 @@
+{
+  "Aliquots": "Aliquots",
+  "Clear": "Clear",
+  "MaterialBarcode": "Material ID",
+  "MaterialNote": "Notes",
+  "MaterialRegistrationDateFrom": "Creation Date (from)",
+  "MaterialRegistrationDateTo": "Creation Date (to)",
+  "MaterialTemplateName": "Material Template",
+  "Search": "Search",
+  "SourceBarcode": "Source ID"
+}

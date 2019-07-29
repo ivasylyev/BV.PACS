@@ -1,0 +1,14 @@
+﻿{
+  "SourceBarcode": "Source ID",
+  "MaterialBarcode": "Material ID",
+
+  "MaterialRegistrationDateFrom": "Creation Date (from)",
+  "MaterialRegistrationDateTo": "Creation Date (to)",
+  "MaterialTemplateName": "Material Template",
+  "Aliquots": "Aliquots",
+
+  "MaterialNote": "Notes",
+
+  "Search": "Search",
+  "Clear": "Clear",
+}
