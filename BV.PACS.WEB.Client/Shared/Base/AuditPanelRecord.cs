@@ -16,6 +16,9 @@ namespace BV.PACS.WEB.Client.Shared.Base
         [Parameter]
         public KeyValuePair<string, AuditGroupedDto<TModel>> AuditData { get; set; }
 
+        [Parameter]
+        public string  AuditTitle { get; set; }
+
         public void DoClick()
         {
             AuditData.Value.GroupVisibility = !AuditData.Value.GroupVisibility;

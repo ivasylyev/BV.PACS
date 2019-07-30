@@ -14,11 +14,13 @@
 
                     @foreach (var group in GroupedData)
                     {
-                        <SourceAuditRecord AuditData=@group
+                        <SourceAuditPanelRecord 
+                                           AuditData=@group
+                                           AuditTitle=@group.Key
                                            OnClick=@OnChildClick
                                            @key="group.Key">
 
-                        </SourceAuditRecord>
+                        </SourceAuditPanelRecord>
                     }
 
                 </DxFormLayout>
