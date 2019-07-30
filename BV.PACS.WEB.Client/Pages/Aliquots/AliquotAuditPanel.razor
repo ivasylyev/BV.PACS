@@ -1,10 +1,10 @@
 ﻿@using BV.PACS.WEB.Shared.Models
-@inherits BV.PACS.WEB.Client.Shared.Base.AuditPanel<BV.PACS.WEB.Shared.Models.AliquotAuditGridDto,  BV.PACS.WEB.Client.I18nText.Text>
+@inherits BV.PACS.WEB.Client.Shared.Base.AuditPanel<BV.PACS.WEB.Shared.Models.AliquotAuditGridDto, BV.PACS.WEB.Client.I18nText.AliquotAuditPanel>
 
 @{
     if (GroupedData == null)
     {
-        <div class="row">Loading...</div>
+        <div class="row">@PacsMessagesTranslations.Loading</div>
     }
     else
     {
@@ -14,29 +14,13 @@
 
                     @foreach (var group in GroupedData)
                     {
-                        <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                        <AliquotAuditPanelRecord 
+                            AuditData=@group.Value
+                            AuditTitle=@group.Key
+                            OnClick=@OnChildClick
+@key="group.Key">
 
-                            <Template Context="GridContext">
-                                <div class="card-header">
-                                    @*<button type="button" class="btn btn-link" @onclick=@{() => OnClick(group.Key)}>@group.Key</button>*@
-                                </div>
-                                @if (GroupedData[group.Key].GroupVisibility)
-                                {
-                                    <DxDataGrid Data=@GroupedData[group.Key].Data
-                                                ShowFilterRow="@false"
-                                                ShowPager="@false"
-                                                AllowDataRowSelection="@false"
-                                                PageSize="@BaseSettings.MaxSize">
-                                        <DxDataGridColumn Field="@nameof(AliquotAuditGridDto.ColumnName)"></DxDataGridColumn>
-                                        <DxDataGridColumn Field="@nameof(AliquotAuditGridDto.OldValue)"></DxDataGridColumn>
-                                        <DxDataGridColumn Field="@nameof(AliquotAuditGridDto.NewValue)"></DxDataGridColumn>
-                                        <DxDataGridColumn Field="@nameof(AliquotAuditGridDto.Object)"></DxDataGridColumn>
-
-                                    </DxDataGrid>
-                                }
-
-                            </Template>
-                        </DxFormLayoutItem>
+                        </AliquotAuditPanelRecord>
                     }
 
                 </DxFormLayout>

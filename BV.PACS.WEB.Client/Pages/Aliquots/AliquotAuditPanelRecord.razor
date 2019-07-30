@@ -1,0 +1,26 @@
+﻿@using BV.PACS.WEB.Shared.Models
+@inherits BV.PACS.WEB.Client.Shared.Base.AuditPanelRecord<BV.PACS.WEB.Shared.Models.AliquotAuditGridDto, BV.PACS.WEB.Client.I18nText.AliquotAuditPanel>
+
+<DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+
+    <Template Context="GridContext">
+        <div class="card-header">
+            <button type="button" class="btn btn-link" @onclick=@DoClick>@AuditTitle</button>
+        </div>
+        @if (AuditData.GroupVisibility)
+        {
+            <DxDataGrid Data=@AuditData.Data
+                        ShowFilterRow="@false"
+                        ShowPager="@false"
+                        AllowDataRowSelection="@false"
+                        PageSize="@BaseSettings.MaxSize">
+                <DxDataGridColumn Field="@nameof(AliquotAuditGridDto.ColumnName)" Caption="@Translations.ColumnName"></DxDataGridColumn>
+                <DxDataGridColumn Field="@nameof(AliquotAuditGridDto.OldValue)" Caption="@Translations.OldValue"></DxDataGridColumn>
+                <DxDataGridColumn Field="@nameof(AliquotAuditGridDto.NewValue)" Caption="@Translations.NewValue"></DxDataGridColumn>
+                <DxDataGridColumn Field="@nameof(AliquotAuditGridDto.Object)" Caption="@Translations.Object"></DxDataGridColumn>
+
+            </DxDataGrid>
+        }
+
+    </Template>
+</DxFormLayoutItem>
