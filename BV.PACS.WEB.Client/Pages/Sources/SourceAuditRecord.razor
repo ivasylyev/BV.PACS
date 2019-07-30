@@ -1,0 +1,49 @@
+﻿@using BV.PACS.WEB.Shared.Models
+@inherits BV.PACS.WEB.Client.Shared.Base.TranslatablePanel<BV.PACS.WEB.Client.I18nText.SourceAuditPanel>
+
+
+
+    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+
+        <Template Context="GridContext">
+            <div class="card-header">
+                <button type="button" class="btn btn-link" @onclick=@DoClick>@AuditData.Key</button>
+            </div>
+            @if (AuditData.Value.GroupVisibility)
+            {
+                <DxDataGrid Data=@AuditData.Value.Data
+                            ShowFilterRow="@false"
+                            ShowPager="@false"
+                            AllowDataRowSelection="@false"
+                            PageSize="@BaseSettings.MaxSize">
+                    <DxDataGridColumn Field="@nameof(SourceAuditGridDto.ColumnName)" Caption="@Translations.ColumnName"></DxDataGridColumn>
+                    <DxDataGridColumn Field="@nameof(SourceAuditGridDto.OldValue)" Caption="@Translations.OldValue"></DxDataGridColumn>
+                    <DxDataGridColumn Field="@nameof(SourceAuditGridDto.NewValue)" Caption="@Translations.NewValue"></DxDataGridColumn>
+                    <DxDataGridColumn Field="@nameof(SourceAuditGridDto.Object)" Caption="@Translations.Object"></DxDataGridColumn>
+
+                </DxDataGrid>
+            }
+
+        </Template>
+    </DxFormLayoutItem>
+
+
+@functions
+{
+  //  bool _visible = false;
+
+    [Parameter]
+    public KeyValuePair<string, AuditGroupedDto<SourceAuditGridDto>> AuditData { get; set; }
+
+    public void DoClick()
+    {
+        AuditData.Value.GroupVisibility = !AuditData.Value.GroupVisibility;
+        StateHasChanged();
+        OnClick.Invoke();
+
+    }
+
+    [Parameter]
+    public Action OnClick { get; set; }
+
+}

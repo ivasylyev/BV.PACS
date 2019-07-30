@@ -11,12 +11,6 @@ namespace BV.PACS.WEB.Client.Shared.Base
     {
         protected Dictionary<string, AuditGroupedDto<TModel>> GroupedData { get; set; }
 
-        public void OnClick(string groupName)
-        {
-            GroupedData[groupName].GroupVisibility = !GroupedData[groupName].GroupVisibility;
-            StateHasChanged();
-        }
-
         protected override async Task OnInitAsync()
         {
             await base.OnInitAsync();
@@ -28,8 +22,14 @@ namespace BV.PACS.WEB.Client.Shared.Base
                 {
                     GroupedData.Add(dto.GroupHeader, new AuditGroupedDto<TModel>(dto.GroupHeader));
                 }
+
                 GroupedData[dto.GroupHeader].Data.Add(dto);
             }
+        }
+
+        protected void OnChildClick()
+        {
+            StateHasChanged();
         }
     }
 }
