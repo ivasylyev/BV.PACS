@@ -21,8 +21,11 @@ namespace BV.PACS.WEB.Client.I18nText
         /// <summary>"Source ID"</summary>
         public string SourceBarcode;
 
-        /// <summary>"Creation Date"</summary>
-        public string SourceCreationDate;
+        /// <summary>"Creation Date (to)"</summary>
+        public string SourceCreationDateFrom;
+
+        /// <summary>"Дата создания (до)"</summary>
+        public string SourceCreationDateTo;
 
         /// <summary>"Notes"</summary>
         public string SourceNote;

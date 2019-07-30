@@ -1,0 +1,15 @@
+﻿{
+  "SourceBarcode": "Идентификатор источника",
+  "MaterialBarcode": "Материал №",
+
+  "MaterialRegistrationDateFrom": "Дата создания (от)",
+  "MaterialRegistrationDateTo": "Дата создания (до)",
+
+  "MaterialTemplateName": "Шаблон материала",
+  "Aliquots": "Идентификатор аликвоты",
+
+  "MaterialNote": "Примечание",
+
+  "Search": "Поиск",
+  "Clear": "Очистить",
+}

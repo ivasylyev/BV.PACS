@@ -1,7 +1,8 @@
 ﻿{
 
   "SourceBarcode": "Source ID",
-  "SourceCreationDate": "Creation Date",
+  "SourceCreationDateFrom": "Creation Date (from)",
+  "SourceCreationDateFrom": "Creation Date (to)",
   "SourceTemplateName": "Source Template",
   "SourceNote": "Notes",
   "MaterialBarcodes": "Material ID",

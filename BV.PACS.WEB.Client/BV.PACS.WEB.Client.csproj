@@ -39,4 +39,8 @@
     <Watch Remove="i18ntext\Pages\Sources\MaterialSearchPanel.en-US.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Materials\MaterialSearchPanel.ru-RU.json" />
+  </ItemGroup>
+
 </Project>

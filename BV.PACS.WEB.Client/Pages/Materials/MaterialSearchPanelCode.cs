@@ -8,7 +8,7 @@ using BV.PACS.WEB.Shared.Models;
 namespace BV.PACS.WEB.Client.Materials
 {
     [FormTemplate(FormTypes.Material)]
-    public class MaterialSearchPanelCode : SearchPanel<Text>
+    public class MaterialSearchPanelCode : SearchPanel<MaterialSearchPanel>
     {
         protected string SourceBarcode { get; set; }
         protected string AliquotBarcode { get; set; }
@@ -80,6 +80,17 @@ namespace BV.PACS.WEB.Client.Materials
             //  cond.AddStandardConditionIfNotEmpty("idfOwner", "Owner", cbOwner.EditValue,Operators.EqualsOperator);
 
             OnSearch?.Invoke(cond);
+        }
+
+        protected override void DoClear()
+        {
+            base.DoClear();
+            SourceBarcode = string.Empty;
+            Template = null;
+            MaterialNotes = string.Empty;
+            MaterialBarcode = string.Empty;
+            AliquotBarcode = string.Empty;
+           
         }
     }
 }
