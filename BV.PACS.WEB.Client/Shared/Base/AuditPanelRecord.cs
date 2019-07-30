@@ -14,14 +14,14 @@ namespace BV.PACS.WEB.Client.Shared.Base
         public Action OnClick { get; set; }
 
         [Parameter]
-        public KeyValuePair<string, AuditGroupedDto<TModel>> AuditData { get; set; }
+        public  AuditGroupedDto<TModel> AuditData { get; set; }
 
         [Parameter]
         public string  AuditTitle { get; set; }
 
         public void DoClick()
         {
-            AuditData.Value.GroupVisibility = !AuditData.Value.GroupVisibility;
+            AuditData.GroupVisibility = !AuditData.GroupVisibility;
             StateHasChanged();
             OnClick.Invoke();
         }

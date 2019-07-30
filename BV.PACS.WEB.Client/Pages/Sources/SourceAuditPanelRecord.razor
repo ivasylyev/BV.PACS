@@ -9,9 +9,9 @@
         <div class="card-header">
             <button type="button" class="btn btn-link" @onclick=@DoClick>@AuditTitle</button>
         </div>
-        @if (AuditData.Value.GroupVisibility)
+        @if (AuditData.GroupVisibility)
         {
-            <DxDataGrid Data=@AuditData.Value.Data
+            <DxDataGrid Data=@AuditData.Data
                         ShowFilterRow="@false"
                         ShowPager="@false"
                         AllowDataRowSelection="@false"

@@ -15,7 +15,7 @@
                     @foreach (var group in GroupedData)
                     {
                         <SourceAuditPanelRecord 
-                                           AuditData=@group
+                                           AuditData=@group.Value
                                            AuditTitle=@group.Key
                                            OnClick=@OnChildClick
                                            @key="group.Key">
