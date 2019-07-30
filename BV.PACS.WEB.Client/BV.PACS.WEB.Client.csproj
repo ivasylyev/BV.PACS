@@ -67,4 +67,12 @@
     <Watch Remove="i18ntext\Pages\Aliquots\AliquotSearchPanel.ru-RU.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Tests\TestSearchPanel.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Tests\TestSearchPanel.ru-RU.json" />
+  </ItemGroup>
+
 </Project>

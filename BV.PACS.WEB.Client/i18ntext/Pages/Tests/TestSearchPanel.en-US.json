@@ -1,0 +1,10 @@
+﻿{
+  "TestRegistrationDateFrom": "Registration Date (from)",
+  "TestRegistrationDateTo": "Registration Date (to)",
+  "TestTemplateName": "Test Template",
+  "TestBarcode": "Test ID",
+
+
+  "Search": "Search",
+  "Clear": "Clear",
+}

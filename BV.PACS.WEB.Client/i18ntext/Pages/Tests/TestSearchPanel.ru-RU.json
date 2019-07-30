@@ -1,0 +1,9 @@
+﻿{
+  "TestRegistrationDateFrom": "Дата создания (от)",
+  "TestRegistrationDateTo": "Дата создания (до)",
+  "TestTemplateName": "Шаблон теста",
+  "TestBarcode": "Идентификатор теста",
+
+  "Search": "Поиск",
+  "Clear": "Очистить"
+}

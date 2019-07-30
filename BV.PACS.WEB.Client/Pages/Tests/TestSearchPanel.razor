@@ -4,22 +4,22 @@
 <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
 
 
-    <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestBarcode)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@Translations.TestBarcode" ColSpanLg="12" ColSpanMd="12">
         <Template>
             <DxTextBox @bind-Text="@TestBarcode"></DxTextBox>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestRegistrationDate)" ColSpanLg="6" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@Translations.TestRegistrationDateFrom" ColSpanLg="6" ColSpanMd="12">
         <Template>
             <DxDateEdit @bind-Date="@StartDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestRegistrationDate)" ColSpanLg="6" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@Translations.TestRegistrationDateTo" ColSpanLg="6" ColSpanMd="12">
         <Template>
             <DxDateEdit @bind-Date="@EndDate"></DxDateEdit>
         </Template>
     </DxFormLayoutItem>
-    <DxFormLayoutItem Caption="@nameof(TestCatalogDto.TestTemplateName)" ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem Caption="@Translations.TestTemplateName" ColSpanLg="12" ColSpanMd="12">
         <Template>
 
             <DxComboBox Data="@Templates"
@@ -32,9 +32,14 @@
     </DxFormLayoutItem>
 
 
-    <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+    <DxFormLayoutItem ColSpanLg="6" ColSpanMd="6">
         <Template>
-            <button @onclick="@DoSearch" class="btn btn-primary">Search</button>
+            <button @onclick="@DoSearch" class="btn btn-primary">@Translations.Search</button>
+        </Template>
+    </DxFormLayoutItem>
+    <DxFormLayoutItem ColSpanLg="6" ColSpanMd="6">
+        <Template>
+            <button @onclick="@DoClear" class="btn btn-secondary">@Translations.Clear</button>
         </Template>
     </DxFormLayoutItem>
 </DxFormLayout>

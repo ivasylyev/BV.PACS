@@ -8,7 +8,7 @@ using BV.PACS.WEB.Shared.Models;
 namespace BV.PACS.WEB.Client.Aliquots
 {
     [FormTemplate(FormTypes.Aliquot)]
-    public class AliquotSearchPanelCode : SearchPanel<Text>
+    public class AliquotSearchPanelCode : SearchPanel<AliquotSearchPanel>
     {
         protected string AliquotBarcode { get; set; }
 
@@ -62,6 +62,15 @@ namespace BV.PACS.WEB.Client.Aliquots
             cond.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", Template?.Id, Operators.EqualsOperator);
 
             OnSearch?.Invoke(cond);
+        }
+
+        protected override void DoClear()
+        {
+            base.DoClear();
+
+            Template = null;
+
+            AliquotBarcode = string.Empty;
         }
     }
 }

@@ -8,7 +8,7 @@ using BV.PACS.WEB.Shared.Models;
 namespace BV.PACS.WEB.Client.Tests
 {
     [FormTemplate(FormTypes.Test)]
-    public class TestSearchPanelCode : SearchPanel<Text>
+    public class TestSearchPanelCode : SearchPanel<TestSearchPanel>
     {
         protected string TestBarcode { get; set; }
 
@@ -62,6 +62,15 @@ namespace BV.PACS.WEB.Client.Tests
             cond.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", Template?.Id, Operators.EqualsOperator);
 
             OnSearch?.Invoke(cond);
+        }
+
+        protected override void DoClear()
+        {
+            base.DoClear();
+
+            Template = null;
+
+            TestBarcode = string.Empty;
         }
     }
 }
