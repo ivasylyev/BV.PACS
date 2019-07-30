@@ -1,0 +1,8 @@
+{
+  "AliquotBarcode": "Идентификатор аликвоты",
+  "AliquotCreationDateFrom": "Дата создания (от)",
+  "AliquotCreationDateTo": "Дата создания (до)",
+  "AliquotTemplateName": "Шаблон аликвоты",
+  "Clear": "Очистить",
+  "Search": "Поиск"
+}

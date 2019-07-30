@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using BV.PACS.WEB.Client.I18nText;
 using BV.PACS.WEB.Client.Services.Context;
 using Microsoft.AspNetCore.Components;
 using Toolbelt.Blazor.I18nText.Interfaces;
@@ -17,10 +18,13 @@ namespace BV.PACS.WEB.Client.Shared.Base
 
         protected TTranslation Translations { get; set; } = new TTranslation();
 
+        protected PacsMessages PacsMessagesTranslations { get; set; } = new PacsMessages();
+
         protected override async Task OnInitAsync()
         {
             await base.OnInitAsync();
             Translations = await TranslationService.GetTextTableAsync<TTranslation>(this);
+            PacsMessagesTranslations = await TranslationService.GetTextTableAsync<PacsMessages>(this);
             StateHasChanged();
         }
     }

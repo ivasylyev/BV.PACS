@@ -9,8 +9,8 @@ using Toolbelt.Blazor.I18nText.Interfaces;
 
 namespace BV.PACS.WEB.Client.Shared.Base
 {
-    public class Catalog<TModel, TTranslation> : TranslatablePanel<TTranslation> 
-        where TModel : new() 
+    public class Catalog<TModel, TTranslation> : TranslatablePanel<TTranslation>
+        where TModel : new()
         where TTranslation : class, I18nTextFallbackLanguage, new()
     {
         [Inject]
@@ -108,7 +108,6 @@ namespace BV.PACS.WEB.Client.Shared.Base
         private async Task GetData()
         {
             DataSource = await ApiCatalogService.GetData<TModel>(Http, PageContext.Condition);
-
         }
     }
 }

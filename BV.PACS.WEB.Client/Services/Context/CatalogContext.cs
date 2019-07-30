@@ -1,5 +1,7 @@
-﻿using BV.PACS.WEB.Client.Shared;
+﻿using BV.PACS.WEB.Client.I18nText;
+using BV.PACS.WEB.Client.Shared;
 using BV.PACS.WEB.Shared.Models;
+using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.WEB.Client.Services.Context
 {
@@ -18,7 +20,7 @@ namespace BV.PACS.WEB.Client.Services.Context
             ? "col-sm-12 alert alert-primary background-white"
             : "col-sm-9 alert alert-primary background-white";
 
-        public string ShowHideSearchPanelCaption => SearchPanelCollapsed ? "Show Search Panel" : "Hide Search Panel";
+        public string ShowHideSearchPanelCaption => SearchPanelCollapsed ? "ShowSearchPanel" : "HideSearchPanel";
         private bool SearchPanelCollapsed { get; set; } = true;
 
         public int PageCount { get; set; }
@@ -40,7 +42,7 @@ namespace BV.PACS.WEB.Client.Services.Context
             }
             set => _dataSource = value;
         }
-
+        
         public void SetSearchPanelCondition(AggregatedConditionDto cond)
         {
             _lastSearchPanelCondition = cond;
