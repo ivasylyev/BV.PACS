@@ -1,5 +1,5 @@
 ﻿@using BV.PACS.WEB.Shared.Models
-@inherits BV.PACS.WEB.Client.Shared.Base.TranslatablePanel<BV.PACS.WEB.Client.I18nText.SourceAuditPanel>
+@inherits BV.PACS.WEB.Client.Shared.Base.AuditPanelRecord<BV.PACS.WEB.Shared.Models.SourceAuditGridDto, BV.PACS.WEB.Client.I18nText.SourceAuditPanel>
 
 
 
@@ -27,23 +27,3 @@
         </Template>
     </DxFormLayoutItem>
 
-
-@functions
-{
-  //  bool _visible = false;
-
-    [Parameter]
-    public KeyValuePair<string, AuditGroupedDto<SourceAuditGridDto>> AuditData { get; set; }
-
-    public void DoClick()
-    {
-        AuditData.Value.GroupVisibility = !AuditData.Value.GroupVisibility;
-        StateHasChanged();
-        OnClick.Invoke();
-
-    }
-
-    [Parameter]
-    public Action OnClick { get; set; }
-
-}
