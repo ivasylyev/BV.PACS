@@ -1,11 +1,51 @@
-﻿@using BV.PACS.WEB.Shared.Models
-@using Microsoft.AspNetCore.Components
-@inherits BV.PACS.WEB.Client.Materials.BatchContentPanelCode
+﻿@inherits BV.PACS.WEB.Client.Materials.BatchContentPanelCode
 
 
-
-    <div class="row">
-        Content tab is active
+<div class="row">
+    <div class="col-sm-10">
+        <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+            <DxFormLayoutItem Caption="@Translations.SourceTemplate" ColSpanLg="4" ColSpanMd="6">
+                <Template>
+                    <DxTextBox Text="Not implemented"></DxTextBox>
+                </Template>
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="@Translations.MaterialTemplate" ColSpanLg="4" ColSpanMd="6">
+                <Template>
+                    <DxTextBox Text="Not implemented"></DxTextBox>
+                </Template>
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="@Translations.AliquotTemplate" ColSpanLg="4" ColSpanMd="6">
+                <Template>
+                    <DxTextBox Text="Not implemented"></DxTextBox>
+                </Template>
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="@Translations.Sources" ColSpanLg="4" ColSpanMd="6">
+                <Template>
+                    <DxTextBox Text="Not implemented"></DxTextBox>
+                </Template>
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="@Translations.Materials" ColSpanLg="4" ColSpanMd="6">
+                <Template>
+                    <DxTextBox Text="Not implemented"></DxTextBox>
+                </Template>
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Caption="@Translations.Aliquots" ColSpanLg="4" ColSpanMd="6">
+                <Template>
+                    <DxTextBox Text="Not implemented"></DxTextBox>
+                </Template>
+            </DxFormLayoutItem>
+        </DxFormLayout>
 
     </div>
-
+    <div class="col-sm-2">
+        <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+            <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                <Template>
+                    <button class="btn btn-primary btn-block" style="margin-bottom: 16px;">@Translations.Generate</button>
+                </Template>
+            </DxFormLayoutItem>
+          
+        </DxFormLayout>
+        
+    </div>
+</div>

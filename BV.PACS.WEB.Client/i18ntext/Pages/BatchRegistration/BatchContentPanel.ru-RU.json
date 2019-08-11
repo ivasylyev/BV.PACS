@@ -1,3 +1,9 @@
 ﻿{
- 
+  "SourceTemplate": "Шаблон источника",
+  "MaterialTemplate": "Шаблон материала",
+  "AliquotTemplate": "Шаблон аликвоты",
+  "Sources": "Источники",
+  "Materials": "Материалы",
+  "Aliquots": "Аликвоты",
+  "Generate": "Сгенерировать"
 }
