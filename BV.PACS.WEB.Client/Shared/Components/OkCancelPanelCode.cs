@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.WEB.Client.Shared.Components
 {
-    public class OkCancelPanelClass : TranslatablePanel<I18nText.OkCancelPanel>
+    public class OkCancelPanelCode : TranslatablePanel<I18nText.OkCancelPanel>
     {
         [Parameter]
         public Action OnOk { get; set; }

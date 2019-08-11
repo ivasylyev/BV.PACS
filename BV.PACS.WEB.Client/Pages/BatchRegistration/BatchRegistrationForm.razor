@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Components
+@using BV.PACS.WEB.Client.Shared.Components
+@inherits BV.PACS.WEB.Client.Shared.Base.BatchRegistrationFormCode
+<h1>@Translations.Caption</h1>
+
+<div class="row">
+
+    <div class="card demo-card alert alert-primary background-white">
+        <div class="card-body  border-top-0">
+            <DxTabs @bind-ActiveTabIndex="@ActiveTabIndex">
+
+                <DxTab Text="@Translations.ContentTab"></DxTab>
+                <DxTab Text="@Translations.RegistrationTab"></DxTab>
+
+
+            </DxTabs>
+            <div class="card demo-card dxbs-border-top-0 dxbs-border-radius-top-0">
+                <div class="card-body">
+                    @switch (ActiveTabIndex)
+                    {
+                        case 0:
+                            <BatchRegistrationPanel>
+                            </BatchRegistrationPanel>
+                            break;
+
+                        case 1:
+                            <BatchContentPanel >
+                            </BatchContentPanel>
+                            break;
+                    }
+                </div>
+            </div>
+            <OkCancelPanel OnOk="@DoOk"
+                           OnCancel="@DoCancel">
+            </OkCancelPanel>
+        </div>
+    </div>
+
+
+</div>
+

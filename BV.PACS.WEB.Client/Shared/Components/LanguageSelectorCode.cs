@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.WEB.Client.Shared.Components
 {
-    public class LanguageSelectorClass : ComponentBase
+    public class LanguageSelectorCode : ComponentBase
     {
         [Inject]
         protected ApplicationContextService ApplicationContextService { get; set; }

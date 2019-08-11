@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.WEB.Client.Shared.Components
 {
-    public class TopMenuClass : TranslatablePanel<I18nText.TopMenu>
+    public class TopMenuCode : TranslatablePanel<I18nText.TopMenu>
     {
         [Parameter]
         public Action OnMenuClick { get; set; }

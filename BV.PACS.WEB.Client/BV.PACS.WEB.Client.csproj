@@ -131,4 +131,12 @@
     <Watch Remove="i18ntext\Pages\Sources\SourceTrackingPanel.ru-RU.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\BatchRegistration\BatchRegistrationForm.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\BatchRegistration\BatchRegistrationForm.ru-RU.json" />
+  </ItemGroup>
+
 </Project>
