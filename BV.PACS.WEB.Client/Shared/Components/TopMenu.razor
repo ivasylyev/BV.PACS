@@ -2,9 +2,7 @@
 @using BV.PACS.WEB.Client.Pages.Materials
 @using BV.PACS.WEB.Client.Pages.Sources
 @using BV.PACS.WEB.Client.Pages.Tests
-@using BV.PACS.WEB.Client.Services.Context
-@using Microsoft.AspNetCore.Components
-@inherits BV.PACS.WEB.Client.Shared.Base.TranslatablePanel<BV.PACS.WEB.Client.I18nText.TopMenu>
+@inherits TopMenuClass
 
 
 <nav class="navbar navbar-default top-bar ">
@@ -37,44 +35,3 @@
     </div>
 </nav>
 
-
-@functions
-{
-
-    [Parameter]
-    public Action OnMenuClick { get; set; }
-
-
-    private void DoOpenSourceCatalog()
-    {
-        DoOpenCatalogPage(nameof(SourceCatalog));
-    }
-
-    private void DoOpenMaterialCatalog()
-    {
-        DoOpenCatalogPage(nameof(MaterialCatalog));
-    }
-
-    private void DoOpenAliquotCatalog()
-    {
-        DoOpenCatalogPage(nameof(AliquotCatalog));
-    }
-
-    private void DoOpenTestCatalog()
-    {
-        DoOpenCatalogPage(nameof(TestCatalog));
-    }
-
-    private void DoOpenCatalogPage(string pageName)
-    {
-        ApplicationContextService.OpenLastOrNewCatalogPage(pageName);
-        OnMenuClick?.Invoke();
-    }
-
-    private void DoOpenTrackingPage(string pageName, int context)
-    {
-        ApplicationContextService.OpenTrackingPage(pageName, context);
-        OnMenuClick?.Invoke();
-    }
-
-}
