@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using BV.PACS.WEB.Client.I18nText;
 using BV.PACS.WEB.Client.Shared.Base;
 using BV.PACS.WEB.Shared.Models;
-using BV.PACS.WEB.Shared.Models.Parameters;
 
 namespace BV.PACS.WEB.Client.Materials
 {
-    public class MaterialTrackingPanelCode : TrackingPanel<MaterialTrackingDto, BV.PACS.WEB.Client.I18nText.Text>
+    public class MaterialTrackingPanelCode : TrackingPanel<MaterialTrackingDto, Text>
     {
         protected TemplateLookupItem Template
         {
@@ -80,7 +80,5 @@ namespace BV.PACS.WEB.Client.Materials
             get => TrackingObject.MaterialPointOfOrigin;
             set => TrackingObject.MaterialPointOfOrigin = value;
         }
-
-
     }
 }

@@ -14,7 +14,6 @@ namespace BV.PACS.WEB.Client.Aliquots
 
         protected string AliquotNotes { get; set; }
 
-
         protected override void InitSearchCondition(AggregatedConditionDto cond)
         {
             var dates = new List<DateTime>();
@@ -44,7 +43,6 @@ namespace BV.PACS.WEB.Client.Aliquots
             {
                 StartDate = dates.Min();
                 EndDate = dates.Max();
-                //  SourceBarcode = cond.Serialize();
             }
 
             StateHasChanged();
@@ -60,6 +58,7 @@ namespace BV.PACS.WEB.Client.Aliquots
             cond.AddStandardConditionIfNotEmpty("datCreationDate", EndDateText, Operators.LessOperator);
 
             cond.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", Template?.Id, Operators.EqualsOperator);
+            //todo: implement the rest
 
             OnSearch?.Invoke(cond);
         }

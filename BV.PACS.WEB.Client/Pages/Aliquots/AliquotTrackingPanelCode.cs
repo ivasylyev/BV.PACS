@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using BV.PACS.WEB.Client.I18nText;
 using BV.PACS.WEB.Client.Shared.Base;
 using BV.PACS.WEB.Shared.Models;
 
 namespace BV.PACS.WEB.Client.Aliquots
 {
-    public class AliquotTrackingPanelCode : TrackingPanel<AliquotTrackingDto, BV.PACS.WEB.Client.I18nText.Text>
+    public class AliquotTrackingPanelCode : TrackingPanel<AliquotTrackingDto, Text>
     {
         protected TemplateLookupItem Template
         {
@@ -48,7 +49,7 @@ namespace BV.PACS.WEB.Client.Aliquots
             get => TrackingObject.AliquotCreationDate;
             set => TrackingObject.AliquotCreationDate = value;
         }
-        
+
 
         protected string MaterialBarcode
         {
@@ -61,21 +62,25 @@ namespace BV.PACS.WEB.Client.Aliquots
             get => TrackingObject.AliquotParentBarcode;
             set => TrackingObject.AliquotParentBarcode = value;
         }
+
         protected string AliquotStatus
         {
             get => TrackingObject.AliquotStatus;
             set => TrackingObject.AliquotStatus = value;
         }
+
         protected string AliquotNote
         {
             get => TrackingObject.AliquotNote;
             set => TrackingObject.AliquotNote = value;
         }
+
         protected decimal Volume
         {
             get => TrackingObject.Volume;
             set => TrackingObject.Volume = value;
         }
+
         protected string VolumeUnitName
         {
             get => TrackingObject.VolumeUnitName;
@@ -87,6 +92,7 @@ namespace BV.PACS.WEB.Client.Aliquots
             get => TrackingObject.Weight;
             set => TrackingObject.Weight = value;
         }
+
         protected string WeightUnitName
         {
             get => TrackingObject.WeightUnitName;

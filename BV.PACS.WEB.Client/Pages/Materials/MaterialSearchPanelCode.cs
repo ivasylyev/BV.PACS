@@ -53,7 +53,6 @@ namespace BV.PACS.WEB.Client.Materials
             {
                 StartDate = dates.Min();
                 EndDate = dates.Max();
-                //  SourceBarcode = cond.Serialize();
             }
 
             StateHasChanged();
@@ -76,6 +75,7 @@ namespace BV.PACS.WEB.Client.Materials
 
             cond.AddStandardConditionIfNotEmpty("strNote", MaterialNotes, Operators.LikeOperator);
 
+            //todo: implement the rest
             //    cond.AddStandardConditionIfNotEmpty("strContainerBarcode", "AliquotBarcode",AliquotBarcode, Operators.LikeOperator);
             //  cond.AddStandardConditionIfNotEmpty("idfOwner", "Owner", cbOwner.EditValue,Operators.EqualsOperator);
 
@@ -90,7 +90,6 @@ namespace BV.PACS.WEB.Client.Materials
             MaterialNotes = string.Empty;
             MaterialBarcode = string.Empty;
             AliquotBarcode = string.Empty;
-           
         }
     }
 }

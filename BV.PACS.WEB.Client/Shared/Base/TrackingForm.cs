@@ -5,7 +5,7 @@ using Toolbelt.Blazor.I18nText.Interfaces;
 
 namespace BV.PACS.WEB.Client.Shared.Base
 {
-    public class TrackingForm <TTranslation> : TranslatablePanel<TTranslation>
+    public class TrackingForm<TTranslation> : TranslatablePanel<TTranslation>
         where TTranslation : class, I18nTextFallbackLanguage, new()
     {
         private int _activeTabIndex;

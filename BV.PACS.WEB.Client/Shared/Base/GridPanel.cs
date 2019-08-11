@@ -8,7 +8,8 @@ using Toolbelt.Blazor.I18nText.Interfaces;
 
 namespace BV.PACS.WEB.Client.Shared.Base
 {
-    public class GridPanel<TModel, TTranslation> : TranslatablePanel<TTranslation> where TModel : new() where TTranslation : class, I18nTextFallbackLanguage, new()
+    public class GridPanel<TModel, TTranslation> : TranslatablePanel<TTranslation>
+        where TModel : new() where TTranslation : class, I18nTextFallbackLanguage, new()
     {
         [Inject]
         private UrlMappingService MappingService { get; set; }
