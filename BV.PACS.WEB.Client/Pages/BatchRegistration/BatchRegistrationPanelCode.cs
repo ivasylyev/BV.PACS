@@ -3,7 +3,7 @@ using BV.PACS.WEB.Client.Shared.Base;
 
 namespace BV.PACS.WEB.Client.Materials
 {
-    public class BatchRegistrationPanelCode : TranslatablePanel<Text>
+    public class BatchRegistrationPanelCode : TranslatablePanel<BatchRegistrationPanel>
     {
     }
 }

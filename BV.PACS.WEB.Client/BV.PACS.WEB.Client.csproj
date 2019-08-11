@@ -139,4 +139,20 @@
     <Watch Remove="i18ntext\Pages\BatchRegistration\BatchRegistrationForm.ru-RU.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\BatchRegistration\BatchContentPanel.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\BatchRegistration\BatchContentPanel.ru-RU.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\BatchRegistration\BatchRegistrationPanel.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\BatchRegistration\BatchRegistrationPanel.ru-RU.json" />
+  </ItemGroup>
+
 </Project>

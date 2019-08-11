@@ -1,0 +1,10 @@
+{
+  "ApprovedBy": "Кем одобрено",
+  "DeliveredBy": "Кем доставлено",
+  "DeliveredFrom": "Доставлено из",
+  "Department": "Отдел",
+  "Notes": "Примечание",
+  "PerformedBy": "Кем выполенно",
+  "RegistrationDate": "Дата регистрации",
+  "WitnessedBy": "Кем засвидетельстоввано"
+}
