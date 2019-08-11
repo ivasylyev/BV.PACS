@@ -99,4 +99,28 @@
     <Watch Remove="i18ntext\Pages\Tests\TestAuditPanel.ru-RU.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Materials\MaterialTrackingForm.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Materials\MaterialTrackingForm.ru-RU.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Tests\TestTrackingForm.ru-RU.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Tests\TestTrackingForm.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Sources\SourceTrackingForm.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Sources\SourceTrackingForm.ru-RU.json" />
+  </ItemGroup>
+
 </Project>

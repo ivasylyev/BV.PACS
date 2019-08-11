@@ -1,3 +1,7 @@
 {
-  "Caption": "Hello, world!! EN"
+  "AuditLog": "Audit log",
+  "Caption": "Aliquot Tracking Form",
+  "CheckoutHistory": "Checkout history",
+  "GeneralInfo": "General info",
+  "Tests": "Tests"
 }

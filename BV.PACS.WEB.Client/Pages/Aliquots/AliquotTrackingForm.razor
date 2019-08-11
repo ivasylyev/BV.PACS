@@ -1,17 +1,17 @@
 ﻿@using Microsoft.AspNetCore.Components
 @using BV.PACS.WEB.Client.Shared.Components
-@inherits BV.PACS.WEB.Client.Shared.Base.TrackingForm< BV.PACS.WEB.Client.I18nText.Text>
-<h1>Caption</h1>
+@inherits BV.PACS.WEB.Client.Shared.Base.TrackingForm< BV.PACS.WEB.Client.I18nText.AliquotTrackingForm>
+<h1>@Translations.Caption</h1>
 
 <div class="row">
 
     <div class="card demo-card alert alert-primary background-white">
         <div class="card-body  border-top-0">
             <DxTabs @bind-ActiveTabIndex="@ActiveTabIndex">
-                <DxTab Text="General info"></DxTab>
-                <DxTab Text="Tests"></DxTab>
-                <DxTab Text="Checkout history"></DxTab>
-                <DxTab Text="Audit log"></DxTab>
+                <DxTab Text="@Translations.GeneralInfo"></DxTab>
+                <DxTab Text="@Translations.Tests"></DxTab>
+                <DxTab Text="@Translations.CheckoutHistory"></DxTab>
+                <DxTab Text="@Translations.AuditLog"></DxTab>
             </DxTabs>
             <div class="card demo-card dxbs-border-top-0 dxbs-border-radius-top-0">
                 <div class="card-body">

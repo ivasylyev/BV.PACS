@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Components
 @using BV.PACS.WEB.Client.Shared.Components
-@inherits BV.PACS.WEB.Client.Shared.Base.TrackingForm< BV.PACS.WEB.Client.I18nText.Text>
-<h1>Material Tracking</h1>
+@inherits BV.PACS.WEB.Client.Shared.Base.TrackingForm< BV.PACS.WEB.Client.I18nText.MaterialTrackingForm>
+<h1>@Translations.Caption</h1>
 
 <div class="row">
 
@@ -9,10 +9,9 @@
         <div class="card-body  border-top-0">
             <DxTabs @bind-ActiveTabIndex="@ActiveTabIndex">
 
-                <DxTab Text="General info"></DxTab>
-                <DxTab Text="Aliquots"></DxTab>
-
-                <DxTab Text="Audit log"></DxTab>
+                <DxTab Text="@Translations.GeneralInfo"></DxTab>
+                <DxTab Text="@Translations.Aliquots"></DxTab>
+                <DxTab Text="@Translations.AuditLog"></DxTab>
 
             </DxTabs>
             <div class="card demo-card dxbs-border-top-0 dxbs-border-radius-top-0">

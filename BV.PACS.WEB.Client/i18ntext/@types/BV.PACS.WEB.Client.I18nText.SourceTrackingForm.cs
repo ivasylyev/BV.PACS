@@ -1,6 +1,6 @@
 namespace BV.PACS.WEB.Client.I18nText
 {
-    public partial class AliquotTrackingForm : global::Toolbelt.Blazor.I18nText.Interfaces.I18nTextFallbackLanguage, global::Toolbelt.Blazor.I18nText.Interfaces.I18nTextLateBinding
+    public partial class SourceTrackingForm : global::Toolbelt.Blazor.I18nText.Interfaces.I18nTextFallbackLanguage, global::Toolbelt.Blazor.I18nText.Interfaces.I18nTextLateBinding
     {
         string global::Toolbelt.Blazor.I18nText.Interfaces.I18nTextFallbackLanguage.FallBackLanguage => "en-US";
 
@@ -9,14 +9,20 @@ namespace BV.PACS.WEB.Client.I18nText
         /// <summary>"Audit log"</summary>
         public string AuditLog;
 
-        /// <summary>"Aliquot Tracking Form"</summary>
+        /// <summary>"Source Tracking Form"</summary>
         public string Caption;
 
-        /// <summary>"Checkout history"</summary>
+        /// <summary>"История проверок"</summary>
         public string CheckoutHistory;
+
+        /// <summary>"Diagnostics"</summary>
+        public string Diagnostics;
 
         /// <summary>"General info"</summary>
         public string GeneralInfo;
+
+        /// <summary>"Materials"</summary>
+        public string Materials;
 
         /// <summary>"Tests"</summary>
         public string Tests;
