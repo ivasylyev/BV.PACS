@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using BV.PACS.WEB.Client.Pages.Aliquots
+@using BV.PACS.WEB.Client.Pages.BatchRegistration
 @using BV.PACS.WEB.Client.Pages.Materials
 @using BV.PACS.WEB.Client.Pages.Sources
 @using BV.PACS.WEB.Client.Pages.Tests
@@ -49,6 +50,11 @@
                 </TestTrackingForm>
                 break;
 
+
+            case nameof(BatchRegistrationForm):
+                <BatchRegistrationForm OnClose=@DoClosePage>
+                </BatchRegistrationForm>
+                break;
             default:
                 <StartForm></StartForm>
                 break;

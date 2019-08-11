@@ -1,5 +1,6 @@
 ﻿using System;
 using BV.PACS.WEB.Client.Pages.Aliquots;
+using BV.PACS.WEB.Client.Pages.BatchRegistration;
 using BV.PACS.WEB.Client.Pages.Materials;
 using BV.PACS.WEB.Client.Pages.Sources;
 using BV.PACS.WEB.Client.Pages.Tests;
@@ -13,6 +14,12 @@ namespace BV.PACS.WEB.Client.Shared.Components
         [Parameter]
         public Action OnMenuClick { get; set; }
 
+
+        protected void DoOpenBatchRegistration()
+        {
+            ApplicationContextService.OpenBatchRegistrationPage(nameof(BatchRegistrationForm));
+            OnMenuClick?.Invoke();
+        }
 
         protected void DoOpenSourceCatalog()
         {

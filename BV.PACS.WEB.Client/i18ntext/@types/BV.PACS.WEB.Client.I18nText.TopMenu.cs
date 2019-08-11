@@ -9,6 +9,9 @@ namespace BV.PACS.WEB.Client.I18nText
         /// <summary>"Aliquot Catalog"</summary>
         public string AliquotCatalog;
 
+        /// <summary>"Batch Material Registration"</summary>
+        public string BatchMaterialRegistration;
+
         /// <summary>"BV.PACS"</summary>
         public string Logo;
 

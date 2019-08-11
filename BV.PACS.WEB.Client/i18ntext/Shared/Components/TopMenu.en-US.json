@@ -3,6 +3,6 @@
   "SourceCatalog": "Source Catalog",
   "MaterialCatalog": "Material Catalog",
   "AliquotCatalog": "Aliquot Catalog",
-  "TestCatalog": "Test Catalog"
-
+  "TestCatalog": "Test Catalog",
+  "BatchMaterialRegistration": "Batch Material Registration"
 }

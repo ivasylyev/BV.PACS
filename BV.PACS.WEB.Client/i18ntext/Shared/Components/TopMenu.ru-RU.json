@@ -3,6 +3,7 @@
   "SourceCatalog": "Каталог источников",
   "MaterialCatalog": "Каталог материалов",
   "AliquotCatalog": "Каталог аликвот",
-  "TestCatalog": "Каталог тестов"
+  "TestCatalog": "Каталог тестов",
+  "BatchMaterialRegistration": "Групповая регистрация материалов"
 
 }
