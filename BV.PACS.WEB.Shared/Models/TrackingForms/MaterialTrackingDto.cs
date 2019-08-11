@@ -2,7 +2,6 @@
 
 namespace BV.PACS.WEB.Shared.Models
 {
-   
     [StoredProcedures("dbo.spStrainPassport_SelectDetail", "dbo.spStrainPassport", "idfMaterial")]
     public class MaterialTrackingDto
     {

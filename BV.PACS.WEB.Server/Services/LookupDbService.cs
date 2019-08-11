@@ -11,10 +11,10 @@ namespace BV.PACS.WEB.Server.Services
 {
     public class LookupDbService : DbService
     {
-
         public LookupDbService(IConfiguration config) : base(config)
         {
         }
+
         public async Task<IEnumerable<TemplateLookupItem>> GetTemplates(TemplateLookupParameter parameter)
         {
             using (var connection = new SqlConnection(ConnectionString))
@@ -45,7 +45,5 @@ namespace BV.PACS.WEB.Server.Services
                 return result;
             }
         }
-
-        
     }
 }

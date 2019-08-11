@@ -3,6 +3,7 @@
     public static class BaseSettings
     {
         public static int CollapseButtonCount { get; set; } = 10;
+
         public static int PageSize { get; set; } = 10;
 
         public static int MaxSize { get; set; } = 5000;

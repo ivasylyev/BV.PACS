@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace BV.PACS.WEB.Shared.Models
+﻿namespace BV.PACS.WEB.Shared.Models
 {
     public class BaseLookupItem
     {
@@ -17,8 +15,8 @@ namespace BV.PACS.WEB.Shared.Models
         public int Order { get; set; }
 
         public override string ToString()
-         {
-             return $"{Name} ({Id})";
-         }
+        {
+            return $"{Name} ({Id})";
+        }
     }
 }

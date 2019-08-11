@@ -10,16 +10,17 @@ using Toolbelt.Blazor.I18nText.Interfaces;
 
 namespace BV.PACS.WEB.Client.Shared.Base
 {
-    public abstract class SearchPanel<TTranslation> : TranslatablePanel<TTranslation>  
+    public abstract class SearchPanel<TTranslation> : TranslatablePanel<TTranslation>
         where TTranslation : class, I18nTextFallbackLanguage, new()
     {
+        private AggregatedConditionDto _condition;
+
         [Inject]
         protected LookupService ApiService { get; set; }
 
         [Inject]
         protected HttpClient Http { get; set; }
 
-        protected AggregatedConditionDto _condition;
         [Parameter]
         public AggregatedConditionDto Condition
         {

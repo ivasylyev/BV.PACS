@@ -1,8 +1,7 @@
 ﻿namespace BV.PACS.WEB.Shared.Models
 {
     [StoredProcedures(GetProcedureName = "dbo.spDataAudit_Container", KeyColumnName = "ID")]
-    public class AliquotAuditGridDto: AuditGridDto
+    public class AliquotAuditGridDto : AuditGridDto
     {
-        
     }
 }

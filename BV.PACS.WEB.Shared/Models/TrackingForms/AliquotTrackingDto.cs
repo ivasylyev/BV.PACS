@@ -1,13 +1,10 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BV.PACS.WEB.Shared.Models
 {
-  
     [StoredProcedures("dbo.spVial_SelectDetail", "dbo.spVial_Post", "idfContainer")]
     public class AliquotTrackingDto
     {
-
         [GetColumn("idfContainer")]
         [PostColumn("idfContainer")]
         public int AliquotId { get; set; }

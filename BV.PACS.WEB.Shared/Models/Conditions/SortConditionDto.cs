@@ -12,7 +12,7 @@ namespace BV.PACS.WEB.Shared.Models
     {
         private static readonly Serializer<SortConditionDto> Serializer = new Serializer<SortConditionDto>();
 
-        public static SortConditionDto GetEmpty => new SortConditionDto();
+        public static SortConditionDto CreateEmpty => new SortConditionDto();
 
         [XmlArray("SortList")]
         [XmlArrayItem("Sort")]

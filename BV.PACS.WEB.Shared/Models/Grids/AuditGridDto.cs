@@ -4,7 +4,6 @@ namespace BV.PACS.WEB.Shared.Models
 {
     public abstract class AuditGridDto
     {
-
         public string GroupHeader => $"{EnteringDate} {DataAuditEventType} {ActorName}";
 
 
@@ -64,5 +63,10 @@ namespace BV.PACS.WEB.Shared.Models
 
         [GetColumn("idfsCFParameterTypeID")]
         public string CustomParameterTypeId { get; set; }
+
+        public override string ToString()
+        {
+            return $"Group:'{GroupHeader}', OldValue:'{OldValue}', NewValue:'{NewValue}'";
+        }
     }
 }

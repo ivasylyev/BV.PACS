@@ -1,5 +1,4 @@
-﻿@using BV.PACS.WEB.Shared.Models
-@inherits BV.PACS.WEB.Client.Shared.Base.AuditPanel<BV.PACS.WEB.Shared.Models.TestAuditGridDto, BV.PACS.WEB.Client.I18nText.TestAuditPanel>
+﻿@inherits BV.PACS.WEB.Client.Shared.Base.AuditPanel<BV.PACS.WEB.Shared.Models.TestAuditGridDto, BV.PACS.WEB.Client.I18nText.TestAuditPanel>
 
 @{
     if (GroupedData == null)
@@ -14,17 +13,15 @@
 
                     @foreach (var group in GroupedData)
                     {
-                        <TestAuditPanelRecord 
+                        <TestAuditPanelRecord
                             AuditData=@group.Value
                             AuditTitle=@group.Key
                             OnClick=@OnChildClick
-@key="group.Key">
-
+                            @key="group.Key">
                         </TestAuditPanelRecord>
                     }
 
                 </DxFormLayout>
-
             </div>
         </div>
     }

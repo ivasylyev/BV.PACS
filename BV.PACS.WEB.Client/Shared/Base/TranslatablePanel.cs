@@ -23,8 +23,10 @@ namespace BV.PACS.WEB.Client.Shared.Base
         protected override async Task OnInitAsync()
         {
             await base.OnInitAsync();
+
             Translations = await TranslationService.GetTextTableAsync<TTranslation>(this);
             PacsMessagesTranslations = await TranslationService.GetTextTableAsync<PacsMessages>(this);
+
             StateHasChanged();
         }
     }

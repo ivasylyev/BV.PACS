@@ -9,8 +9,11 @@ namespace BV.PACS.WEB.Client
             CreateHostBuilder(args).Build().Run();
         }
 
-        public static IWebAssemblyHostBuilder CreateHostBuilder(string[] args) =>
-            BlazorWebAssemblyHost.CreateDefaultBuilder()
+        public static IWebAssemblyHostBuilder CreateHostBuilder(string[] args)
+        {
+            return BlazorWebAssemblyHost
+                .CreateDefaultBuilder()
                 .UseBlazorStartup<Startup>();
+        }
     }
 }

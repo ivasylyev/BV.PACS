@@ -10,14 +10,14 @@ namespace BV.PACS.WEB.Client.Shared.Base
 {
     public class GridPanel<TModel, TTranslation> : TranslatablePanel<TTranslation> where TModel : new() where TTranslation : class, I18nTextFallbackLanguage, new()
     {
-        [Parameter]
-        public int Id { get; set; }
-
         [Inject]
         private UrlMappingService MappingService { get; set; }
 
         [Inject]
         private HttpClient Http { get; set; }
+
+        [Parameter]
+        public int Id { get; set; }
 
         protected TModel[] DataSource { get; set; }
 

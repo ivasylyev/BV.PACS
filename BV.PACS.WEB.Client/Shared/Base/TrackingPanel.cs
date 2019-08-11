@@ -13,15 +13,20 @@ namespace BV.PACS.WEB.Client.Shared.Base
         where TTranslation : class, I18nTextFallbackLanguage, new()
 
     {
-        [Parameter] public int Id { get; set; }
+        [Inject]
+        protected HttpClient Http { get; set; }
 
-        [Inject] protected HttpClient Http { get; set; }
+        [Inject]
+        protected TrackingService ApiTrackingService { get; set; }
 
-        [Inject] protected TrackingService ApiTrackingService { get; set; }
+        [Inject]
+        protected LookupService ApiLookupService { get; set; }
 
-        [Inject] protected LookupService ApiLookupService { get; set; }
+        [Parameter]
+        protected int Id { get; set; }
 
-        public TModel TrackingObject { get; set; }
+        protected TModel TrackingObject { get; set; }
+
         protected TemplateLookupItem[] Templates { get; set; }
 
         public bool HasChanges { get; set; } = true;
@@ -54,8 +59,6 @@ namespace BV.PACS.WEB.Client.Shared.Base
         private async Task GetData()
         {
             TrackingObject = await ApiTrackingService.GetData<TModel>(Http, new TrackingParameter(Id, BaseSettings.Language));
-
-          
         }
     }
 }

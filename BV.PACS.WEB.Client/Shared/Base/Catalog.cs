@@ -19,7 +19,6 @@ namespace BV.PACS.WEB.Client.Shared.Base
         [Inject]
         private CatalogService ApiCatalogService { get; set; }
 
-
         [Parameter]
         public Action<string, int> OnOpenTrackingForm { get; set; }
 
@@ -45,7 +44,7 @@ namespace BV.PACS.WEB.Client.Shared.Base
             set => PageContext.PageCount = value;
         }
 
-        public int ActivePageNumber
+        protected int ActivePageNumber
         {
             get => PageContext.Condition.PageNumber;
             set
@@ -56,13 +55,11 @@ namespace BV.PACS.WEB.Client.Shared.Base
             }
         }
 
-
         protected TModel[] DataSource
         {
             get => PageContext.DataSource;
             set => PageContext.DataSource = value;
         }
-
 
         protected override async Task OnInitAsync()
         {
@@ -72,7 +69,6 @@ namespace BV.PACS.WEB.Client.Shared.Base
             await GetData();
             await GetPageCount();
         }
-
 
         protected void OnSelectItem(string pageName, int id)
         {
@@ -92,7 +88,6 @@ namespace BV.PACS.WEB.Client.Shared.Base
 
             DoSearch();
         }
-
 
         private void DoSearch()
         {

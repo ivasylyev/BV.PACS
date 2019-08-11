@@ -13,6 +13,7 @@ namespace BV.PACS.WEB.Server.Services
         public CatalogDbService(IConfiguration config) : base(config)
         {
         }
+
         public async Task<IEnumerable<SourceCatalogDto>> GetSources(AggregatedConditionDto condition)
         {
             return await GetCatalogItems<SourceCatalogDto>(condition, "dbo.spSource_QS");
@@ -90,7 +91,5 @@ namespace BV.PACS.WEB.Server.Services
                 return result;
             }
         }
-
-       
     }
 }

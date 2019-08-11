@@ -10,7 +10,7 @@ namespace BV.PACS.WEB.Shared.Models
     public class SearchConditionDto
     {
         private static readonly Serializer<SearchConditionDto> Serializer = new Serializer<SearchConditionDto>();
-        public static SearchConditionDto GetEmpty => new SearchConditionDto();
+        public static SearchConditionDto CreateEmpty => new SearchConditionDto();
 
         [XmlArray("ConditionList")]
         [XmlArrayItem("Condition")]

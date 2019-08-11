@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using BV.PACS.WEB.Shared.Models;
 using Microsoft.AspNetCore.Components;
 using Toolbelt.Blazor.I18nText.Interfaces;
@@ -14,10 +13,10 @@ namespace BV.PACS.WEB.Client.Shared.Base
         public Action OnClick { get; set; }
 
         [Parameter]
-        public  AuditGroupedDto<TModel> AuditData { get; set; }
+        public AuditGroupedDto<TModel> AuditData { get; set; }
 
         [Parameter]
-        public string  AuditTitle { get; set; }
+        public string AuditTitle { get; set; }
 
         public void DoClick()
         {

@@ -1,6 +1,6 @@
 ﻿namespace BV.PACS.WEB.Shared.Models.Parameters
 {
-    public class TrackingPostParameter<T> where T:new()
+    public class TrackingPostParameter<T> where T : new()
     {
         public T Data { get; set; }
         public string Language { get; set; }

@@ -19,14 +19,14 @@ namespace BV.PACS.WEB.Server.Controllers
             _dbService = dbService;
         }
 
-       
+
         [HttpPost("[action]")]
         public async Task<IEnumerable<TemplateLookupItem>> GetTemplatesLookup([FromBody] TemplateLookupParameter parameter)
         {
             return await _dbService.GetTemplates(parameter);
         }
 
-        
+
         [HttpPost("[action]")]
         public async Task<IEnumerable<BaseLookupItem>> GetLookup([FromBody] BaseLookupParameter parameter)
         {

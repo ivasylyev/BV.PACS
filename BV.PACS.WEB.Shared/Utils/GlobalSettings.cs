@@ -6,7 +6,9 @@ namespace BV.PACS.WEB.Shared.Utils
     {
         //Do not change value for this variable!!! 
         private static DateTimeFormatInfo _ansiDateTimeFormatInfo;
-     
+
+        public static string CurrentLanguage { get; set; } = "en";
+
         public static DateTimeFormatInfo AnsiDateTimeFormatInfo
         {
             get
@@ -26,7 +28,6 @@ namespace BV.PACS.WEB.Shared.Utils
             }
         }
 
-        public static string CurrentLanguage { get; set; } = "en";
 
     }
 }

@@ -13,6 +13,7 @@ namespace BV.PACS.WEB.Shared.Utils
 
             return false;
         }
+
         public static string Str(this object obj)
         {
             if (obj == null || obj == DBNull.Value)

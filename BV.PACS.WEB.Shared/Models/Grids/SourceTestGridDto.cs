@@ -2,8 +2,7 @@
 {
     // ReSharper disable once InconsistentNaming
     [StoredProcedures(GetProcedureName = "dbo.spSourceMaterialVial_SelectTests", KeyColumnName = "idfSource")]
-    public class SourceTestGridDto: TestGridDto
+    public class SourceTestGridDto : TestGridDto
     {
-        
     }
 }

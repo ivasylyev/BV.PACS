@@ -29,10 +29,10 @@ namespace BV.PACS.WEB.Shared.Models
         {
         }
 
-        public SearchConditionItemDto(string fieldId, string fieldName, string fieldValue, string @operator, bool isCustom)
+        public SearchConditionItemDto(string fieldId, string fieldName, string fieldValue, string oper, bool isCustom)
         {
-            if (_columnNamesList.Any(fieldId.Contains)
-                && string.Equals(@operator, "Like", StringComparison.InvariantCulture))
+            if (_columnNamesList.Any(fieldId.Contains) && 
+                string.Equals(oper, Operators.LikeOperator, StringComparison.InvariantCulture))
             {
                 FieldValue = fieldValue.Replace("_", "[_]").Replace("*", "_");
             }
@@ -43,7 +43,7 @@ namespace BV.PACS.WEB.Shared.Models
 
             FieldId = fieldId;
             FieldName = fieldName;
-            Operator = @operator;
+            Operator = oper;
             IsCustom = isCustom;
         }
     }

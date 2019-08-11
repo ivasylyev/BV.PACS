@@ -8,12 +8,12 @@ namespace BV.PACS.WEB.Server.Filters
     {
         public void OnException(ExceptionContext context)
         {
-            string actionName = context.ActionDescriptor.DisplayName;
-            string exceptionStack = context.Exception.StackTrace;
-            string exceptionMessage = context.Exception.Message;
+            var actionName = context.ActionDescriptor.DisplayName;
+            var exceptionStack = context.Exception.StackTrace;
+            var exceptionMessage = context.Exception.Message;
             context.Result = new ContentResult
             {
-                Content = $"Action: '{actionName}', Exception \n {exceptionMessage} \n {exceptionStack}"
+                Content = $"Action: '{actionName}', Exception: {Environment.NewLine} {exceptionMessage} {Environment.NewLine} {exceptionStack}"
             };
             context.ExceptionHandled = true;
         }

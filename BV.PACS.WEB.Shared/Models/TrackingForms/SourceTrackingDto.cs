@@ -1,13 +1,10 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BV.PACS.WEB.Shared.Models
 {
- 
     [StoredProcedures("dbo.spSource_SelectDetail", "dbo.spSource_Post", "idfSource")]
     public class SourceTrackingDto
     {
-
         [GetColumn("idfSource")]
         [PostColumn("idfSource")]
         public int SourceId { get; set; }
@@ -53,7 +50,6 @@ namespace BV.PACS.WEB.Shared.Models
         [GetColumn("Source_idfGeoLocation")]
         [PostColumn("Source_idfGeoLocation")]
         public string AddressGeoLocationId { get; set; }
-
 
         [GetColumn("TemplateName")]
         public string SourceTemplateName { get; set; }

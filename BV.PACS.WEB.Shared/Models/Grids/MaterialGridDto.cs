@@ -1,9 +1,8 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BV.PACS.WEB.Shared.Models
 {
-    [StoredProcedures(GetProcedureName= "dbo.spSource_Materials", KeyColumnName= "idfSource")]
+    [StoredProcedures(GetProcedureName = "dbo.spSource_Materials", KeyColumnName = "idfSource")]
     public class MaterialGridDto
     {
         [GetColumn("idfMaterial")]
@@ -32,7 +31,6 @@ namespace BV.PACS.WEB.Shared.Models
 
         [GetColumn("TemplateName")]
         public string MaterialTemplateName { get; set; }
-
 
         public override string ToString()
         {

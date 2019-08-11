@@ -3,7 +3,7 @@
 namespace BV.PACS.WEB.Shared.Models
 {
     // ReSharper disable once InconsistentNaming
-    public class GetColumnAttribute: ColumnAttribute
+    public class GetColumnAttribute : ColumnAttribute
     {
         public GetColumnAttribute()
         {

@@ -13,7 +13,6 @@ namespace BV.PACS.WEB.Shared.Models
         [GetColumn("strContainerNumber")]
         public string AliquotBarcode { get; set; }
 
-
         [GetColumn("strMaterialNumber")]
         public string MaterialBarcode { get; set; }
 
@@ -31,6 +30,7 @@ namespace BV.PACS.WEB.Shared.Models
 
         [GetColumn("TestType")]
         public string TestType { get; set; }
+
         [GetColumn("TestResult")]
         public string TestResult { get; set; }
 
@@ -53,5 +53,9 @@ namespace BV.PACS.WEB.Shared.Models
         [GetColumn("TemplateName")]
         public string TestTemplateName { get; set; }
 
+        public override string ToString()
+        {
+            return $"Id:'{TestBarcode}', Registered:'{TestRegistrationDate}', Template:'{TestTemplateName}'";
+        }
     }
 }

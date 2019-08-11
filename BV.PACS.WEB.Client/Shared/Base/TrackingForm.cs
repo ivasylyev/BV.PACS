@@ -13,14 +13,14 @@ namespace BV.PACS.WEB.Client.Shared.Base
         [Parameter]
         public Action<DialogResult> OnClose { get; set; }
 
-        public int Id => PageContext?.Id ?? 0;
+        protected int Id => PageContext?.Id ?? 0;
 
-        public IPostable TrackingPanel { get; set; }
+        protected IPostable TrackingPanel { get; set; }
 
-        private TrackingFormContext PageContext => ApplicationContextService.CurrentApplicationContext.PageContext as TrackingFormContext;
+        protected TrackingFormContext PageContext => ApplicationContextService.CurrentApplicationContext.PageContext as TrackingFormContext;
 
 
-        public int ActiveTabIndex
+        protected int ActiveTabIndex
         {
             get => _activeTabIndex;
             set

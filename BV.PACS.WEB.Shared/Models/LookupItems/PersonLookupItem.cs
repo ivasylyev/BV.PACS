@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace BV.PACS.WEB.Shared.Models
+﻿namespace BV.PACS.WEB.Shared.Models
 {
     public class PersonLookupItem
     {
