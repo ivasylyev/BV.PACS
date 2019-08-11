@@ -1,0 +1,9 @@
+{
+  "MaterialsAndAliquotsCount": "Количество материалов (аликвот)",
+  "SourceBarcode": "Идентификатор источника",
+  "SourceNote": "Примечания",
+  "SourcePointOfOrigin": "Место сбора",
+  "SourceRegistrationDate": "Дата создания",
+  "SourceTemplateName": "Шаблон",
+  "SourceType": "Тип источника"
+}

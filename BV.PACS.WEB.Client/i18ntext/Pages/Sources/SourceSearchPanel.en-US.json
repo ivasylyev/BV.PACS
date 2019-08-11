@@ -2,7 +2,7 @@
 
   "SourceBarcode": "Source ID",
   "SourceCreationDateFrom": "Creation Date (from)",
-  "SourceCreationDateFrom": "Creation Date (to)",
+  "SourceCreationDateTo": "Creation Date (to)",
   "SourceTemplateName": "Source Template",
   "SourceNote": "Notes",
   "MaterialBarcodes": "Material ID",

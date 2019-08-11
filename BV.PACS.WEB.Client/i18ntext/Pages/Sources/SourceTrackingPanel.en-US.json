@@ -1,0 +1,9 @@
+﻿{
+  "SourceBarcode": "Source ID",
+  "SourceRegistrationDate": "Creation Date",
+  "SourceType": "Source Type",
+  "MaterialsAndAliquotsCount": "# of materials (aliquots)",
+  "SourceTemplateName": "Template",
+  "SourcePointOfOrigin": "Point Of Origin",
+  "SourceNote": "Notes"
+}

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using BV.PACS.WEB.Client.I18nText;
 using BV.PACS.WEB.Client.Shared.Base;
 using BV.PACS.WEB.Shared.Models;
-using BV.PACS.WEB.Shared.Models.Parameters;
 
 namespace BV.PACS.WEB.Client.Sources
 {
     // ReSharper disable once InconsistentNaming
-    public class SourceTrackingPanelCode : TrackingPanel<SourceTrackingDto, BV.PACS.WEB.Client.I18nText.Text>
+    public class SourceTrackingPanelCode : TrackingPanel<SourceTrackingDto, SourceTrackingPanel>
     {
         protected TemplateLookupItem Template
         {
@@ -55,7 +55,5 @@ namespace BV.PACS.WEB.Client.Sources
             get => TrackingObject.SourcePointOfOrigin;
             set => TrackingObject.SourcePointOfOrigin = value;
         }
-
-       
     }
 }

@@ -123,4 +123,12 @@
     <Watch Remove="i18ntext\Pages\Sources\SourceTrackingForm.ru-RU.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Sources\SourceTrackingPanel.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Sources\SourceTrackingPanel.ru-RU.json" />
+  </ItemGroup>
+
 </Project>
