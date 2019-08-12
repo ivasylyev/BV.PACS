@@ -6,32 +6,44 @@
         <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
             <DxFormLayoutItem Caption="@Translations.SourceTemplate" ColSpanLg="4" ColSpanMd="6">
                 <Template>
-                    <DxTextBox Text="Not implemented"></DxTextBox>
+                    <DxComboBox Data="@SourceTemplates"
+                                TextFieldName="Name"
+                                NullText="@PacsMessagesTranslations.SelectTemplate"
+                                @bind-SelectedItem="@SourceTemplate">
+                    </DxComboBox>
                 </Template>
             </DxFormLayoutItem>
             <DxFormLayoutItem Caption="@Translations.MaterialTemplate" ColSpanLg="4" ColSpanMd="6">
                 <Template>
-                    <DxTextBox Text="Not implemented"></DxTextBox>
+                    <DxComboBox Data="@MaterialTemplates"
+                                TextFieldName="Name"
+                                NullText="@PacsMessagesTranslations.SelectTemplate"
+                                @bind-SelectedItem="@MaterialTemplate">
+                    </DxComboBox>
                 </Template>
             </DxFormLayoutItem>
             <DxFormLayoutItem Caption="@Translations.AliquotTemplate" ColSpanLg="4" ColSpanMd="6">
                 <Template>
-                    <DxTextBox Text="Not implemented"></DxTextBox>
+                    <DxComboBox Data="@AliquotTemplates"
+                                TextFieldName="Name"
+                                NullText="@PacsMessagesTranslations.SelectTemplate"
+                                @bind-SelectedItem="@AliquotTemplate">
+                    </DxComboBox>
                 </Template>
             </DxFormLayoutItem>
             <DxFormLayoutItem Caption="@Translations.Sources" ColSpanLg="4" ColSpanMd="6">
                 <Template>
-                    <DxTextBox Text="Not implemented"></DxTextBox>
+                    <DxSpinEdit @bind-Value="@SourceCount"></DxSpinEdit>
                 </Template>
             </DxFormLayoutItem>
             <DxFormLayoutItem Caption="@Translations.Materials" ColSpanLg="4" ColSpanMd="6">
                 <Template>
-                    <DxTextBox Text="Not implemented"></DxTextBox>
+                    <DxSpinEdit @bind-Value="@MaterialCount"></DxSpinEdit>
                 </Template>
             </DxFormLayoutItem>
             <DxFormLayoutItem Caption="@Translations.Aliquots" ColSpanLg="4" ColSpanMd="6">
                 <Template>
-                    <DxTextBox Text="Not implemented"></DxTextBox>
+                    <DxSpinEdit @bind-Value="@AliquotCount"></DxSpinEdit>
                 </Template>
             </DxFormLayoutItem>
         </DxFormLayout>
@@ -44,8 +56,8 @@
                     <button class="btn btn-primary btn-block" style="margin-bottom: 16px;">@Translations.Generate</button>
                 </Template>
             </DxFormLayoutItem>
-          
+
         </DxFormLayout>
-        
+
     </div>
 </div>

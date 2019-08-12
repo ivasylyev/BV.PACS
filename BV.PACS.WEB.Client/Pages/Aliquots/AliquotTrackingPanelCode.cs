@@ -30,13 +30,11 @@ namespace BV.PACS.WEB.Client.Aliquots
             set => TrackingObject.AliquotBarcode = value;
         }
 
-
         protected string MaterialType
         {
             get => TrackingObject.MaterialType;
             set => TrackingObject.MaterialType = value;
         }
-
 
         protected int? Passage
         {
@@ -49,7 +47,6 @@ namespace BV.PACS.WEB.Client.Aliquots
             get => TrackingObject.AliquotCreationDate;
             set => TrackingObject.AliquotCreationDate = value;
         }
-
 
         protected string MaterialBarcode
         {
@@ -80,7 +77,6 @@ namespace BV.PACS.WEB.Client.Aliquots
             get => TrackingObject.Volume;
             set => TrackingObject.Volume = value;
         }
-
         protected string VolumeUnitName
         {
             get => TrackingObject.VolumeUnitName;
@@ -98,13 +94,11 @@ namespace BV.PACS.WEB.Client.Aliquots
             get => TrackingObject.WeightUnitName;
             set => TrackingObject.WeightUnitName = value;
         }
-
         protected string LocationPath
         {
             get => TrackingObject.LocationPath;
             set => TrackingObject.LocationPath = value;
         }
-
         protected string DerivativeType
         {
             get => TrackingObject.DerivativeType;

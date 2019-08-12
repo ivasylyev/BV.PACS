@@ -31,13 +31,11 @@
             {
                 <DxFormLayoutItem Caption="@nameof(MaterialTrackingDto.MaterialTemplateName)" ColSpanLg="6" ColSpanMd="12">
                     <Template>
-
                         <DxComboBox Data="@Templates"
                                     TextFieldName="Name"
-                                    NullText="Select Template ..."
+                                    NullText="@PacsMessagesTranslations.SelectTemplate"
                                     @bind-SelectedItem="@Template">
                         </DxComboBox>
-
                     </Template>
                 </DxFormLayoutItem>
             }

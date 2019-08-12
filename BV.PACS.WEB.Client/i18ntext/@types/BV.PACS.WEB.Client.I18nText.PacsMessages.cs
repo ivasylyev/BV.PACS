@@ -12,6 +12,9 @@ namespace BV.PACS.WEB.Client.I18nText
         /// <summary>"Loading..."</summary>
         public string Loading;
 
+        /// <summary>"Select Template ..."</summary>
+        public string SelectTemplate;
+
         /// <summary>"Show Search Panel"</summary>
         public string ShowSearchPanel;
     }
