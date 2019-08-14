@@ -5,5 +5,12 @@
   "Sources": "Sources",
   "Materials": "Materials",
   "Aliquots": "Aliquots",
-  "Generate": "Generate"
+  "Generate": "Generate",
+
+  "SourceBarcode": "Source ID",
+  "SourceType": "Source Type",
+  "MaterialBarcode": "Material ID",
+  "MaterialType": "Material Type",
+  "AliquotBarcode": "Aliquot ID",
+  "AliquotLocation": "Location"
 }

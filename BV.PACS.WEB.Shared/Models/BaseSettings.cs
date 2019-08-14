@@ -8,6 +8,8 @@
 
         public static int MaxSize { get; set; } = 5000;
 
+        public static int MaxBatchRegistrationSize { get; set; } = 200;
+
         public static string Language { get; set; } = "en";
     }
 }

@@ -1,4 +1,6 @@
-﻿@inherits BV.PACS.WEB.Client.Materials.BatchContentPanelCode
+﻿@using BV.PACS.WEB.Shared.Models
+@using BV.PACS.WEB.Shared.Utils
+@inherits BV.PACS.WEB.Client.Materials.BatchContentPanelCode
 
 
 <div class="row">
@@ -53,10 +55,46 @@
         <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
             <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
                 <Template>
-                    <button class="btn btn-primary btn-block" style="margin-bottom: 16px;">@Translations.Generate</button>
+                    <button @onclick=@GenerateClick class="btn btn-primary btn-block" style="margin-bottom: 16px;">@Translations.Generate</button>
                 </Template>
             </DxFormLayoutItem>
 
+        </DxFormLayout>
+
+    </div>
+
+    <div class="col-sm-12">
+        <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+            <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                <Template Context="GridContext">
+                    <DxDataGrid Data="@DataSource"
+                                ShowFilterRow="@false"
+                                ShowPager="@false"
+                                AllowDataRowSelection="@false"
+                                PageSize="@BaseSettings.MaxBatchRegistrationSize">
+
+                        <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceBarcode)" Caption="@Translations.SourceBarcode">
+                            
+                        </DxDataGridColumn>
+
+                        <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceTypeId)" Caption="@Translations.SourceType">
+                        </DxDataGridColumn>
+
+                        <DxDataGridDateEditColumn Field="@nameof(BatchRegistrationDto.MaterialBarcode)" Caption="@Translations.MaterialBarcode">
+                        </DxDataGridDateEditColumn>
+
+                        <DxDataGridColumn Field="@nameof(BatchRegistrationDto.MaterialTypeId)" Caption="@Translations.MaterialType">
+                        </DxDataGridColumn>
+
+                        <DxDataGridColumn Field="@nameof(BatchRegistrationDto.AliquotBarcode)" Caption="@Translations.AliquotBarcode">
+                        </DxDataGridColumn>
+
+                        <DxDataGridColumn Field="@nameof(BatchRegistrationDto.AliquotLocation)" Caption="@Translations.AliquotLocation">
+                        </DxDataGridColumn>
+                    </DxDataGrid>
+                    
+                </Template>
+            </DxFormLayoutItem>
         </DxFormLayout>
 
     </div>

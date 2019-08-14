@@ -6,6 +6,12 @@ namespace BV.PACS.WEB.Client.I18nText
 
         public string this[string key] => global::Toolbelt.Blazor.I18nText.I18nTextExtensions.GetFieldValue(this, key);
 
+        /// <summary>"Aliquot ID"</summary>
+        public string AliquotBarcode;
+
+        /// <summary>"Location"</summary>
+        public string AliquotLocation;
+
         /// <summary>"Aliquots"</summary>
         public string Aliquots;
 
@@ -15,16 +21,28 @@ namespace BV.PACS.WEB.Client.I18nText
         /// <summary>"Generate"</summary>
         public string Generate;
 
+        /// <summary>"Material ID"</summary>
+        public string MaterialBarcode;
+
         /// <summary>"Materials"</summary>
         public string Materials;
 
         /// <summary>"Material Template"</summary>
         public string MaterialTemplate;
 
+        /// <summary>"Material Type"</summary>
+        public string MaterialType;
+
+        /// <summary>"Source ID"</summary>
+        public string SourceBarcode;
+
         /// <summary>"Sources"</summary>
         public string Sources;
 
         /// <summary>"Source Template"</summary>
         public string SourceTemplate;
+
+        /// <summary>"Source Type"</summary>
+        public string SourceType;
     }
 }

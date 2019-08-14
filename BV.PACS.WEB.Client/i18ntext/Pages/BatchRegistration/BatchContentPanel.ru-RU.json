@@ -5,5 +5,13 @@
   "Sources": "Источники",
   "Materials": "Материалы",
   "Aliquots": "Аликвоты",
-  "Generate": "Сгенерировать"
+  "Generate": "Сгенерировать",
+
+
+  "SourceBarcode": "Идентификатор источника",
+  "SourceType": "Тип источника",
+  "MaterialBarcode": "Материал №",
+  "MaterialType": "Тип материала",
+  "AliquotBarcode": "Идентификатор аликвоты",
+  "AliquotLocation": "Местоположение"
 }
