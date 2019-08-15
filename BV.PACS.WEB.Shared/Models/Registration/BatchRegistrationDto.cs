@@ -6,6 +6,8 @@
 
         public string SourceTemplateId { get; set; }
 
+        public string SourceTemplateName { get; set; }
+
         public string SourceBarcode { get; set; }
 
         public string SourceNote { get; set; }
@@ -20,6 +22,7 @@
 
         public string MaterialTemplateId { get; set; }
 
+        public string MaterialTemplateName{ get; set; }
         public string MaterialBarcode { get; set; }
 
         public string MaterialNote { get; set; }
@@ -33,6 +36,7 @@
         public int AliquotId { get; set; }
 
         public string AliquotTemplateId { get; set; }
+        public string AliquotTemplateName { get; set; }
 
         public string AliquotBarcode { get; set; }
 

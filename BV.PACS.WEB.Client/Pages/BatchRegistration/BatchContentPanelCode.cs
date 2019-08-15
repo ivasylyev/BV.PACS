@@ -47,7 +47,15 @@ namespace BV.PACS.WEB.Client.Materials
                 {
                     for (int aIndex = 0; aIndex < TemplatesViewModel.AliquotCount; aIndex++)
                     {
-                        BatchRegistrationDto dto = new BatchRegistrationDto();
+                        BatchRegistrationDto dto = new BatchRegistrationDto
+                        {
+                            SourceTemplateId = TemplatesViewModel.SourceTemplate.Id,
+                            SourceTemplateName = TemplatesViewModel.SourceTemplate.Name,
+                            MaterialTemplateId = TemplatesViewModel.MaterialTemplate.Id,
+                            MaterialTemplateName = TemplatesViewModel.MaterialTemplate.Name,
+                            AliquotTemplateId = TemplatesViewModel.AliquotTemplate.Id,
+                            AliquotTemplateName = TemplatesViewModel.AliquotTemplate.Name,
+                        };
                         DataSource.Add(dto);
                     }
                 }
