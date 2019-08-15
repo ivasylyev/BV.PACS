@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using BV.PACS.WEB.Client.I18nText;
 using BV.PACS.WEB.Client.Services.Api;
 using BV.PACS.WEB.Client.Shared.Base;
+using BV.PACS.WEB.Client.Shared.ViewModels;
 using BV.PACS.WEB.Shared.Models;
 using Microsoft.AspNetCore.Components;
 
@@ -22,14 +24,7 @@ namespace BV.PACS.WEB.Client.Materials
         protected TemplateLookupItem[] MaterialTemplates { get; set; }
         protected TemplateLookupItem[] AliquotTemplates { get; set; }
 
-        protected TemplateLookupItem SourceTemplate { get; set; }
-        protected TemplateLookupItem MaterialTemplate { get; set; }
-        protected TemplateLookupItem AliquotTemplate { get; set; }
-
-        protected int SourceCount { get; set; }
-        protected int MaterialCount { get; set; }
-        protected int AliquotCount { get; set; }
-
+        protected BatchTemplateViewModel TemplatesViewModel { get; set; } = new BatchTemplateViewModel();
         protected List<BatchRegistrationDto> DataSource { get; set; } = new List<BatchRegistrationDto>();
 
         protected override async Task OnInitAsync()
@@ -43,11 +38,11 @@ namespace BV.PACS.WEB.Client.Materials
 
         protected void GenerateClick()
         {
-            for (int sIndex = 0; sIndex < SourceCount; sIndex++)
+            for (int sIndex = 0; sIndex < TemplatesViewModel.SourceCount; sIndex++)
             {
-                for (int mIndex = 0; mIndex < MaterialCount; mIndex++)
+                for (int mIndex = 0; mIndex < TemplatesViewModel.MaterialCount; mIndex++)
                 {
-                    for (int aIndex = 0; aIndex < AliquotCount; aIndex++)
+                    for (int aIndex = 0; aIndex < TemplatesViewModel.AliquotCount; aIndex++)
                     {
                         BatchRegistrationDto dto = new BatchRegistrationDto();
                         DataSource.Add(dto);
@@ -55,6 +50,15 @@ namespace BV.PACS.WEB.Client.Materials
                 }
             }
             
+        }
+
+        protected void HandleValidSubmit()
+        {
+            Console.WriteLine("OnValidSubmit");
+        }
+        protected void HandleInvalidSubmit()
+        {
+            Console.WriteLine("OnInvalidSubmit");
         }
     }
 }

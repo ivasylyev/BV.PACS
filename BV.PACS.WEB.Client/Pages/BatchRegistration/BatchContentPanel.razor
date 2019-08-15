@@ -4,64 +4,75 @@
 
 
 <div class="row">
-    <div class="col-sm-10">
-        <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
-            <DxFormLayoutItem Caption="@Translations.SourceTemplate" ColSpanLg="4" ColSpanMd="6">
-                <Template>
-                    <DxComboBox Data="@SourceTemplates"
-                                TextFieldName="Name"
-                                NullText="@PacsMessagesTranslations.SelectTemplate"
-                                @bind-SelectedItem="@SourceTemplate">
-                    </DxComboBox>
-                </Template>
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="@Translations.MaterialTemplate" ColSpanLg="4" ColSpanMd="6">
-                <Template>
-                    <DxComboBox Data="@MaterialTemplates"
-                                TextFieldName="Name"
-                                NullText="@PacsMessagesTranslations.SelectTemplate"
-                                @bind-SelectedItem="@MaterialTemplate">
-                    </DxComboBox>
-                </Template>
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="@Translations.AliquotTemplate" ColSpanLg="4" ColSpanMd="6">
-                <Template>
-                    <DxComboBox Data="@AliquotTemplates"
-                                TextFieldName="Name"
-                                NullText="@PacsMessagesTranslations.SelectTemplate"
-                                @bind-SelectedItem="@AliquotTemplate">
-                    </DxComboBox>
-                </Template>
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="@Translations.Sources" ColSpanLg="4" ColSpanMd="6">
-                <Template>
-                    <DxSpinEdit @bind-Value="@SourceCount"></DxSpinEdit>
-                </Template>
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="@Translations.Materials" ColSpanLg="4" ColSpanMd="6">
-                <Template>
-                    <DxSpinEdit @bind-Value="@MaterialCount"></DxSpinEdit>
-                </Template>
-            </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="@Translations.Aliquots" ColSpanLg="4" ColSpanMd="6">
-                <Template>
-                    <DxSpinEdit @bind-Value="@AliquotCount"></DxSpinEdit>
-                </Template>
-            </DxFormLayoutItem>
-        </DxFormLayout>
+    <div class="col-sm-12">
+        <EditForm Model="@TemplatesViewModel" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit" Context="EditFormContext">
+            <DataAnnotationsValidator />
 
+            <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+                <DxFormLayoutItem  Context="InnerFormContext" ColSpanLg="10" ColSpanMd="10">
+                    <Template>
+                        <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+                            <DxFormLayoutItem Caption="@Translations.SourceTemplate" ColSpanLg="4" ColSpanMd="6">
+                                <Template>
+                                    <DxComboBox Data="@SourceTemplates"
+                                                TextFieldName="Name"
+                                                NullText="@PacsMessagesTranslations.SelectTemplate"
+                                                @bind-SelectedItem="@TemplatesViewModel.SourceTemplate">
+                                    </DxComboBox>
+                                </Template>
+                            </DxFormLayoutItem>
+                            <DxFormLayoutItem Caption="@Translations.MaterialTemplate" ColSpanLg="4" ColSpanMd="6">
+                                <Template>
+                                    <DxComboBox Data="@MaterialTemplates"
+                                                TextFieldName="Name"
+                                                NullText="@PacsMessagesTranslations.SelectTemplate"
+                                                @bind-SelectedItem="@TemplatesViewModel.MaterialTemplate">
+                                    </DxComboBox>
+                                </Template>
+                            </DxFormLayoutItem>
+                            <DxFormLayoutItem Caption="@Translations.AliquotTemplate" ColSpanLg="4" ColSpanMd="6">
+                                <Template>
+                                    <DxComboBox Data="@AliquotTemplates"
+                                                TextFieldName="Name"
+                                                NullText="@PacsMessagesTranslations.SelectTemplate"
+                                                @bind-SelectedItem="@TemplatesViewModel.AliquotTemplate">
+                                    </DxComboBox>
+                                </Template>
+                            </DxFormLayoutItem>
+                            <DxFormLayoutItem Caption="@Translations.Sources" ColSpanLg="4" ColSpanMd="6">
+                                <Template>
+                                    <DxSpinEdit @bind-Value="@TemplatesViewModel.SourceCount"></DxSpinEdit>
+                                </Template>
+                            </DxFormLayoutItem>
+                            <DxFormLayoutItem Caption="@Translations.Materials" ColSpanLg="4" ColSpanMd="6">
+                                <Template>
+                                    <DxSpinEdit @bind-Value="@TemplatesViewModel.MaterialCount"></DxSpinEdit>
+                                </Template>
+                            </DxFormLayoutItem>
+                            <DxFormLayoutItem Caption="@Translations.Aliquots" ColSpanLg="4" ColSpanMd="6">
+                                <Template>
+                                    <DxSpinEdit @bind-Value="@TemplatesViewModel.AliquotCount"></DxSpinEdit>
+                                </Template>
+                            </DxFormLayoutItem>
+                        </DxFormLayout>
+                    </Template>
+                </DxFormLayoutItem>
+                <DxFormLayoutItem  Context="ButtonContext" ColSpanLg="2" ColSpanMd="2">
+                    <Template>
+                        <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+                            <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                                <Template>
+                                    <button type="submit" class="btn btn-primary btn-block" style="margin-bottom: 16px;">@Translations.Generate</button>
+                                </Template>
+                            </DxFormLayoutItem>
+
+                        </DxFormLayout>
+                    </Template>
+                </DxFormLayoutItem>
+            </DxFormLayout>
+        </EditForm>
     </div>
-    <div class="col-sm-2">
-        <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
-            <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
-                <Template>
-                    <button @onclick=@GenerateClick class="btn btn-primary btn-block" style="margin-bottom: 16px;">@Translations.Generate</button>
-                </Template>
-            </DxFormLayoutItem>
-
-        </DxFormLayout>
-
-    </div>
+    
 
     <div class="col-sm-12">
         <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
