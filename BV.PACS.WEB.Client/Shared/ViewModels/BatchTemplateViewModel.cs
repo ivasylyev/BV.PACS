@@ -15,12 +15,15 @@ namespace BV.PACS.WEB.Client.Shared.ViewModels
         public TemplateLookupItem AliquotTemplate { get; set; }
 
         [Required]
+        [Range(1,BaseSettings.MaxBatchRegistrationSize)]
         public int SourceCount { get; set; }
 
         [Required]
+        [Range(1, BaseSettings.MaxBatchRegistrationSize)]
         public int MaterialCount { get; set; }
 
         [Required]
+        [Range(1, BaseSettings.MaxBatchRegistrationSize)]
         public int AliquotCount { get; set; }
     }
 }

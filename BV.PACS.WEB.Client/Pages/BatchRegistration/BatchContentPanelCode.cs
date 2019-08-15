@@ -36,8 +36,11 @@ namespace BV.PACS.WEB.Client.Materials
             AliquotTemplates = await ApiService.GetTemplatesLookup(Http, FormTypes.Aliquot);
         }
 
-        protected void GenerateClick()
+
+        protected void HandleValidSubmit()
         {
+            Console.WriteLine("OnValidSubmit");
+
             for (int sIndex = 0; sIndex < TemplatesViewModel.SourceCount; sIndex++)
             {
                 for (int mIndex = 0; mIndex < TemplatesViewModel.MaterialCount; mIndex++)
@@ -49,12 +52,7 @@ namespace BV.PACS.WEB.Client.Materials
                     }
                 }
             }
-            
-        }
-
-        protected void HandleValidSubmit()
-        {
-            Console.WriteLine("OnValidSubmit");
+            StateHasChanged();
         }
         protected void HandleInvalidSubmit()
         {

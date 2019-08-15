@@ -1,15 +1,13 @@
 ﻿@using BV.PACS.WEB.Shared.Models
-@using BV.PACS.WEB.Shared.Utils
 @inherits BV.PACS.WEB.Client.Materials.BatchContentPanelCode
 
 
 <div class="row">
     <div class="col-sm-12">
         <EditForm Model="@TemplatesViewModel" OnValidSubmit="@HandleValidSubmit" OnInvalidSubmit="@HandleInvalidSubmit" Context="EditFormContext">
-            <DataAnnotationsValidator />
-
+            <DataAnnotationsValidator/>
             <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
-                <DxFormLayoutItem  Context="InnerFormContext" ColSpanLg="10" ColSpanMd="10">
+                <DxFormLayoutItem Context="InnerFormContext" ColSpanLg="10" ColSpanMd="10">
                     <Template>
                         <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
                             <DxFormLayoutItem Caption="@Translations.SourceTemplate" ColSpanLg="4" ColSpanMd="6">
@@ -19,6 +17,7 @@
                                                 NullText="@PacsMessagesTranslations.SelectTemplate"
                                                 @bind-SelectedItem="@TemplatesViewModel.SourceTemplate">
                                     </DxComboBox>
+                                    <ValidationMessage For="@(() => TemplatesViewModel.SourceTemplate)" />
                                 </Template>
                             </DxFormLayoutItem>
                             <DxFormLayoutItem Caption="@Translations.MaterialTemplate" ColSpanLg="4" ColSpanMd="6">
@@ -28,6 +27,7 @@
                                                 NullText="@PacsMessagesTranslations.SelectTemplate"
                                                 @bind-SelectedItem="@TemplatesViewModel.MaterialTemplate">
                                     </DxComboBox>
+                                    <ValidationMessage For="@(() => TemplatesViewModel.MaterialTemplate)" />
                                 </Template>
                             </DxFormLayoutItem>
                             <DxFormLayoutItem Caption="@Translations.AliquotTemplate" ColSpanLg="4" ColSpanMd="6">
@@ -37,27 +37,32 @@
                                                 NullText="@PacsMessagesTranslations.SelectTemplate"
                                                 @bind-SelectedItem="@TemplatesViewModel.AliquotTemplate">
                                     </DxComboBox>
+                                    <ValidationMessage For="@(() => TemplatesViewModel.AliquotTemplate)" />
                                 </Template>
                             </DxFormLayoutItem>
                             <DxFormLayoutItem Caption="@Translations.Sources" ColSpanLg="4" ColSpanMd="6">
                                 <Template>
                                     <DxSpinEdit @bind-Value="@TemplatesViewModel.SourceCount"></DxSpinEdit>
+                                    <ValidationMessage For="@(() => TemplatesViewModel.SourceCount)" />
                                 </Template>
                             </DxFormLayoutItem>
                             <DxFormLayoutItem Caption="@Translations.Materials" ColSpanLg="4" ColSpanMd="6">
                                 <Template>
                                     <DxSpinEdit @bind-Value="@TemplatesViewModel.MaterialCount"></DxSpinEdit>
+                                    <ValidationMessage For="@(() => TemplatesViewModel.MaterialCount)" />
                                 </Template>
                             </DxFormLayoutItem>
                             <DxFormLayoutItem Caption="@Translations.Aliquots" ColSpanLg="4" ColSpanMd="6">
                                 <Template>
                                     <DxSpinEdit @bind-Value="@TemplatesViewModel.AliquotCount"></DxSpinEdit>
+                                    <ValidationMessage For="@(() => TemplatesViewModel.AliquotCount)" />
                                 </Template>
                             </DxFormLayoutItem>
                         </DxFormLayout>
                     </Template>
                 </DxFormLayoutItem>
-                <DxFormLayoutItem  Context="ButtonContext" ColSpanLg="2" ColSpanMd="2">
+
+                <DxFormLayoutItem Context="ButtonContext" ColSpanLg="2" ColSpanMd="2">
                     <Template>
                         <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
                             <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
@@ -69,10 +74,10 @@
                         </DxFormLayout>
                     </Template>
                 </DxFormLayoutItem>
+
             </DxFormLayout>
         </EditForm>
     </div>
-    
 
     <div class="col-sm-12">
         <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
@@ -85,7 +90,7 @@
                                 PageSize="@BaseSettings.MaxBatchRegistrationSize">
 
                         <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceBarcode)" Caption="@Translations.SourceBarcode">
-                            
+
                         </DxDataGridColumn>
 
                         <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceTypeId)" Caption="@Translations.SourceType">
@@ -103,10 +108,9 @@
                         <DxDataGridColumn Field="@nameof(BatchRegistrationDto.AliquotLocation)" Caption="@Translations.AliquotLocation">
                         </DxDataGridColumn>
                     </DxDataGrid>
-                    
+
                 </Template>
             </DxFormLayoutItem>
         </DxFormLayout>
-
     </div>
 </div>
