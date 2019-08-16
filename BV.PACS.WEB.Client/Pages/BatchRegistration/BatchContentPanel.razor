@@ -80,20 +80,41 @@
     </div>
 
     <div class="col-sm-12">
-        <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+        <DxFormLayout  CaptionPosition="@CaptionPosition.Vertical">
             <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
                 <Template Context="GridContext">
                     <DxDataGrid Data="@DataSource"
                                 ShowFilterRow="@false"
                                 ShowPager="@false"
-                                AllowDataRowSelection="@false"
+                                AllowDataRowSelection="@true"
                                 PageSize="@BaseSettings.MaxBatchRegistrationSize">
 
+                        <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
                         <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceBarcode)" Caption="@Translations.SourceBarcode">
 
                         </DxDataGridColumn>
 
                         <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceTemplateName)" Caption="@Translations.SourceTemplate">
+                            <EditTemplate>
+                                @{
+                                    var editingContext = (CellEditContext)context;
+                                    var templateId = (string)editingContext.GetEditorValue(nameof(BatchRegistrationDto.SourceTemplateId));
+                                    var template = SourceTemplates.FirstOrDefault(t => t.Id == templateId);
+                                }
+
+                                <DxComboBox Data="@SourceTemplates"
+                                            NullText="@PacsMessagesTranslations.SelectTemplate"
+                                            SelectedItem="@template"
+                                            SelectedItemChanged=@(newCellValue =>
+                                                                  {
+                                                                      // editingContext.OnChanged(newCellValue);
+                                                                   //   editingContext.OnChanged(nameof(BatchRegistrationDto.SourceTemplateName), newCellValue.Name);
+                                                                   //   editingContext.OnChanged(nameof(BatchRegistrationDto.SourceTemplateId), newCellValue.Id);
+                                                                  })>
+                                </DxComboBox>
+
+
+                            </EditTemplate>
                         </DxDataGridColumn>
 
 

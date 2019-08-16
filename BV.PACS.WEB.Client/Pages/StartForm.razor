@@ -19,7 +19,12 @@
             Launch demo modal
         </button>
 
-        <ModalDialog Show="@_showModal">
+        <ModalDialog 
+                     OnOk="@save"
+                     OkText="OK"
+                     OnCancel="@close"
+                     CancelText="Cancel"
+                     Show="@_showModal">
             Content
         </ModalDialog>
 
