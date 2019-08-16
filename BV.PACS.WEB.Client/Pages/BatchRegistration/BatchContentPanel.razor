@@ -80,68 +80,73 @@
     </div>
 
     <div class="col-sm-12">
-        <DxFormLayout  CaptionPosition="@CaptionPosition.Vertical">
-            <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
-                <Template Context="GridContext">
-                    <DxDataGrid Data="@DataSource"
-                                ShowFilterRow="@false"
-                                ShowPager="@false"
-                                AllowDataRowSelection="@true"
-                                PageSize="@BaseSettings.MaxBatchRegistrationSize">
+        @if (DataSource != null && DataSource.Count > 0)
+        {
+            <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
+                <DxFormLayoutItem ColSpanLg="12" ColSpanMd="12">
+                    <Template Context="GridContext">
+                        <DxDataGrid Data="@DataSource"
+                                    ShowFilterRow="@false"
+                                    ShowPager="@false"
+                                    AllowDataRowSelection="@true"
+                                    PageSize="@BaseSettings.MaxBatchRegistrationSize">
 
-                        <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
-                        <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceBarcode)" Caption="@Translations.SourceBarcode">
+                            <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
+                            <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceBarcode)" Caption="@Translations.SourceBarcode">
 
-                        </DxDataGridColumn>
+                            </DxDataGridColumn>
 
-                        <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceTemplateName)" Caption="@Translations.SourceTemplate">
-                            <EditTemplate>
-                                @{
-                                    var editingContext = (CellEditContext)context;
-                                    var templateId = (string)editingContext.GetEditorValue(nameof(BatchRegistrationDto.SourceTemplateId));
-                                    var template = SourceTemplates.FirstOrDefault(t => t.Id == templateId);
-                                }
+                            <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceTemplateName)" Caption="@Translations.SourceTemplate">
+                                <EditTemplate>
+                                    @{
+                                        var editingContext = (CellEditContext) context;
+                                        var template = (string) editingContext.GetEditorValue(nameof(BatchRegistrationDto.SourceTemplateId));
+                                        Console.WriteLine(template);
+                                    }
 
-                                <DxComboBox Data="@SourceTemplates"
-                                            NullText="@PacsMessagesTranslations.SelectTemplate"
-                                            SelectedItem="@template"
-                                            SelectedItemChanged=@(newCellValue =>
-                                                                  {
-                                                                      // editingContext.OnChanged(newCellValue);
-                                                                   //   editingContext.OnChanged(nameof(BatchRegistrationDto.SourceTemplateName), newCellValue.Name);
-                                                                   //   editingContext.OnChanged(nameof(BatchRegistrationDto.SourceTemplateId), newCellValue.Id);
-                                                                  })>
-                                </DxComboBox>
-
-
-                            </EditTemplate>
-                        </DxDataGridColumn>
+                                    <DxComboBox Data="@SourceTemplates"
+                                                NullText="@PacsMessagesTranslations.SelectTemplate"
+                                             
+                                                SelectedItemChanged=@(newCellValue =>
+                                                                      {
+                                                                        //  Console.WriteLine(newCellValue);
+                                                                          //   Console.WriteLine(newCellValue?.Id);
+                                                                       //  editingContext.OnChanged(newCellValue);
+                                                                          // editingContext.OnChanged(nameof(BatchRegistrationDto.SourceTemplateName), newCellValue.Name);
+                                                                          // editingContext.OnChanged(nameof(BatchRegistrationDto.SourceTemplateId), newCellValue.Id);
+                                                                      })>
+                                    </DxComboBox>
 
 
-                        <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceTypeId)" Caption="@Translations.SourceType">
-                        </DxDataGridColumn>
+                                </EditTemplate>
+                            </DxDataGridColumn>
 
-                        <DxDataGridDateEditColumn Field="@nameof(BatchRegistrationDto.MaterialBarcode)" Caption="@Translations.MaterialBarcode">
-                        </DxDataGridDateEditColumn>
 
-                        <DxDataGridColumn Field="@nameof(BatchRegistrationDto.MaterialTemplateName)" Caption="@Translations.MaterialTemplate">
-                        </DxDataGridColumn>
+                            <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceTypeId)" Caption="@Translations.SourceType">
+                            </DxDataGridColumn>
 
-                        <DxDataGridColumn Field="@nameof(BatchRegistrationDto.MaterialTypeId)" Caption="@Translations.MaterialType">
-                        </DxDataGridColumn>
+                            <DxDataGridDateEditColumn Field="@nameof(BatchRegistrationDto.MaterialBarcode)" Caption="@Translations.MaterialBarcode">
+                            </DxDataGridDateEditColumn>
 
-                        <DxDataGridColumn Field="@nameof(BatchRegistrationDto.AliquotBarcode)" Caption="@Translations.AliquotBarcode">
-                        </DxDataGridColumn>
+                            <DxDataGridColumn Field="@nameof(BatchRegistrationDto.MaterialTemplateName)" Caption="@Translations.MaterialTemplate">
+                            </DxDataGridColumn>
 
-                        <DxDataGridColumn Field="@nameof(BatchRegistrationDto.AliquotTemplateName)" Caption="@Translations.AliquotTemplate">
-                        </DxDataGridColumn>
+                            <DxDataGridColumn Field="@nameof(BatchRegistrationDto.MaterialTypeId)" Caption="@Translations.MaterialType">
+                            </DxDataGridColumn>
 
-                        <DxDataGridColumn Field="@nameof(BatchRegistrationDto.AliquotLocation)" Caption="@Translations.AliquotLocation">
-                        </DxDataGridColumn>
-                    </DxDataGrid>
+                            <DxDataGridColumn Field="@nameof(BatchRegistrationDto.AliquotBarcode)" Caption="@Translations.AliquotBarcode">
+                            </DxDataGridColumn>
 
-                </Template>
-            </DxFormLayoutItem>
-        </DxFormLayout>
+                            <DxDataGridColumn Field="@nameof(BatchRegistrationDto.AliquotTemplateName)" Caption="@Translations.AliquotTemplate">
+                            </DxDataGridColumn>
+
+                            <DxDataGridColumn Field="@nameof(BatchRegistrationDto.AliquotLocation)" Caption="@Translations.AliquotLocation">
+                            </DxDataGridColumn>
+                        </DxDataGrid>
+
+                    </Template>
+                </DxFormLayoutItem>
+            </DxFormLayout>
+        }
     </div>
 </div>

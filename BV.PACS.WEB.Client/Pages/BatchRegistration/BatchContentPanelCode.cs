@@ -49,12 +49,10 @@ namespace BV.PACS.WEB.Client.Materials
                     {
                         BatchRegistrationDto dto = new BatchRegistrationDto
                         {
-                            SourceTemplateId = TemplatesViewModel.SourceTemplate.Id,
-                            SourceTemplateName = TemplatesViewModel.SourceTemplate.Name,
-                            MaterialTemplateId = TemplatesViewModel.MaterialTemplate.Id,
-                            MaterialTemplateName = TemplatesViewModel.MaterialTemplate.Name,
-                            AliquotTemplateId = TemplatesViewModel.AliquotTemplate.Id,
-                            AliquotTemplateName = TemplatesViewModel.AliquotTemplate.Name,
+                            SourceTemplate = TemplatesViewModel.SourceTemplate,
+                            MaterialTemplate = TemplatesViewModel.MaterialTemplate,
+                            AliquotTemplate = TemplatesViewModel.AliquotTemplate
+                           
                         };
                         DataSource.Add(dto);
                     }
@@ -65,6 +63,26 @@ namespace BV.PACS.WEB.Client.Materials
         protected void HandleInvalidSubmit()
         {
             Console.WriteLine("OnInvalidSubmit");
+        }
+
+        protected void OnRowUpdating(BatchRegistrationDto item, Dictionary<string, object> newValue)
+        {
+            foreach (var field in newValue.Keys)
+            {
+                Console.WriteLine(field);
+                switch (field)
+                {
+//                    case nameof(BatchRegistrationDto.SourceTemplate):
+//                        item.SourceTemplate = (TemplateLookupItem)newValue[field];
+//                        break;
+//                    case "Region":
+//                        vacancy.Region = (string)newValue[field];
+//                        break;
+//                    case "City":
+//                        vacancy.City = (string)newValue[field];
+//                        break;
+                }
+            }
         }
     }
 }

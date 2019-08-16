@@ -4,9 +4,11 @@
     {
         public int SourceId { get; set; }
 
-        public string SourceTemplateId { get; set; }
+        public TemplateLookupItem SourceTemplate { get; set; }
 
-        public string SourceTemplateName { get; set; }
+        public string SourceTemplateId => SourceTemplate?.Id;
+
+        public string SourceTemplateName => SourceTemplate?.Name;
 
         public string SourceBarcode { get; set; }
 
@@ -20,9 +22,11 @@
 
         public int MaterialId { get; set; }
 
-        public string MaterialTemplateId { get; set; }
+        public TemplateLookupItem MaterialTemplate { get; set; }
 
-        public string MaterialTemplateName{ get; set; }
+        public string MaterialTemplateId => MaterialTemplate?.Id;
+
+        public string MaterialTemplateName => MaterialTemplate?.Name;
         public string MaterialBarcode { get; set; }
 
         public string MaterialNote { get; set; }
@@ -35,8 +39,11 @@
 
         public int AliquotId { get; set; }
 
-        public string AliquotTemplateId { get; set; }
-        public string AliquotTemplateName { get; set; }
+
+        public TemplateLookupItem AliquotTemplate { get; set; }
+
+        public string AliquotTemplateId => AliquotTemplate.Id;
+        public string AliquotTemplateName => AliquotTemplate.Name;
 
         public string AliquotBarcode { get; set; }
 
