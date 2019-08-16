@@ -103,20 +103,12 @@
                                         var editingContext = (CellEditContext)context;
                                         var templateId = (string)editingContext.GetEditorValue(nameof(BatchRegistrationDto.SourceTemplateId));
                                         var template = SourceTemplates.FirstOrDefault(t=>t.Id == templateId);
-                                        //  Console.WriteLine(template);
                                     }
 
                                     <DxComboBox Data="@SourceTemplates"
                                                 NullText="@PacsMessagesTranslations.SelectTemplate"
                                                 SelectedItem=@template
-                                                SelectedItemChanged=@(newCellValue =>
-                                                                      {
-                                                                          Console.WriteLine(newCellValue);
-                                                                          //   Console.WriteLine(newCellValue?.Id);
-                                                                         editingContext.OnChanged(newCellValue);
-                                                                          // editingContext.OnChanged(nameof(BatchRegistrationDto.SourceTemplateName), newCellValue.Name);
-                                                                          // editingContext.OnChanged(nameof(BatchRegistrationDto.SourceTemplateId), newCellValue.Id);
-                                                                      })>
+                                                SelectedItemChanged=@(newCellValue => editingContext.OnChanged(newCellValue))>
                                     </DxComboBox>
 
 

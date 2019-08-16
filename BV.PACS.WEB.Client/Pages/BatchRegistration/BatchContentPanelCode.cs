@@ -70,20 +70,20 @@ namespace BV.PACS.WEB.Client.Materials
         {
             if (item != null && newValue != null)
             {
-                foreach (var field in newValue.Keys)
+                foreach (var field in newValue)
                 {
-                    Console.WriteLine(field);
-                    switch (field)
+                    Console.WriteLine(field.Key);
+                    Console.WriteLine(field.Value);
+                    switch (field.Key)
                     {
-//                    case nameof(BatchRegistrationDto.SourceTemplate):
-//                        item.SourceTemplate = (TemplateLookupItem)newValue[field];
-//                        break;
-//                    case "Region":
-//                        vacancy.Region = (string)newValue[field];
-//                        break;
-//                    case "City":
-//                        vacancy.City = (string)newValue[field];
-//                        break;
+                        case nameof(BatchRegistrationDto.SourceTemplateName):
+                            if (field.Value is TemplateLookupItem template)
+                            {
+                                item.SourceTemplate = template;
+                                Console.WriteLine($"SelectedTEmp= {template}");
+                            }
+                            break;
+                        
                     }
                 }
             }
