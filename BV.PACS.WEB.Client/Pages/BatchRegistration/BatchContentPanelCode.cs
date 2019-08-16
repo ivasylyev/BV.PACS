@@ -41,25 +41,26 @@ namespace BV.PACS.WEB.Client.Materials
         {
             Console.WriteLine("OnValidSubmit");
 
-            for (int sIndex = 0; sIndex < TemplatesViewModel.SourceCount; sIndex++)
+            for (var sIndex = 0; sIndex < TemplatesViewModel.SourceCount; sIndex++)
             {
-                for (int mIndex = 0; mIndex < TemplatesViewModel.MaterialCount; mIndex++)
+                for (var mIndex = 0; mIndex < TemplatesViewModel.MaterialCount; mIndex++)
                 {
-                    for (int aIndex = 0; aIndex < TemplatesViewModel.AliquotCount; aIndex++)
+                    for (var aIndex = 0; aIndex < TemplatesViewModel.AliquotCount; aIndex++)
                     {
-                        BatchRegistrationDto dto = new BatchRegistrationDto
+                        var dto = new BatchRegistrationDto
                         {
                             SourceTemplate = TemplatesViewModel.SourceTemplate,
                             MaterialTemplate = TemplatesViewModel.MaterialTemplate,
                             AliquotTemplate = TemplatesViewModel.AliquotTemplate
-                           
                         };
                         DataSource.Add(dto);
                     }
                 }
             }
+
             StateHasChanged();
         }
+
         protected void HandleInvalidSubmit()
         {
             Console.WriteLine("OnInvalidSubmit");
@@ -67,11 +68,13 @@ namespace BV.PACS.WEB.Client.Materials
 
         protected void OnRowUpdating(BatchRegistrationDto item, Dictionary<string, object> newValue)
         {
-            foreach (var field in newValue.Keys)
+            if (item != null && newValue != null)
             {
-                Console.WriteLine(field);
-                switch (field)
+                foreach (var field in newValue.Keys)
                 {
+                    Console.WriteLine(field);
+                    switch (field)
+                    {
 //                    case nameof(BatchRegistrationDto.SourceTemplate):
 //                        item.SourceTemplate = (TemplateLookupItem)newValue[field];
 //                        break;
@@ -81,6 +84,7 @@ namespace BV.PACS.WEB.Client.Materials
 //                    case "City":
 //                        vacancy.City = (string)newValue[field];
 //                        break;
+                    }
                 }
             }
         }
