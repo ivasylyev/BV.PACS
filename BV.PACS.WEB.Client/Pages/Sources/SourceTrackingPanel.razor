@@ -2,10 +2,11 @@
 @inject LookupService _apiLookupService
 @using BV.PACS.WEB.Client.Services.Api
 @using BV.PACS.WEB.Shared.Models
+@using BV.PACS.WEB.Client.Shared.Components
 @inherits BV.PACS.WEB.Client.Sources.SourceTrackingPanelCode
 
 <div class="row">
-    
+
     @if (TrackingObject != null)
     {
         <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
@@ -23,7 +24,14 @@
 
             <DxFormLayoutItem Caption="@Translations.SourceType" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox @bind-Text="@SourceType"></DxTextBox>
+                    <PopupEditor OnOk="@SourceTypeSelected"
+                                 OkText="Select"
+                                 OnCancel="@SourceTypeCancelled"
+                                 CancelText="Cancel"
+                                 @bind-EditorText="@SourceType">
+                        Content
+                    </PopupEditor>
+              
                 </Template>
             </DxFormLayoutItem>
             @if (Templates != null)

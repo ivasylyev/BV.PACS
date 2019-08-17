@@ -55,5 +55,15 @@ namespace BV.PACS.WEB.Client.Sources
             get => TrackingObject.SourcePointOfOrigin;
             set => TrackingObject.SourcePointOfOrigin = value;
         }
+
+        protected void SourceTypeCancelled()
+        {
+            StateHasChanged();
+        }
+
+        protected void SourceTypeSelected()
+        {
+            StateHasChanged();
+        }
     }
 }
