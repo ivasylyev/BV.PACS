@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using BV.PACS.WEB.Client.I18nText;
@@ -43,15 +44,18 @@ namespace BV.PACS.WEB.Client.Materials
 
             for (var sIndex = 0; sIndex < model.SourceCount; sIndex++)
             {
+                var sourceTemplate = SourceTemplates.FirstOrDefault(s => s.Id == model.SourceTemplate.Id);
                 for (var mIndex = 0; mIndex < model.MaterialCount; mIndex++)
                 {
+                    var materialTemplate = MaterialTemplates.FirstOrDefault(m => m.Id == model.MaterialTemplate.Id);
                     for (var aIndex = 0; aIndex < model.AliquotCount; aIndex++)
                     {
+                        var aliquotTemplate = AliquotTemplates.FirstOrDefault(a => a.Id == model.AliquotTemplate.Id);
                         var dto = new BatchRegistrationDto
                         {
-                            SourceTemplate = model.SourceTemplate,
-                            MaterialTemplate = model.MaterialTemplate,
-                            AliquotTemplate = model.AliquotTemplate
+                            SourceTemplate = sourceTemplate,
+                            MaterialTemplate = materialTemplate,
+                            AliquotTemplate = aliquotTemplate
                         };
                         DataSource.Add(dto);
                     }
@@ -72,11 +76,24 @@ namespace BV.PACS.WEB.Client.Materials
                     Console.WriteLine(field.Value);
                     switch (field.Key)
                     {
-                        case nameof(BatchRegistrationDto.SourceTemplateName):
-                            if (field.Value is TemplateLookupItem template)
+                        case nameof(BatchRegistrationDto.SourceTemplate):
+                            if (field.Value is TemplateLookupItem sTemplate)
                             {
-                                item.SourceTemplate = template;
-                                Console.WriteLine($"SelectedTEmp= {template}");
+                                item.SourceTemplate = sTemplate;
+                            }
+
+                            break;
+                        case nameof(BatchRegistrationDto.MaterialTemplate):
+                            if (field.Value is TemplateLookupItem mTemplate)
+                            {
+                                item.SourceTemplate = mTemplate;
+                            }
+
+                            break;
+                        case nameof(BatchRegistrationDto.AliquotTemplate):
+                            if (field.Value is TemplateLookupItem aTemplate)
+                            {
+                                item.SourceTemplate = aTemplate;
                             }
 
                             break;

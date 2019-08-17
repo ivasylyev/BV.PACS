@@ -20,33 +20,18 @@
 
                     </DxDataGridColumn>
 
-                    <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceTemplateName)" Caption="@Translations.SourceTemplate">
-                        <EditTemplate>
-                            @{
-                                var editingContext = (CellEditContext) context;
-                                var templateId = (string) editingContext.GetEditorValue(nameof(BatchRegistrationDto.SourceTemplateId));
-                                var template = SourceTemplates.FirstOrDefault(t => t.Id == templateId);
-                            }
-
-                            <DxComboBox Data="@SourceTemplates"
-                                        NullText="@PacsMessagesTranslations.SelectTemplate"
-                                        SelectedItem=@template
-                                        SelectedItemChanged=@(newCellValue => editingContext.OnChanged(newCellValue))>
-                            </DxComboBox>
-
-
-                        </EditTemplate>
-                    </DxDataGridColumn>
+                    <DxDataGridComboBoxColumn Data="@SourceTemplates" Field="@nameof(BatchRegistrationDto.SourceTemplate)" Caption="@Translations.SourceTemplate">                      
+                    </DxDataGridComboBoxColumn>
 
 
                     <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceTypeId)" Caption="@Translations.SourceType">
                     </DxDataGridColumn>
 
-                    <DxDataGridDateEditColumn Field="@nameof(BatchRegistrationDto.MaterialBarcode)" Caption="@Translations.MaterialBarcode">
-                    </DxDataGridDateEditColumn>
-
-                    <DxDataGridColumn Field="@nameof(BatchRegistrationDto.MaterialTemplateName)" Caption="@Translations.MaterialTemplate">
+                    <DxDataGridColumn Field="@nameof(BatchRegistrationDto.MaterialBarcode)" Caption="@Translations.MaterialBarcode">
                     </DxDataGridColumn>
+
+                    <DxDataGridComboBoxColumn Data="@MaterialTemplates" Field="@nameof(BatchRegistrationDto.MaterialTemplate)" Caption="@Translations.MaterialTemplate">
+                    </DxDataGridComboBoxColumn>
 
                     <DxDataGridColumn Field="@nameof(BatchRegistrationDto.MaterialTypeId)" Caption="@Translations.MaterialType">
                     </DxDataGridColumn>
@@ -54,8 +39,8 @@
                     <DxDataGridColumn Field="@nameof(BatchRegistrationDto.AliquotBarcode)" Caption="@Translations.AliquotBarcode">
                     </DxDataGridColumn>
 
-                    <DxDataGridColumn Field="@nameof(BatchRegistrationDto.AliquotTemplateName)" Caption="@Translations.AliquotTemplate">
-                    </DxDataGridColumn>
+                    <DxDataGridComboBoxColumn Data="@AliquotTemplates" Field="@nameof(BatchRegistrationDto.AliquotTemplate)" Caption="@Translations.AliquotTemplate">
+                    </DxDataGridComboBoxColumn>
 
                     <DxDataGridColumn Field="@nameof(BatchRegistrationDto.AliquotLocation)" Caption="@Translations.AliquotLocation">
                     </DxDataGridColumn>
