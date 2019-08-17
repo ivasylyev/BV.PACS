@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.WEB.Client.Shared.Components
 {
-    public class ModalDialogCode: ComponentBase
+    public class PopupEditorCode : ComponentBase
     {
-
         [Parameter]
         public Action OnCancel { get; set; }
+
         [Parameter]
         public string CancelText { get; set; }
 
@@ -15,17 +15,29 @@ namespace BV.PACS.WEB.Client.Shared.Components
         public Action OnOk { get; set; }
 
         [Parameter]
-        public string OkText { get; set; } 
+        public string OkText { get; set; }
 
         [Parameter]
-        public bool Show { get; set; }
+        public string EditorText { get; set; }
+
+        [Parameter]
+        public string EditorLabel { get; set; }
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }
 
+        protected bool _modalVisible;
+
+        protected void ShowModal()
+        {
+            _modalVisible = true;
+            StateHasChanged();
+        }
+
+
         protected void Cancel()
         {
-            Show = false;
+            _modalVisible = false;
             OnCancel?.Invoke();
 
             StateHasChanged();
@@ -33,7 +45,7 @@ namespace BV.PACS.WEB.Client.Shared.Components
 
         protected void Ok()
         {
-            Show = false;
+            _modalVisible = false;
             OnOk?.Invoke();
 
             StateHasChanged();

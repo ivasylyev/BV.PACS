@@ -1,5 +1,16 @@
-﻿@inherits ModalDialogCode
-@if (Show)
+﻿@inherits PopupEditorCode
+
+<div>
+    <label for="demo">@EditorLabel</label>
+    <div class="input-group mb-3" id="demo">
+        <span class="input-group-text">@EditorText</span>
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="button" @onclick="@ShowModal">...</button>
+        </div>
+    </div>
+</div>
+
+@if (_modalVisible)
 {
     <div class="modal" tabindex="-1" style="display: block" role="dialog">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -11,6 +22,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
+
                     @ChildContent
 
                 </div>
