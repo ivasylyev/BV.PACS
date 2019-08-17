@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Threading.Tasks;
 using BV.PACS.WEB.Client.I18nText;
@@ -7,6 +8,7 @@ using BV.PACS.WEB.Client.Services.Api;
 using BV.PACS.WEB.Client.Shared.Base;
 using BV.PACS.WEB.Client.Shared.ViewModels;
 using BV.PACS.WEB.Shared.Models;
+using DevExpress.Blazor;
 using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.WEB.Client.Materials
@@ -27,6 +29,9 @@ namespace BV.PACS.WEB.Client.Materials
 
         protected List<BatchRegistrationDto> DataSource { get; set; } = new List<BatchRegistrationDto>();
 
+        protected DxDataGrid<BatchRegistrationDto> grid;
+
+
         protected override async Task OnInitAsync()
         {
             await base.OnInitAsync();
@@ -37,7 +42,7 @@ namespace BV.PACS.WEB.Client.Materials
         }
 
 
-        public void HandleValidSubmit(BatchTemplateViewModel model)
+        public void HandleTemplateValidSubmit(BatchTemplateViewModel model)
         {
             Console.WriteLine("OnValidSubmit");
 
@@ -83,6 +88,72 @@ namespace BV.PACS.WEB.Client.Materials
                     }
                 }
             }
+        }
+
+
+        public class FormEditContext
+        {
+            public FormEditContext(BatchRegistrationDto dataItem)
+            {
+                DataItem = dataItem;
+                if (DataItem == null)
+                {
+                    DataItem = new BatchRegistrationDto();
+                    IsNewRow = true;
+                }
+
+                SourceTemplate = DataItem.SourceTemplate;
+                MaterialTemplate = DataItem.MaterialTemplate;
+                AliquotTemplate = DataItem.AliquotTemplate;
+            }
+
+            public BatchRegistrationDto DataItem { get; set; }
+            public bool IsNewRow { get; set; }
+
+            [Required]
+            public TemplateLookupItem SourceTemplate { get; set; }
+
+            [Required]
+            public TemplateLookupItem MaterialTemplate { get; set; }
+
+            [Required]
+            public TemplateLookupItem AliquotTemplate { get; set; }
+
+            public Action StateHasChanged { get; set; }
+        }
+
+        public FormEditContext EditContext;
+
+        protected void OnRowEditStarting(BatchRegistrationDto data)
+        {
+            EditContext = new FormEditContext(data);
+            EditContext.StateHasChanged += StateHasChanged;
+        }
+
+        protected void OnCancelButtonClick()
+        {
+            EditContext = null;
+            grid.CancelRowEdit();
+        }
+
+        protected void HandleValidSubmit()
+        {
+            EditContext.DataItem.SourceTemplate = EditContext.SourceTemplate;
+            EditContext.DataItem.MaterialTemplate = EditContext.MaterialTemplate;
+            EditContext.DataItem.AliquotTemplate = EditContext.AliquotTemplate;
+            if (EditContext.IsNewRow)
+            {
+                DataSource.Add(EditContext.DataItem);
+            }
+
+            EditContext = null;
+            grid.CancelRowEdit();
+        }
+
+        protected void OnRowRemoving(BatchRegistrationDto data)
+        {
+            DataSource.Remove(data);
+            StateHasChanged();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace BV.PACS.WEB.Client.Materials
         protected void HandleValidSubmit(BatchTemplateViewModel model)
         {
             Console.WriteLine("OnValidSubmit");
-            _gridPanel.HandleValidSubmit(model);
+            _gridPanel.HandleTemplateValidSubmit(model);
             StateHasChanged();
         }
     }
