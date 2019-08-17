@@ -3,5 +3,7 @@
   "HideSearchPanel": "Hide Search Panel",
 
   "Loading": "Loading...",
-  "SelectTemplate": "Select Template ..."
+  "SelectTemplate": "Select Template ...",
+  "Select": "Select",
+  "Cancel": "Cancel"
 }

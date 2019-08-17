@@ -6,11 +6,17 @@ namespace BV.PACS.WEB.Client.I18nText
 
         public string this[string key] => global::Toolbelt.Blazor.I18nText.I18nTextExtensions.GetFieldValue(this, key);
 
+        /// <summary>"Cancel"</summary>
+        public string Cancel;
+
         /// <summary>"Hide Search Panel"</summary>
         public string HideSearchPanel;
 
         /// <summary>"Loading..."</summary>
         public string Loading;
+
+        /// <summary>"Select"</summary>
+        public string Select;
 
         /// <summary>"Select Template ..."</summary>
         public string SelectTemplate;

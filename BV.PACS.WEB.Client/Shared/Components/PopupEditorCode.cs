@@ -21,7 +21,7 @@ namespace BV.PACS.WEB.Client.Shared.Components
         public string EditorText { get; set; }
 
         [Parameter]
-        public string EditorLabel { get; set; }
+        public string ModalTitle { get; set; }
 
         [Parameter]
         public RenderFragment ChildContent { get; set; }

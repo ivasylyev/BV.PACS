@@ -1,6 +1,8 @@
 {
+  "Cancel": "Cancel",
   "HideSearchPanel": "Скрыть патнель поиска",
   "Loading": "Загрузка...",
+  "Select": "Select",
   "SelectTemplate": "Выберите шаблон...",
   "ShowSearchPanel": "Показать панель поиска"
 }
