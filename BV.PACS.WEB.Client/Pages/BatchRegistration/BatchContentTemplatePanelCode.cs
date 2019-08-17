@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.WEB.Client.Materials
 {
-    public class BatchContentTemplatePanelCode : TranslatablePanel<BatchContentPanel>
+    public class BatchContentTemplatePanelCode : TranslatablePanel<BatchContentTemplatePanel>
     {
         [Inject]
         protected LookupService ApiService { get; set; }

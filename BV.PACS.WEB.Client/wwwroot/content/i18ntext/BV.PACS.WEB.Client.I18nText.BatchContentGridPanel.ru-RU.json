@@ -1,0 +1,11 @@
+{
+  "AliquotBarcode": "Идентификатор аликвоты",
+  "AliquotLocation": "Местоположение",
+  "AliquotTemplate": "Шаблон аликвоты",
+  "MaterialBarcode": "Материал №",
+  "MaterialTemplate": "Шаблон материала",
+  "MaterialType": "Тип материала",
+  "SourceBarcode": "Идентификатор источника",
+  "SourceTemplate": "Шаблон источника",
+  "SourceType": "Тип источника"
+}

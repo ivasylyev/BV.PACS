@@ -1,16 +1,3 @@
 {
-  "SourceTemplate": "Source Template",
-  "MaterialTemplate": "Material Template",
-  "AliquotTemplate": "Aliquot Template",
-  "Sources": "Sources",
-  "Materials": "Materials",
-  "Aliquots": "Aliquots",
-  "Generate": "Generate",
-
-  "SourceBarcode": "Source ID",
-  "SourceType": "Source Type",
-  "MaterialBarcode": "Material ID",
-  "MaterialType": "Material Type",
-  "AliquotBarcode": "Aliquot ID",
-  "AliquotLocation": "Location"
+  
 }

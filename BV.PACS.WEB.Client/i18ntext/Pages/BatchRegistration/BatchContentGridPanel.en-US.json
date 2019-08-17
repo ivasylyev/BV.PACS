@@ -1,0 +1,12 @@
+{
+  "SourceTemplate": "Source Template",
+  "MaterialTemplate": "Material Template",
+  "AliquotTemplate": "Aliquot Template",
+
+  "SourceBarcode": "Source ID",
+  "SourceType": "Source Type",
+  "MaterialBarcode": "Material ID",
+  "MaterialType": "Material Type",
+  "AliquotBarcode": "Aliquot ID",
+  "AliquotLocation": "Location"
+}
