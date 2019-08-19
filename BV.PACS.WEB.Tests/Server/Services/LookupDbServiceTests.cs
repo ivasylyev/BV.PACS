@@ -2,7 +2,6 @@ using System.Linq;
 using BV.PACS.WEB.Server.Services;
 using BV.PACS.WEB.Shared.Models;
 using BV.PACS.WEB.Shared.Models.Parameters;
-using BV.PACS.WEB.Tests;
 using NUnit.Framework;
 
 namespace BV.PACS.WEB.Tests.Server.Services
@@ -90,5 +89,35 @@ namespace BV.PACS.WEB.Tests.Server.Services
 
             Assert.Pass();
         }
+
+        [Test]
+        public void GetMaterialTypesTest()
+        {
+            var list = _service.GetSourceMaterialTypes(new SourceMaterialTypeLookupParameter(SourceMaterialTypeLookupParameter.Material, "en")).Result.ToList();
+            var bacteria = list.FirstOrDefault(t => t.Id == "ctnBacteria");
+            Assert.IsNotNull(bacteria);
+            Assert.AreEqual("rootMaterialTypeTreeNode", bacteria.ParentId);
+            Assert.AreEqual("Bacteria", bacteria.Name);
+            Assert.AreEqual(1, bacteria.Level);
+            Assert.AreEqual("rftMaterialTypeTreeNode", bacteria.ReferenceType);
+            Assert.IsNotEmpty(list);
+
+            Assert.Pass();
+        }
+        [Test]
+        public void GetSourceTypesTest()
+        {
+            var list = _service.GetSourceMaterialTypes(new SourceMaterialTypeLookupParameter(SourceMaterialTypeLookupParameter.Source, "en")).Result.ToList();
+            var animals = list.FirstOrDefault(t => t.Id == "srnAnimals");
+            Assert.IsNotNull(animals);
+            Assert.AreEqual("rootSourceTypeTreeNode", animals.ParentId);
+            Assert.AreEqual("Animals", animals.Name);
+            Assert.AreEqual(1, animals.Level);
+            Assert.AreEqual("rftSourceTypeTreeNode", animals.ReferenceType);
+            Assert.IsNotEmpty(list);
+
+            Assert.Pass();
+        }
+
     }
 }
