@@ -41,6 +41,7 @@ namespace BV.PACS.WEB.Client.Services.Api
         private readonly Dictionary<Type, string> _urlLookupMapping = new Dictionary<Type, string>
         {
             {typeof(TemplateLookupItem), "api/Lookup/GetTemplatesLookup"},
+            {typeof(SourceMaterialTypeLookupItem), "api/Lookup/GetSourceMaterialTypeLookup"},
             {typeof(BaseLookupItem), "api/Lookup/GetLookup"}
         };
 

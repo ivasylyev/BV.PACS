@@ -20,4 +20,10 @@
     <ProjectReference Include="..\BV.PACS.WEB.Shared\BV.PACS.WEB.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="appsettings.test.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

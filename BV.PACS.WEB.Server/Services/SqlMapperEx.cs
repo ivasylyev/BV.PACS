@@ -33,8 +33,9 @@ namespace BV.PACS.WEB.Server.Services
             InitMapper<TestAuditGridDto>();
 
             InitMapper<TemplateLookupItem>();
+            InitMapper<SourceMaterialTypeLookupItem>();
             InitMapper<BaseLookupItem>();
-            
+      
         }
 
         public static void InitMapper<T>()

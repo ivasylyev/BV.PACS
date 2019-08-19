@@ -23,6 +23,9 @@ namespace BV.PACS.WEB.Tests.Client.Services.Api
             url = _service.LookupUrl<BaseLookupItem>();
             Assert.AreEqual("api/Lookup/GetLookup", url);
 
+            url = _service.LookupUrl<SourceMaterialTypeLookupItem>();
+            Assert.AreEqual("api/Lookup/GetSourceMaterialTypeLookup", url);
+
             url = _service.LookupUrl<string>();
             Assert.AreEqual(string.Empty, url);
 
