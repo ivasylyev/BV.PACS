@@ -1,5 +1,14 @@
 ﻿{
   "SourceType": "Тип источника",
-  "MaterialType": "Тип материала"
+  "MaterialType": "Тип материала",
+
+  "MaterialBarcode": "Материал №",
+  "ParentMaterialBarcode": "№ исходного материала",
+  "SourceBarcode": "Идентификатор источника",
+  "MaterialOwnerName": "Владелец",
+  "MaterialNote": "Примечания",
+  "MaterialRegistrationDate": "Дата создания",
+  "MaterialTemplateName": "Шаблон",
+  "MaterialPointOfOrigin": "Место сбора"
 }
 

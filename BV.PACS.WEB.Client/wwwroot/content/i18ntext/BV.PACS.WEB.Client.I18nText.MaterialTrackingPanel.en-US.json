@@ -1,4 +1,12 @@
 {
+  "MaterialBarcode": "Material ID",
+  "MaterialNote": "Notes",
+  "MaterialOwnerName": "Materail Owner",
+  "MaterialPointOfOrigin": "Point Of Origin",
+  "MaterialRegistrationDate": "Creation Date",
+  "MaterialTemplateName": "Template",
   "MaterialType": "Material Type",
+  "ParentMaterialBarcode": "Parent Material ID",
+  "SourceBarcode": "Source ID",
   "SourceType": "Source Type"
 }

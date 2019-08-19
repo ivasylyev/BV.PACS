@@ -9,20 +9,20 @@
     @if (TrackingObject != null)
     {
         <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
-            <DxFormLayoutItem Caption="@nameof(MaterialTrackingDto.MaterialBarcode)" ColSpanLg="6" ColSpanMd="12">
+            <DxFormLayoutItem Caption="@Translations.MaterialBarcode" ColSpanLg="6" ColSpanMd="12">
                 <Template>
                     <DxTextBox @bind-Text="@MaterialBarcode"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
-            <DxFormLayoutItem Caption="@nameof(MaterialTrackingDto.SourceBarcode)" ColSpanLg="6" ColSpanMd="12">
+            <DxFormLayoutItem Caption="@Translations.SourceBarcode" ColSpanLg="6" ColSpanMd="12">
                 <Template>
                     <DxTextBox @bind-Text="@SourceBarcode"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
 
-            <DxFormLayoutItem Caption="@nameof(MaterialTrackingDto.MaterialType)" ColSpanLg="6" ColSpanMd="12">
+            <DxFormLayoutItem Caption="@Translations.MaterialType" ColSpanLg="6" ColSpanMd="12">
                 <Template>
                     <PopupEditor OnOk="@MaterialTypeSelected"
                                  OkText="@PacsMessagesTranslations.Select"
@@ -38,7 +38,7 @@
 
             @if (Templates != null)
             {
-                <DxFormLayoutItem Caption="@nameof(MaterialTrackingDto.MaterialTemplateName)" ColSpanLg="6" ColSpanMd="12">
+                <DxFormLayoutItem Caption="@Translations.MaterialTemplateName" ColSpanLg="6" ColSpanMd="12">
                     <Template>
                         <DxComboBox Data="@Templates"
                                     TextFieldName="Name"
@@ -49,19 +49,19 @@
                 </DxFormLayoutItem>
             }
 
-            <DxFormLayoutItem Caption="@nameof(MaterialTrackingDto.ParentMaterialBarcode)" ColSpanLg="6" ColSpanMd="12">
+            <DxFormLayoutItem Caption="@Translations.ParentMaterialBarcode" ColSpanLg="6" ColSpanMd="12">
                 <Template>
                     <DxTextBox @bind-Text="@ParentMaterialBarcode"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
-            <DxFormLayoutItem Caption="@nameof(MaterialTrackingDto.MaterialRegistrationDate)" ColSpanLg="6" ColSpanMd="12">
+            <DxFormLayoutItem Caption="@Translations.MaterialRegistrationDate" ColSpanLg="6" ColSpanMd="12">
                 <Template>
                     <DxDateEdit @bind-Date="@MaterialRegistrationDate"></DxDateEdit>
                 </Template>
             </DxFormLayoutItem>
 
-            <DxFormLayoutItem Caption="Source Type" ColSpanLg="6" ColSpanMd="12">
+            <DxFormLayoutItem Caption="@Translations.SourceType" ColSpanLg="6" ColSpanMd="12">
                 <Template>
                     <PopupEditor OnOk="@SourceTypeSelected"
                                  OkText="@PacsMessagesTranslations.Select"
@@ -73,19 +73,19 @@
                     </PopupEditor>
                 </Template>
             </DxFormLayoutItem>
-            <DxFormLayoutItem Caption="@nameof(MaterialTrackingDto.MaterialPointOfOrigin)" ColSpanLg="6" ColSpanMd="12">
+            <DxFormLayoutItem Caption="@Translations.MaterialPointOfOrigin" ColSpanLg="6" ColSpanMd="12">
                 <Template>
                     <DxTextBox @bind-Text="@MaterialPointOfOrigin"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
-            <DxFormLayoutItem Caption="@nameof(MaterialTrackingDto.MaterialOwnerName)" ColSpanLg="6" ColSpanMd="12">
+            <DxFormLayoutItem Caption="@Translations.MaterialOwnerName" ColSpanLg="6" ColSpanMd="12">
                 <Template>
                     <DxTextBox @bind-Text="@MaterialOwnerName"></DxTextBox>
                 </Template>
             </DxFormLayoutItem>
 
-            <DxFormLayoutItem Caption="@nameof(MaterialTrackingDto.MaterialNote)" ColSpanLg="6" ColSpanMd="12">
+            <DxFormLayoutItem Caption="@Translations.MaterialNote" ColSpanLg="6" ColSpanMd="12">
                 <Template>
                     <DxTextBox @bind-Text="@MaterialNote"></DxTextBox>
                 </Template>

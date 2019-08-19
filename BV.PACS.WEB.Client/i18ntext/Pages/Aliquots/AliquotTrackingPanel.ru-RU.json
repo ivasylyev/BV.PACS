@@ -1,6 +1,22 @@
 ﻿{
   "SourceType": "Тип источника",
   "MaterialType": "Тип материала",
-  "DerivativeType": "Тип дериватива"
+  "DerivativeType": "Тип дериватива",
+  "AliquotBarcode": "Идентификатор аликвоты",
+  "AliquotCreationDate": "Дата создания",
+  "AliquotStatus": "Статцус аликвоты",
+
+  "AliquotTemplateName": "Шаблон",
+  "MaterialBarcode": "Материал №",
+
+  "Passage": "Пассаж",
+  "AliquotParentBarcode": "Идентификатор исходной аликвоты",
+  "LocationPath": "Место нахождения",
+  "Volume": "Объем",
+  "VolumeUnitName": "Единицы объема",
+  "Weight": "Вес",
+  "WeightUnitName": "Единицы веса",
+  "AliquotNote": "Примечания"
+
 }
 

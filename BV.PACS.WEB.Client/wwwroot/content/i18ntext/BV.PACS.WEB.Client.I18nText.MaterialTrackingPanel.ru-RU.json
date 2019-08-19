@@ -1,4 +1,12 @@
 {
+  "MaterialBarcode": "Материал №",
+  "MaterialNote": "Примечания",
+  "MaterialOwnerName": "Владелец",
+  "MaterialPointOfOrigin": "Место сбора",
+  "MaterialRegistrationDate": "Дата создания",
+  "MaterialTemplateName": "Шаблон",
   "MaterialType": "Тип материала",
+  "ParentMaterialBarcode": "№ исходного материала",
+  "SourceBarcode": "Идентификатор источника",
   "SourceType": "Тип источника"
 }

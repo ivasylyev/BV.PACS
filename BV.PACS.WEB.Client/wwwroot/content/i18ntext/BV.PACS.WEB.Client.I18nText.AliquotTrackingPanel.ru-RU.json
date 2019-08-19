@@ -1,5 +1,18 @@
 {
+  "AliquotBarcode": "Идентификатор аликвоты",
+  "AliquotCreationDate": "Дата создания",
+  "AliquotNote": "Примечания",
+  "AliquotParentBarcode": "Идентификатор исходной аликвоты",
+  "AliquotStatus": "Статцус аликвоты",
+  "AliquotTemplateName": "Шаблон",
   "DerivativeType": "Тип дериватива",
+  "LocationPath": "Место нахождения",
+  "MaterialBarcode": "Материал №",
   "MaterialType": "Тип материала",
-  "SourceType": "Тип источника"
+  "Passage": "Пассаж",
+  "SourceType": "Тип источника",
+  "Volume": "Объем",
+  "VolumeUnitName": "Единицы объема",
+  "Weight": "Вес",
+  "WeightUnitName": "Единицы веса"
 }

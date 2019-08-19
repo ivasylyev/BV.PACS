@@ -1,5 +1,18 @@
 {
+  "AliquotBarcode": "Aliquot ID",
+  "AliquotCreationDate": "Creation Date",
+  "AliquotNote": "Notes",
+  "AliquotParentBarcode": "Parent Barcode",
+  "AliquotStatus": "Aliquot Status",
+  "AliquotTemplateName": "Template",
   "DerivativeType": "Derivative Type",
+  "LocationPath": "Location Path",
+  "MaterialBarcode": "Material ID",
   "MaterialType": "Material Type",
-  "SourceType": "Source Type"
+  "Passage": "Passage",
+  "SourceType": "Source Type",
+  "Volume": "Volume",
+  "VolumeUnitName": "Volume Unit",
+  "Weight": "Weight",
+  "WeightUnitName": "Weight Unit"
 }
