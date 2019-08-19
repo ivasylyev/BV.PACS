@@ -7,7 +7,7 @@ using BV.PACS.WEB.Shared.Models;
 
 namespace BV.PACS.WEB.Client.Materials
 {
-    public class MaterialTrackingPanelCode : TrackingPanel<MaterialTrackingDto, Text>
+    public class MaterialTrackingPanelCode : TrackingPanel<MaterialTrackingDto, MaterialTrackingPanel>
     {
         protected TemplateLookupItem Template
         {
@@ -79,6 +79,26 @@ namespace BV.PACS.WEB.Client.Materials
         {
             get => TrackingObject.MaterialPointOfOrigin;
             set => TrackingObject.MaterialPointOfOrigin = value;
+        }
+
+        protected void SourceTypeCancelled()
+        {
+            StateHasChanged();
+        }
+
+        protected void SourceTypeSelected()
+        {
+            StateHasChanged();
+        }
+
+        protected void MaterialTypeCancelled()
+        {
+            StateHasChanged();
+        }
+
+        protected void MaterialTypeSelected()
+        {
+            StateHasChanged();
         }
     }
 }

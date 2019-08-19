@@ -7,7 +7,7 @@ using BV.PACS.WEB.Shared.Models;
 
 namespace BV.PACS.WEB.Client.Aliquots
 {
-    public class AliquotTrackingPanelCode : TrackingPanel<AliquotTrackingDto, Text>
+    public class AliquotTrackingPanelCode : TrackingPanel<AliquotTrackingDto, AliquotTrackingPanel>
     {
         protected TemplateLookupItem Template
         {
@@ -103,6 +103,26 @@ namespace BV.PACS.WEB.Client.Aliquots
         {
             get => TrackingObject.DerivativeType;
             set => TrackingObject.DerivativeType = value;
+        }
+
+        protected void DerivativeTypeCancelled()
+        {
+            StateHasChanged();
+        }
+
+        protected void DerivativeTypeSelected()
+        {
+            StateHasChanged();
+        }
+
+        protected void MaterialTypeCancelled()
+        {
+            StateHasChanged();
+        }
+
+        protected void MaterialTypeSelected()
+        {
+            StateHasChanged();
         }
     }
 }

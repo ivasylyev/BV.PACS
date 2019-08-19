@@ -1,4 +1,8 @@
-﻿@using BV.PACS.WEB.Shared.Models
+﻿@using Microsoft.AspNetCore.Components
+@using BV.PACS.WEB.Shared.Models
+@using BV.PACS.WEB.Client.Services.Api
+@using BV.PACS.WEB.Client.Shared.Components
+
 @inherits BV.PACS.WEB.Client.Aliquots.AliquotTrackingPanelCode
 
 
@@ -14,7 +18,14 @@
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.MaterialType)" ColSpanLg="12" ColSpanMd="12">
                 <Template>
-                    <DxTextBox @bind-Text="@MaterialType"></DxTextBox>
+                    <PopupEditor OnOk="@MaterialTypeSelected"
+                                 OkText="@PacsMessagesTranslations.Select"
+                                 OnCancel="@MaterialTypeCancelled"
+                                 CancelText="@PacsMessagesTranslations.Cancel"
+                                 EditorText="@MaterialType"
+                                 ModalTitle="@Translations.MaterialType">
+                        Material Type Editor is not implemented
+                    </PopupEditor>
                 </Template>
             </DxFormLayoutItem>
 
@@ -106,7 +117,14 @@
 
             <DxFormLayoutItem Caption="@nameof(AliquotTrackingDto.DerivativeType)" ColSpanLg="12" ColSpanMd="12">
                 <Template>
-                    <DxTextBox @bind-Text="@DerivativeType"></DxTextBox>
+                    <PopupEditor OnOk="@DerivativeTypeSelected"
+                                 OkText="@PacsMessagesTranslations.Select"
+                                 OnCancel="@DerivativeTypeCancelled"
+                                 CancelText="@PacsMessagesTranslations.Cancel"
+                                 EditorText="@DerivativeType"
+                                 ModalTitle="@Translations.DerivativeType">
+                        Material Type Editor is not implemented
+                    </PopupEditor>
                 </Template>
             </DxFormLayoutItem>
 

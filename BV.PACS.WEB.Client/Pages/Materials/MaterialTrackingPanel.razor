@@ -1,12 +1,13 @@
-﻿@using BV.PACS.WEB.Shared.Models
-@using Microsoft.AspNetCore.Components
+﻿@using Microsoft.AspNetCore.Components
+@using BV.PACS.WEB.Shared.Models
+@using BV.PACS.WEB.Client.Services.Api
+@using BV.PACS.WEB.Client.Shared.Components
+
+
 @inherits BV.PACS.WEB.Client.Materials.MaterialTrackingPanelCode
-
-
-
-    <div class="row">
-        @if (TrackingObject != null)
-        {
+<div class="row">
+    @if (TrackingObject != null)
+    {
         <DxFormLayout CaptionPosition="@CaptionPosition.Vertical">
             <DxFormLayoutItem Caption="@nameof(MaterialTrackingDto.MaterialBarcode)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
@@ -23,7 +24,15 @@
 
             <DxFormLayoutItem Caption="@nameof(MaterialTrackingDto.MaterialType)" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox @bind-Text="@MaterialType"></DxTextBox>
+                    <PopupEditor OnOk="@MaterialTypeSelected"
+                                 OkText="@PacsMessagesTranslations.Select"
+                                 OnCancel="@MaterialTypeCancelled"
+                                 CancelText="@PacsMessagesTranslations.Cancel"
+                                 EditorText="@MaterialType"
+                                 ModalTitle="@Translations.MaterialType">
+                        Material Type Editor is not implemented
+                    </PopupEditor>
+
                 </Template>
             </DxFormLayoutItem>
 
@@ -54,7 +63,14 @@
 
             <DxFormLayoutItem Caption="Source Type" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <DxTextBox @bind-Text="@SourceType"></DxTextBox>
+                    <PopupEditor OnOk="@SourceTypeSelected"
+                                 OkText="@PacsMessagesTranslations.Select"
+                                 OnCancel="@SourceTypeCancelled"
+                                 CancelText="@PacsMessagesTranslations.Cancel"
+                                 EditorText="@SourceType"
+                                 ModalTitle="@Translations.SourceType">
+                        Source Type Editor is not implemented
+                    </PopupEditor>
                 </Template>
             </DxFormLayoutItem>
             <DxFormLayoutItem Caption="@nameof(MaterialTrackingDto.MaterialPointOfOrigin)" ColSpanLg="6" ColSpanMd="12">
@@ -77,7 +93,7 @@
 
 
         </DxFormLayout>
-        }
+    }
 
-    </div>
+</div>
 

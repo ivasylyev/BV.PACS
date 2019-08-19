@@ -171,4 +171,20 @@
     <Watch Remove="i18ntext\Pages\BatchRegistration\BatchContentTemplatePanel.ru-RU.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Materials\MaterialTrackingPanel.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Materials\MaterialTrackingPanel.ru-RU.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Aliquots\AliquotTrackingPanel.en-US.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Watch Remove="i18ntext\Pages\Aliquots\AliquotTrackingPanel.ru-RU.json" />
+  </ItemGroup>
+
 </Project>
