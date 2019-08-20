@@ -1,13 +1,10 @@
-﻿@using System.Net
-@using BV.PACS.WEB.Client.Pages
+﻿@inject HttpClient Http
+@inject LookupService ApiService
+@using System.Collections
 @using BV.PACS.WEB.Client.Services.Api
-@using BV.PACS.WEB.Client.Shared.Components
 @using BV.PACS.WEB.Shared.Models
 @using BV.PACS.WEB.Shared.Models.Parameters
 @using BV.PACS.WEB.Shared.Utils
-@using Microsoft.AspNetCore.Components
-@inject System.Net.Http.HttpClient  Http
-@inject LookupService ApiService
 @inherits BV.PACS.WEB.Client.Shared.Base.TranslatablePanel<BV.PACS.WEB.Client.I18nText.StartForm>
 <h1>@Translations.Caption</h1>
 
@@ -18,7 +15,7 @@
 
         @if (SourceTypes != null)
         {
-            <DxTreeView Data="@SourceTypes"
+            <DxTreeView Data="@GetParentNodes()"
                         TextExpression=@(dataItem => GetNodeText(dataItem))
                         ChildrenExpression=@(dataItem => GetNodeChildren(dataItem))>
             </DxTreeView>
@@ -26,37 +23,29 @@
 
     </div>
 </div>
+
 @functions
 {
     protected SourceMaterialTypeLookupItem[] SourceTypes { get; set; }
 
-    System.Collections.IEnumerable GetParentNodes()
+    IEnumerable GetParentNodes()
     {
-        return SourceTypes.Where(s => s.IsNullOrEmpty());
+        return SourceTypes.Where(s => s.ParentId.IsNullOrEmpty());
     }
 
-    System.Collections.IEnumerable GetNodeChildren(object dataItem) {
-        //if (dataItem is ProductCategoryMain) {
-        //    return productSubcategories
-        //        .Where(c => c.Category.Equals((ProductCategoryMain)dataItem));
-        //}
-        //else if (dataItem is ProductCategory) {
-        //    return products
-        //        .Where(p => p.ProductCategoryId == ((ProductCategory)dataItem).ProductSubcategoryID);
-        //}
+    IEnumerable GetNodeChildren(object dataItem)
+    {
+        if (dataItem is SourceMaterialTypeLookupItem lookupItem)
+        {
+            return SourceTypes.Where(s => s.ParentId == lookupItem.Id);
+        }
+
+
         return null;
     }
 
-    string GetNodeText(object dataItem) {
-        //if (dataItem is ProductCategoryMain) {
-        //    return dataItem.ToString();
-        //}
-        //else if (dataItem is ProductCategory) {
-        //    return ((ProductCategory)dataItem).Subcategory;
-        //}
-        //else if (dataItem is Product) {
-        //    return ((Product)dataItem).ProductName;
-        //}
+    string GetNodeText(object dataItem)
+    {
         if (dataItem is SourceMaterialTypeLookupItem lookupItem)
         {
             return lookupItem.Name;
