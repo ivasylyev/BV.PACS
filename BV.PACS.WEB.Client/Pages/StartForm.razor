@@ -15,7 +15,9 @@
 
         @if (SourceTypes != null)
         {
-            <DxTreeView Data="@GetParentNodes()"
+            <DxTreeView AllowSelectNodes="true" 
+                        Data="@GetParentNodes()"
+                        SelectionChanged="@SelectionChanged"
                         TextExpression=@(dataItem => GetNodeText(dataItem))
                         ChildrenExpression=@(dataItem => GetNodeChildren(dataItem))>
             </DxTreeView>
@@ -51,6 +53,14 @@
             return lookupItem.Name;
         }
         return "";
+    }
+
+    string SelectedGroup = "none";
+
+    protected void SelectionChanged(TreeViewNodeEventArgs e)
+    {
+        SelectedGroup = e.NodeInfo.Text;
+        StateHasChanged();
     }
 
     protected override async Task OnInitAsync()
