@@ -27,7 +27,7 @@ namespace BV.PACS.WEB.Server.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IEnumerable<SourceMaterialTypeLookupItem>> GetLookup([FromBody] SourceMaterialTypeLookupParameter parameter)
+        public async Task<IEnumerable<SourceMaterialTypeLookupItem>> GetSourceMaterialTypeLookup([FromBody] SourceMaterialTypeLookupParameter parameter)
         {
             return await _dbService.GetSourceMaterialTypes(parameter);
         }

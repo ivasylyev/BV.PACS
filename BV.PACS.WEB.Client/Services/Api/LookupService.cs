@@ -23,7 +23,7 @@ namespace BV.PACS.WEB.Client.Services.Api
             return await client.PostJsonAsync<TemplateLookupItem[]>(url,
                 new TemplateLookupParameter(lookupType, GlobalSettings.CurrentLanguage));
         }
-        public async Task<SourceMaterialTypeLookupItem[]> GetSourceTypeLookupItemLookup(HttpClient client, string lookupType)
+        public async Task<SourceMaterialTypeLookupItem[]> GetSourceMaterialTypesLookup(HttpClient client, string lookupType)
         {
             var url = _urlMapping.LookupUrl<SourceMaterialTypeLookupItem>();
             return await client.PostJsonAsync<SourceMaterialTypeLookupItem[]>(url,
