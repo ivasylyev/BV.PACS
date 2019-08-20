@@ -11,9 +11,9 @@ namespace BV.PACS.WEB.Client.Shared.Base
     {
         protected Dictionary<string, AuditGroupedDto<TModel>> GroupedData { get; set; }
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
-            await base.OnInitAsync();
+            await base.OnInitializedAsync();
             GroupedData = new Dictionary<string, AuditGroupedDto<TModel>>();
 
             foreach (var dto in DataSource)

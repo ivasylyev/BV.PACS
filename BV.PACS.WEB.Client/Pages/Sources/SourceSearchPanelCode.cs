@@ -30,9 +30,9 @@ namespace BV.PACS.WEB.Client.Sources
         protected BaseLookupItem TestResult { get; set; }
 
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
-            await base.OnInitAsync();
+            await base.OnInitializedAsync();
 
             _testStatuses = await ApiService.GetLookup(Http, BaseLookupTables.rftTestStatus);
             _testTypes = await ApiService.GetLookup(Http, BaseLookupTables.rftTestType);

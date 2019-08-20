@@ -55,9 +55,9 @@ namespace BV.PACS.WEB.Client.Shared.Base
             EndDate = DateTime.Now.Date;
         }
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
-            await base.OnInitAsync();
+            await base.OnInitializedAsync();
 
             StartDate = DateTime.Now.Date.AddYears(-1);
             EndDate = DateTime.Now.Date;

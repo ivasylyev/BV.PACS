@@ -61,9 +61,9 @@ namespace BV.PACS.WEB.Client.Shared.Base
             set => PageContext.DataSource = value;
         }
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
-            await base.OnInitAsync();
+            await base.OnInitializedAsync();
 
 
             await GetData();

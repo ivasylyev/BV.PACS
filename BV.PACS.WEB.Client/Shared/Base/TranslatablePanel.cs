@@ -20,9 +20,9 @@ namespace BV.PACS.WEB.Client.Shared.Base
 
         protected PacsMessages PacsMessagesTranslations { get; set; } = new PacsMessages();
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
-            await base.OnInitAsync();
+            await base.OnInitializedAsync();
 
             Translations = await TranslationService.GetTextTableAsync<TTranslation>(this);
             PacsMessagesTranslations = await TranslationService.GetTextTableAsync<PacsMessages>(this);

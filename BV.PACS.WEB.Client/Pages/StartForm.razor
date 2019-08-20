@@ -63,9 +63,9 @@
         StateHasChanged();
     }
 
-    protected override async Task OnInitAsync()
+    protected override async Task OnInitializedAsync()
     {
-        await base.OnInitAsync();
+        await base.OnInitializedAsync();
         SourceTypes = await ApiService.GetSourceMaterialTypesLookup(Http, SourceMaterialTypeLookupParameter.Source);
     }
 

@@ -22,9 +22,9 @@ namespace BV.PACS.WEB.Client.Shared.Base
 
         protected TModel[] DataSource { get; set; }
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
-            await base.OnInitAsync();
+            await base.OnInitializedAsync();
             var url = MappingService.GridUrl<TModel>();
             DataSource = await Http.PostJsonAsync<TModel[]>(url, new GridParameter(Id, GlobalSettings.CurrentLanguage));
         }

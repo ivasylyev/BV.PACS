@@ -38,9 +38,9 @@ namespace BV.PACS.WEB.Client.Shared.Base
             return true;
         }
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
-            await base.OnInitAsync();
+            await base.OnInitializedAsync();
 
             await GetLookups();
             await GetData();

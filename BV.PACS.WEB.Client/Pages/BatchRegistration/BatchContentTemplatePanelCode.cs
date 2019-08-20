@@ -28,9 +28,9 @@ namespace BV.PACS.WEB.Client.Materials
 
         protected BatchTemplateViewModel TemplatesViewModel { get; set; } = new BatchTemplateViewModel();
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
-            await base.OnInitAsync();
+            await base.OnInitializedAsync();
 
             SourceTemplates = await ApiService.GetTemplatesLookup(Http, FormTypes.Source);
             MaterialTemplates = await ApiService.GetTemplatesLookup(Http, FormTypes.Material);

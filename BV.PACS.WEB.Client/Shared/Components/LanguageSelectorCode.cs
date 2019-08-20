@@ -17,9 +17,9 @@ namespace BV.PACS.WEB.Client.Shared.Components
 
         protected string CurrentLang { get; set; }
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
-            await base.OnInitAsync();
+            await base.OnInitializedAsync();
 
             var lang = await I18NText.GetCurrentLanguageAsync();
             Console.WriteLine($"current lang: {lang}");

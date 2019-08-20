@@ -28,9 +28,9 @@ namespace BV.PACS.WEB.Client.Materials
 
         protected List<BatchRegistrationDto> DataSource { get; set; } = new List<BatchRegistrationDto>();
 
-        protected override async Task OnInitAsync()
+        protected override async Task OnInitializedAsync()
         {
-            await base.OnInitAsync();
+            await base.OnInitializedAsync();
 
             SourceTemplates = await ApiService.GetTemplatesLookup(Http, FormTypes.Source);
             MaterialTemplates = await ApiService.GetTemplatesLookup(Http, FormTypes.Material);

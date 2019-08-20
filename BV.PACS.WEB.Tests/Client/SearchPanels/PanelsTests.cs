@@ -17,9 +17,9 @@
 //        {
 //            public TemplateLookupItem[] TemplatesTest => Templates;
 //
-//            public void OnInitAsyncTest()
+//            public void OnInitializedAsyncTest()
 //            {
-//                OnInitAsync().Wait();
+//                OnInitializedAsync().Wait();
 //            }
 //        }
 //
@@ -28,7 +28,7 @@
 //        {
 //            var panel = new AliquotSearchPanelTest();
 //
-//            panel.OnInitAsyncTest();
+//            panel.OnInitializedAsyncTest();
 //            Assert.IsNotEmpty(panel.TemplatesTest);
 //            Assert.Pass();
 //        }
