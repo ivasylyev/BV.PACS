@@ -12,6 +12,35 @@
     <div class="col-sm-12">
 
         <span class="oi oi-pencil mr-2" aria-hidden="true"></span>
+        <DxTreeView AllowSelectNodes="true" 
+                    SelectionChanged=@SelectionChanged>
+            <Nodes>
+                <DxTreeViewNode Text="Metals">
+                    <Nodes>
+                        <DxTreeViewNode Text="Alkali metals" />
+                        <DxTreeViewNode Text="Alkaline earth metals" />
+                        <DxTreeViewNode Text="Inner transition elements">
+                            <Nodes>
+                                <DxTreeViewNode Text="Lanthanides" />
+                                <DxTreeViewNode Text="Actinides" />
+                            </Nodes>
+                        </DxTreeViewNode>
+                        <DxTreeViewNode Text="Transition elements" />
+                        <DxTreeViewNode Text="Other metals" />
+                    </Nodes>
+                </DxTreeViewNode>
+                <DxTreeViewNode Text="Metalloids" />
+                <DxTreeViewNode Text="Nonmetals">
+                    <Nodes>
+                        <DxTreeViewNode Text="Halogens" />
+                        <DxTreeViewNode Text="Noble gases" />
+                        <DxTreeViewNode Text="Other nonmetals" />
+                    </Nodes>
+                </DxTreeViewNode>
+            </Nodes>
+        </DxTreeView>
+
+
 
         @if (SourceTypes != null)
         {
