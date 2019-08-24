@@ -4014,7 +4014,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
     .nav-tabs .nav-item {
-        margin-bottom: -18px
+        margin-bottom: -1px
     }
 
     .nav-tabs .nav-link {
