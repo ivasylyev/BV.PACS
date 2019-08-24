@@ -74,14 +74,15 @@ app {
         padding-bottom: 1rem;
     }
 
-    .nav-item a {
-        color: #d7d7d7;
-        border-radius: 4px;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        line-height: 3rem;
-    }
+.nav-item a {
+    color: #004085;
+    
+    border-radius: 4px;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    line-height: 3rem;
+}
 
         .nav-item a.active {
             background-color: rgba(255,255,255,0.25);
@@ -90,7 +91,7 @@ app {
 
         .nav-item a:hover {
             background-color: rgba(255,255,255,0.1);
-            color: white;
+            color: blue;
         }
 
 .content {
