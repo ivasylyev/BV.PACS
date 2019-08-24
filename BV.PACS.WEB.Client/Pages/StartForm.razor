@@ -1,5 +1,4 @@
-﻿@inject HttpClient Http
-@inject LookupService ApiService
+﻿
 @using System.Collections
 @using BV.PACS.WEB.Client.Services.Api
 @using BV.PACS.WEB.Shared.Models
@@ -7,31 +6,41 @@
 @using BV.PACS.WEB.Shared.Utils
 @using Microsoft.AspNetCore.Components
 @using BV.PACS.WEB.Client.Pages.BatchRegistration
+@using BV.PACS.WEB.Client.Shared.Components
 @inherits BV.PACS.WEB.Client.Shared.Base.TranslatablePanel<BV.PACS.WEB.Client.I18nText.StartForm>
+@inject HttpClient Http
+@inject LookupService ApiService
 <h1>@Translations.Caption</h1>
 
 
-
-
 <div class="row alert alert-primary background-white">
-<div class="col-sm-12">
-    @SelectedGroup
-</div>
     <div class="col-sm-12">
-        
+
         <div class="card demo-card">
             <div class="card-body">
                 @if (SourceTypes != null)
                 {
-                    <DxTreeView AllowSelectNodes="true"
-                                SelectionChanged=@SelectionChanged
-                                CssClass="mw-480"
-                                Data=@GetParentNodes()
-                                ExpandButtonIconCssClass="oi oi-chevron-right"
-                                CollapseButtonIconCssClass="oi oi-chevron-bottom"
-                                TextExpression=@(dataItem => GetNodeText(dataItem))
-                                ChildrenExpression=@(dataItem => GetNodeChildren(dataItem))>
-                    </DxTreeView>
+                    <PopupEditor OnOk="@SourceTypeSelected"
+                                 OkText="@PacsMessagesTranslations.Select"
+                                 OnCancel="@SourceTypeCancelled"
+                                 CancelText="@PacsMessagesTranslations.Cancel"
+                                 EditorText="@SelectedItem?.Name"
+                                 ModalTitle="Title">
+
+                        <div class="pacsScroll">
+
+                            <DxTreeView AllowSelectNodes="true"
+                                        SelectionChanged=@SelectionChanged
+                                        CssClass="mw-480"
+                                        Data=@GetParentNodes()
+                                        ExpandButtonIconCssClass="oi oi-chevron-right"
+                                        CollapseButtonIconCssClass="oi oi-chevron-bottom"
+                                        TextExpression=@(dataItem => GetNodeText(dataItem))
+                                        ChildrenExpression=@(dataItem => GetNodeChildren(dataItem))>
+                            </DxTreeView>
+                        </div>
+
+                    </PopupEditor>
                 }
             </div>
         </div>
@@ -41,6 +50,9 @@
 
 @functions
 {
+
+
+    protected SourceMaterialTypeLookupItem SelectedItem { get; set; } = new SourceMaterialTypeLookupItem();
     protected SourceMaterialTypeLookupItem[] SourceTypes { get; set; }
 
     IEnumerable GetParentNodes()
@@ -67,15 +79,21 @@
         return "";
     }
 
-    string SelectedGroup = "none";
+    
+    protected void SourceTypeCancelled()
+    {
+        StateHasChanged();
+    }
+
+    protected void SourceTypeSelected()
+    {
+        StateHasChanged();
+    }
 
     protected void SelectionChanged(TreeViewNodeEventArgs e)
     {
-    
-
-     SelectedGroup = e.NodeInfo.Text;
-    //    InvokeAsync(StateHasChanged);
-
+        SelectedItem = e.NodeInfo.DataItem as SourceMaterialTypeLookupItem;
+        //    InvokeAsync(StateHasChanged);
     }
 
     protected override async Task OnInitializedAsync()
