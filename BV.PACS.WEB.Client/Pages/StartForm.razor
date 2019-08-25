@@ -1,15 +1,10 @@
-﻿
-@using System.Collections
-@using BV.PACS.WEB.Client.Services.Api
+﻿@using BV.PACS.WEB.Client.Services.Api
 @using BV.PACS.WEB.Shared.Models
 @using BV.PACS.WEB.Shared.Models.Parameters
-@using BV.PACS.WEB.Shared.Utils
-@using Microsoft.AspNetCore.Components
-@using BV.PACS.WEB.Client.Pages.BatchRegistration
 @using BV.PACS.WEB.Client.Shared.Components
 @inherits BV.PACS.WEB.Client.Shared.Base.TranslatablePanel<BV.PACS.WEB.Client.I18nText.StartForm>
-@inject HttpClient Http
-@inject LookupService ApiService
+@inject HttpClient _http
+@inject LookupService _apiService
 <h1>@Translations.Caption</h1>
 
 
@@ -18,30 +13,13 @@
 
         <div class="card demo-card">
             <div class="card-body">
-                @if (SourceTypes != null)
-                {
-                    <PopupEditor OnOk="@SourceTypeSelected"
-                                 OkText="@PacsMessagesTranslations.Select"
-                                 OnCancel="@SourceTypeCancelled"
-                                 CancelText="@PacsMessagesTranslations.Cancel"
-                                 EditorText="@SelectedItem?.Name"
-                                 ModalTitle="Title">
+                <SourceMaterialTree Data="@SourceTypes"
+                                    SelectedItem="SelectedItem"
+                                    OnCancel="@SourceTypeCancelled"
+                                    OnSelect="@SourceTypeSelected">
 
-                        <div class="pacsScroll">
+                </SourceMaterialTree>
 
-                            <DxTreeView AllowSelectNodes="true"
-                                        SelectionChanged=@SelectionChanged
-                                        CssClass="mw-480"
-                                        Data=@GetParentNodes()
-                                        ExpandButtonIconCssClass="oi oi-chevron-right"
-                                        CollapseButtonIconCssClass="oi oi-chevron-bottom"
-                                        TextExpression=@(dataItem => GetNodeText(dataItem))
-                                        ChildrenExpression=@(dataItem => GetNodeChildren(dataItem))>
-                            </DxTreeView>
-                        </div>
-
-                    </PopupEditor>
-                }
             </div>
         </div>
 
@@ -51,55 +29,24 @@
 @functions
 {
 
+    protected SourceMaterialTypeLookupItem SelectedItem { get; set; } = new SourceMaterialTypeLookupItem();
+    protected SourceMaterialTypeLookupItem[] SourceTypes { get; set; }
 
-    public SourceMaterialTypeLookupItem SelectedItem { get; set; } = new SourceMaterialTypeLookupItem();
-    public SourceMaterialTypeLookupItem[] SourceTypes { get; set; }
-
-    IEnumerable GetParentNodes()
-    {
-        return SourceTypes.Where(s => s.ParentId.IsNullOrEmpty());
-    }
-
-    IEnumerable GetNodeChildren(object dataItem)
-    {
-        if (dataItem is SourceMaterialTypeLookupItem lookupItem)
-        {
-            return SourceTypes.Where(s => s.ParentId == lookupItem.Id);
-        }
-
-        return null;
-    }
-
-    string GetNodeText(object dataItem)
-    {
-        if (dataItem is SourceMaterialTypeLookupItem lookupItem)
-        {
-            return lookupItem.Name;
-        }
-        return "";
-    }
-
-    
     protected void SourceTypeCancelled()
     {
         StateHasChanged();
     }
 
-    protected void SourceTypeSelected()
+    protected void SourceTypeSelected(SourceMaterialTypeLookupItem lookupItem)
     {
+        SelectedItem = lookupItem;
         StateHasChanged();
-    }
-
-    protected void SelectionChanged(TreeViewNodeEventArgs e)
-    {
-        SelectedItem = e.NodeInfo.DataItem as SourceMaterialTypeLookupItem;
-        //    InvokeAsync(StateHasChanged);
     }
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
-        SourceTypes = await ApiService.GetSourceMaterialTypesLookup(Http, SourceMaterialTypeLookupParameter.Source);
+        SourceTypes = await _apiService.GetSourceMaterialTypesLookup(_http, SourceMaterialTypeLookupParameter.Source);
     }
 
 }

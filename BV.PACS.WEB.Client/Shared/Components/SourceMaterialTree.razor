@@ -1,30 +1,26 @@
-﻿@inherits BV.PACS.WEB.Client.Shared.Components.SourceMaterialTreeCode
-@using Microsoft.AspNetCore.Components
-<div class="card demo-card">
-    <div class="card-body">
-        @if (SourceTypes != null)
-        {
-            <PopupEditor OnOk="@SourceTypeSelected"
-                         OkText="@PacsMessagesTranslations.Select"
-                         OnCancel="@SourceTypeCancelled"
-                         CancelText="@PacsMessagesTranslations.Cancel"
-                         EditorText="@SelectedItem?.Name"
-                         ModalTitle="Title">
+﻿@inherits SourceMaterialTreeCode
 
-                <div class="pacsScroll">
 
-                    <DxTreeView AllowSelectNodes="true"
-                                SelectionChanged=@SelectionChanged
-                                CssClass="mw-480"
-                                Data=@GetParentNodes()
-                                ExpandButtonIconCssClass="oi oi-chevron-right"
-                                CollapseButtonIconCssClass="oi oi-chevron-bottom"
-                                TextExpression=@(dataItem => GetNodeText(dataItem))
-                                ChildrenExpression=@(dataItem => GetNodeChildren(dataItem))>
-                    </DxTreeView>
-                </div>
+<PopupEditor OnOk="@Selected"
+             OkText="@PacsMessagesTranslations.Select"
+             OnCancel="@Cancelled"
+             CancelText="@PacsMessagesTranslations.Cancel"
+             EditorText="@SelectedItem?.Name"
+             ModalTitle="Title">
+    @if (Data != null)
+    {
+        <div class="pacsScroll">
 
-            </PopupEditor>
-        }
-    </div>
-</div>
+            <DxTreeView AllowSelectNodes="true"
+                        SelectionChanged=@SelectionChanged
+                        CssClass="mw-480"
+                        Data=@GetParentNodes()
+                        ExpandButtonIconCssClass="oi oi-chevron-right"
+                        CollapseButtonIconCssClass="oi oi-chevron-bottom"
+                        TextExpression=@(dataItem => GetNodeText(dataItem))
+                        ChildrenExpression=@(dataItem => GetNodeChildren(dataItem))>
+            </DxTreeView>
+
+        </div>
+    }
+</PopupEditor>

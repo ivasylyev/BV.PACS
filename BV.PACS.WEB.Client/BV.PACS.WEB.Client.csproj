@@ -188,4 +188,10 @@
     <Watch Remove="i18ntext\Pages\Aliquots\AliquotTrackingPanel.ru-RU.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\favicon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

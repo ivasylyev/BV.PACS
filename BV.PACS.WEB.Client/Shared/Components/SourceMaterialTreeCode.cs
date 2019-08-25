@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -21,19 +22,29 @@ namespace BV.PACS.WEB.Client.Shared.Components
         [Inject]
         protected HttpClient Http { get; set; }
 
+        [Parameter]
+        public Action OnCancel { get; set; }
+
+        [Parameter]
+        public Action<SourceMaterialTypeLookupItem> OnSelect { get; set; }
+
+
+        [Parameter]
         public SourceMaterialTypeLookupItem SelectedItem { get; set; } = new SourceMaterialTypeLookupItem();
-        public SourceMaterialTypeLookupItem[] SourceTypes { get; set; }
+
+        [Parameter]
+        public SourceMaterialTypeLookupItem[] Data { get; set; }
 
         protected IEnumerable GetParentNodes()
         {
-            return SourceTypes.Where(s => s.ParentId.IsNullOrEmpty());
+            return Data.Where(s => s.ParentId.IsNullOrEmpty());
         }
 
         protected IEnumerable GetNodeChildren(object dataItem)
         {
             if (dataItem is SourceMaterialTypeLookupItem lookupItem)
             {
-                return SourceTypes.Where(s => s.ParentId == lookupItem.Id);
+                return Data.Where(s => s.ParentId == lookupItem.Id);
             }
 
             return null;
@@ -50,26 +61,22 @@ namespace BV.PACS.WEB.Client.Shared.Components
         }
 
 
-        protected void SourceTypeCancelled()
+        protected void Cancelled()
         {
-            StateHasChanged();
+            OnCancel?.Invoke();
+            InvokeAsync(StateHasChanged);
         }
 
-        protected void SourceTypeSelected()
+        protected void Selected()
         {
-            StateHasChanged();
+            OnSelect?.Invoke(SelectedItem);
+            InvokeAsync(StateHasChanged);
         }
 
         protected void SelectionChanged(TreeViewNodeEventArgs e)
         {
             SelectedItem = e.NodeInfo.DataItem as SourceMaterialTypeLookupItem;
-            //    InvokeAsync(StateHasChanged);
         }
 
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-            SourceTypes = await ApiService.GetSourceMaterialTypesLookup(Http, SourceMaterialTypeLookupParameter.Source);
-        }
     }
 }
