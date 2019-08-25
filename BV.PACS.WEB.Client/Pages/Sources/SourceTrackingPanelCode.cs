@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using BV.PACS.WEB.Client.I18nText;
 using BV.PACS.WEB.Client.Shared.Base;
 using BV.PACS.WEB.Shared.Models;
+using BV.PACS.WEB.Shared.Models.Parameters;
 
 namespace BV.PACS.WEB.Client.Sources
 {
@@ -43,7 +44,11 @@ namespace BV.PACS.WEB.Client.Sources
             set => TrackingObject.SourceType = value;
         }
 
-
+        protected string SourceTypeId
+        {
+            get => TrackingObject.SourceTypeId;
+            set => TrackingObject.SourceTypeId = value;
+        }
         protected string SourceNote
         {
             get => TrackingObject.SourceNote;
@@ -56,13 +61,28 @@ namespace BV.PACS.WEB.Client.Sources
             set => TrackingObject.SourcePointOfOrigin = value;
         }
 
+        protected SourceMaterialTypeLookupItem SourceTypeSelectedItem { get; set; } = new SourceMaterialTypeLookupItem();
+        protected SourceMaterialTypeLookupItem[] SourceTypes { get; set; }
         protected void SourceTypeCancelled()
         {
             StateHasChanged();
         }
 
-        protected void SourceTypeSelected()
+        protected void SourceTypeSelected(SourceMaterialTypeLookupItem selected)
         {
+            SourceTypeSelectedItem = selected;
+
+             SourceType = selected?.Name;
+            SourceTypeId = selected?.Id;
+            Console.WriteLine(SourceType);
+            StateHasChanged();
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            SourceTypes = await ApiLookupService.GetSourceMaterialTypesLookup(Http, SourceMaterialTypeLookupParameter.Source);
+            SourceTypeSelectedItem = SourceTypes.FirstOrDefault(t => t.Id == SourceTypeId) ?? new SourceMaterialTypeLookupItem();
             StateHasChanged();
         }
     }

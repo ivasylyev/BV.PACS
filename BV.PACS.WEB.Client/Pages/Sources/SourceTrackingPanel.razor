@@ -22,15 +22,12 @@
 
             <DxFormLayoutItem Caption="@Translations.SourceType" ColSpanLg="6" ColSpanMd="12">
                 <Template>
+                    <SourceMaterialTree Data="@SourceTypes"
+                                        SelectedItem="SourceTypeSelectedItem"
+                                        OnCancel="@SourceTypeCancelled"
+                                        OnSelect="@SourceTypeSelected">
 
-                    <PopupEditor OnOk="@SourceTypeSelected"
-                                 OkText="@PacsMessagesTranslations.Select"
-                                 OnCancel="@SourceTypeCancelled"
-                                 CancelText="@PacsMessagesTranslations.Cancel"
-                                 EditorText="@SourceType"
-                                 ModalTitle="@Translations.SourceType">
-                        Source Type Editor is not implemented
-                    </PopupEditor>
+                    </SourceMaterialTree>
 
                 </Template>
             </DxFormLayoutItem>
