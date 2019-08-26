@@ -8,6 +8,7 @@ using BV.PACS.WEB.Client.Services.Api;
 using BV.PACS.WEB.Client.Shared.Base;
 using BV.PACS.WEB.Client.Shared.ViewModels;
 using BV.PACS.WEB.Shared.Models;
+using BV.PACS.WEB.Shared.Models.Parameters;
 using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.WEB.Client.Materials
@@ -15,11 +16,16 @@ namespace BV.PACS.WEB.Client.Materials
     public class BatchContentGridPanelCode : TranslatablePanel<BatchContentGridPanel>
     {
         [Inject]
-        protected LookupService ApiService { get; set; }
+        protected LookupService ApiLookupService { get; set; }
 
         [Inject]
         protected HttpClient Http { get; set; }
 
+        protected SourceMaterialTypeLookupItem MaterialTypeSelectedItem { get; set; } = new SourceMaterialTypeLookupItem();
+        protected SourceMaterialTypeLookupItem[] MaterialTypes { get; set; }
+
+        protected SourceMaterialTypeLookupItem SourceTypeSelectedItem { get; set; } = new SourceMaterialTypeLookupItem();
+        protected SourceMaterialTypeLookupItem[] SourceTypes { get; set; }
 
         protected TemplateLookupItem[] SourceTemplates { get; set; }
         protected TemplateLookupItem[] MaterialTemplates { get; set; }
@@ -27,15 +33,6 @@ namespace BV.PACS.WEB.Client.Materials
 
 
         protected List<BatchRegistrationDto> DataSource { get; set; } = new List<BatchRegistrationDto>();
-
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-
-            SourceTemplates = await ApiService.GetTemplatesLookup(Http, FormTypes.Source);
-            MaterialTemplates = await ApiService.GetTemplatesLookup(Http, FormTypes.Material);
-            AliquotTemplates = await ApiService.GetTemplatesLookup(Http, FormTypes.Aliquot);
-        }
 
 
         public void HandleValidSubmit(BatchTemplateViewModel model)
@@ -64,7 +61,6 @@ namespace BV.PACS.WEB.Client.Materials
 
             StateHasChanged();
         }
-
 
         protected void OnRowUpdating(BatchRegistrationDto item, Dictionary<string, object> newValue)
         {
@@ -100,6 +96,18 @@ namespace BV.PACS.WEB.Client.Materials
                     }
                 }
             }
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+
+            SourceTemplates = await ApiLookupService.GetTemplatesLookup(Http, FormTypes.Source);
+            MaterialTemplates = await ApiLookupService.GetTemplatesLookup(Http, FormTypes.Material);
+            AliquotTemplates = await ApiLookupService.GetTemplatesLookup(Http, FormTypes.Aliquot);
+
+            SourceTypes = await ApiLookupService.GetSourceMaterialTypesLookup(Http, SourceMaterialTypeLookupParameter.Source);
+            SourceTypes = await ApiLookupService.GetSourceMaterialTypesLookup(Http, SourceMaterialTypeLookupParameter.Source);
         }
     }
 }
