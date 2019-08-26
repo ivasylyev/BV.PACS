@@ -4,11 +4,15 @@ using System.Threading.Tasks;
 using BV.PACS.WEB.Client.I18nText;
 using BV.PACS.WEB.Client.Shared.Base;
 using BV.PACS.WEB.Shared.Models;
+using BV.PACS.WEB.Shared.Models.Parameters;
 
 namespace BV.PACS.WEB.Client.Materials
 {
     public class MaterialTrackingPanelCode : TrackingPanel<MaterialTrackingDto, MaterialTrackingPanel>
     {
+        protected SourceMaterialTypeLookupItem MaterialTypeSelectedItem { get; set; } = new SourceMaterialTypeLookupItem();
+        protected SourceMaterialTypeLookupItem[] MaterialTypes { get; set; }
+
         protected TemplateLookupItem Template
         {
             get { return Templates.FirstOrDefault(t => t.Id == TrackingObject.MaterialTemplateId); }
@@ -37,18 +41,19 @@ namespace BV.PACS.WEB.Client.Materials
             set => TrackingObject.SourceBarcode = value;
         }
 
-        protected string SourceType
-        {
-            get => "Not implemented";
-            set { }
-        }
-
 
         protected string MaterialType
         {
             get => TrackingObject.MaterialType;
             set => TrackingObject.MaterialType = value;
         }
+
+        protected string MaterialTypeId
+        {
+            get => TrackingObject.MaterialTypeId;
+            set => TrackingObject.MaterialTypeId = value;
+        }
+
 
         protected string MaterialOwnerName
         {
@@ -81,23 +86,27 @@ namespace BV.PACS.WEB.Client.Materials
             set => TrackingObject.MaterialPointOfOrigin = value;
         }
 
-        protected void SourceTypeCancelled()
-        {
-            StateHasChanged();
-        }
-
-        protected void SourceTypeSelected()
-        {
-            StateHasChanged();
-        }
 
         protected void MaterialTypeCancelled()
         {
             StateHasChanged();
         }
 
-        protected void MaterialTypeSelected()
+        protected void MaterialTypeSelected(SourceMaterialTypeLookupItem selected)
         {
+            MaterialTypeSelectedItem = selected;
+
+            MaterialType = selected?.Name;
+            MaterialTypeId = selected?.Id;
+            Console.WriteLine(MaterialType);
+            StateHasChanged();
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            MaterialTypes = await ApiLookupService.GetSourceMaterialTypesLookup(Http, SourceMaterialTypeLookupParameter.Material);
+            MaterialTypeSelectedItem = MaterialTypes.FirstOrDefault(t => t.Id == MaterialTypeId) ?? new SourceMaterialTypeLookupItem();
             StateHasChanged();
         }
     }

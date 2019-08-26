@@ -11,6 +11,9 @@ namespace BV.PACS.WEB.Client.Sources
     // ReSharper disable once InconsistentNaming
     public class SourceTrackingPanelCode : TrackingPanel<SourceTrackingDto, SourceTrackingPanel>
     {
+        protected SourceMaterialTypeLookupItem SourceTypeSelectedItem { get; set; } = new SourceMaterialTypeLookupItem();
+        protected SourceMaterialTypeLookupItem[] SourceTypes { get; set; }
+
         protected TemplateLookupItem Template
         {
             get { return Templates.FirstOrDefault(t => t.Id == TrackingObject.SourceTemplateId); }
@@ -49,6 +52,7 @@ namespace BV.PACS.WEB.Client.Sources
             get => TrackingObject.SourceTypeId;
             set => TrackingObject.SourceTypeId = value;
         }
+
         protected string SourceNote
         {
             get => TrackingObject.SourceNote;
@@ -61,8 +65,7 @@ namespace BV.PACS.WEB.Client.Sources
             set => TrackingObject.SourcePointOfOrigin = value;
         }
 
-        protected SourceMaterialTypeLookupItem SourceTypeSelectedItem { get; set; } = new SourceMaterialTypeLookupItem();
-        protected SourceMaterialTypeLookupItem[] SourceTypes { get; set; }
+
         protected void SourceTypeCancelled()
         {
             StateHasChanged();
@@ -72,7 +75,7 @@ namespace BV.PACS.WEB.Client.Sources
         {
             SourceTypeSelectedItem = selected;
 
-             SourceType = selected?.Name;
+            SourceType = selected?.Name;
             SourceTypeId = selected?.Id;
             Console.WriteLine(SourceType);
             StateHasChanged();

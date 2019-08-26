@@ -11,17 +11,9 @@
 <div class="row alert alert-primary background-white">
     <div class="col-sm-12">
 
-        <div class="card demo-card">
-            <div class="card-body">
-                <SourceMaterialTree Data="@SourceTypes"
-                                    SelectedItem="SelectedItem"
-                                    OnCancel="@SourceTypeCancelled"
-                                    OnSelect="@SourceTypeSelected">
+        <span class="oi oi-pencil mr-2" aria-hidden="true"></span>
 
-                </SourceMaterialTree>
-
-            </div>
-        </div>
+        <strong>@Translations.Description</strong>
 
     </div>
 </div>
@@ -29,24 +21,5 @@
 @functions
 {
 
-    protected SourceMaterialTypeLookupItem SelectedItem { get; set; } = new SourceMaterialTypeLookupItem();
-    protected SourceMaterialTypeLookupItem[] SourceTypes { get; set; }
-
-    protected void SourceTypeCancelled()
-    {
-        StateHasChanged();
-    }
-
-    protected void SourceTypeSelected(SourceMaterialTypeLookupItem lookupItem)
-    {
-        SelectedItem = lookupItem;
-        StateHasChanged();
-    }
-
-    protected override async Task OnInitializedAsync()
-    {
-        await base.OnInitializedAsync();
-        SourceTypes = await _apiService.GetSourceMaterialTypesLookup(_http, SourceMaterialTypeLookupParameter.Source);
-    }
 
 }

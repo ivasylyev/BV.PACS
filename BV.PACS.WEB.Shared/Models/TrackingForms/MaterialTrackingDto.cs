@@ -28,7 +28,6 @@ namespace BV.PACS.WEB.Shared.Models
         [GetColumn("MaterialType")]
         public string MaterialType { get; set; }
 
-
         [GetColumn("strLocationDesription")]
         [PostColumn("strLocationDesription")]
         public string LocationDesription { get; set; }

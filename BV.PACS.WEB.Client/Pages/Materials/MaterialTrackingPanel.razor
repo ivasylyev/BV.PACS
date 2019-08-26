@@ -21,21 +21,6 @@
                 </Template>
             </DxFormLayoutItem>
 
-
-            <DxFormLayoutItem Caption="@Translations.MaterialType" ColSpanLg="6" ColSpanMd="12">
-                <Template>
-                    <PopupEditor OnOk="@MaterialTypeSelected"
-                                 OkText="@PacsMessagesTranslations.Select"
-                                 OnCancel="@MaterialTypeCancelled"
-                                 CancelText="@PacsMessagesTranslations.Cancel"
-                                 EditorText="@MaterialType"
-                                 ModalTitle="@Translations.MaterialType">
-                        Material Type Editor is not implemented
-                    </PopupEditor>
-
-                </Template>
-            </DxFormLayoutItem>
-
             @if (Templates != null)
             {
                 <DxFormLayoutItem Caption="@Translations.MaterialTemplateName" ColSpanLg="6" ColSpanMd="12">
@@ -61,16 +46,14 @@
                 </Template>
             </DxFormLayoutItem>
 
-            <DxFormLayoutItem Caption="@Translations.SourceType" ColSpanLg="6" ColSpanMd="12">
+            <DxFormLayoutItem Caption="@Translations.MaterialType" ColSpanLg="6" ColSpanMd="12">
                 <Template>
-                    <PopupEditor OnOk="@SourceTypeSelected"
-                                 OkText="@PacsMessagesTranslations.Select"
-                                 OnCancel="@SourceTypeCancelled"
-                                 CancelText="@PacsMessagesTranslations.Cancel"
-                                 EditorText="@SourceType"
-                                 ModalTitle="@Translations.SourceType">
-                        Source Type Editor is not implemented
-                    </PopupEditor>
+                    <SourceMaterialTree Data="@MaterialTypes"
+                                        SelectedItem="@MaterialTypeSelectedItem"
+                                        OnCancel="@MaterialTypeCancelled"
+                                        OnSelect="@MaterialTypeSelected">
+
+                    </SourceMaterialTree>
                 </Template>
             </DxFormLayoutItem>
             <DxFormLayoutItem Caption="@Translations.MaterialPointOfOrigin" ColSpanLg="6" ColSpanMd="12">
