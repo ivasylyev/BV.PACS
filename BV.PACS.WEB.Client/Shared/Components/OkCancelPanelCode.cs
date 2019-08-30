@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using BV.PACS.WEB.Client.Shared.Base;
 using Microsoft.AspNetCore.Components;
 
@@ -13,14 +14,20 @@ namespace BV.PACS.WEB.Client.Shared.Components
         public Action OnCancel { get; set; }
 
 
-        public void DoOk()
+        public async Task DoOk()
         {
-            OnOk?.Invoke();
+            if (OnOk != null)
+            {
+                await InvokeAsync(OnOk);
+            }
         }
 
-        public void DoCancel()
+        public async Task DoCancel()
         {
-            OnCancel?.Invoke();
+            if (OnCancel != null)
+            {
+                await InvokeAsync(OnCancel);
+            }
         }
     }
 }

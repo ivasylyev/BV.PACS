@@ -37,7 +37,6 @@ namespace BV.PACS.WEB.Client.Shared.Base
             }
         }
 
-
         protected int PageCount
         {
             get => PageContext.PageCount;
@@ -65,7 +64,6 @@ namespace BV.PACS.WEB.Client.Shared.Base
         {
             await base.OnInitializedAsync();
 
-
             await GetData();
             await GetPageCount();
         }
@@ -75,24 +73,24 @@ namespace BV.PACS.WEB.Client.Shared.Base
             OnOpenTrackingForm?.Invoke(pageName, id);
         }
 
-        protected void OnSearchPanelToggle()
+        protected async Task OnSearchPanelToggle()
         {
             PageContext.SearchPanelToggle();
-
-            DoSearch();
+            await DoSearch();
         }
 
         protected void OnSearchPanelSearch(AggregatedConditionDto cond)
         {
             PageContext.SetSearchPanelCondition(cond);
-
-            DoSearch();
+            DoSearch().ContinueWith(x => { });
         }
 
-        private void DoSearch()
+        private async Task DoSearch()
         {
-            GetData().ContinueWith(x => { StateHasChanged(); });
-            GetPageCount().ContinueWith(x => { StateHasChanged(); });
+            await GetData();
+            await InvokeAsync(StateHasChanged);
+            await GetPageCount();
+            await InvokeAsync(StateHasChanged);
         }
 
         private async Task GetPageCount()

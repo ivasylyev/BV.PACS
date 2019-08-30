@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using BV.PACS.WEB.Shared.Models;
 using Microsoft.AspNetCore.Components;
 using Toolbelt.Blazor.I18nText.Interfaces;
@@ -18,10 +19,10 @@ namespace BV.PACS.WEB.Client.Shared.Base
         [Parameter]
         public string AuditTitle { get; set; }
 
-        public void DoClick()
+        public async Task  DoClick()
         {
             AuditData.GroupVisibility = !AuditData.GroupVisibility;
-            StateHasChanged();
+            await InvokeAsync(StateHasChanged);
             OnClick.Invoke();
         }
     }

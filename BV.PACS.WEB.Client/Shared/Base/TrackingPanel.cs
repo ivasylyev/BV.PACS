@@ -23,7 +23,7 @@ namespace BV.PACS.WEB.Client.Shared.Base
         protected LookupService ApiLookupService { get; set; }
 
         [Parameter]
-        protected int Id { get; set; }
+        public int Id { get; set; }
 
         protected TModel TrackingObject { get; set; }
 

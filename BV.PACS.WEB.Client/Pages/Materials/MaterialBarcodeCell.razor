@@ -6,19 +6,19 @@
 @functions {
 
     [Parameter]
-    object Context { get; set; }
-
-    int Id => Context is MaterialCatalogDto material ? material.MaterialId : 0;
-    string Barcode => Context is MaterialCatalogDto material ? material.MaterialBarcode : string.Empty;
+    public object Context { get; set; }
 
     [Parameter]
     public Action<string, int> OnCellClick { get; set; }
 
-    private void OnClick()
+    private int Id => Context is MaterialCatalogDto material ? material.MaterialId : 0;
+    private string Barcode => Context is MaterialCatalogDto material ? material.MaterialBarcode : string.Empty;
+
+    private async Task OnClick()
     {
         if (Id > 0)
         {
-            OnCellClick?.Invoke(nameof(MaterialTrackingForm), Id);
+            await InvokeAsync(()=>OnCellClick?.Invoke(nameof(MaterialTrackingForm), Id));
         }
     }
 
