@@ -135,7 +135,7 @@ namespace BV.PACS.WEB.Client.Materials
             AliquotTemplates = await ApiLookupService.GetTemplatesLookup(Http, FormTypes.Aliquot);
 
             SourceTypes = await ApiLookupService.GetSourceMaterialTypesLookup(Http, SourceMaterialTypeLookupParameter.Source);
-            SourceTypes = await ApiLookupService.GetSourceMaterialTypesLookup(Http, SourceMaterialTypeLookupParameter.Source);
+            MaterialTypes = await ApiLookupService.GetSourceMaterialTypesLookup(Http, SourceMaterialTypeLookupParameter.Material);
         }
     }
 }

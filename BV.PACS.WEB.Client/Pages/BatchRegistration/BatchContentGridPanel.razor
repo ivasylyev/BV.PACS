@@ -1,4 +1,6 @@
 ﻿@using BV.PACS.WEB.Shared.Models
+@using BV.PACS.WEB.Client.Services.Api
+@using BV.PACS.WEB.Client.Shared.Components
 @inherits BV.PACS.WEB.Client.Materials.BatchContentGridPanelCode
 
 
@@ -29,17 +31,23 @@
                             @{
                                 var dto = context as BatchRegistrationDto;
                                
-                                <span>@dto?.SourceTypeId</span>
+                                <span>@dto?.SourceTypeId</span> <span>@dto?.SourceType</span>
                             }
                         </DisplayTemplate>
 
                         <EditTemplate>
                             @{ 
-                                var cellEditContext = (CellEditContext)context;
-                                int currentCellValue = (int)cellEditContext.CellValue;
+                                var cellEditContext = (CellEditContext)context; 
+                                string sourceTypeId = (string)cellEditContext.CellValue;
+                                SourceTypeSelectedItem = SourceTypes.FirstOrDefault(t => t.Id == sourceTypeId) ?? new SourceMaterialTypeLookupItem();
                                // var nestedItem = NestedDataSource.Where(x => x.ProductSubcategoryID == currentCellValue).FirstOrDefault();
                             }
-                         
+                            <SourceMaterialTree Data="@SourceTypes"
+                                                SelectedItem="@SourceTypeSelectedItem"
+                                               
+                                                >
+
+                            </SourceMaterialTree>
                         </EditTemplate>
 
                     </DxDataGridColumn>

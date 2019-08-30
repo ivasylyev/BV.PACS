@@ -12,6 +12,8 @@
 
         public string SourceTypeId { get; set; }
 
+        public string SourceType { get; set; }
+
         public int? SourceOwnerId { get; set; }
 
         public string SourceGeoLocationId { get; set; }
@@ -25,6 +27,8 @@
         public string MaterialNote { get; set; }
 
         public string MaterialTypeId { get; set; }
+
+        public string MaterialType { get; set; }
 
         public int? MaterialOwnerId { get; set; }
 
