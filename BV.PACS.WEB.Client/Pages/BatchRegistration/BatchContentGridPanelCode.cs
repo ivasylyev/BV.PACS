@@ -24,10 +24,8 @@ namespace BV.PACS.WEB.Client.Materials
         [Inject]
         protected HttpClient Http { get; set; }
 
-        protected SourceMaterialTypeLookupItem MaterialTypeSelectedItem { get; set; } = new SourceMaterialTypeLookupItem();
         protected SourceMaterialTypeLookupItem[] MaterialTypes { get; set; }
 
-        protected SourceMaterialTypeLookupItem SourceTypeSelectedItem { get; set; } = new SourceMaterialTypeLookupItem();
         protected SourceMaterialTypeLookupItem[] SourceTypes { get; set; }
 
         protected TemplateLookupItem[] SourceTemplates { get; set; }
@@ -119,6 +117,21 @@ namespace BV.PACS.WEB.Client.Materials
                             if (field.Value is string aBarcode)
                             {
                                 item.AliquotBarcode = aBarcode;
+                            }
+                            break;
+
+                        case nameof(BatchRegistrationDto.SourceTypeId):
+                            if (field.Value is SourceMaterialTypeLookupItem sType)
+                            {
+                                item.SourceTypeId = sType.Id;
+                                item.SourceType = sType.Name;
+                            }
+                            break;
+                        case nameof(BatchRegistrationDto.MaterialTypeId):
+                            if (field.Value is SourceMaterialTypeLookupItem mType)
+                            {
+                                item.MaterialTypeId = mType.Id;
+                                item.MaterialType = mType.Name;
                             }
                             break;
                     }

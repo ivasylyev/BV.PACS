@@ -29,27 +29,23 @@
                     <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceTypeId)" Caption="@Translations.SourceType">
                         <DisplayTemplate>
                             @{
-                                var dto = context as BatchRegistrationDto;
-                               
-                                <span>@dto?.SourceTypeId</span> <span>@dto?.SourceType</span>
+                                var sourceTypeContext = context as BatchRegistrationDto;
+                                <span>@sourceTypeContext?.SourceType</span>
                             }
                         </DisplayTemplate>
 
                         <EditTemplate>
                             @{ 
-                                var cellEditContext = (CellEditContext)context; 
-                                string sourceTypeId = (string)cellEditContext.CellValue;
-                                SourceTypeSelectedItem = SourceTypes.FirstOrDefault(t => t.Id == sourceTypeId) ?? new SourceMaterialTypeLookupItem();
-                               // var nestedItem = NestedDataSource.Where(x => x.ProductSubcategoryID == currentCellValue).FirstOrDefault();
+                                var sourceCellContext = (CellEditContext)context; 
+                                string sourceTypeId = (string)sourceCellContext.CellValue;
+                                var sourceTypeItem = SourceTypes.FirstOrDefault(t => t.Id == sourceTypeId) ?? new SourceMaterialTypeLookupItem();
                             }
                             <SourceMaterialTree Data="@SourceTypes"
-                                                SelectedItem="@SourceTypeSelectedItem"
-                                               
-                                                >
+                                                SelectedItem="@sourceTypeItem"
+                                                OnSelect=@(newCellValue => {sourceCellContext.OnChanged(newCellValue);})>
 
                             </SourceMaterialTree>
                         </EditTemplate>
-
                     </DxDataGridColumn>
 
                     <DxDataGridColumn Field="@nameof(BatchRegistrationDto.MaterialBarcode)" Caption="@Translations.MaterialBarcode">
@@ -59,6 +55,25 @@
                     </DxDataGridComboBoxColumn>
 
                     <DxDataGridColumn Field="@nameof(BatchRegistrationDto.MaterialTypeId)" Caption="@Translations.MaterialType">
+                        <DisplayTemplate>
+                            @{
+                                var materialTypeContext = context as BatchRegistrationDto;
+                                <span>@materialTypeContext?.MaterialType</span>
+                            }
+                        </DisplayTemplate>
+
+                        <EditTemplate>
+                            @{ 
+                                var materialCellContext = (CellEditContext)context; 
+                                string materialTypeId = (string)materialCellContext.CellValue;
+                                var materialTypeItem = MaterialTypes.FirstOrDefault(t => t.Id == materialTypeId) ?? new SourceMaterialTypeLookupItem();
+                            }
+                            <SourceMaterialTree Data="@MaterialTypes"
+                                                SelectedItem="@materialTypeItem"
+                                                OnSelect=@(newCellValue => {materialCellContext.OnChanged(newCellValue);})>
+
+                            </SourceMaterialTree>
+                        </EditTemplate>
                     </DxDataGridColumn>
 
                     <DxDataGridColumn Field="@nameof(BatchRegistrationDto.AliquotBarcode)" Caption="@Translations.AliquotBarcode">
