@@ -43,6 +43,8 @@ namespace BV.PACS.WEB.Client.Materials
             Console.WriteLine("OnValidSubmit");
 
             var sourceNumbers = await ApiNumberingService.GetSourceNextNumbers(Http, model.SourceCount);
+            var materialNumbers = await ApiNumberingService.GetMaterialNextNumbers(Http, model.MaterialCount);
+            var aliquotNumbers = await ApiNumberingService.GetAliquotNextNumbers(Http, model.AliquotCount);
             for (var sIndex = 0; sIndex < model.SourceCount; sIndex++)
             {
                 var sourceTemplate = SourceTemplates.FirstOrDefault(s => s.Id == model.SourceTemplate.Id);
@@ -56,7 +58,10 @@ namespace BV.PACS.WEB.Client.Materials
                         {
                             SourceTemplate = sourceTemplate,
                             MaterialTemplate = materialTemplate,
-                            AliquotTemplate = aliquotTemplate
+                            AliquotTemplate = aliquotTemplate,
+                            SourceBarcode = sourceNumbers[sIndex],
+                            MaterialBarcode = materialNumbers[mIndex],
+                            AliquotBarcode = aliquotNumbers[aIndex],
                         };
                         DataSource.Add(dto);
                     }
