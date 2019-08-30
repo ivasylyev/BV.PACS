@@ -25,6 +25,23 @@
 
 
                     <DxDataGridColumn Field="@nameof(BatchRegistrationDto.SourceTypeId)" Caption="@Translations.SourceType">
+                        <DisplayTemplate>
+                            @{
+                                var dto = context as BatchRegistrationDto;
+                               
+                                <span>@dto?.SourceTypeId</span>
+                            }
+                        </DisplayTemplate>
+
+                        <EditTemplate>
+                            @{ 
+                                var cellEditContext = (CellEditContext)context;
+                                int currentCellValue = (int)cellEditContext.CellValue;
+                               // var nestedItem = NestedDataSource.Where(x => x.ProductSubcategoryID == currentCellValue).FirstOrDefault();
+                            }
+                         
+                        </EditTemplate>
+
                     </DxDataGridColumn>
 
                     <DxDataGridColumn Field="@nameof(BatchRegistrationDto.MaterialBarcode)" Caption="@Translations.MaterialBarcode">

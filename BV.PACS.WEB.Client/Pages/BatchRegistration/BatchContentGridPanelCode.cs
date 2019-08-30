@@ -86,21 +86,40 @@ namespace BV.PACS.WEB.Client.Materials
                             {
                                 item.SourceTemplate = sTemplate;
                             }
-
                             break;
+
                         case nameof(BatchRegistrationDto.MaterialTemplate):
                             if (field.Value is TemplateLookupItem mTemplate)
                             {
                                 item.SourceTemplate = mTemplate;
                             }
-
                             break;
+
                         case nameof(BatchRegistrationDto.AliquotTemplate):
                             if (field.Value is TemplateLookupItem aTemplate)
                             {
                                 item.SourceTemplate = aTemplate;
                             }
+                            break;
 
+                        case nameof(BatchRegistrationDto.SourceBarcode):
+                            if (field.Value is string sBarcode)
+                            {
+                                item.SourceBarcode = sBarcode;
+                            }
+                            break;
+                        case nameof(BatchRegistrationDto.MaterialBarcode):
+                            if (field.Value is string mBarcode)
+                            {
+                                item.MaterialBarcode = mBarcode;
+                            }
+                            break;
+
+                        case nameof(BatchRegistrationDto.AliquotBarcode):
+                            if (field.Value is string aBarcode)
+                            {
+                                item.AliquotBarcode = aBarcode;
+                            }
                             break;
                     }
                 }
