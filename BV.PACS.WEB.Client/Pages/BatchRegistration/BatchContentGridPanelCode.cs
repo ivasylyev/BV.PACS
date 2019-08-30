@@ -19,6 +19,9 @@ namespace BV.PACS.WEB.Client.Materials
         protected LookupService ApiLookupService { get; set; }
 
         [Inject]
+        protected NumberingService ApiNumberingService { get; set; }
+
+        [Inject]
         protected HttpClient Http { get; set; }
 
         protected SourceMaterialTypeLookupItem MaterialTypeSelectedItem { get; set; } = new SourceMaterialTypeLookupItem();
@@ -35,10 +38,11 @@ namespace BV.PACS.WEB.Client.Materials
         protected List<BatchRegistrationDto> DataSource { get; set; } = new List<BatchRegistrationDto>();
 
 
-        public void HandleValidSubmit(BatchTemplateViewModel model)
+        public async Task HandleValidSubmit(BatchTemplateViewModel model)
         {
             Console.WriteLine("OnValidSubmit");
 
+            var sourceNumbers = await ApiNumberingService.GetSourceNextNumbers(Http, model.SourceCount);
             for (var sIndex = 0; sIndex < model.SourceCount; sIndex++)
             {
                 var sourceTemplate = SourceTemplates.FirstOrDefault(s => s.Id == model.SourceTemplate.Id);

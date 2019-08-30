@@ -18,6 +18,7 @@ namespace BV.PACS.WEB.Client
 
             services.AddScoped<UrlMappingService>();
             services.AddScoped<LookupService>();
+            services.AddScoped<NumberingService>();
             services.AddScoped<CatalogService>();
             services.AddScoped<TrackingService>();
         }

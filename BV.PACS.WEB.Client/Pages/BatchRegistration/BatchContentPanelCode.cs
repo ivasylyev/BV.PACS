@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using BV.PACS.WEB.Client.Pages.BatchRegistration;
 using BV.PACS.WEB.Client.Shared.Base;
 using BV.PACS.WEB.Client.Shared.ViewModels;
@@ -11,10 +12,10 @@ namespace BV.PACS.WEB.Client.Materials
         protected BatchContentGridPanel _gridPanel;
         protected BatchContentTemplatePanel _templatePanel;
 
-        protected void HandleValidSubmit(BatchTemplateViewModel model)
+        protected async Task HandleValidSubmit(BatchTemplateViewModel model)
         {
             Console.WriteLine("OnValidSubmit");
-            _gridPanel.HandleValidSubmit(model);
+            await _gridPanel.HandleValidSubmit(model);
             StateHasChanged();
         }
     }

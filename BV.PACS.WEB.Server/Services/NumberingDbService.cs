@@ -8,13 +8,13 @@ using Microsoft.Extensions.Configuration;
 
 namespace BV.PACS.WEB.Server.Services
 {
-    public class NumberingService : DbService
+    public class NumberingDbService : DbService
     {
-        public NumberingService(IConfiguration config) : base(config)
+        public NumberingDbService(IConfiguration config) : base(config)
         {
         }
 
-        public async Task<IEnumerable<string>> GetSourceTracking(NumberingParameter parameter)
+        public async Task<IEnumerable<string>> GetNextNumbers(NumberingParameter parameter)
         {
             using (var connection = new SqlConnection(ConnectionString))
             {

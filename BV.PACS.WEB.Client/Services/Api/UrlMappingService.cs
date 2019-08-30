@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BV.PACS.WEB.Shared.Models;
+using BV.PACS.WEB.Shared.Models.Parameters;
 
 namespace BV.PACS.WEB.Client.Services.Api
 {
@@ -58,8 +59,12 @@ namespace BV.PACS.WEB.Client.Services.Api
             {typeof(AliquotAuditGridDto), "api/Grid/GetAliquotAudit"},
             {typeof(TestAuditGridDto), "api/Grid/GetTestAudit"},
         };
+        private readonly Dictionary<Type, string> _urlNumberingMapping = new Dictionary<Type, string>
+        {
+            {typeof(string), "api/Numbering/GetNextNumbers"},
+            
+        };
 
-       
 
         public string CatalogCountUrl<T>()
         {
@@ -89,6 +94,11 @@ namespace BV.PACS.WEB.Client.Services.Api
         public string GridUrl<T>()
         {
             return GetUrl<T>(_urlGridMapping);
+        }
+
+        public string NumberingUrl<T>()
+        {
+            return GetUrl<T>(_urlNumberingMapping);
         }
 
         private static string GetUrl<T>(Dictionary<Type, string> mapping)

@@ -2,12 +2,10 @@
 using System.Collections;
 using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using BV.PACS.WEB.Client.I18nText;
 using BV.PACS.WEB.Client.Services.Api;
 using BV.PACS.WEB.Client.Shared.Base;
 using BV.PACS.WEB.Shared.Models;
-using BV.PACS.WEB.Shared.Models.Parameters;
 using BV.PACS.WEB.Shared.Utils;
 using DevExpress.Blazor;
 using Microsoft.AspNetCore.Components;
@@ -77,6 +75,5 @@ namespace BV.PACS.WEB.Client.Shared.Components
         {
             SelectedItem = e.NodeInfo.DataItem as SourceMaterialTypeLookupItem;
         }
-
     }
 }

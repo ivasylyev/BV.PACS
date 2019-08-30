@@ -18,6 +18,7 @@ namespace BV.PACS.WEB.Server
             services.AddScoped<LookupDbService>();
             services.AddScoped<CatalogDbService>();
             services.AddScoped<TrackingDbService>();
+            services.AddScoped<NumberingDbService>();
 
             SqlMapperEx.InitMappers();
 

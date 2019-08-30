@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-sm-12">
-        <BatchContentTemplatePanel @ref="@_templatePanel" @ref:suppressField OnValidSubmit="@HandleValidSubmit">
+        <BatchContentTemplatePanel @ref="@_templatePanel" @ref:suppressField OnValidSubmit="@(async (model) => await HandleValidSubmit(model))">
         </BatchContentTemplatePanel>
     </div>
 
