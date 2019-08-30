@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BV.PACS.WEB.Client.I18nText;
 using BV.PACS.WEB.Client.Shared.Base;
 using BV.PACS.WEB.Shared.Models;
@@ -49,7 +50,7 @@ namespace BV.PACS.WEB.Client.Tests
             StateHasChanged();
         }
 
-        protected override void DoSearch()
+        protected override async Task DoSearch()
         {
             var cond = new AggregatedConditionDto();
 
@@ -61,7 +62,7 @@ namespace BV.PACS.WEB.Client.Tests
 
             cond.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", Template?.Id, Operators.EqualsOperator);
 
-            OnSearch?.Invoke(cond);
+            await InvokeAsync(() => OnSearch?.Invoke(cond));
         }
 
         protected override void DoClear()

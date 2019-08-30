@@ -91,29 +91,29 @@ namespace BV.PACS.WEB.Client.Sources
             StateHasChanged();
         }
 
-        protected override void DoSearch()
+        protected override async Task DoSearch()
         {
-            var condition = new AggregatedConditionDto();
+            var cond = new AggregatedConditionDto();
 
-            condition.AddStandardConditionIfNotEmpty("strSourceBarcode", SourceBarcode, Operators.LikeOperator);
+            cond.AddStandardConditionIfNotEmpty("strSourceBarcode", SourceBarcode, Operators.LikeOperator);
 
-            condition.AddStandardConditionIfNotEmpty("datCreationDate", StartDateText, Operators.MoreOperator);
-            condition.AddStandardConditionIfNotEmpty("datCreationDate", EndDateText, Operators.LessOperator);
+            cond.AddStandardConditionIfNotEmpty("datCreationDate", StartDateText, Operators.MoreOperator);
+            cond.AddStandardConditionIfNotEmpty("datCreationDate", EndDateText, Operators.LessOperator);
 
-            condition.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", Template?.Id, Operators.EqualsOperator);
+            cond.AddStandardConditionIfNotEmpty("idfsCFormTemplateID", Template?.Id, Operators.EqualsOperator);
 
-            condition.AddStandardConditionIfNotEmpty("strNote", SourceNotes, Operators.LikeOperator);
+            cond.AddStandardConditionIfNotEmpty("strNote", SourceNotes, Operators.LikeOperator);
 
-            condition.AddStandardConditionIfNotEmpty("strMaterialBarcode", MaterialBarcode, Operators.LikeOperator);
+            cond.AddStandardConditionIfNotEmpty("strMaterialBarcode", MaterialBarcode, Operators.LikeOperator);
 
-            condition.AddStandardConditionIfNotEmpty("strContainerBarcode", AliquotBarcode, Operators.LikeOperator);
+            cond.AddStandardConditionIfNotEmpty("strContainerBarcode", AliquotBarcode, Operators.LikeOperator);
 
-            condition.AddStandardConditionIfNotEmpty("idfsTestStatus", TestStatus?.Id, Operators.EqualsOperator);
-            condition.AddStandardConditionIfNotEmpty("idfsTestTypeId", TestType?.Id, Operators.EqualsOperator);
-            condition.AddStandardConditionIfNotEmpty("idfsTestResultId", TestResult?.Id, Operators.EqualsOperator);
+            cond.AddStandardConditionIfNotEmpty("idfsTestStatus", TestStatus?.Id, Operators.EqualsOperator);
+            cond.AddStandardConditionIfNotEmpty("idfsTestTypeId", TestType?.Id, Operators.EqualsOperator);
+            cond.AddStandardConditionIfNotEmpty("idfsTestResultId", TestResult?.Id, Operators.EqualsOperator);
 
 
-            OnSearch?.Invoke(condition);
+            await InvokeAsync(() => OnSearch?.Invoke(cond));
         }
 
         protected override void DoClear()

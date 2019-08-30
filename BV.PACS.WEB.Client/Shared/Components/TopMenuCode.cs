@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using BV.PACS.WEB.Client.Pages.Aliquots;
 using BV.PACS.WEB.Client.Pages.BatchRegistration;
 using BV.PACS.WEB.Client.Pages.Materials;
@@ -15,42 +16,42 @@ namespace BV.PACS.WEB.Client.Shared.Components
         public Action OnMenuClick { get; set; }
 
 
-        protected void DoOpenBatchRegistration()
+        protected async Task DoOpenBatchRegistration()
         {
             ApplicationContextService.OpenBatchRegistrationPage(nameof(BatchRegistrationForm));
-            OnMenuClick?.Invoke();
+            await InvokeAsync(OnMenuClick);
         }
 
-        protected void DoOpenSourceCatalog()
+        protected async Task DoOpenSourceCatalog()
         {
-            DoOpenCatalogPage(nameof(SourceCatalog));
+            await DoOpenCatalogPage(nameof(SourceCatalog));
         }
 
-        protected void DoOpenMaterialCatalog()
+        protected async Task DoOpenMaterialCatalog()
         {
-            DoOpenCatalogPage(nameof(MaterialCatalog));
+            await DoOpenCatalogPage(nameof(MaterialCatalog));
         }
 
-        protected void DoOpenAliquotCatalog()
+        protected async Task DoOpenAliquotCatalog()
         {
-            DoOpenCatalogPage(nameof(AliquotCatalog));
+            await DoOpenCatalogPage(nameof(AliquotCatalog));
         }
 
-        protected void DoOpenTestCatalog()
+        protected async Task DoOpenTestCatalog()
         {
-            DoOpenCatalogPage(nameof(TestCatalog));
+           await DoOpenCatalogPage(nameof(TestCatalog));
         }
 
-        private void DoOpenCatalogPage(string pageName)
+        private async Task DoOpenCatalogPage(string pageName)
         {
             ApplicationContextService.OpenLastOrNewCatalogPage(pageName);
-            OnMenuClick?.Invoke();
+            await InvokeAsync(OnMenuClick);
         }
 
-        private void DoOpenTrackingPage(string pageName, int context)
+        private async Task DoOpenTrackingPage(string pageName, int context)
         {
             ApplicationContextService.OpenTrackingPage(pageName, context);
-            OnMenuClick?.Invoke();
+            await InvokeAsync(OnMenuClick);
         }
     }
 }

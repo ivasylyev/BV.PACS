@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 
 namespace BV.PACS.WEB.Client.Shared.Components
@@ -28,27 +29,27 @@ namespace BV.PACS.WEB.Client.Shared.Components
 
         protected bool _modalVisible;
 
-        protected void ShowModal()
+        protected async Task ShowModal()
         {
             _modalVisible = true;
-            StateHasChanged();
+            await InvokeAsync(StateHasChanged);
         }
 
 
-        protected void Cancel()
+        protected async Task Cancel()
         {
             _modalVisible = false;
-            OnCancel?.Invoke();
 
-            StateHasChanged();
+            await InvokeAsync(OnCancel);
+            await InvokeAsync(StateHasChanged);
         }
 
-        protected void Ok()
+        protected async Task Ok()
         {
             _modalVisible = false;
-            OnOk?.Invoke();
-
-            StateHasChanged();
+            
+            await InvokeAsync(OnOk);
+            await InvokeAsync(StateHasChanged);
         }
     }
 }

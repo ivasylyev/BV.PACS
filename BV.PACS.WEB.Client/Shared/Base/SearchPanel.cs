@@ -45,7 +45,7 @@ namespace BV.PACS.WEB.Client.Shared.Base
         protected string EndDateText => EndDate.Date.ToString(GlobalSettings.AnsiDateTimeFormatInfo);
 
 
-        protected abstract void DoSearch();
+        protected abstract  Task DoSearch();
         protected abstract void InitSearchCondition(AggregatedConditionDto cond);
 
         protected virtual void DoClear()
